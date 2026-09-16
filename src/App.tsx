@@ -21,6 +21,8 @@ import { DecodedItemCard } from './components/DecodedItemCard';
 import { DecoderHelpModal } from './components/DecoderHelpModal';
 import { WorkflowsPage } from './components/WorkflowsPage';
 import { TtImgDecoderPage } from './components/TtImgDecoderPage';
+import { GoogleProPage } from './components/GoogleProPage';
+import { GoogleProCard } from './components/GoogleProCard';
 import { WorkflowVideo18Modal } from './components/WorkflowVideo18Modal';
 import { WorkflowDancinhasModal } from './components/WorkflowDancinhasModal';
 import { WorkflowSemCensuraModal } from './components/WorkflowSemCensuraModal';
@@ -48,12 +50,13 @@ export default function App() {
   const [items, setItems] = useState<DecodedResult[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Active page: 'home' (Principal), 'decoder' (Decodificador LSB), 'workflows' (Central de Workflows), or 'ttimg' (TT-IMG Decoder V1)
-  const [currentPage, setCurrentPage] = useState<'home' | 'decoder' | 'workflows' | 'ttimg'>(() => {
+  // Active page: 'home' (Principal), 'decoder' (Decodificador LSB), 'workflows' (Central de Workflows), 'ttimg' (TT-IMG Decoder V1), or 'googlepro' (Conta Google AI Pro)
+  const [currentPage, setCurrentPage] = useState<'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro'>(() => {
     if (typeof window !== 'undefined') {
       if (window.location.hash === '#decoder') return 'decoder';
       if (window.location.hash === '#workflows') return 'workflows';
       if (window.location.hash === '#ttimg' || window.location.hash === '#tt-img') return 'ttimg';
+      if (window.location.hash === '#googlepro' || window.location.hash === '#google-pro') return 'googlepro';
     }
     return 'home';
   });
@@ -67,6 +70,8 @@ export default function App() {
         setCurrentPage('workflows');
       } else if (window.location.hash === '#ttimg' || window.location.hash === '#tt-img') {
         setCurrentPage('ttimg');
+      } else if (window.location.hash === '#googlepro' || window.location.hash === '#google-pro') {
+        setCurrentPage('googlepro');
       } else {
         setCurrentPage('home');
       }
@@ -75,7 +80,7 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const handleNavigate = (page: 'home' | 'decoder' | 'workflows' | 'ttimg') => {
+  const handleNavigate = (page: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro') => {
     setCurrentPage(page);
     window.location.hash = page === 'home' ? '#home' : `#${page}`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -457,6 +462,13 @@ export default function App() {
                     </div>
                   </div>
                 </div>
+
+                {/* 5. Quadro MAIOR abaixo dos 4: CONTA GOOGLE AI PRO 18 MESES POR R$ 20,00 */}
+                <GoogleProCard
+                  onEnter={() => handleNavigate('googlepro')}
+                  contactConfig={contactConfig}
+                  soundEnabled={soundEnabled}
+                />
               </div>
             </section>
           </div>
@@ -471,6 +483,12 @@ export default function App() {
         ) : currentPage === 'ttimg' ? (
           <TtImgDecoderPage
             onBack={() => handleNavigate('home')}
+            soundEnabled={soundEnabled}
+          />
+        ) : currentPage === 'googlepro' ? (
+          <GoogleProPage
+            onBack={() => handleNavigate('home')}
+            contactConfig={contactConfig}
             soundEnabled={soundEnabled}
           />
         ) : (
