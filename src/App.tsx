@@ -214,20 +214,59 @@ export default function App() {
             <span>ESTEGANOGRAFIA DIGITAL • FORMATO DUCK LSB</span>
           </div>
 
-          <div className="relative inline-block animate-text-float">
-            {/* Background cybernetic aura */}
-            <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/20 via-teal-500/20 to-emerald-500/20 blur-xl opacity-75 rounded-2xl pointer-events-none animate-cyber-pulse" />
+          {/* 3D Cinematic Stage for CREKONI & Duck Imagem e Video Decod */}
+          <div className="relative inline-block w-full max-w-3xl mx-auto pt-1 pb-4 sm:pb-6">
+            {/* Subtle soft ambient glow behind letters (rounded-full, seamless falloff) */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-12 bg-sky-500/10 blur-3xl rounded-full pointer-events-none" />
 
-            <h1 className="relative text-3xl sm:text-5xl lg:text-6xl font-display font-black tracking-tight leading-tight select-none overflow-hidden py-1 px-3">
-              <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-teal-200 via-emerald-300 via-cyan-400 to-sky-300 animate-text-shimmer animate-glow-wave">
-                CREKONI Duck IMG VIDEO Decod
-              </span>
+            <h1 className="relative flex flex-col items-center justify-center select-none py-1">
+              {/* Linha de Cima: CREKONI em 3D Cromado Chanfrado com Luzes e Efeito Flash recortado nas letras */}
+              <div className="relative group flex flex-col items-center">
+                {/* Container do Texto 3D - Totalmente vazado estilo PNG sem fundo */}
+                <div className="relative px-1 py-0.5">
+                  {/* Texto Base 3D Cromado */}
+                  <div
+                    className="relative font-orbitron font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.18em] pl-[0.18em] chrome-3d-title leading-none transition-transform duration-300 hover:scale-[1.01]"
+                  >
+                    CREKONI
+                  </div>
 
-              {/* Holographic light sweep ray */}
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none animate-light-sweep blur-[1px]"
-              />
+                  {/* Efeito Flash recortado estritamente no corpo das letras (Zero vazamento externo) */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 px-1 py-0.5 font-orbitron font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.18em] pl-[0.18em] leading-none chrome-flash-overlay pointer-events-none select-none"
+                  >
+                    CREKONI
+                  </div>
+                </div>
+
+                {/* Reflexo Espelhado no Piso Escuro */}
+                <div
+                  aria-hidden="true"
+                  className="absolute -bottom-3 sm:-bottom-4 md:-bottom-5 left-0 right-0 font-orbitron font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.18em] pl-[0.18em] leading-none pointer-events-none select-none opacity-15"
+                  style={{
+                    transform: 'scaleY(-0.55) translateY(10%)',
+                    filter: 'blur(1.5px)',
+                    maskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 55%)',
+                    WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 55%)',
+                    color: '#93c5fd',
+                  }}
+                >
+                  CREKONI
+                </div>
+
+                {/* Ground light reflection cast on the floor beneath letters */}
+                <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-2/4 h-1.5 bg-gradient-to-r from-transparent via-cyan-400/25 to-transparent blur-sm pointer-events-none" />
+              </div>
+
+              {/* Linha de Baixo: Duck Imagem e Video Decod */}
+              <div className="relative mt-4 sm:mt-5 md:mt-6 flex items-center justify-center gap-2.5">
+                <span className="hidden sm:block w-6 sm:w-10 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
+                <span className="font-display font-semibold text-xs sm:text-sm text-transparent bg-clip-text bg-gradient-to-r from-slate-300 via-cyan-200 to-slate-300 tracking-[0.18em] sm:tracking-[0.24em] uppercase drop-shadow-[0_0_8px_rgba(6,182,212,0.25)]">
+                  Duck Imagem e Video Decod
+                </span>
+                <span className="hidden sm:block w-6 sm:w-10 h-[1px] bg-gradient-to-l from-transparent via-cyan-400/40 to-transparent" />
+              </div>
             </h1>
           </div>
 
