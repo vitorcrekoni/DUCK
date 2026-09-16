@@ -20,6 +20,7 @@ import { DropZone } from './components/DropZone';
 import { DecodedItemCard } from './components/DecodedItemCard';
 import { DecoderHelpModal } from './components/DecoderHelpModal';
 import { WorkflowsPage } from './components/WorkflowsPage';
+import { TtImgDecoderPage } from './components/TtImgDecoderPage';
 import { WorkflowVideo18Modal } from './components/WorkflowVideo18Modal';
 import { WorkflowDancinhasModal } from './components/WorkflowDancinhasModal';
 import { WorkflowSemCensuraModal } from './components/WorkflowSemCensuraModal';
@@ -47,11 +48,12 @@ export default function App() {
   const [items, setItems] = useState<DecodedResult[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Active page: 'home' (Principal), 'decoder' (Decodificador LSB), or 'workflows' (Central de Workflows)
-  const [currentPage, setCurrentPage] = useState<'home' | 'decoder' | 'workflows'>(() => {
+  // Active page: 'home' (Principal), 'decoder' (Decodificador LSB), 'workflows' (Central de Workflows), or 'ttimg' (TT-IMG Decoder V1)
+  const [currentPage, setCurrentPage] = useState<'home' | 'decoder' | 'workflows' | 'ttimg'>(() => {
     if (typeof window !== 'undefined') {
       if (window.location.hash === '#decoder') return 'decoder';
       if (window.location.hash === '#workflows') return 'workflows';
+      if (window.location.hash === '#ttimg' || window.location.hash === '#tt-img') return 'ttimg';
     }
     return 'home';
   });
@@ -63,6 +65,8 @@ export default function App() {
         setCurrentPage('decoder');
       } else if (window.location.hash === '#workflows') {
         setCurrentPage('workflows');
+      } else if (window.location.hash === '#ttimg' || window.location.hash === '#tt-img') {
+        setCurrentPage('ttimg');
       } else {
         setCurrentPage('home');
       }
@@ -71,7 +75,7 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const handleNavigate = (page: 'home' | 'decoder' | 'workflows') => {
+  const handleNavigate = (page: 'home' | 'decoder' | 'workflows' | 'ttimg') => {
     setCurrentPage(page);
     window.location.hash = page === 'home' ? '#home' : `#${page}`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -389,35 +393,39 @@ export default function App() {
 
                 {/* Linha 2: Quadro TT-IMG DECODER e Quadro VIDEO AULAS lado a lado */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
-                  {/* 3. Quadro TT-IMG DECODER */}
-                  <div
-                    id="hero-card-tt-img-decoder"
-                    className="relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-amber-950/50 via-[#181208] to-amber-950/50 border border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.12)] transition-all duration-300 text-left select-none"
+                  {/* 3. Quadro TT-IMG DECODER (Interativo e Acessível!) */}
+                  <button
+                    type="button"
+                    id="hero-btn-enter-tt-img-decoder"
+                    onClick={() => handleNavigate('ttimg')}
+                    title="Clique para entrar no TT-IMG Decoder V1"
+                    className="group relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-amber-950/60 via-[#1b1409] to-amber-950/60 hover:from-amber-900/70 hover:to-amber-900/70 border border-amber-500/40 hover:border-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.15)] hover:shadow-[0_0_30px_rgba(245,158,11,0.35)] transition-all duration-300 cursor-pointer text-left"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.2)] shrink-0">
+                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.2)] group-hover:scale-105 transition-transform shrink-0">
                         <span className="text-2xl select-none">🖼️</span>
-                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
+                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping opacity-75" />
+                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400" />
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-display font-bold text-sm sm:text-base text-white">
+                          <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-amber-200 transition-colors">
                             TT-IMG DECODER
                           </span>
                           <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-amber-950 text-amber-300 border border-amber-500/30">
-                            DECODER
+                            V1 MOTOR
                           </span>
                         </div>
-                        <p className="text-xs text-amber-200/80 font-mono mt-0.5">
-                          Em breve no ar
+                        <p className="text-xs text-slate-300 font-mono mt-0.5">
+                          Decodificador V1 LSB com remoção de marca-d'água e extração local
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/15 border border-amber-400/40 text-amber-300 font-mono text-[11px] font-bold tracking-wider shrink-0 ml-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
-                      <span>EM BREVE NO AR</span>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 border border-amber-400/40 text-amber-300 group-hover:bg-amber-400 group-hover:text-black font-mono text-xs font-bold transition-all shrink-0 ml-2">
+                      <span>ENTRAR</span>
+                      <span className="group-hover:translate-x-1 transition-transform">➔</span>
                     </div>
-                  </div>
+                  </button>
 
                   {/* 4. Quadro VÍDEO AULAS (Rosa, sem links, EM BREVE) */}
                   <div
@@ -459,6 +467,11 @@ export default function App() {
             onOpenDancinhasModal={() => setIsDancinhasModalOpen(true)}
             onOpenSemCensuraModal={() => setIsSemCensuraModalOpen(true)}
             contactConfig={contactConfig}
+          />
+        ) : currentPage === 'ttimg' ? (
+          <TtImgDecoderPage
+            onBack={() => handleNavigate('home')}
+            soundEnabled={soundEnabled}
           />
         ) : (
           /* ========================================================================= */
@@ -629,7 +642,7 @@ export default function App() {
       <footer className="mt-auto border-t border-white/[0.06] bg-[#05070c] py-6 px-4">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
           <div className="flex items-center gap-2 text-slate-400">
-            <span>Site Desenvolvido Pro Vitor Crekoni</span>
+            <span>Site Desenvolvido Por Vitor Crekoni</span>
           </div>
 
           <div className="flex items-center gap-4 text-slate-400">
