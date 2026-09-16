@@ -11,8 +11,6 @@ import {
   Instagram,
   RefreshCw,
   ExternalLink,
-  Edit2,
-  Check,
 } from 'lucide-react';
 import ttDecoderImg from './assets/images/decodificador_tt_img_1789523020842.jpg';
 import wfDancinhasImg from './assets/images/wf_dancinhas_1789523430926.jpg';
@@ -20,7 +18,6 @@ import wfSemCensuraImg from './assets/images/wf_sem_censura_1789523441883.jpg';
 import { Header } from './components/Header';
 import { DropZone } from './components/DropZone';
 import { DecodedItemCard } from './components/DecodedItemCard';
-import { ContactModal } from './components/ContactModal';
 import { FloatingContactBar } from './components/FloatingContactBar';
 import { DecodedResult, ContactConfig } from './types';
 import {
@@ -37,10 +34,14 @@ const DEFAULT_CONTACT_CONFIG: ContactConfig = {
   instagramHandle: 'vitorcrekonii',
 };
 
+// Fixed destination URLs (protected against unauthorized edits)
+const TT_SITE_URL = 'https://tt-decoder.com';
+const WF_DANCINHAS_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Dancinhas';
+const WF_SEM_CENSURA_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Motion+Sem+Censura+%2B18';
+
 export default function App() {
   const [items, setItems] = useState<DecodedResult[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   // Sound preference stored in localStorage
   const [soundEnabled, setSoundEnabled] = useState<boolean>(() => {
@@ -52,133 +53,12 @@ export default function App() {
     }
   });
 
-  // Contact configuration stored in localStorage
-  const [contactConfig, setContactConfig] = useState<ContactConfig>(() => {
-    try {
-      const saved = localStorage.getItem('duck_contact_config');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (
-          !parsed.instagramHandle ||
-          parsed.instagramHandle === 'duckdecoder' ||
-          parsed.instagramHandle === 'vitorcrekoni'
-        ) {
-          parsed.instagramHandle = 'vitorcrekonii';
-        }
-        if (
-          !parsed.whatsappNumber ||
-          parsed.whatsappNumber === '5511999999999' ||
-          parsed.whatsappNumber.includes('999999999')
-        ) {
-          parsed.whatsappNumber = '5544991840305';
-          try {
-            localStorage.setItem('duck_contact_config', JSON.stringify(parsed));
-          } catch {
-            // ignore
-          }
-        }
-        return parsed;
-      }
-      return DEFAULT_CONTACT_CONFIG;
-    } catch {
-      return DEFAULT_CONTACT_CONFIG;
-    }
-  });
+  // Contact configuration
+  const [contactConfig] = useState<ContactConfig>(DEFAULT_CONTACT_CONFIG);
 
-  const [ttSiteUrl, setTtSiteUrl] = useState<string>(() => {
-    try {
-      return localStorage.getItem('duck_tt_decoder_url') || 'https://tt-decoder.com';
-    } catch {
-      return 'https://tt-decoder.com';
-    }
-  });
-
-  const [wfDancinhasUrl, setWfDancinhasUrl] = useState<string>(() => {
-    try {
-      const saved = localStorage.getItem('duck_wf_dancinhas_url');
-      if (saved && !saved.includes('5511999999999')) {
-        return saved;
-      }
-      const updated = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Dancinhas';
-      try {
-        localStorage.setItem('duck_wf_dancinhas_url', updated);
-      } catch {
-        // ignore
-      }
-      return updated;
-    } catch {
-      return 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Dancinhas';
-    }
-  });
-
-  const [wfSemCensuraUrl, setWfSemCensuraUrl] = useState<string>(() => {
-    try {
-      const saved = localStorage.getItem('duck_wf_sem_censura_url');
-      if (saved && !saved.includes('5511999999999')) {
-        return saved;
-      }
-      const updated = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Motion+Sem+Censura+%2B18';
-      try {
-        localStorage.setItem('duck_wf_sem_censura_url', updated);
-      } catch {
-        // ignore
-      }
-      return updated;
-    } catch {
-      return 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Motion+Sem+Censura+%2B18';
-    }
-  });
-
-  // URL Editing Modal State
-  const [editingCard, setEditingCard] = useState<{
-    id: 'tt' | 'dancinhas' | 'sem_censura';
-    title: string;
-    url: string;
-  } | null>(null);
-  const [tempEditUrl, setTempEditUrl] = useState('');
-
-  const handleOpenEditCardUrl = (
-    id: 'tt' | 'dancinhas' | 'sem_censura',
-    title: string,
-    currentUrl: string
-  ) => {
-    setEditingCard({ id, title, url: currentUrl });
-    setTempEditUrl(currentUrl);
-  };
-
-  const handleSaveCardUrl = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!editingCard) return;
-    let formatted = tempEditUrl.trim();
-    if (formatted && !/^https?:\/\//i.test(formatted)) {
-      formatted = `https://${formatted}`;
-    }
-    if (formatted) {
-      if (editingCard.id === 'tt') {
-        setTtSiteUrl(formatted);
-        try {
-          localStorage.setItem('duck_tt_decoder_url', formatted);
-        } catch {
-          // fallback
-        }
-      } else if (editingCard.id === 'dancinhas') {
-        setWfDancinhasUrl(formatted);
-        try {
-          localStorage.setItem('duck_wf_dancinhas_url', formatted);
-        } catch {
-          // fallback
-        }
-      } else if (editingCard.id === 'sem_censura') {
-        setWfSemCensuraUrl(formatted);
-        try {
-          localStorage.setItem('duck_wf_sem_censura_url', formatted);
-        } catch {
-          // fallback
-        }
-      }
-    }
-    setEditingCard(null);
-  };
+  const ttSiteUrl = TT_SITE_URL;
+  const wfDancinhasUrl = WF_DANCINHAS_URL;
+  const wfSemCensuraUrl = WF_SEM_CENSURA_URL;
 
   const handleToggleSound = () => {
     setSoundEnabled((prev) => {
@@ -191,15 +71,6 @@ export default function App() {
       playCyberTone('click', !next);
       return next;
     });
-  };
-
-  const handleSaveContactConfig = (newConfig: ContactConfig) => {
-    setContactConfig(newConfig);
-    try {
-      localStorage.setItem('duck_contact_config', JSON.stringify(newConfig));
-    } catch {
-      // storage fallback
-    }
   };
 
   const processFile = async (file: File): Promise<DecodedResult> => {
@@ -327,10 +198,9 @@ export default function App() {
         <div className="absolute bottom-0 right-0 w-[400px] h-[300px] bg-emerald-500/5 blur-[100px]" />
       </div>
 
-      {/* Main Header with Contact buttons */}
+      {/* Main Header */}
       <Header
         contactConfig={contactConfig}
-        onOpenSettings={() => setIsSettingsOpen(true)}
         soundEnabled={soundEnabled}
         onToggleSound={handleToggleSound}
       />
@@ -365,19 +235,8 @@ export default function App() {
             Extraia arquivos ocultos em imagens PNG com precisão e velocidade. Compatível com o formato público SS_tools sem senha.
           </p>
 
-          {/* Quick Contact Bar right below hero for immediate visibility */}
+          {/* Quick Instagram link */}
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-            <a
-              id="hero-whatsapp-btn"
-              href={`https://wa.me/${contactConfig.whatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent(contactConfig.whatsappMessage)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-medium text-emerald-300 bg-emerald-950/30 border border-emerald-500/30 hover:bg-emerald-900/40 hover:border-emerald-400/60 transition-all shadow-[0_0_15px_rgba(16,185,129,0.12)] cursor-pointer"
-            >
-              <MessageCircle className="w-4 h-4 text-emerald-400" />
-              <span>Contato WhatsApp</span>
-            </a>
-
             <a
               id="hero-instagram-btn"
               href={`https://instagram.com/${contactConfig.instagramHandle.replace(/^@/, '')}`}
@@ -525,25 +384,12 @@ export default function App() {
                   </p>
                 </div>
               </a>
-
-              {/* Botão de edição rápida */}
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleOpenEditCardUrl('tt', 'DECODIFICADOR TT IMG', ttSiteUrl);
-                }}
-                title="Configurar URL"
-                className="absolute top-2.5 right-2.5 z-30 p-1.5 rounded-lg bg-black/60 hover:bg-cyan-950 text-slate-400 hover:text-cyan-300 border border-white/10 hover:border-cyan-500/40 transition-colors text-[10px]"
-              >
-                <Edit2 className="w-3.5 h-3.5" />
-              </button>
             </div>
 
             {/* 2. WORKFLOW DANCINHAS */}
             <div className="relative group w-full max-w-[340px] sm:max-w-[360px] min-h-[410px] aspect-square flex flex-col">
               {/* Retícula HUD nos 4 cantos */}
-              <div className="absolute -top-1 -left-1 w-3.5 h-3.5 border-t-2 border-l-2 border-purple-400 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
+              <div className="absolute -top-1 -left-1 w-3.5 h-3.5 border-t-2 border-purple-400 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
               <div className="absolute -top-1 -right-1 w-3.5 h-3.5 border-t-2 border-r-2 border-purple-400 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
               <div className="absolute -bottom-1 -left-1 w-3.5 h-3.5 border-b-2 border-l-2 border-purple-400 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
               <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 border-b-2 border-r-2 border-purple-400 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
@@ -595,19 +441,6 @@ export default function App() {
                   </p>
                 </div>
               </a>
-
-              {/* Botão de edição rápida */}
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleOpenEditCardUrl('dancinhas', 'WORKFLOW DANCINHAS', wfDancinhasUrl);
-                }}
-                title="Configurar URL"
-                className="absolute top-2.5 right-2.5 z-30 p-1.5 rounded-lg bg-black/60 hover:bg-purple-950 text-slate-400 hover:text-purple-300 border border-white/10 hover:border-purple-500/40 transition-colors text-[10px]"
-              >
-                <Edit2 className="w-3.5 h-3.5" />
-              </button>
             </div>
 
             {/* 3. WORKFLOW MOTION SEM CENSURA +18 */}
@@ -664,82 +497,14 @@ export default function App() {
                   </p>
                 </div>
               </a>
-
-              {/* Botão de edição rápida */}
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleOpenEditCardUrl('sem_censura', 'WORKFLOW MOTION SEM CENSURA +18', wfSemCensuraUrl);
-                }}
-                title="Configurar URL"
-                className="absolute top-2.5 right-2.5 z-30 p-1.5 rounded-lg bg-black/60 hover:bg-rose-950 text-slate-400 hover:text-rose-300 border border-white/10 hover:border-rose-500/40 transition-colors text-[10px]"
-              >
-                <Edit2 className="w-3.5 h-3.5" />
-              </button>
             </div>
           </div>
-
-          {/* Modal de edição de URL unificado */}
-          {editingCard && (
-            <div
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-              onClick={() => setEditingCard(null)}
-            >
-              <div
-                className="w-full max-w-sm rounded-xl border border-cyan-500/30 bg-[#0c101c] p-5 shadow-2xl text-slate-200"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <h4 className="text-sm font-display font-semibold text-white mb-2">
-                  Configurar link de {editingCard.title}
-                </h4>
-                <p className="text-xs text-slate-400 mb-4 font-mono">
-                  Insira o endereço de destino (site ou link de WhatsApp/checkout):
-                </p>
-                <form onSubmit={handleSaveCardUrl} className="space-y-3">
-                  <input
-                    type="text"
-                    value={tempEditUrl}
-                    onChange={(e) => setTempEditUrl(e.target.value)}
-                    placeholder="https://..."
-                    className="w-full px-3 py-2 rounded-lg bg-black/50 border border-white/15 text-xs font-mono text-white placeholder-slate-600 focus:outline-none focus:border-cyan-400"
-                    autoFocus
-                  />
-                  <div className="flex justify-end gap-2 pt-1">
-                    <button
-                      type="button"
-                      onClick={() => setEditingCard(null)}
-                      className="px-3 py-1.5 rounded-lg text-xs text-slate-400 hover:text-white"
-                    >
-                      Cancelar
-                    </button>
-                    <button
-                      type="submit"
-                      className="px-3 py-1.5 rounded-lg text-xs font-medium text-black bg-cyan-400 hover:bg-cyan-300 inline-flex items-center gap-1 cursor-pointer"
-                    >
-                      <Check className="w-3.5 h-3.5" />
-                      Salvar URL
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          )}
         </section>
       </main>
 
       {/* Floating Quick Action Contacts Bar */}
       <FloatingContactBar
         contactConfig={contactConfig}
-        onOpenSettings={() => setIsSettingsOpen(true)}
-      />
-
-      {/* Contact Settings / Customization Modal */}
-      <ContactModal
-        isOpen={isSettingsOpen}
-        onClose={() => setIsSettingsOpen(false)}
-        config={contactConfig}
-        onSaveConfig={handleSaveContactConfig}
       />
 
       {/* Futuristic Minimal Footer */}

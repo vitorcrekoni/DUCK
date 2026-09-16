@@ -1,26 +1,19 @@
 import React from 'react';
-import { Instagram, MessageCircle, Sliders, Volume2, VolumeX, ShieldCheck, Sparkles } from 'lucide-react';
+import { Instagram, ShieldCheck } from 'lucide-react';
 import { ContactConfig } from '../types';
+import { MusicPlayer } from './MusicPlayer';
 
 interface HeaderProps {
   contactConfig: ContactConfig;
-  onOpenSettings: () => void;
   soundEnabled: boolean;
   onToggleSound: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   contactConfig,
-  onOpenSettings,
   soundEnabled,
   onToggleSound,
 }) => {
-  const getWhatsAppUrl = () => {
-    const cleanNumber = contactConfig.whatsappNumber.replace(/\D/g, '');
-    const encodedMsg = encodeURIComponent(contactConfig.whatsappMessage);
-    return `https://wa.me/${cleanNumber}?text=${encodedMsg}`;
-  };
-
   const getInstagramUrl = () => {
     const cleanHandle = contactConfig.instagramHandle.replace(/^@/, '').trim();
     return `https://instagram.com/${cleanHandle}`;
@@ -53,21 +46,14 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Contact Buttons & Controls */}
+        {/* Action Controls */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* WhatsApp Direct Contact Button */}
-          <a
-            id="header-btn-whatsapp"
-            href={getWhatsAppUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Falar no WhatsApp"
-            className="group relative inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-emerald-300 bg-emerald-950/40 border border-emerald-500/30 hover:bg-emerald-900/50 hover:border-emerald-400/50 transition-all duration-200 shadow-[0_0_10px_rgba(16,185,129,0.1)] hover:shadow-[0_0_15px_rgba(16,185,129,0.25)]"
-          >
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <MessageCircle className="w-3.5 h-3.5 text-emerald-400 group-hover:scale-110 transition-transform" />
-            <span className="hidden md:inline font-mono tracking-wide">WhatsApp</span>
-          </a>
+          {/* Music Player with Mute Button directly beside it */}
+          <MusicPlayer
+            videoId="nZOrhNlbFHc"
+            isMuted={!soundEnabled}
+            onToggleMute={onToggleSound}
+          />
 
           {/* Instagram Direct Contact Button */}
           <a
@@ -81,35 +67,9 @@ export const Header: React.FC<HeaderProps> = ({
             <Instagram className="w-3.5 h-3.5 text-pink-400 group-hover:scale-110 transition-transform" />
             <span className="hidden md:inline font-mono tracking-wide">Instagram</span>
           </a>
-
-          {/* Sound Toggle */}
-          <button
-            id="header-btn-sound"
-            type="button"
-            onClick={onToggleSound}
-            title={soundEnabled ? 'Silenciar áudio' : 'Ativar feedback sonoro'}
-            className="p-2 rounded-lg text-slate-400 hover:text-slate-200 bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] transition-colors"
-          >
-            {soundEnabled ? (
-              <Volume2 className="w-4 h-4 text-cyan-400" />
-            ) : (
-              <VolumeX className="w-4 h-4 text-slate-500" />
-            )}
-          </button>
-
-          {/* Settings / Contact Config */}
-          <button
-            id="header-btn-settings"
-            type="button"
-            onClick={onOpenSettings}
-            title="Configurar contatos (WhatsApp / Instagram)"
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs text-slate-400 hover:text-slate-200 bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] transition-colors font-mono"
-          >
-            <Sliders className="w-3.5 h-3.5" />
-            <span className="hidden lg:inline text-[11px]">Contatos</span>
-          </button>
         </div>
       </div>
     </header>
   );
 };
+

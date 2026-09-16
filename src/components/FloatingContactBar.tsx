@@ -4,7 +4,6 @@ import { ContactConfig } from '../types';
 
 interface FloatingContactBarProps {
   contactConfig: ContactConfig;
-  onOpenSettings: () => void;
 }
 
 export const FloatingContactBar: React.FC<FloatingContactBarProps> = ({
