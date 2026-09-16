@@ -122,7 +122,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 type="text"
                 value={whatsappNumber}
                 onChange={(e) => setWhatsappNumber(e.target.value)}
-                placeholder="Ex: 5511999999999"
+                placeholder="Ex: 5544991840305"
                 className="w-full px-3 py-2 rounded-lg bg-black/50 border border-white/10 text-xs font-mono text-white placeholder-slate-600 focus:outline-none focus:border-cyan-400"
               />
             </div>

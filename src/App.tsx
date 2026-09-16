@@ -32,7 +32,7 @@ import {
 } from './utils/duckDecoder';
 
 const DEFAULT_CONTACT_CONFIG: ContactConfig = {
-  whatsappNumber: '5511999999999',
+  whatsappNumber: '5544991840305',
   whatsappMessage: 'Olá! Vim pelo Duck Decoder e gostaria de tirar uma dúvida.',
   instagramHandle: 'vitorcrekonii',
 };
@@ -65,6 +65,18 @@ export default function App() {
         ) {
           parsed.instagramHandle = 'vitorcrekonii';
         }
+        if (
+          !parsed.whatsappNumber ||
+          parsed.whatsappNumber === '5511999999999' ||
+          parsed.whatsappNumber.includes('999999999')
+        ) {
+          parsed.whatsappNumber = '5544991840305';
+          try {
+            localStorage.setItem('duck_contact_config', JSON.stringify(parsed));
+          } catch {
+            // ignore
+          }
+        }
         return parsed;
       }
       return DEFAULT_CONTACT_CONFIG;
@@ -83,23 +95,37 @@ export default function App() {
 
   const [wfDancinhasUrl, setWfDancinhasUrl] = useState<string>(() => {
     try {
-      return (
-        localStorage.getItem('duck_wf_dancinhas_url') ||
-        'https://wa.me/5511999999999?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Dancinhas'
-      );
+      const saved = localStorage.getItem('duck_wf_dancinhas_url');
+      if (saved && !saved.includes('5511999999999')) {
+        return saved;
+      }
+      const updated = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Dancinhas';
+      try {
+        localStorage.setItem('duck_wf_dancinhas_url', updated);
+      } catch {
+        // ignore
+      }
+      return updated;
     } catch {
-      return 'https://wa.me/5511999999999?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Dancinhas';
+      return 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Dancinhas';
     }
   });
 
   const [wfSemCensuraUrl, setWfSemCensuraUrl] = useState<string>(() => {
     try {
-      return (
-        localStorage.getItem('duck_wf_sem_censura_url') ||
-        'https://wa.me/5511999999999?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Motion+Sem+Censura+%2B18'
-      );
+      const saved = localStorage.getItem('duck_wf_sem_censura_url');
+      if (saved && !saved.includes('5511999999999')) {
+        return saved;
+      }
+      const updated = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Motion+Sem+Censura+%2B18';
+      try {
+        localStorage.setItem('duck_wf_sem_censura_url', updated);
+      } catch {
+        // ignore
+      }
+      return updated;
     } catch {
-      return 'https://wa.me/5511999999999?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Motion+Sem+Censura+%2B18';
+      return 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Motion+Sem+Censura+%2B18';
     }
   });
 
