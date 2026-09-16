@@ -18,7 +18,6 @@ import {
 import { Header } from './components/Header';
 import { DropZone } from './components/DropZone';
 import { DecodedItemCard } from './components/DecodedItemCard';
-import { ToolsGrid } from './components/ToolsGrid';
 import { DecoderHelpModal } from './components/DecoderHelpModal';
 import { WorkflowsPage } from './components/WorkflowsPage';
 import { WorkflowVideo18Modal } from './components/WorkflowVideo18Modal';
@@ -423,13 +422,6 @@ export default function App() {
                 </div>
               </div>
             </section>
-
-            {/* Quadros de Workflow Disponíveis */}
-            <ToolsGrid
-              onOpenVideo18Modal={() => setIsVideo18ModalOpen(true)}
-              onOpenDancinhasModal={() => setIsDancinhasModalOpen(true)}
-              onOpenSemCensuraModal={() => setIsSemCensuraModalOpen(true)}
-            />
           </div>
         ) : currentPage === 'workflows' ? (
           <WorkflowsPage
