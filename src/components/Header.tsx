@@ -7,8 +7,8 @@ interface HeaderProps {
   contactConfig: ContactConfig;
   soundEnabled: boolean;
   onToggleSound: () => void;
-  currentPage: 'home' | 'decoder' | 'workflows';
-  onNavigate: (page: 'home' | 'decoder' | 'workflows') => void;
+  currentPage: 'home' | 'decoder' | 'workflows' | 'ttimg';
+  onNavigate: (page: 'home' | 'decoder' | 'workflows' | 'ttimg') => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -46,19 +46,21 @@ export const Header: React.FC<HeaderProps> = ({
               <div className="hidden sm:flex items-center gap-2 pl-1 border-l border-white/10">
                 <div className="relative flex items-center justify-center w-7 h-7 rounded-lg bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
                   <span className="text-sm select-none">
-                    {currentPage === 'decoder' ? '🦆' : '⚡'}
+                    {currentPage === 'decoder' ? '🦆' : currentPage === 'ttimg' ? '🖼️' : '⚡'}
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="font-display font-bold tracking-tight text-sm text-white">
                     {currentPage === 'decoder' ? (
                       <>DUCK<span className="text-cyan-400">.</span>DECODER</>
+                    ) : currentPage === 'ttimg' ? (
+                      <>TT-IMG<span className="text-amber-400">.</span>DECODER</>
                     ) : (
                       <>WORKFLOWS<span className="text-purple-400">.</span>IA</>
                     )}
                   </span>
                   <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider font-medium bg-cyan-950/80 text-cyan-300 border border-cyan-500/30">
-                    {currentPage === 'decoder' ? 'LSB 2·6·8' : 'COMFYUI'}
+                    {currentPage === 'decoder' ? 'LSB 2·6·8' : currentPage === 'ttimg' ? 'V1 MOTOR' : 'COMFYUI'}
                   </span>
                   <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono text-emerald-300 bg-emerald-950/60 border border-emerald-500/30">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -105,14 +107,16 @@ export const Header: React.FC<HeaderProps> = ({
                 </div>
               </button>
 
-              {/* Quadro ao lado: TT-IMG DECODER (Sem link - Em breve) */}
-              <div
+              {/* Quadro ao lado: TT-IMG DECODER (Agora clicável e ativo!) */}
+              <button
+                type="button"
                 id="header-card-tt-img-decoder"
-                title="TT-IMG DECODER - Em breve no ar"
-                className="relative hidden sm:flex items-center gap-2 sm:gap-2.5 p-1 sm:px-2.5 sm:py-1 rounded-xl bg-amber-950/25 border border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.1)] text-left select-none opacity-90"
+                onClick={() => onNavigate('ttimg')}
+                title="Clique para abrir o TT-IMG Decoder V1"
+                className="group relative hidden sm:flex items-center gap-2 sm:gap-2.5 p-1 sm:px-2.5 sm:py-1 rounded-xl bg-amber-950/30 hover:bg-amber-900/50 border border-amber-500/40 hover:border-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.15)] hover:shadow-[0_0_25px_rgba(245,158,11,0.35)] transition-all duration-300 cursor-pointer text-left"
               >
                 {/* Icon */}
-                <div className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-amber-500/20 to-orange-600/10 border border-amber-400/40 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.2)] shrink-0">
+                <div className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-amber-500/20 to-orange-600/10 border border-amber-400/40 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.2)] group-hover:scale-105 transition-transform shrink-0">
                   <span className="text-base sm:text-lg select-none">🖼️</span>
                   <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
                 </div>
@@ -120,23 +124,23 @@ export const Header: React.FC<HeaderProps> = ({
                 {/* Text & Badge */}
                 <div className="flex flex-col">
                   <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                    <span className="font-display font-bold tracking-tight text-xs sm:text-sm md:text-base text-white">
+                    <span className="font-display font-bold tracking-tight text-xs sm:text-sm md:text-base text-white group-hover:text-amber-200 transition-colors">
                       TT<span className="text-amber-400">-</span>IMG DECODER
                     </span>
 
-                    {/* Tag "EM BREVE" */}
+                    {/* Tag "V1 ATIVO" */}
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold text-amber-300 bg-amber-950/80 border border-amber-500/40 shadow-[0_0_10px_rgba(245,158,11,0.2)]">
                       <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
-                      <span>EM BREVE</span>
+                      <span>ONLINE</span>
                     </span>
                   </div>
 
                   <p className="text-[11px] text-amber-300/80 hidden md:flex items-center gap-1 font-mono">
-                    <Clock className="w-3 h-3 text-amber-400" />
-                    <span>Em breve no ar</span>
+                    <Sparkles className="w-3 h-3 text-amber-400" />
+                    <span className="group-hover:underline">Clique para abrir o Decodificador V1</span>
                   </p>
                 </div>
-              </div>
+              </button>
             </div>
           )}
         </div>
