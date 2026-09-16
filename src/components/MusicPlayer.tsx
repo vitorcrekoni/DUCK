@@ -25,7 +25,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
   const playerRef = useRef<any>(null);
   const containerId = useRef(`yt-player-${Math.random().toString(36).substr(2, 9)}`);
 
-  // Load YouTube Iframe API once
+  // Load YouTube Iframe API once and initialize player with autoplay
   useEffect(() => {
     if (!window.YT) {
       const tag = document.createElement('script');
@@ -37,8 +37,8 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
     const initPlayer = () => {
       if (window.YT && window.YT.Player) {
         playerRef.current = new window.YT.Player(containerId.current, {
-          height: '1',
-          width: '1',
+          height: '200',
+          width: '200',
           videoId: videoId,
           playerVars: {
             autoplay: 1,
@@ -55,13 +55,18 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
           events: {
             onReady: (event: any) => {
               setIsPlayerReady(true);
-              // Handle initial mute state
-              if (isMuted) {
-                event.target.mute();
-              } else {
-                event.target.unMute();
+              try {
+                event.target.setVolume(85);
+                if (!isMuted) {
+                  event.target.unMute();
+                } else {
+                  event.target.mute();
+                }
+                event.target.playVideo();
+                setIsPlaying(true);
+              } catch {
+                // browser policy fallback handled below
               }
-              event.target.playVideo();
             },
             onStateChange: (event: any) => {
               // YT.PlayerState.PLAYING = 1, PAUSED = 2, ENDED = 0
@@ -76,6 +81,14 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
             },
           },
         });
+
+        // Ensure the iframe element has the allow="autoplay" attribute
+        setTimeout(() => {
+          const iframe = document.getElementById(containerId.current) as HTMLIFrameElement | null;
+          if (iframe) {
+            iframe.setAttribute('allow', 'autoplay; encrypted-media');
+          }
+        }, 80);
       }
     };
 
@@ -100,6 +113,40 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
     };
   }, [videoId]);
 
+  // Global listener to ensure audio starts immediately on user interaction if restricted by browser policy
+  useEffect(() => {
+    const unlockAutoplay = () => {
+      if (playerRef.current && typeof playerRef.current.playVideo === 'function') {
+        try {
+          if (!isMuted) {
+            playerRef.current.unMute();
+            playerRef.current.setVolume(85);
+          }
+          playerRef.current.playVideo();
+          setIsPlaying(true);
+        } catch {
+          postCommand('playVideo');
+        }
+      } else {
+        postCommand('playVideo');
+      }
+    };
+
+    window.addEventListener('pointerdown', unlockAutoplay, { once: true });
+    window.addEventListener('click', unlockAutoplay, { once: true });
+    window.addEventListener('keydown', unlockAutoplay, { once: true });
+    window.addEventListener('touchstart', unlockAutoplay, { once: true });
+    window.addEventListener('scroll', unlockAutoplay, { once: true, passive: true });
+
+    return () => {
+      window.removeEventListener('pointerdown', unlockAutoplay);
+      window.removeEventListener('click', unlockAutoplay);
+      window.removeEventListener('keydown', unlockAutoplay);
+      window.removeEventListener('touchstart', unlockAutoplay);
+      window.removeEventListener('scroll', unlockAutoplay);
+    };
+  }, [isMuted]);
+
   // Sync mute state with YouTube player
   useEffect(() => {
     if (playerRef.current && isPlayerReady) {
@@ -109,12 +156,10 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
         } else {
           playerRef.current.unMute();
           playerRef.current.setVolume(85);
-          // If unmuted and wasn't playing due to browser autoplay policy, trigger play
           playerRef.current.playVideo();
           setIsPlaying(true);
         }
       } catch {
-        // fallback postMessage if direct call fails
         postCommand(isMuted ? 'mute' : 'unMute');
       }
     }
@@ -181,8 +226,11 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
 
   return (
     <div className="flex items-center gap-1.5 p-1 rounded-xl bg-[#090d16]/90 border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.08)]">
-      {/* Hidden YouTube iframe */}
-      <div className="sr-only opacity-0 pointer-events-none w-0 h-0 overflow-hidden" aria-hidden="true">
+      {/* Off-screen active YouTube player container */}
+      <div
+        aria-hidden="true"
+        className="fixed -top-[2000px] -left-[2000px] w-48 h-48 pointer-events-none opacity-[0.001] z-[-9999]"
+      >
         <div id={containerId.current} />
       </div>
 
