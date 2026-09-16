@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --cyber-glow: rgba(6, 182, 212, 0.4);
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #06080e;
+    color: #e2e8f0;
+  }
+}
+
+.font-display {
+  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Futuristic background grid */
+.cyber-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+}
+
+/* Subtle glowing pulse */
+@keyframes cyber-pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-cyber-pulse {
+  animation: cyber-pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Fluid holographic text shimmer & flow */
+@keyframes text-shimmer-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes text-float-motion {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes glow-wave {
+  0%, 100% {
+    filter: drop-shadow(0 0 12px rgba(6, 182, 212, 0.35)) drop-shadow(0 0 25px rgba(16, 185, 129, 0.15));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.4)) drop-shadow(0 0 35px rgba(6, 182, 212, 0.3));
+  }
+}
+
+@keyframes light-sweep {
+  0% {
+    transform: translateX(-180%) skewX(-25deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.85;
+  }
+  45% {
+    transform: translateX(220%) skewX(-25deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(220%) skewX(-25deg);
+    opacity: 0;
+  }
+}
+
+.animate-text-shimmer {
+  background-size: 300% 300%;
+  animation: text-shimmer-flow 6s ease-in-out infinite;
+}
+
+.animate-text-float {
+  animation: text-float-motion 4s ease-in-out infinite;
+}
+
+.animate-glow-wave {
+  animation: glow-wave 4s ease-in-out infinite;
+}
+
+.animate-light-sweep {
+  animation: light-sweep 4.5s ease-in-out infinite;
+}
+
+/* Custom sleek scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090d15;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}

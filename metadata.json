@@ -1,0 +1,6 @@
+{
+  "name": "Duck Decoder",
+  "description": "Decodificador esteganográfico LSB futurista e minimalista para imagens Duck PNG com botões de contato Instagram e WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

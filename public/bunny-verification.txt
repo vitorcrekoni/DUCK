@@ -1,0 +1,6 @@
+bunny-origin-verification: ok
+status: active
+interface: crekoni-duck-decoder
+platform: web
+cdn: bunny.net
+timestamp: 2026-09-16

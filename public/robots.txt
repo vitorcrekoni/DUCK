@@ -1,0 +1,14 @@
+# Allow all web crawlers, Bunny.net CDN Edge, and search bots
+User-agent: *
+Allow: /
+
+User-agent: BunnyCDN
+Allow: /
+
+User-agent: BunnyBot
+Allow: /
+
+User-agent: BunnyStorage
+Allow: /
+
+Sitemap: /sitemap.xml

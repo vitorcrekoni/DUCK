@@ -1,0 +1,17 @@
+{
+  "name": "CREKONI Duck IMG VIDEO Decod",
+  "short_name": "DuckDecoder",
+  "description": "Decodificador esteganográfico LSB futurista e minimalista para imagens Duck PNG",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#06080e",
+  "theme_color": "#06080e",
+  "icons": [
+    {
+      "src": "/assets/aistudio/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
