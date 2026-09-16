@@ -12,14 +12,16 @@ import {
   RefreshCw,
   ExternalLink,
   Play,
+  ArrowLeft,
+  HelpCircle,
 } from 'lucide-react';
-import ttDecoderImg from './assets/images/decodificador_tt_img_1789523020842.jpg';
-import wfDancinhasImg from './assets/images/wf_dancinhas_1789523430926.jpg';
-import wfSemCensuraImg from './assets/images/wf_sem_censura_1789523441883.jpg';
 import { Header } from './components/Header';
 import { DropZone } from './components/DropZone';
 import { DecodedItemCard } from './components/DecodedItemCard';
-import { FloatingContactBar } from './components/FloatingContactBar';
+import { ToolsGrid } from './components/ToolsGrid';
+import { DecoderHelpModal } from './components/DecoderHelpModal';
+import { WorkflowsPage } from './components/WorkflowsPage';
+import { WorkflowVideo18Modal } from './components/WorkflowVideo18Modal';
 import { WorkflowDancinhasModal } from './components/WorkflowDancinhasModal';
 import { WorkflowSemCensuraModal } from './components/WorkflowSemCensuraModal';
 import { DecodedResult, ContactConfig } from './types';
@@ -38,13 +40,44 @@ const DEFAULT_CONTACT_CONFIG: ContactConfig = {
 };
 
 // Fixed destination URLs (protected against unauthorized edits)
-const TT_SITE_URL = 'https://tt-decoder.com';
+const WF_VIDEO_18_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Video+%2B18';
 const WF_DANCINHAS_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Dancinhas';
 const WF_SEM_CENSURA_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Motion+Sem+Censura+%2B18';
 
 export default function App() {
   const [items, setItems] = useState<DecodedResult[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
+
+  // Active page: 'home' (Principal), 'decoder' (Decodificador LSB), or 'workflows' (Central de Workflows)
+  const [currentPage, setCurrentPage] = useState<'home' | 'decoder' | 'workflows'>(() => {
+    if (typeof window !== 'undefined') {
+      if (window.location.hash === '#decoder') return 'decoder';
+      if (window.location.hash === '#workflows') return 'workflows';
+    }
+    return 'home';
+  });
+
+  // Listen to hash change for back/forward browser button navigation
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#decoder') {
+        setCurrentPage('decoder');
+      } else if (window.location.hash === '#workflows') {
+        setCurrentPage('workflows');
+      } else {
+        setCurrentPage('home');
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const handleNavigate = (page: 'home' | 'decoder' | 'workflows') => {
+    setCurrentPage(page);
+    window.location.hash = page === 'home' ? '#home' : `#${page}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    playCyberTone('click', !soundEnabled);
+  };
 
   // Sound preference stored in localStorage
   const [soundEnabled, setSoundEnabled] = useState<boolean>(() => {
@@ -60,10 +93,12 @@ export default function App() {
   const [contactConfig] = useState<ContactConfig>(DEFAULT_CONTACT_CONFIG);
 
   // Workflow Modals Popup State
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  const [isVideo18ModalOpen, setIsVideo18ModalOpen] = useState(false);
   const [isDancinhasModalOpen, setIsDancinhasModalOpen] = useState(false);
   const [isSemCensuraModalOpen, setIsSemCensuraModalOpen] = useState(false);
 
-  const ttSiteUrl = TT_SITE_URL;
+  const wfVideo18Url = WF_VIDEO_18_URL;
   const wfDancinhasUrl = WF_DANCINHAS_URL;
   const wfSemCensuraUrl = WF_SEM_CENSURA_URL;
 
@@ -210,374 +245,370 @@ export default function App() {
         contactConfig={contactConfig}
         soundEnabled={soundEnabled}
         onToggleSound={handleToggleSound}
+        currentPage={currentPage}
+        onNavigate={handleNavigate}
       />
 
       {/* Main Container */}
       <main className="relative z-10 flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        {/* Hero Section: Minimalist & Futuristic */}
-        <section className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/20 text-cyan-300 text-xs font-mono mb-4 shadow-[0_0_15px_rgba(6,182,212,0.15)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
-            <span>ESTEGANOGRAFIA DIGITAL • FORMATO DUCK LSB</span>
-          </div>
+        {currentPage === 'home' ? (
+          /* ========================================================================= */
+          /* PÁGINA PRINCIPAL: FERRAMENTAS DISPONÍVEIS (SEM O DECODIFICADOR NO CORPO) */
+          /* ========================================================================= */
+          <div>
+            {/* Hero Section da Página Principal */}
+            <section className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/20 text-cyan-300 text-xs font-mono mb-4 shadow-[0_0_15px_rgba(6,182,212,0.15)]">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+                <span>DECODIFICADORES & WORKFLOWS • CREKONI</span>
+              </div>
 
-          {/* 3D Cinematic Stage for CREKONI & Duck Imagem e Video Decod */}
-          <div className="relative inline-block w-full max-w-3xl mx-auto pt-1 pb-4 sm:pb-6">
-            {/* Subtle soft ambient glow behind letters (rounded-full, seamless falloff) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-12 bg-sky-500/10 blur-3xl rounded-full pointer-events-none" />
+              {/* 3D Cinematic Stage for CREKONI */}
+              <div className="relative inline-block w-full max-w-3xl mx-auto pt-1 pb-4 sm:pb-6">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-12 bg-sky-500/10 blur-3xl rounded-full pointer-events-none" />
 
-            <h1 className="relative flex flex-col items-center justify-center select-none py-1">
-              {/* Linha de Cima: CREKONI em 3D Cromado Chanfrado com Luzes e Efeito Flash recortado nas letras */}
-              <div className="relative group flex flex-col items-center">
-                {/* Container do Texto 3D - Totalmente vazado estilo PNG sem fundo */}
-                <div className="relative px-1 py-0.5">
-                  {/* Texto Base 3D Cromado */}
-                  <div
-                    className="relative font-orbitron font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.18em] pl-[0.18em] chrome-3d-title leading-none transition-transform duration-300 hover:scale-[1.01]"
-                  >
-                    CREKONI
+                <h1 className="relative flex flex-col items-center justify-center select-none py-1">
+                  {/* Linha de Cima: CREKONI em 3D Cromado Chanfrado com Luzes e Efeito Flash */}
+                  <div className="relative group flex flex-col items-center">
+                    <div className="relative px-1 py-0.5">
+                      <div className="relative font-orbitron font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.18em] pl-[0.18em] chrome-3d-title leading-none transition-transform duration-300 hover:scale-[1.01]">
+                        CREKONI
+                      </div>
+                      <div
+                        aria-hidden="true"
+                        className="absolute inset-0 px-1 py-0.5 font-orbitron font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.18em] pl-[0.18em] leading-none chrome-flash-overlay pointer-events-none select-none"
+                      >
+                        CREKONI
+                      </div>
+                    </div>
+
+                    {/* Reflexo Espelhado no Piso Escuro */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute -bottom-3 sm:-bottom-4 md:-bottom-5 left-0 right-0 font-orbitron font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.18em] pl-[0.18em] leading-none pointer-events-none select-none opacity-15"
+                      style={{
+                        transform: 'scaleY(-0.55) translateY(10%)',
+                        filter: 'blur(1.5px)',
+                        maskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 55%)',
+                        WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 55%)',
+                        color: '#93c5fd',
+                      }}
+                    >
+                      CREKONI
+                    </div>
+
+                    <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-2/4 h-1.5 bg-gradient-to-r from-transparent via-cyan-400/25 to-transparent blur-sm pointer-events-none" />
                   </div>
 
-                  {/* Efeito Flash recortado estritamente no corpo das letras (Zero vazamento externo) */}
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-0 px-1 py-0.5 font-orbitron font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.18em] pl-[0.18em] leading-none chrome-flash-overlay pointer-events-none select-none"
-                  >
-                    CREKONI
+                  {/* Linha de Baixo: Central de Ferramentas & Workflows */}
+                  <div className="relative mt-4 sm:mt-5 md:mt-6 flex items-center justify-center gap-2.5">
+                    <span className="hidden sm:block w-6 sm:w-10 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
+                    <span className="font-display font-semibold text-xs sm:text-sm text-transparent bg-clip-text bg-gradient-to-r from-slate-300 via-cyan-200 to-slate-300 tracking-[0.18em] sm:tracking-[0.24em] uppercase drop-shadow-[0_0_8px_rgba(6,182,212,0.25)]">
+                      Central de Ferramentas & Workflows
+                    </span>
+                    <span className="hidden sm:block w-6 sm:w-10 h-[1px] bg-gradient-to-l from-transparent via-cyan-400/40 to-transparent" />
                   </div>
-                </div>
-
-                {/* Reflexo Espelhado no Piso Escuro */}
-                <div
-                  aria-hidden="true"
-                  className="absolute -bottom-3 sm:-bottom-4 md:-bottom-5 left-0 right-0 font-orbitron font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.18em] pl-[0.18em] leading-none pointer-events-none select-none opacity-15"
-                  style={{
-                    transform: 'scaleY(-0.55) translateY(10%)',
-                    filter: 'blur(1.5px)',
-                    maskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 55%)',
-                    WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 55%)',
-                    color: '#93c5fd',
-                  }}
-                >
-                  CREKONI
-                </div>
-
-                {/* Ground light reflection cast on the floor beneath letters */}
-                <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-2/4 h-1.5 bg-gradient-to-r from-transparent via-cyan-400/25 to-transparent blur-sm pointer-events-none" />
+                </h1>
               </div>
 
-              {/* Linha de Baixo: Duck Imagem e Video Decod */}
-              <div className="relative mt-4 sm:mt-5 md:mt-6 flex items-center justify-center gap-2.5">
-                <span className="hidden sm:block w-6 sm:w-10 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
-                <span className="font-display font-semibold text-xs sm:text-sm text-transparent bg-clip-text bg-gradient-to-r from-slate-300 via-cyan-200 to-slate-300 tracking-[0.18em] sm:tracking-[0.24em] uppercase drop-shadow-[0_0_8px_rgba(6,182,212,0.25)]">
-                  Duck Imagem e Video Decod
-                </span>
-                <span className="hidden sm:block w-6 sm:w-10 h-[1px] bg-gradient-to-l from-transparent via-cyan-400/40 to-transparent" />
-              </div>
-            </h1>
-          </div>
+              <p className="mt-3 text-sm sm:text-base text-slate-300 max-w-xl mx-auto font-normal">
+                Acesse nossas ferramentas exclusivas, workflows profissionais de inteligência artificial e Decodificador
+              </p>
 
-          <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-xl mx-auto font-normal">
-            Extraia arquivos ocultos em imagens PNG com precisão e velocidade. Compatível com o formato público SS_tools sem senha.
-          </p>
-
-          {/* Quick Instagram link */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-            <a
-              id="hero-instagram-btn"
-              href={`https://instagram.com/${contactConfig.instagramHandle.replace(/^@/, '')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-medium text-pink-300 bg-pink-950/30 border border-pink-500/30 hover:bg-pink-900/40 hover:border-pink-400/60 transition-all shadow-[0_0_15px_rgba(244,63,94,0.12)] cursor-pointer"
-            >
-              <Instagram className="w-4 h-4 text-pink-400" />
-              <span>Seguir no Instagram (@{contactConfig.instagramHandle.replace(/^@/, '')})</span>
-            </a>
-          </div>
-        </section>
-
-        {/* Drop Zone Component */}
-        <section aria-label="Área de Envio">
-          <DropZone onFilesSelected={handleFilesSelected} isProcessing={isProcessing} />
-        </section>
-
-        {/* Results / Status Section */}
-        {items.length > 0 && (
-          <section className="mt-10">
-            {/* Action Bar & Telemetry */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/[0.08] mb-6">
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-display font-semibold text-white">
-                    Resultados Decodificados
-                  </span>
-                  <span className="px-2 py-0.5 rounded text-xs font-mono font-medium bg-cyan-950 text-cyan-300 border border-cyan-500/30">
-                    {items.length} {items.length === 1 ? 'item' : 'itens'}
-                  </span>
-                </div>
-
-                {successCount > 0 && (
-                  <span className="text-xs font-mono text-emerald-400 flex items-center gap-1">
-                    ✓ {successCount} recuperado(s)
-                  </span>
-                )}
-                {errorCount > 0 && (
-                  <span className="text-xs font-mono text-rose-400 flex items-center gap-1">
-                    ✕ {errorCount} falha(s)
-                  </span>
-                )}
-              </div>
-
-              <div className="flex items-center gap-2">
-                {successCount > 1 && (
+              {/* Destaques / Atalhos: Duck Decoder e Workflows IA na linha superior, TT-IMG Decoder abaixo */}
+              <div className="mt-7 max-w-4xl mx-auto space-y-3.5 sm:space-y-4">
+                {/* Linha 1: Os dois primeiros quadros mantendo o tamanho original */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
+                  {/* 1. Quadro Duck Decoder */}
                   <button
                     type="button"
-                    onClick={handleDownloadAll}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-black bg-cyan-400 hover:bg-cyan-300 transition-colors shadow-[0_0_15px_rgba(6,182,212,0.3)] cursor-pointer"
+                    id="hero-btn-enter-decoder"
+                    onClick={() => handleNavigate('decoder')}
+                    title="Clique para entrar na ferramenta Duck Decoder"
+                    className="group relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-cyan-950/60 via-[#0a1428] to-cyan-950/60 hover:from-cyan-900/70 hover:to-cyan-900/70 border border-cyan-500/40 hover:border-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:shadow-[0_0_30px_rgba(6,182,212,0.35)] transition-all duration-300 cursor-pointer text-left"
                   >
-                    <Download className="w-3.5 h-3.5" />
-                    <span>Baixar Todos</span>
+                    <div className="flex items-center gap-3">
+                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-105 transition-transform shrink-0">
+                        <span className="text-2xl select-none">🦆</span>
+                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping opacity-75" />
+                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-cyan-400" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-cyan-200 transition-colors">
+                            DUCK DECODER
+                          </span>
+                          <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-cyan-950 text-cyan-300 border border-cyan-500/30">
+                            DECODER
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-300 font-mono mt-0.5">
+                          Clique aqui ou no topo da página para entrar no decodificador
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 group-hover:bg-cyan-400 group-hover:text-black font-mono text-xs font-bold transition-all shrink-0 ml-2">
+                      <span>ENTRAR</span>
+                      <span className="group-hover:translate-x-1 transition-transform">➔</span>
+                    </div>
                   </button>
-                )}
 
-                <button
-                  type="button"
-                  onClick={handleClearAll}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-slate-200 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] transition-colors cursor-pointer"
-                >
-                  <Trash2 className="w-3.5 h-3.5" />
-                  <span>Limpar</span>
-                </button>
+                  {/* 2. Quadro Workflows IA */}
+                  <button
+                    type="button"
+                    id="hero-btn-enter-workflows"
+                    onClick={() => handleNavigate('workflows')}
+                    title="Clique para entrar na página de Workflows IA"
+                    className="group relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-purple-950/60 via-[#0e0c1f] to-purple-950/60 hover:from-purple-900/70 hover:to-purple-900/70 border border-purple-500/40 hover:border-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.15)] hover:shadow-[0_0_30px_rgba(168,85,247,0.35)] transition-all duration-300 cursor-pointer text-left"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-purple-500/20 border border-purple-400/40 text-purple-300 shadow-[0_0_15px_rgba(168,85,247,0.2)] group-hover:scale-105 transition-transform shrink-0">
+                        <span className="text-2xl select-none">⚡</span>
+                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-purple-400 animate-ping opacity-75" />
+                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-purple-400" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-purple-200 transition-colors">
+                            WORKFLOWS IA
+                          </span>
+                          <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-purple-950 text-purple-300 border border-purple-500/30">
+                            WORKFLOWS
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-300 font-mono mt-0.5">
+                          Clique aqui para entrar na central de workflows e ferramentas
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-500/20 border border-purple-400/40 text-purple-300 group-hover:bg-purple-400 group-hover:text-black font-mono text-xs font-bold transition-all shrink-0 ml-2">
+                      <span>ENTRAR</span>
+                      <span className="group-hover:translate-x-1 transition-transform">➔</span>
+                    </div>
+                  </button>
+                </div>
+
+                {/* Linha 2: Quadro TT-IMG DECODER abaixo dos primeiros com a mesma largura */}
+                <div className="flex justify-center">
+                  <div className="w-full md:w-[calc(50%-0.5rem)]">
+                    <div
+                      id="hero-card-tt-img-decoder"
+                      className="relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-amber-950/50 via-[#181208] to-amber-950/50 border border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.12)] transition-all duration-300 text-left select-none"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.2)] shrink-0">
+                          <span className="text-2xl select-none">🖼️</span>
+                          <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="font-display font-bold text-sm sm:text-base text-white">
+                              TT-IMG DECODER
+                            </span>
+                            <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-amber-950 text-amber-300 border border-amber-500/30">
+                              DECODER
+                            </span>
+                          </div>
+                          <p className="text-xs text-amber-200/80 font-mono mt-0.5">
+                            Em breve no ar
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/15 border border-amber-400/40 text-amber-300 font-mono text-[11px] font-bold tracking-wider shrink-0 ml-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
+                        <span>EM BREVE NO AR</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </section>
+
+            {/* Quadros de Workflow Disponíveis */}
+            <ToolsGrid
+              onOpenVideo18Modal={() => setIsVideo18ModalOpen(true)}
+              onOpenDancinhasModal={() => setIsDancinhasModalOpen(true)}
+              onOpenSemCensuraModal={() => setIsSemCensuraModalOpen(true)}
+            />
+          </div>
+        ) : currentPage === 'workflows' ? (
+          <WorkflowsPage
+            onBack={() => handleNavigate('home')}
+            onOpenVideo18Modal={() => setIsVideo18ModalOpen(true)}
+            onOpenDancinhasModal={() => setIsDancinhasModalOpen(true)}
+            onOpenSemCensuraModal={() => setIsSemCensuraModalOpen(true)}
+            contactConfig={contactConfig}
+          />
+        ) : (
+          /* ========================================================================= */
+          /* PÁGINA DO DECODIFICADOR ATUAL (DROPZONE E RESULTADOS)                     */
+          /* ========================================================================= */
+          <div>
+            {/* Barra de Voltar no topo do Decodificador */}
+            <div className="mb-6 flex items-center justify-between">
+              <button
+                type="button"
+                id="btn-decoder-back-tools"
+                onClick={() => handleNavigate('home')}
+                className="group inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-mono font-semibold text-cyan-300 bg-cyan-950/50 hover:bg-cyan-900/70 border border-cyan-500/30 hover:border-cyan-400 transition-all cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.1)]"
+              >
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                <span>← VOLTAR PARA A PÁGINA PRINCIPAL</span>
+              </button>
             </div>
 
-            {/* Decoded Items Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {items.map((item) => (
-                <DecodedItemCard
-                  key={item.id}
-                  item={item}
-                  onRemove={handleRemoveItem}
-                />
-              ))}
+            {/* Hero Section: Minimalist & Futuristic */}
+            <section className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/20 text-cyan-300 text-xs font-mono mb-4 shadow-[0_0_15px_rgba(6,182,212,0.15)]">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+                <span>ESTEGANOGRAFIA DIGITAL • FORMATO DUCK LSB</span>
+              </div>
+
+              {/* 3D Cinematic Stage for CREKONI & Duck Imagem e Video Decod */}
+              <div className="relative inline-block w-full max-w-3xl mx-auto pt-1 pb-4 sm:pb-6">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-12 bg-sky-500/10 blur-3xl rounded-full pointer-events-none" />
+
+                <h1 className="relative flex flex-col items-center justify-center select-none py-1">
+                  {/* Linha de Cima: CREKONI em 3D Cromado Chanfrado com Luzes e Efeito Flash recortado nas letras */}
+                  <div className="relative group flex flex-col items-center">
+                    <div className="relative px-1 py-0.5">
+                      <div className="relative font-orbitron font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.18em] pl-[0.18em] chrome-3d-title leading-none transition-transform duration-300 hover:scale-[1.01]">
+                        CREKONI
+                      </div>
+                      <div
+                        aria-hidden="true"
+                        className="absolute inset-0 px-1 py-0.5 font-orbitron font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.18em] pl-[0.18em] leading-none chrome-flash-overlay pointer-events-none select-none"
+                      >
+                        CREKONI
+                      </div>
+                    </div>
+
+                    {/* Reflexo Espelhado no Piso Escuro */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute -bottom-3 sm:-bottom-4 md:-bottom-5 left-0 right-0 font-orbitron font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.18em] pl-[0.18em] leading-none pointer-events-none select-none opacity-15"
+                      style={{
+                        transform: 'scaleY(-0.55) translateY(10%)',
+                        filter: 'blur(1.5px)',
+                        maskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 55%)',
+                        WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 55%)',
+                        color: '#93c5fd',
+                      }}
+                    >
+                      CREKONI
+                    </div>
+
+                    <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-2/4 h-1.5 bg-gradient-to-r from-transparent via-cyan-400/25 to-transparent blur-sm pointer-events-none" />
+                  </div>
+
+                  {/* Linha de Baixo: Duck Imagem e Video Decod */}
+                  <div className="relative mt-4 sm:mt-5 md:mt-6 flex items-center justify-center gap-2.5">
+                    <span className="hidden sm:block w-6 sm:w-10 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
+                    <span className="font-display font-semibold text-xs sm:text-sm text-transparent bg-clip-text bg-gradient-to-r from-slate-300 via-cyan-200 to-slate-300 tracking-[0.18em] sm:tracking-[0.24em] uppercase drop-shadow-[0_0_8px_rgba(6,182,212,0.25)]">
+                      Duck Imagem e Video Decod
+                    </span>
+                    <span className="hidden sm:block w-6 sm:w-10 h-[1px] bg-gradient-to-l from-transparent via-cyan-400/40 to-transparent" />
+                  </div>
+                </h1>
+              </div>
+
+              <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-xl mx-auto font-normal">
+                Extraia arquivos ocultos em imagens PNG com precisão e velocidade. Compatível com o formato público SS_tools sem senha.
+              </p>
+            </section>
+
+            {/* Drop Zone Component */}
+            <section aria-label="Área de Envio">
+              <DropZone onFilesSelected={handleFilesSelected} isProcessing={isProcessing} />
+            </section>
+
+            {/* Botão DÚVIDAS? logo após a janela de upload */}
+            <div className="mt-5 flex justify-center">
+              <button
+                type="button"
+                id="btn-decoder-duvidas"
+                onClick={() => setIsHelpModalOpen(true)}
+                className="group relative inline-flex items-center gap-2.5 px-6 py-2.5 rounded-xl font-mono text-xs sm:text-sm font-bold text-cyan-300 bg-cyan-950/80 hover:bg-cyan-900/90 border border-cyan-500/50 hover:border-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.25)] hover:shadow-[0_0_30px_rgba(6,182,212,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer select-none"
+              >
+                <HelpCircle className="w-4 h-4 text-cyan-400 group-hover:rotate-12 transition-transform" />
+                <span className="tracking-wider">DÚVIDAS?</span>
+                <span className="text-[11px] text-cyan-300/80 font-normal hidden sm:inline ml-1 font-mono">
+                  (Para que serve o decodificador?)
+                </span>
+              </button>
             </div>
-          </section>
+
+            {/* Results / Status Section */}
+            {items.length > 0 && (
+              <section className="mt-10">
+                {/* Action Bar & Telemetry */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/[0.08] mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-display font-semibold text-white">
+                        Resultados Decodificados
+                      </span>
+                      <span className="px-2 py-0.5 rounded text-xs font-mono font-medium bg-cyan-950 text-cyan-300 border border-cyan-500/30">
+                        {items.length} {items.length === 1 ? 'item' : 'itens'}
+                      </span>
+                    </div>
+
+                    {successCount > 0 && (
+                      <span className="text-xs font-mono text-emerald-400 flex items-center gap-1">
+                        ✓ {successCount} recuperado(s)
+                      </span>
+                    )}
+                    {errorCount > 0 && (
+                      <span className="text-xs font-mono text-rose-400 flex items-center gap-1">
+                        ✕ {errorCount} falha(s)
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    {successCount > 1 && (
+                      <button
+                        type="button"
+                        onClick={handleDownloadAll}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-black bg-cyan-400 hover:bg-cyan-300 transition-colors shadow-[0_0_15px_rgba(6,182,212,0.3)] cursor-pointer"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Baixar Todos</span>
+                      </button>
+                    )}
+
+                    <button
+                      type="button"
+                      onClick={handleClearAll}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-slate-200 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] transition-colors cursor-pointer"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                      <span>Limpar</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Decoded Items Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {items.map((item) => (
+                    <DecodedItemCard
+                      key={item.id}
+                      item={item}
+                      onRemove={handleRemoveItem}
+                    />
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
         )}
-
-        {/* Quadrados Botões com Imagem - Ecossistema & Workflows */}
-        <section aria-label="Acesso aos Sistemas e Workflows" className="mt-12">
-          <div className="text-center mb-8 flex flex-col items-center justify-center">
-            <div className="inline-flex items-center gap-2.5 sm:gap-3 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-mono font-bold tracking-wider text-cyan-300 bg-cyan-950/80 border border-cyan-500/40 shadow-[0_0_25px_rgba(6,182,212,0.25)]">
-              <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
-              <span>MAIS FERRAMENTAS DISPONIVEIS</span>
-              <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto justify-items-center">
-            {/* 1. DECODIFICADOR TT IMG */}
-            <div className="relative group w-full max-w-[340px] sm:max-w-[360px] min-h-[410px] aspect-square flex flex-col">
-              {/* Retícula HUD nos 4 cantos */}
-              <div className="absolute -top-1 -left-1 w-3.5 h-3.5 border-t-2 border-l-2 border-cyan-400 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
-              <div className="absolute -top-1 -right-1 w-3.5 h-3.5 border-t-2 border-r-2 border-cyan-400 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
-              <div className="absolute -bottom-1 -left-1 w-3.5 h-3.5 border-b-2 border-l-2 border-cyan-400 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
-              <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 border-b-2 border-r-2 border-cyan-400 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
-
-              {/* Glowing Backdrop */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-cyan-500/5 to-teal-500/10 rounded-2xl blur-lg opacity-40 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-              <a
-                id="btn-decodificador-tt-img"
-                href={ttSiteUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Abrir DECODIFICADOR TT IMG em nova aba"
-                className="relative w-full h-full flex flex-col items-center justify-between p-5 sm:p-6 rounded-2xl bg-[#0a0e1a]/95 hover:bg-[#0d1222] border border-cyan-500/30 group-hover:border-cyan-400/80 shadow-[0_4px_30px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_35px_rgba(6,182,212,0.25)] transition-all duration-300 text-center select-none overflow-hidden cursor-pointer"
-              >
-                {/* Header HUD Tag */}
-                <div className="w-full flex items-center justify-between z-10">
-                  <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono tracking-wider bg-cyan-950/80 text-cyan-300 border border-cyan-500/30">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
-                    DECODER
-                  </span>
-                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 bg-emerald-950/50 px-2 py-0.5 rounded border border-emerald-500/20">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                    ONLINE
-                  </div>
-                </div>
-
-                {/* Centro: Imagem */}
-                <div className="relative my-auto flex items-center justify-center py-2">
-                  <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-xl overflow-hidden border border-cyan-400/40 shadow-[0_0_20px_rgba(6,182,212,0.25)] group-hover:scale-105 group-hover:border-cyan-300 transition-all duration-300">
-                    <img
-                      src={ttDecoderImg}
-                      alt="DECODIFICADOR TT IMG"
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                  </div>
-                </div>
-
-                {/* Rodapé do Quadrado */}
-                <div className="w-full z-10 flex flex-col items-center">
-                  <div className="flex items-center justify-center gap-1.5 text-base sm:text-lg font-display font-bold text-white tracking-wide group-hover:text-cyan-300 transition-colors">
-                    <span>DECODIFICADOR TT IMG</span>
-                    <ExternalLink className="w-4 h-4 text-cyan-400 group-hover:translate-x-0.5 transition-transform" />
-                  </div>
-                  <p className="text-xs sm:text-[13px] font-mono text-slate-300/90 mt-2 leading-relaxed px-1 text-center">
-                    Acesse a plataforma de decodificação e extração esteganográfica avançada TT IMG
-                  </p>
-                </div>
-              </a>
-            </div>
-
-            {/* 2. WORKFLOW DANCINHAS */}
-            <div className="relative group w-full max-w-[340px] sm:max-w-[360px] min-h-[410px] aspect-square flex flex-col">
-              {/* Retícula HUD nos 4 cantos */}
-              <div className="absolute -top-1 -left-1 w-3.5 h-3.5 border-t-2 border-purple-400 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
-              <div className="absolute -top-1 -right-1 w-3.5 h-3.5 border-t-2 border-r-2 border-purple-400 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
-              <div className="absolute -bottom-1 -left-1 w-3.5 h-3.5 border-b-2 border-l-2 border-purple-400 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
-              <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 border-b-2 border-r-2 border-purple-400 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
-
-              {/* Glowing Backdrop */}
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-fuchsia-500/5 to-cyan-500/10 rounded-2xl blur-lg opacity-40 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-              <button
-                type="button"
-                id="btn-workflow-dancinhas"
-                onClick={() => setIsDancinhasModalOpen(true)}
-                title="Clique para ver o vídeo exemplo e adquirir o Workflow Dancinhas"
-                className="relative w-full h-full flex flex-col items-center justify-between p-5 sm:p-6 rounded-2xl bg-[#0d0a1a]/95 hover:bg-[#120e24] border border-purple-500/30 group-hover:border-purple-400/80 shadow-[0_4px_30px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_35px_rgba(168,85,247,0.25)] transition-all duration-300 text-center select-none overflow-hidden cursor-pointer"
-              >
-                {/* Header HUD Tag */}
-                <div className="w-full flex items-center justify-between z-10">
-                  <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono tracking-wider bg-purple-950/80 text-purple-300 border border-purple-500/30">
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping" />
-                    MOTION CONTROL
-                  </span>
-                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-purple-300 bg-purple-950/50 px-2 py-0.5 rounded border border-purple-500/20">
-                    <Sparkles className="w-3 h-3 text-purple-400" />
-                    VÍDEO DEMO
-                  </div>
-                </div>
-
-                {/* Centro: Imagem com Play Overlay */}
-                <div className="relative my-auto flex items-center justify-center py-2">
-                  <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-xl overflow-hidden border border-purple-400/40 shadow-[0_0_20px_rgba(168,85,247,0.25)] group-hover:scale-105 group-hover:border-purple-300 transition-all duration-300">
-                    <img
-                      src={wfDancinhasImg}
-                      alt="WORKFLOW DANCINHAS"
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-
-                    {/* Play Badge Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/25 transition-colors">
-                      <div className="w-10 h-10 rounded-full bg-purple-600/90 group-hover:bg-purple-500 text-white flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.8)] group-hover:scale-110 transition-transform">
-                        <Play className="w-4 h-4 ml-0.5 fill-white text-white" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Rodapé do Quadrado */}
-                <div className="w-full z-10 flex flex-col items-center">
-                  <div className="flex items-center justify-center gap-1.5 text-base sm:text-lg font-display font-bold text-white tracking-wide group-hover:text-purple-300 transition-colors">
-                    <span>WORKFLOW DANCINHAS</span>
-                    <Play className="w-4 h-4 text-purple-400 fill-purple-400/50 group-hover:translate-x-0.5 transition-transform" />
-                  </div>
-                  <p className="text-xs sm:text-[13px] font-mono text-slate-200 mt-2 leading-relaxed px-1 text-center font-normal">
-                    Adquira Workflow de Motion Control Para Criar Dancinhas e Copiar Movimentos De Videos
-                  </p>
-                  <span className="inline-flex items-center gap-1.5 mt-2.5 text-[11px] font-mono text-cyan-300 bg-cyan-950/50 px-2 py-0.5 rounded border border-cyan-500/30 group-hover:border-cyan-400 transition-colors">
-                    <span>▶ Ver vídeo & adquirir</span>
-                  </span>
-                </div>
-              </button>
-            </div>
-
-            {/* 3. WORKFLOW MOTION SEM CENSURA +18 */}
-            <div className="relative group w-full max-w-[340px] sm:max-w-[360px] min-h-[410px] aspect-square flex flex-col">
-              {/* Retícula HUD nos 4 cantos */}
-              <div className="absolute -top-1 -left-1 w-3.5 h-3.5 border-t-2 border-l-2 border-rose-500 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
-              <div className="absolute -top-1 -right-1 w-3.5 h-3.5 border-t-2 border-r-2 border-rose-500 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
-              <div className="absolute -bottom-1 -left-1 w-3.5 h-3.5 border-b-2 border-l-2 border-rose-500 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
-              <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 border-b-2 border-r-2 border-rose-500 z-20 pointer-events-none group-hover:scale-110 transition-transform" />
-
-              {/* Glowing Backdrop */}
-              <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 via-red-500/5 to-amber-500/10 rounded-2xl blur-lg opacity-40 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-              <button
-                type="button"
-                id="btn-workflow-sem-censura"
-                onClick={() => setIsSemCensuraModalOpen(true)}
-                title="Clique para ver o vídeo exemplo e adquirir o Workflow Motion Sem Censura +18"
-                className="relative w-full h-full flex flex-col items-center justify-between p-5 sm:p-6 rounded-2xl bg-[#140a0e]/95 hover:bg-[#1a0e13] border border-rose-500/30 group-hover:border-rose-400/80 shadow-[0_4px_30px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_35px_rgba(244,63,94,0.25)] transition-all duration-300 text-center select-none overflow-hidden cursor-pointer"
-              >
-                {/* Header HUD Tag */}
-                <div className="w-full flex items-center justify-between z-10">
-                  <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono tracking-wider bg-rose-950/80 text-rose-300 border border-rose-500/30">
-                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 animate-ping" />
-                    MOTION CONTROL
-                  </span>
-                  <div className="flex items-center gap-1 text-[11px] font-mono text-rose-400 bg-rose-950/60 px-2 py-0.5 rounded border border-rose-500/30 font-bold">
-                    +18 VIP
-                  </div>
-                </div>
-
-                {/* Centro: Imagem com Play Overlay */}
-                <div className="relative my-auto flex items-center justify-center py-2">
-                  <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-xl overflow-hidden border border-rose-500/40 shadow-[0_0_20px_rgba(244,63,94,0.25)] group-hover:scale-105 group-hover:border-rose-400 transition-all duration-300">
-                    <img
-                      src={wfSemCensuraImg}
-                      alt="WORKFLOW MOTION SEM CENSURA +18"
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-rose-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-
-                    {/* Play Badge Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/25 transition-colors">
-                      <div className="w-10 h-10 rounded-full bg-rose-600/90 group-hover:bg-rose-500 text-white flex items-center justify-center shadow-[0_0_15px_rgba(244,63,94,0.8)] group-hover:scale-110 transition-transform">
-                        <Play className="w-4 h-4 ml-0.5 fill-white text-white" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Rodapé do Quadrado */}
-                <div className="w-full z-10 flex flex-col items-center">
-                  <div className="flex items-center justify-center gap-1.5 text-base sm:text-lg font-display font-bold text-white tracking-wide group-hover:text-rose-400 transition-colors">
-                    <span>WORKFLOW MOTION SEM CENSURA +18</span>
-                    <Play className="w-4 h-4 text-rose-400 fill-rose-400/50 group-hover:translate-x-0.5 transition-transform" />
-                  </div>
-                  <p className="text-xs sm:text-[13px] font-mono text-slate-200 mt-2 leading-relaxed px-1 text-center font-normal">
-                    Adquira Workflow de Motion Control Para Copiar Movimentos em Video de Sua Modelo Sem Censura
-                  </p>
-                  <span className="inline-flex items-center gap-1.5 mt-2.5 text-[11px] font-mono text-rose-300 bg-rose-950/50 px-2 py-0.5 rounded border border-rose-500/30 group-hover:border-rose-400 transition-colors">
-                    <span>▶ Ver vídeo & adquirir</span>
-                  </span>
-                </div>
-              </button>
-            </div>
-          </div>
-        </section>
       </main>
-
-      {/* Floating Quick Action Contacts Bar */}
-      <FloatingContactBar
-        contactConfig={contactConfig}
-      />
 
       {/* Futuristic Minimal Footer */}
       <footer className="mt-auto border-t border-white/[0.06] bg-[#05070c] py-6 px-4">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
-          <div className="flex items-center gap-2">
-            <span>🦆 Duck Decoder</span>
-            <span>•</span>
-            <span>LSB Audio/Video/Payload Unpacker</span>
+          <div className="flex items-center gap-2 text-slate-400">
+            <span>Site Desenvolvido Pro Vitor Crekoni</span>
           </div>
 
           <div className="flex items-center gap-4 text-slate-400">
@@ -602,6 +633,19 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Pop-up Modal Informativo DÚVIDAS? */}
+      <DecoderHelpModal
+        isOpen={isHelpModalOpen}
+        onClose={() => setIsHelpModalOpen(false)}
+      />
+
+      {/* Pop-up Modal Workflow Video +18 com Vídeo Exemplo e Botão WhatsApp */}
+      <WorkflowVideo18Modal
+        isOpen={isVideo18ModalOpen}
+        onClose={() => setIsVideo18ModalOpen(false)}
+        whatsappUrl={wfVideo18Url}
+      />
 
       {/* Pop-up Modal Workflow Dancinhas com Vídeo Exemplo e Botão WhatsApp */}
       <WorkflowDancinhasModal
