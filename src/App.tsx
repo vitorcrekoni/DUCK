@@ -387,36 +387,65 @@ export default function App() {
                   </button>
                 </div>
 
-                {/* Linha 2: Quadro TT-IMG DECODER abaixo dos primeiros com a mesma largura */}
-                <div className="flex justify-center">
-                  <div className="w-full md:w-[calc(50%-0.5rem)]">
-                    <div
-                      id="hero-card-tt-img-decoder"
-                      className="relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-amber-950/50 via-[#181208] to-amber-950/50 border border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.12)] transition-all duration-300 text-left select-none"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.2)] shrink-0">
-                          <span className="text-2xl select-none">🖼️</span>
-                          <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <span className="font-display font-bold text-sm sm:text-base text-white">
-                              TT-IMG DECODER
-                            </span>
-                            <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-amber-950 text-amber-300 border border-amber-500/30">
-                              DECODER
-                            </span>
-                          </div>
-                          <p className="text-xs text-amber-200/80 font-mono mt-0.5">
-                            Em breve no ar
-                          </p>
-                        </div>
+                {/* Linha 2: Quadro TT-IMG DECODER e Quadro VIDEO AULAS lado a lado */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
+                  {/* 3. Quadro TT-IMG DECODER */}
+                  <div
+                    id="hero-card-tt-img-decoder"
+                    className="relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-amber-950/50 via-[#181208] to-amber-950/50 border border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.12)] transition-all duration-300 text-left select-none"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.2)] shrink-0">
+                        <span className="text-2xl select-none">🖼️</span>
+                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
                       </div>
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/15 border border-amber-400/40 text-amber-300 font-mono text-[11px] font-bold tracking-wider shrink-0 ml-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
-                        <span>EM BREVE NO AR</span>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-display font-bold text-sm sm:text-base text-white">
+                            TT-IMG DECODER
+                          </span>
+                          <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-amber-950 text-amber-300 border border-amber-500/30">
+                            DECODER
+                          </span>
+                        </div>
+                        <p className="text-xs text-amber-200/80 font-mono mt-0.5">
+                          Em breve no ar
+                        </p>
                       </div>
+                    </div>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/15 border border-amber-400/40 text-amber-300 font-mono text-[11px] font-bold tracking-wider shrink-0 ml-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
+                      <span>EM BREVE NO AR</span>
+                    </div>
+                  </div>
+
+                  {/* 4. Quadro VÍDEO AULAS (Rosa, sem links, EM BREVE) */}
+                  <div
+                    id="hero-card-video-aulas"
+                    className="relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-pink-950/50 via-[#1c0d18] to-pink-950/50 border border-pink-500/40 shadow-[0_0_20px_rgba(244,63,94,0.15)] transition-all duration-300 text-left select-none"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-pink-500/20 border border-pink-400/40 text-pink-300 shadow-[0_0_15px_rgba(244,63,94,0.2)] shrink-0">
+                        <span className="text-2xl select-none">🎬</span>
+                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-pink-400 animate-pulse" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-display font-bold text-sm sm:text-base text-white">
+                            VIDEO AULAS
+                          </span>
+                          <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-pink-950 text-pink-300 border border-pink-500/30">
+                            TUTORIAIS
+                          </span>
+                        </div>
+                        <p className="text-xs text-pink-200/80 font-mono mt-0.5">
+                          Treinamentos e aulas práticas em breve
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-pink-500/15 border border-pink-400/40 text-pink-300 font-mono text-[11px] font-bold tracking-wider shrink-0 ml-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-ping" />
+                      <span>EM BREVE</span>
                     </div>
                   </div>
                 </div>
