@@ -7,8 +7,8 @@ interface HeaderProps {
   contactConfig: ContactConfig;
   soundEnabled: boolean;
   onToggleSound: () => void;
-  currentPage: 'home' | 'decoder' | 'workflows' | 'ttimg';
-  onNavigate: (page: 'home' | 'decoder' | 'workflows' | 'ttimg') => void;
+  currentPage: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro';
+  onNavigate: (page: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro') => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -46,7 +46,7 @@ export const Header: React.FC<HeaderProps> = ({
               <div className="hidden sm:flex items-center gap-2 pl-1 border-l border-white/10">
                 <div className="relative flex items-center justify-center w-7 h-7 rounded-lg bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
                   <span className="text-sm select-none">
-                    {currentPage === 'decoder' ? '🦆' : currentPage === 'ttimg' ? '🖼️' : '⚡'}
+                    {currentPage === 'decoder' ? '🦆' : currentPage === 'ttimg' ? '🖼️' : currentPage === 'googlepro' ? '💎' : '⚡'}
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5">
@@ -55,12 +55,14 @@ export const Header: React.FC<HeaderProps> = ({
                       <>DUCK<span className="text-cyan-400">.</span>DECODER</>
                     ) : currentPage === 'ttimg' ? (
                       <>TT-IMG<span className="text-amber-400">.</span>DECODER</>
+                    ) : currentPage === 'googlepro' ? (
+                      <>GOOGLE<span className="text-blue-400">.</span>AI PRO</>
                     ) : (
                       <>WORKFLOWS<span className="text-purple-400">.</span>IA</>
                     )}
                   </span>
                   <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider font-medium bg-cyan-950/80 text-cyan-300 border border-cyan-500/30">
-                    {currentPage === 'decoder' ? 'LSB 2·6·8' : currentPage === 'ttimg' ? 'V1 MOTOR' : 'COMFYUI'}
+                    {currentPage === 'decoder' ? 'LSB 2·6·8' : currentPage === 'ttimg' ? 'V1 MOTOR' : currentPage === 'googlepro' ? '18 MESES' : 'COMFYUI'}
                   </span>
                   <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono text-emerald-300 bg-emerald-950/60 border border-emerald-500/30">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
