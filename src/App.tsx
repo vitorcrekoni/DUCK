@@ -23,6 +23,7 @@ import { WorkflowsPage } from './components/WorkflowsPage';
 import { TtImgDecoderPage } from './components/TtImgDecoderPage';
 import { GoogleProPage } from './components/GoogleProPage';
 import { GoogleProCard } from './components/GoogleProCard';
+import { AulasPage } from './components/AulasPage';
 import { WorkflowVideo18Modal } from './components/WorkflowVideo18Modal';
 import { WorkflowDancinhasModal } from './components/WorkflowDancinhasModal';
 import { WorkflowSemCensuraModal } from './components/WorkflowSemCensuraModal';
@@ -58,13 +59,14 @@ export default function App() {
   const [items, setItems] = useState<DecodedResult[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Active page: 'home' (Principal), 'decoder' (Decodificador LSB), 'workflows' (Central de Workflows), 'ttimg' (TT-IMG Decoder V1), or 'googlepro' (Conta Google AI Pro)
-  const [currentPage, setCurrentPage] = useState<'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro'>(() => {
+  // Active page: 'home' (Principal), 'decoder' (Decodificador LSB), 'workflows' (Central de Workflows), 'ttimg' (TT-IMG Decoder V1), 'googlepro' (Conta Google AI Pro), or 'aulas' (Vídeo Aulas)
+  const [currentPage, setCurrentPage] = useState<'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas'>(() => {
     if (typeof window !== 'undefined') {
       if (window.location.hash === '#decoder') return 'decoder';
       if (window.location.hash === '#workflows') return 'workflows';
       if (window.location.hash === '#ttimg' || window.location.hash === '#tt-img') return 'ttimg';
       if (window.location.hash === '#googlepro' || window.location.hash === '#google-pro') return 'googlepro';
+      if (window.location.hash === '#aulas' || window.location.hash === '#video-aulas') return 'aulas';
     }
     return 'home';
   });
@@ -80,6 +82,8 @@ export default function App() {
         setCurrentPage('ttimg');
       } else if (window.location.hash === '#googlepro' || window.location.hash === '#google-pro') {
         setCurrentPage('googlepro');
+      } else if (window.location.hash === '#aulas' || window.location.hash === '#video-aulas') {
+        setCurrentPage('aulas');
       } else {
         setCurrentPage('home');
       }
@@ -88,7 +92,7 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const handleNavigate = (page: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro') => {
+  const handleNavigate = (page: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas') => {
     setCurrentPage(page);
     window.location.hash = page === 'home' ? '#home' : `#${page}`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -362,12 +366,13 @@ export default function App() {
                           <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-cyan-200 transition-colors">
                             DUCK DECODER
                           </span>
-                          <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-cyan-950 text-cyan-300 border border-cyan-500/30">
-                            DECODER
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold text-emerald-300 bg-emerald-950/70 border border-emerald-500/40 shadow-[0_0_10px_rgba(16,185,129,0.2)] group-hover:bg-emerald-900/80 transition-all">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                            <span>ONLINE</span>
                           </span>
                         </div>
                         <p className="text-xs text-slate-300 font-mono mt-0.5">
-                          Clique aqui ou no topo da página para entrar no decodificador
+                          Extraia arquivos ocultos em imagens PNG com precisão e velocidade
                         </p>
                       </div>
                     </div>
@@ -433,8 +438,9 @@ export default function App() {
                           <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-amber-200 transition-colors">
                             TT-IMG DECODER
                           </span>
-                          <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-amber-950 text-amber-300 border border-amber-500/30">
-                            V1 MOTOR
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold text-amber-300 bg-amber-950/80 border border-amber-500/40 shadow-[0_0_10px_rgba(245,158,11,0.2)] group-hover:bg-amber-900/80 transition-all">
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                            <span>ONLINE</span>
                           </span>
                         </div>
                         <p className="text-xs text-slate-300 font-mono mt-0.5">
@@ -448,19 +454,22 @@ export default function App() {
                     </div>
                   </button>
 
-                  {/* 4. Quadro VÍDEO AULAS (Rosa, sem links, EM BREVE) */}
-                  <div
+                  {/* 4. Quadro VÍDEO AULAS (Clicável, leva para a página Aulas com aviso de EM BREVE) */}
+                  <button
+                    type="button"
                     id="hero-card-video-aulas"
-                    className="relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-pink-950/50 via-[#1c0d18] to-pink-950/50 border border-pink-500/40 shadow-[0_0_20px_rgba(244,63,94,0.15)] transition-all duration-300 text-left select-none"
+                    onClick={() => handleNavigate('aulas')}
+                    title="Clique para acessar a página de Vídeo Aulas"
+                    className="group relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-pink-950/50 via-[#1c0d18] to-pink-950/50 hover:from-pink-900/60 hover:to-pink-900/60 border border-pink-500/40 hover:border-pink-400 shadow-[0_0_20px_rgba(244,63,94,0.15)] hover:shadow-[0_0_30px_rgba(244,63,94,0.35)] transition-all duration-300 text-left cursor-pointer"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-pink-500/20 border border-pink-400/40 text-pink-300 shadow-[0_0_15px_rgba(244,63,94,0.2)] shrink-0">
+                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-pink-500/20 border border-pink-400/40 text-pink-300 shadow-[0_0_15px_rgba(244,63,94,0.2)] group-hover:scale-105 transition-transform shrink-0">
                         <span className="text-2xl select-none">🎬</span>
                         <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-pink-400 animate-pulse" />
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-display font-bold text-sm sm:text-base text-white">
+                          <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-pink-200 transition-colors">
                             VIDEO AULAS
                           </span>
                           <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-pink-950 text-pink-300 border border-pink-500/30">
@@ -468,15 +477,16 @@ export default function App() {
                           </span>
                         </div>
                         <p className="text-xs text-pink-200/80 font-mono mt-0.5">
-                          Treinamentos e aulas práticas em breve
+                          Treinamentos e aulas práticas passo a passo
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-pink-500/15 border border-pink-400/40 text-pink-300 font-mono text-[11px] font-bold tracking-wider shrink-0 ml-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-ping" />
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-pink-500/20 border border-pink-400/40 text-pink-300 group-hover:bg-pink-400 group-hover:text-black font-mono text-xs font-bold transition-all shrink-0 ml-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-pink-400 group-hover:bg-black animate-ping" />
                       <span>EM BREVE</span>
+                      <span className="group-hover:translate-x-1 transition-transform">➔</span>
                     </div>
-                  </div>
+                  </button>
                 </div>
 
                 {/* 5. Quadro MAIOR abaixo dos 4: CONTA GOOGLE AI PRO 18 MESES POR R$ 20,00 */}
@@ -511,6 +521,8 @@ export default function App() {
             contactConfig={contactConfig}
             soundEnabled={soundEnabled}
           />
+        ) : currentPage === 'aulas' ? (
+          <AulasPage onBack={() => handleNavigate('home')} />
         ) : (
           /* ========================================================================= */
           /* PÁGINA DO DECODIFICADOR ATUAL (DROPZONE E RESULTADOS)                     */

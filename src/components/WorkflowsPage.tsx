@@ -83,11 +83,11 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
         </div>
 
         <h1 className="font-orbitron font-extrabold text-2xl sm:text-4xl text-white tracking-wide">
-          WORKFLOWS & FERRAMENTAS EXCLUSIVAS
+          WORKFLOWS EXCLUSIVOS
         </h1>
 
-        <p className="text-sm sm:text-base text-slate-300 font-mono">
-          Explore nossos 6 fluxos profissionais de inteligência artificial de alta definição, modelos geradores e automações completas.
+        <p className="text-sm sm:text-base text-slate-300 font-mono leading-relaxed">
+          Workflows Editados e Melhorados Com Todo Suporte em Portugues Mais Praticos e Facil de Usar, Todos Testados Aprovados e Com VideoAulas de Como Usar
         </p>
       </header>
 
@@ -312,7 +312,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
               </div>
               <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
                 <span className="font-mono text-cyan-400 font-black">4.</span>
-                <span>Workflow Vídeo +18</span>
+                <span>Workflow EM BREVE</span>
               </h2>
               <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
                 Crie vídeos realistas de alta definição de sua modelo +18 com movimentos fluidos e sem censura.
@@ -365,7 +365,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
               </div>
               <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
                 <span className="font-mono text-purple-400 font-black">5.</span>
-                <span>Workflow Dancinhas</span>
+                <span>Workflow EM BREVE</span>
               </h2>
               <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
                 Workflow ideal para criar danças virais para TikTok, Instagram Reels e plataformas de monetização.
@@ -418,7 +418,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
               </div>
               <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
                 <span className="font-mono text-pink-400 font-black">6.</span>
-                <span>Workflow Motion Sem Censura</span>
+                <span>Workflow EM BREVE</span>
               </h2>
               <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
                 Fluxo completo para gerar animações corporais e expressões sem bloqueios, 100% compativel com decodificador Duck.
