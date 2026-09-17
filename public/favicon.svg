@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="64" height="64" shape-rendering="crispEdges">
+  <!-- Outer Border & Background (Black box with green border accents) -->
+  <rect width="16" height="16" fill="#00e500" />
+  <rect x="1" y="1" width="14" height="14" fill="#020302" />
+  
+  <!-- Right edge tab cutouts / pixel serrations as in user image -->
+  <rect x="14" y="2" width="2" height="2" fill="#00e500" />
+  <rect x="14" y="5" width="2" height="2" fill="#00e500" />
+  <rect x="14" y="8" width="2" height="2" fill="#00e500" />
+  <rect x="14" y="11" width="2" height="2" fill="#00e500" />
+
+  <!-- 8-Bit Space Invader Alien in vivid lime green (#00ff00 / #22c55e) -->
+  <!-- Antennas / Horns (Row 3 & 4) -->
+  <rect x="4" y="3" width="1" height="2" fill="#00ff11" />
+  <rect x="10" y="3" width="1" height="2" fill="#00ff11" />
+
+  <!-- Head / Upper Body (Row 5) -->
+  <rect x="5" y="5" width="5" height="1" fill="#00ff11" />
+
+  <!-- Face with Eye row (Row 6) -->
+  <rect x="3" y="6" width="9" height="1" fill="#00ff11" />
+  <!-- Eyes Cutout (Black) -->
+  <rect x="5" y="6" width="1" height="1" fill="#020302" />
+  <rect x="9" y="6" width="1" height="1" fill="#020302" />
+
+  <!-- Main Body Mid (Row 7) -->
+  <rect x="2" y="7" width="11" height="1" fill="#00ff11" />
+  <!-- Eye pupil accent cutouts -->
+  <rect x="5" y="7" width="1" height="1" fill="#020302" />
+  <rect x="9" y="7" width="1" height="1" fill="#020302" />
+
+  <!-- Mid-lower torso with mouth cutout (Row 8) -->
+  <rect x="2" y="8" width="11" height="1" fill="#00ff11" />
+  <rect x="6" y="8" width="3" height="1" fill="#020302" />
+
+  <!-- Lower torso / arms (Row 9) -->
+  <rect x="2" y="9" width="2" height="1" fill="#00ff11" />
+  <rect x="5" y="9" width="5" height="1" fill="#00ff11" />
+  <rect x="11" y="9" width="2" height="1" fill="#00ff11" />
+
+  <!-- Legs / Tentacles (Row 10 & 11) -->
+  <rect x="3" y="10" width="2" height="1" fill="#00ff11" />
+  <rect x="6" y="10" width="1" height="1" fill="#00ff11" />
+  <rect x="8" y="10" width="1" height="1" fill="#00ff11" />
+  <rect x="10" y="10" width="2" height="1" fill="#00ff11" />
+
+  <rect x="4" y="11" width="2" height="1" fill="#00ff11" />
+  <rect x="9" y="11" width="2" height="1" fill="#00ff11" />
+</svg>

@@ -152,24 +152,6 @@ export const Header: React.FC<HeaderProps> = ({
                 <span className="tracking-wide hidden sm:inline">GOOGLE AI PRO</span>
                 <span className="tracking-wide sm:hidden">GOOGLE PRO</span>
               </button>
-
-              {/* Tag / Botão: Vídeo Aulas */}
-              <button
-                type="button"
-                id="header-tag-aulas"
-                onClick={() => onNavigate('aulas')}
-                className={`group relative inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all cursor-pointer ${
-                  currentPage === 'aulas'
-                    ? 'bg-pink-950 text-pink-200 border border-pink-400 shadow-[0_0_14px_rgba(244,63,94,0.35)]'
-                    : 'bg-pink-950/40 hover:bg-pink-900/60 text-pink-300 hover:text-pink-100 border border-pink-500/30 hover:border-pink-400/60'
-                }`}
-              >
-                <span className="text-sm select-none">🎬</span>
-                <span className="tracking-wide">AULAS</span>
-                <span className="px-1 py-0.2 rounded text-[9px] font-mono bg-pink-900/80 text-pink-300 border border-pink-500/30">
-                  BREVE
-                </span>
-              </button>
             </nav>
           )}
         </div>
