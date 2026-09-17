@@ -26,6 +26,10 @@ import { GoogleProCard } from './components/GoogleProCard';
 import { WorkflowVideo18Modal } from './components/WorkflowVideo18Modal';
 import { WorkflowDancinhasModal } from './components/WorkflowDancinhasModal';
 import { WorkflowSemCensuraModal } from './components/WorkflowSemCensuraModal';
+import { WorkflowUpscaleModal } from './components/WorkflowUpscaleModal';
+import { WorkflowFaceSwapModal } from './components/WorkflowFaceSwapModal';
+import { WorkflowLipSyncModal } from './components/WorkflowLipSyncModal';
+import { WorkflowPrompt2VideoModal } from './components/WorkflowPrompt2VideoModal';
 import { DecodedResult, ContactConfig } from './types';
 import {
   decodeDuckFile,
@@ -45,6 +49,10 @@ const DEFAULT_CONTACT_CONFIG: ContactConfig = {
 const WF_VIDEO_18_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Video+%2B18';
 const WF_DANCINHAS_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Dancinhas';
 const WF_SEM_CENSURA_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Motion+Sem+Censura+%2B18';
+const WF_UPSCALE_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Cria+5+Imagens+%2B18';
+const WF_FACESWAP_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Modelo+%2B18+Nua+%2B+Upscale';
+const WF_LIPSYNC_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Fotorrealista+%2B18';
+const WF_PROMPT2VIDEO_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Prompt2Video+%26+Anima%C3%A7%C3%A3o';
 
 export default function App() {
   const [items, setItems] = useState<DecodedResult[]>([]);
@@ -105,10 +113,18 @@ export default function App() {
   const [isVideo18ModalOpen, setIsVideo18ModalOpen] = useState(false);
   const [isDancinhasModalOpen, setIsDancinhasModalOpen] = useState(false);
   const [isSemCensuraModalOpen, setIsSemCensuraModalOpen] = useState(false);
+  const [isUpscaleModalOpen, setIsUpscaleModalOpen] = useState(false);
+  const [isFaceSwapModalOpen, setIsFaceSwapModalOpen] = useState(false);
+  const [isLipSyncModalOpen, setIsLipSyncModalOpen] = useState(false);
+  const [isPrompt2VideoModalOpen, setIsPrompt2VideoModalOpen] = useState(false);
 
   const wfVideo18Url = WF_VIDEO_18_URL;
   const wfDancinhasUrl = WF_DANCINHAS_URL;
   const wfSemCensuraUrl = WF_SEM_CENSURA_URL;
+  const wfUpscaleUrl = WF_UPSCALE_URL;
+  const wfFaceSwapUrl = WF_FACESWAP_URL;
+  const wfLipSyncUrl = WF_LIPSYNC_URL;
+  const wfPrompt2VideoUrl = WF_PROMPT2VIDEO_URL;
 
   const handleToggleSound = () => {
     setSoundEnabled((prev) => {
@@ -478,6 +494,10 @@ export default function App() {
             onOpenVideo18Modal={() => setIsVideo18ModalOpen(true)}
             onOpenDancinhasModal={() => setIsDancinhasModalOpen(true)}
             onOpenSemCensuraModal={() => setIsSemCensuraModalOpen(true)}
+            onOpenUpscaleModal={() => setIsUpscaleModalOpen(true)}
+            onOpenFaceSwapModal={() => setIsFaceSwapModalOpen(true)}
+            onOpenLipSyncModal={() => setIsLipSyncModalOpen(true)}
+            onOpenPrompt2VideoModal={() => setIsPrompt2VideoModalOpen(true)}
             contactConfig={contactConfig}
           />
         ) : currentPage === 'ttimg' ? (
@@ -711,6 +731,34 @@ export default function App() {
         isOpen={isSemCensuraModalOpen}
         onClose={() => setIsSemCensuraModalOpen(false)}
         whatsappUrl={wfSemCensuraUrl}
+      />
+
+      {/* Pop-up Modal Workflow Upscaler 4K Pro com Vídeo Exemplo e Botão WhatsApp */}
+      <WorkflowUpscaleModal
+        isOpen={isUpscaleModalOpen}
+        onClose={() => setIsUpscaleModalOpen(false)}
+        whatsappUrl={wfUpscaleUrl}
+      />
+
+      {/* Pop-up Modal Workflow FaceSwap com Vídeo Exemplo e Botão WhatsApp */}
+      <WorkflowFaceSwapModal
+        isOpen={isFaceSwapModalOpen}
+        onClose={() => setIsFaceSwapModalOpen(false)}
+        whatsappUrl={wfFaceSwapUrl}
+      />
+
+      {/* Pop-up Modal Workflow Lip Sync com Vídeo Exemplo e Botão WhatsApp */}
+      <WorkflowLipSyncModal
+        isOpen={isLipSyncModalOpen}
+        onClose={() => setIsLipSyncModalOpen(false)}
+        whatsappUrl={wfLipSyncUrl}
+      />
+
+      {/* Pop-up Modal Workflow Prompt2Video com Vídeo Exemplo e Botão WhatsApp */}
+      <WorkflowPrompt2VideoModal
+        isOpen={isPrompt2VideoModalOpen}
+        onClose={() => setIsPrompt2VideoModalOpen(false)}
+        whatsappUrl={wfPrompt2VideoUrl}
       />
     </div>
   );
