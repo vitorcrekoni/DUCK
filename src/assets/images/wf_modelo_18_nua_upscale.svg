@@ -1,0 +1,602 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1376 768" width="100%" height="100%">
+  <defs>
+    <!-- Dark Sci-Fi Background Gradient -->
+    <radialGradient id="bgGlow5" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#141824" />
+      <stop offset="100%" stop-color="#07090e" />
+    </radialGradient>
+
+    <!-- Glowing Filters -->
+    <filter id="neonRose5" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="neonCyan5" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="neonGreen5" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Grid Pattern -->
+    <pattern id="comfyGrid5" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="12" r="1" fill="#202430" />
+    </pattern>
+
+    <!-- Scanline Pattern -->
+    <pattern id="scanlines5" width="100" height="4" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="100" y2="0" stroke="#000" stroke-width="1.5" opacity="0.35" />
+    </pattern>
+
+    <!-- Hair & Skin Gradients -->
+    <linearGradient id="skinGrad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fce4cf" />
+      <stop offset="50%" stop-color="#f3ccb0" />
+      <stop offset="100%" stop-color="#e0aa8c" />
+    </linearGradient>
+
+    <linearGradient id="hairGrad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef3c7" />
+      <stop offset="50%" stop-color="#fde047" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+
+    <linearGradient id="lingerieGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c084fc" />
+      <stop offset="100%" stop-color="#9333ea" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. Background ComfyUI Canvas -->
+  <rect width="1376" height="768" fill="url(#bgGlow5)" />
+  <rect width="1376" height="768" fill="url(#comfyGrid5)" opacity="0.8" />
+
+  <!-- Background Ambient Cyber Glows -->
+  <circle cx="300" cy="240" r="280" fill="#eab308" opacity="0.05" />
+  <circle cx="1080" cy="260" r="320" fill="#22c55e" opacity="0.07" />
+  <circle cx="700" cy="580" r="280" fill="#f43f5e" opacity="0.06" />
+
+  <!-- 2. Multicolored Connecting Wires (ComfyUI Noodles) -->
+  <!-- Yellow noodles from LoRA loader to models -->
+  <path d="M 230 140 C 300 140, 320 120, 380 120" fill="none" stroke="#eab308" stroke-width="2" opacity="0.85" />
+  <path d="M 230 180 C 290 180, 310 200, 380 200" fill="none" stroke="#ca8a04" stroke-width="2" opacity="0.8" />
+  <path d="M 230 240 C 350 240, 500 140, 620 140" fill="none" stroke="#f59e0b" stroke-width="2.2" opacity="0.85" />
+
+  <!-- Pink/Rose wires from Prompts to KSampler / Latents -->
+  <path d="M 520 180 C 650 180, 700 220, 800 240" fill="none" stroke="#ec4899" stroke-width="2" opacity="0.8" />
+  <path d="M 520 280 C 620 280, 680 320, 780 340" fill="none" stroke="#f43f5e" stroke-width="2" opacity="0.85" />
+
+  <!-- Cyan wires from IP-Adapter (Reference Image) to Sampler and Preview -->
+  <path d="M 320 540 C 420 540, 480 500, 550 500" fill="none" stroke="#06b6d4" stroke-width="2.5" opacity="0.9" />
+  <path d="M 320 580 C 440 580, 520 620, 600 620" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.85" />
+  <path d="M 550 500 C 680 500, 720 380, 810 280" fill="none" stroke="#06b6d4" stroke-width="2.2" opacity="0.8" />
+
+  <!-- Green/Cyan wires to "FOTOS GERADAS" Panels -->
+  <path d="M 760 180 C 820 180, 840 140, 890 140" fill="none" stroke="#22c55e" stroke-width="2.5" opacity="0.85" />
+  <path d="M 760 220 C 820 220, 860 160, 1020 160" fill="none" stroke="#38bdf8" stroke-width="2.5" opacity="0.85" />
+
+  <!-- Orange/Purple wires from Fix to Upscale Preview -->
+  <path d="M 920 520 C 980 520, 1000 560, 1050 580" fill="none" stroke="#f97316" stroke-width="2" opacity="0.85" />
+  <path d="M 920 620 C 990 620, 1020 600, 1050 620" fill="none" stroke="#a855f7" stroke-width="2.5" opacity="0.85" />
+  <path d="M 1120 480 C 1170 480, 1160 540, 1120 560" fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.75" />
+
+  <!-- 3. TOP-LEFT GROUP: "PROMPT E LORAS" -->
+  <g id="group-prompt-loras" transform="translate(130, 45)">
+    <!-- Main Yellow-Brown Container -->
+    <rect width="610" height="340" rx="8" fill="#302414" fill-opacity="0.6" stroke="#71521c" stroke-width="1.5" />
+    <text x="14" y="20" fill="#fef08a" font-family="monospace" font-size="12" font-weight="bold">PROMPT E LORAS // NORDY MODELO +18</text>
+
+    <!-- Node 1: LoRA Loader List (Vertical) -->
+    <g transform="translate(15, 30)">
+      <rect width="120" height="260" rx="4" fill="#1c202a" stroke="#475569" stroke-width="1" />
+      <rect width="120" height="18" rx="4" fill="#334155" />
+      <text x="6" y="13" fill="#cbd5e1" font-family="monospace" font-size="8" font-weight="bold">LoRA Stack +18</text>
+      <!-- Sliders / items -->
+      <circle cx="16" cy="36" r="4" fill="#38bdf8" />
+      <rect x="26" y="33" width="80" height="6" rx="2" fill="#0f172a" />
+      <circle cx="16" cy="56" r="4" fill="#38bdf8" />
+      <rect x="26" y="53" width="80" height="6" rx="2" fill="#0f172a" />
+      <circle cx="16" cy="76" r="4" fill="#38bdf8" />
+      <rect x="26" y="73" width="80" height="6" rx="2" fill="#0f172a" />
+      <circle cx="16" cy="96" r="4" fill="#38bdf8" />
+      <rect x="26" y="93" width="80" height="6" rx="2" fill="#0f172a" />
+      <circle cx="16" cy="116" r="4" fill="#38bdf8" />
+      <rect x="26" y="113" width="80" height="6" rx="2" fill="#0f172a" />
+      <circle cx="16" cy="136" r="4" fill="#38bdf8" />
+      <rect x="26" y="133" width="80" height="6" rx="2" fill="#0f172a" />
+      <circle cx="16" cy="156" r="4" fill="#38bdf8" />
+      <rect x="26" y="153" width="80" height="6" rx="2" fill="#0f172a" />
+      <circle cx="16" cy="176" r="4" fill="#38bdf8" />
+      <rect x="26" y="173" width="80" height="6" rx="2" fill="#0f172a" />
+      <circle cx="16" cy="196" r="4" fill="#38bdf8" />
+      <rect x="26" y="193" width="80" height="6" rx="2" fill="#0f172a" />
+      <circle cx="16" cy="216" r="4" fill="#38bdf8" />
+      <rect x="26" y="213" width="80" height="6" rx="2" fill="#0f172a" />
+    </g>
+
+    <!-- Node 2: Purple Positive Prompt Box -->
+    <g transform="translate(150, 30)">
+      <rect width="210" height="150" rx="4" fill="#2d1738" stroke="#a855f7" stroke-width="1.2" />
+      <rect width="210" height="18" rx="4" fill="#581c87" />
+      <text x="8" y="13" fill="#f0abfc" font-family="monospace" font-size="8" font-weight="bold">CLIP Text Encode (Positive Prompt)</text>
+      <!-- Prompt Lines Simulation -->
+      <rect x="10" y="30" width="190" height="8" rx="2" fill="#1e1028" />
+      <rect x="10" y="45" width="170" height="8" rx="2" fill="#1e1028" />
+      <rect x="10" y="60" width="185" height="8" rx="2" fill="#1e1028" />
+      <rect x="10" y="75" width="160" height="8" rx="2" fill="#1e1028" />
+      <text x="12" y="105" fill="#e9d5ff" font-family="monospace" font-size="8">photorealistic, nude model, 8k</text>
+      <text x="12" y="120" fill="#e9d5ff" font-family="monospace" font-size="8">perfect skin, studio lighting</text>
+    </g>
+
+    <!-- Node 3: Dark Negative Prompt Box -->
+    <g transform="translate(150, 195)">
+      <rect width="210" height="95" rx="4" fill="#191c26" stroke="#475569" stroke-width="1" />
+      <rect width="210" height="16" rx="4" fill="#272f40" />
+      <text x="8" y="12" fill="#94a3b8" font-family="monospace" font-size="8" font-weight="bold">CLIP Text Encode (Negative)</text>
+      <rect x="10" y="26" width="190" height="8" rx="2" fill="#0e111a" />
+      <rect x="10" y="40" width="170" height="8" rx="2" fill="#0e111a" />
+      <rect x="10" y="54" width="140" height="8" rx="2" fill="#0e111a" />
+    </g>
+
+    <!-- Node 4: Right Parameter Box in Prompt Group -->
+    <g transform="translate(375, 45)">
+      <rect width="150" height="175" rx="4" fill="#1c212c" stroke="#64748b" stroke-width="1" />
+      <rect width="150" height="16" rx="4" fill="#334155" />
+      <text x="8" y="12" fill="#cbd5e1" font-family="monospace" font-size="8" font-weight="bold">KSampler (Base Gen)</text>
+      <rect x="10" y="26" width="130" height="7" rx="2" fill="#0f172a" />
+      <rect x="10" y="40" width="130" height="7" rx="2" fill="#0f172a" />
+      <rect x="10" y="54" width="130" height="7" rx="2" fill="#0f172a" />
+      <rect x="10" y="68" width="130" height="7" rx="2" fill="#0f172a" />
+      <rect x="10" y="82" width="130" height="7" rx="2" fill="#0f172a" />
+      <rect x="10" y="96" width="130" height="7" rx="2" fill="#0f172a" />
+      <rect x="10" y="110" width="130" height="7" rx="2" fill="#0f172a" />
+      <rect x="10" y="124" width="130" height="7" rx="2" fill="#0f172a" />
+      <rect x="10" y="138" width="130" height="7" rx="2" fill="#0f172a" />
+      <rect x="10" y="152" width="130" height="7" rx="2" fill="#0f172a" />
+    </g>
+
+    <!-- Node 5: Small Lower Param Box -->
+    <g transform="translate(375, 235)">
+      <rect width="120" height="65" rx="4" fill="#1c212c" stroke="#64748b" stroke-width="1" />
+      <rect width="120" height="14" rx="4" fill="#334155" />
+      <text x="6" y="11" fill="#cbd5e1" font-family="monospace" font-size="7" font-weight="bold">Empty Latent // Batch</text>
+      <rect x="8" y="22" width="104" height="6" rx="2" fill="#0f172a" />
+      <rect x="8" y="34" width="104" height="6" rx="2" fill="#0f172a" />
+      <rect x="8" y="46" width="104" height="6" rx="2" fill="#0f172a" />
+    </g>
+  </g>
+
+  <!-- 4. BOTTOM-LEFT GROUP: "IP-ADAPTER — IMAGEM DE REFERÊNCIA" -->
+  <g id="group-ip-adapter" transform="translate(130, 400)">
+    <!-- Main Yellow-Brown Container -->
+    <rect width="380" height="340" rx="8" fill="#302414" fill-opacity="0.6" stroke="#71521c" stroke-width="1.5" />
+    <text x="14" y="20" fill="#fef08a" font-family="monospace" font-size="11" font-weight="bold">IP-ADAPTER — IMAGEM DE REFERÊNCIA</text>
+
+    <!-- Purple Load Image Node with Reference Face (Blonde model headshot) -->
+    <g transform="translate(15, 30)">
+      <rect width="140" height="230" rx="4" fill="#2d1738" stroke="#a855f7" stroke-width="1.2" />
+      <rect width="140" height="18" rx="4" fill="#581c87" />
+      <text x="8" y="13" fill="#f0abfc" font-family="monospace" font-size="8" font-weight="bold">Load Image // Modelo Ref</text>
+
+      <!-- Face Reference Photo -->
+      <g transform="translate(15, 30)">
+        <rect width="110" height="135" rx="4" fill="#1e222d" stroke="#ca8a04" stroke-width="1.2" />
+        <clipPath id="faceClip5">
+          <rect width="110" height="135" rx="4" />
+        </clipPath>
+        <g clip-path="url(#faceClip5)">
+          <rect width="110" height="135" fill="#f1f5f9" />
+          <!-- Hair background -->
+          <path d="M 25 15 C 40 5, 70 5, 85 15 C 98 30, 98 100, 85 135 L 25 135 C 12 100, 12 30, 25 15 Z" fill="url(#hairGrad5)" />
+          <!-- Face shape -->
+          <ellipse cx="55" cy="55" rx="25" ry="32" fill="url(#skinGrad5)" />
+          <!-- Flowing blonde hair strands -->
+          <path d="M 25 25 Q 18 60 26 110 Q 35 110 32 70 Q 30 35 38 22 Z" fill="#fde047" />
+          <path d="M 85 25 Q 92 60 84 110 Q 75 110 78 70 Q 80 35 72 22 Z" fill="#fde047" />
+          <!-- Eyes & Eyebrows -->
+          <path d="M 38 45 Q 43 42 48 45" stroke="#a16207" stroke-width="1.5" fill="none" />
+          <path d="M 62 45 Q 67 42 72 45" stroke="#a16207" stroke-width="1.5" fill="none" />
+          <ellipse cx="43" cy="50" rx="3.5" ry="2.2" fill="#0284c7" />
+          <ellipse cx="67" cy="50" rx="3.5" ry="2.2" fill="#0284c7" />
+          <circle cx="44" cy="49" r="1" fill="#fff" />
+          <circle cx="68" cy="49" r="1" fill="#fff" />
+          <!-- Nose & Soft Pink Lips -->
+          <path d="M 55 52 L 54 62 L 57 62" stroke="#d97706" stroke-width="1" fill="none" />
+          <path d="M 48 70 Q 55 75 62 70 Q 55 77 48 70" fill="#f43f5e" />
+          <!-- Neck & Shoulders -->
+          <path d="M 45 85 L 45 105 L 10 135 L 100 135 L 65 105 L 65 85 Z" fill="url(#skinGrad5)" />
+          <!-- Black Top Collar -->
+          <path d="M 35 118 Q 55 130 75 118 L 85 135 L 25 135 Z" fill="#090a0f" />
+        </g>
+        <!-- Reticle -->
+        <rect x="25" y="28" width="60" height="60" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="4 2" />
+        <text x="25" y="24" fill="#22d3ee" font-family="monospace" font-size="6" font-weight="bold">IDENTITY LOCK</text>
+      </g>
+      <text x="25" y="195" fill="#f0abfc" font-family="monospace" font-size="7">768 x 1024 px</text>
+      <rect x="15" y="202" width="110" height="15" rx="3" fill="#1b1122" />
+    </g>
+
+    <!-- IP-Adapter Weights / Settings Stack (Right side of IP-Adapter group) -->
+    <g transform="translate(170, 30)">
+      <rect width="195" height="235" rx="4" fill="#282218" stroke="#854d0e" stroke-width="1" />
+      <rect width="195" height="18" rx="4" fill="#4d320d" />
+      <text x="8" y="13" fill="#fef08a" font-family="monospace" font-size="8" font-weight="bold">IPAdapterApplyFaceID // Weight: 0.95</text>
+      <rect x="10" y="28" width="175" height="8" rx="2" fill="#141009" />
+      <rect x="10" y="44" width="175" height="8" rx="2" fill="#141009" />
+      <rect x="10" y="60" width="175" height="8" rx="2" fill="#141009" />
+      <rect x="10" y="76" width="175" height="8" rx="2" fill="#141009" />
+      <rect x="10" y="92" width="175" height="8" rx="2" fill="#141009" />
+      <rect x="10" y="108" width="175" height="8" rx="2" fill="#141009" />
+      <rect x="10" y="124" width="175" height="8" rx="2" fill="#141009" />
+      <rect x="10" y="140" width="175" height="8" rx="2" fill="#141009" />
+      <rect x="10" y="156" width="175" height="8" rx="2" fill="#141009" />
+      <rect x="10" y="172" width="175" height="8" rx="2" fill="#141009" />
+      <rect x="10" y="188" width="175" height="8" rx="2" fill="#141009" />
+      <rect x="10" y="204" width="175" height="8" rx="2" fill="#141009" />
+    </g>
+
+    <!-- Small footer node -->
+    <g transform="translate(170, 275)">
+      <rect width="160" height="45" rx="4" fill="#282218" stroke="#854d0e" stroke-width="1" />
+      <rect width="160" height="14" rx="4" fill="#4d320d" />
+      <text x="6" y="11" fill="#fef08a" font-family="monospace" font-size="7" font-weight="bold">InsightFace Model // CPU/CUDA</text>
+    </g>
+  </g>
+
+  <!-- 5. BOTTOM-CENTER GROUP: "FIX" (Face Detailer / Upscaler) -->
+  <g id="group-fix" transform="translate(530, 400)">
+    <rect width="330" height="340" rx="8" fill="#302414" fill-opacity="0.6" stroke="#71521c" stroke-width="1.5" />
+    <text x="14" y="20" fill="#fef08a" font-family="monospace" font-size="11" font-weight="bold">FIX // FACE DETAILER &amp; SKIN RESTORE</text>
+
+    <!-- Node 1: Face Detailer -->
+    <g transform="translate(15, 30)">
+      <rect width="145" height="150" rx="4" fill="#282218" stroke="#854d0e" stroke-width="1" />
+      <rect width="145" height="16" rx="4" fill="#4d320d" />
+      <text x="6" y="12" fill="#fef08a" font-family="monospace" font-size="7" font-weight="bold">FaceDetailer // Bounding Box</text>
+      <rect x="8" y="24" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="36" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="48" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="60" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="72" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="84" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="96" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="108" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="120" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="132" width="129" height="7" rx="2" fill="#141009" />
+    </g>
+
+    <!-- Node 2: Upscale Image by Model -->
+    <g transform="translate(170, 30)">
+      <rect width="145" height="90" rx="4" fill="#282218" stroke="#854d0e" stroke-width="1" />
+      <rect width="145" height="16" rx="4" fill="#4d320d" />
+      <text x="6" y="12" fill="#fef08a" font-family="monospace" font-size="7" font-weight="bold">4x-UltraSharp Upscaler</text>
+      <rect x="8" y="26" width="129" height="8" rx="2" fill="#141009" />
+      <rect x="8" y="42" width="129" height="8" rx="2" fill="#141009" />
+      <rect x="8" y="58" width="129" height="8" rx="2" fill="#141009" />
+      <rect x="8" y="74" width="129" height="8" rx="2" fill="#141009" />
+    </g>
+
+    <!-- Node 3: Large Lower Detailer Settings -->
+    <g transform="translate(170, 135)">
+      <rect width="145" height="180" rx="4" fill="#282218" stroke="#854d0e" stroke-width="1" />
+      <rect width="145" height="16" rx="4" fill="#4d320d" />
+      <text x="6" y="12" fill="#fef08a" font-family="monospace" font-size="7" font-weight="bold">UltimateSDUpscale</text>
+      <rect x="8" y="24" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="36" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="48" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="60" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="72" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="84" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="96" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="108" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="120" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="132" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="144" width="129" height="7" rx="2" fill="#141009" />
+      <rect x="8" y="156" width="129" height="7" rx="2" fill="#141009" />
+    </g>
+
+    <!-- Node 4: Lower Fix parameter -->
+    <g transform="translate(15, 195)">
+      <rect width="145" height="120" rx="4" fill="#282218" stroke="#854d0e" stroke-width="1" />
+      <rect width="145" height="16" rx="4" fill="#4d320d" />
+      <text x="6" y="12" fill="#fef08a" font-family="monospace" font-size="7" font-weight="bold">Skin Smooth LoRA</text>
+      <rect x="8" y="26" width="129" height="8" rx="2" fill="#141009" />
+      <rect x="8" y="42" width="129" height="8" rx="2" fill="#141009" />
+      <rect x="8" y="58" width="129" height="8" rx="2" fill="#141009" />
+      <rect x="8" y="74" width="129" height="8" rx="2" fill="#141009" />
+    </g>
+  </g>
+
+  <!-- 6. TOP-RIGHT GROUP: "FOTOS GERADAS" (With 2 Preview Panels showing photos of blonde model in room selfies) -->
+  <g id="group-fotos-geradas" transform="translate(760, 45)">
+    <!-- Container -->
+    <rect width="460" height="395" rx="8" fill="#16261b" stroke="#16a34a" stroke-width="2" />
+    <rect width="460" height="24" rx="6" fill="#15803d" />
+    <text x="14" y="17" fill="#dcfce7" font-family="monospace" font-size="11" font-weight="bold">FOTOS GERADAS // NORDY PREVIEW +18</text>
+    <circle cx="440" cy="12" r="4" fill="#22c55e" filter="url(#neonGreen5)" />
+
+    <!-- Preview Panel 1 (Left Box: 3 photos of model posing in bedroom) -->
+    <g transform="translate(15, 34)">
+      <rect width="205" height="345" rx="4" fill="#101827" stroke="#22c55e" stroke-width="1" />
+      <rect width="205" height="16" rx="4" fill="#14532d" />
+      <text x="8" y="12" fill="#86efac" font-family="monospace" font-size="8" font-weight="bold">Preview 1 (Selfie Series A)</text>
+
+      <!-- Photo 1.1: Top-Left (Squatting in room looking at camera) -->
+      <g transform="translate(4, 20)">
+        <rect width="96" height="155" fill="#f8fafc" rx="2" />
+        <clipPath id="p1Clip">
+          <rect width="96" height="155" rx="2" />
+        </clipPath>
+        <g clip-path="url(#p1Clip)">
+          <!-- Bedroom background with white bed behind -->
+          <rect width="96" height="155" fill="#e2e8f0" />
+          <rect x="55" y="30" width="41" height="80" fill="#cbd5e1" />
+          <!-- Head & Blonde Hair -->
+          <ellipse cx="48" cy="35" rx="14" ry="17" fill="url(#skinGrad5)" />
+          <path d="M 34 25 Q 48 15 62 25 Q 66 55 60 75 Q 54 75 52 55 Q 48 35 34 25" fill="url(#hairGrad5)" />
+          <circle cx="44" cy="34" r="1.2" fill="#0369a1" />
+          <circle cx="52" cy="34" r="1.2" fill="#0369a1" />
+          <path d="M 46 42 Q 48 44 50 42" stroke="#e11d48" stroke-width="0.8" fill="none" />
+          <!-- Sensual Mauve Top / Lingerie -->
+          <path d="M 40 48 Q 36 68 38 82 Q 48 85 58 82 Q 60 68 56 48 Z" fill="url(#skinGrad5)" />
+          <path d="M 39 56 Q 48 64 57 56 L 56 70 Q 48 74 40 70 Z" fill="url(#lingerieGrad)" />
+          <!-- Squatting legs pose in bedroom -->
+          <path d="M 38 82 Q 22 95 18 125 Q 32 145 42 135 Q 44 110 46 90" fill="url(#skinGrad5)" />
+          <path d="M 58 82 Q 74 95 78 125 Q 64 145 54 135 Q 52 110 50 90" fill="url(#skinGrad5)" />
+          <!-- Bare legs & feet on carpet -->
+          <rect x="0" y="130" width="96" height="25" fill="#94a3b8" opacity="0.4" />
+        </g>
+        <text x="4" y="150" fill="#475569" font-family="monospace" font-size="7" font-weight="bold">#1 SQUAT</text>
+      </g>
+
+      <!-- Photo 1.2: Top-Right (Mirror Selfie in mauve top) -->
+      <g transform="translate(105, 20)">
+        <rect width="96" height="155" fill="#f8fafc" rx="2" />
+        <clipPath id="p2Clip">
+          <rect width="96" height="155" rx="2" />
+        </clipPath>
+        <g clip-path="url(#p2Clip)">
+          <rect width="96" height="155" fill="#f1f5f9" />
+          <!-- Bedroom background with bed pillows -->
+          <rect x="0" y="40" width="40" height="70" fill="#cbd5e1" />
+          <!-- Head tilted holding phone -->
+          <ellipse cx="48" cy="36" rx="14" ry="17" fill="url(#skinGrad5)" />
+          <path d="M 34 25 Q 48 16 62 25 Q 66 55 60 75 Q 52 65 34 25" fill="url(#hairGrad5)" />
+          <circle cx="44" cy="35" r="1.2" fill="#0369a1" />
+          <circle cx="52" cy="35" r="1.2" fill="#0369a1" />
+          <path d="M 46 43 Q 48 45 50 43" stroke="#e11d48" stroke-width="0.8" fill="none" />
+          <!-- Torso & Mauve top -->
+          <path d="M 40 49 Q 36 68 38 82 Q 48 85 58 82 Q 60 68 56 49 Z" fill="url(#skinGrad5)" />
+          <path d="M 39 56 Q 48 64 57 56 L 56 70 Q 48 74 40 70 Z" fill="url(#lingerieGrad)" />
+          <!-- Arm holding grey phone selfie -->
+          <path d="M 58 55 L 75 70 L 68 85 L 56 70 Z" fill="url(#skinGrad5)" />
+          <rect x="68" y="65" width="12" height="20" rx="2" fill="#334155" stroke="#94a3b8" stroke-width="0.5" />
+          <!-- Legs sitting -->
+          <path d="M 38 82 Q 25 100 25 130 Q 48 145 70 130 Q 70 100 58 82 Z" fill="url(#skinGrad5)" />
+        </g>
+        <text x="4" y="150" fill="#475569" font-family="monospace" font-size="7" font-weight="bold">#2 PHONE</text>
+      </g>
+
+      <!-- Photo 1.3: Bottom Wide (Sensual close-up squatting mirror) -->
+      <g transform="translate(4, 180)">
+        <rect width="197" height="155" fill="#f8fafc" rx="2" />
+        <clipPath id="p3Clip">
+          <rect width="197" height="155" rx="2" />
+        </clipPath>
+        <g clip-path="url(#p3Clip)">
+          <rect width="197" height="155" fill="#e2e8f0" />
+          <rect x="110" y="20" width="87" height="135" fill="#cbd5e1" />
+          <!-- Head closer -->
+          <ellipse cx="65" cy="45" rx="20" ry="24" fill="url(#skinGrad5)" />
+          <path d="M 45 30 Q 65 18 85 30 Q 92 75 80 105 Q 70 95 65 75 Q 60 50 45 30" fill="url(#hairGrad5)" />
+          <circle cx="59" cy="44" r="1.8" fill="#0369a1" />
+          <circle cx="71" cy="44" r="1.8" fill="#0369a1" />
+          <path d="M 62 55 Q 65 58 68 55" stroke="#e11d48" stroke-width="1.2" fill="none" />
+          <!-- Torso in mauve top -->
+          <path d="M 52 65 Q 46 95 48 120 Q 65 125 82 120 Q 84 95 78 65 Z" fill="url(#skinGrad5)" />
+          <path d="M 50 78 Q 65 90 80 78 L 78 98 Q 65 106 52 98 Z" fill="url(#lingerieGrad)" />
+          <!-- Hand holding phone mirror reflection -->
+          <rect x="115" y="70" width="16" height="28" rx="3" fill="#1e293b" stroke="#cbd5e1" stroke-width="0.8" />
+          <!-- Mirror duplicate reflection silhouette -->
+          <path d="M 125 50 Q 140 40 155 50 Q 158 90 150 115" fill="none" stroke="#94a3b8" stroke-width="8" opacity="0.5" />
+        </g>
+        <text x="6" y="150" fill="#f43f5e" font-family="monospace" font-size="8" font-weight="bold">#3 CLOSE MIRROR</text>
+      </g>
+    </g>
+
+    <!-- Preview Panel 2 (Right Box: 3 photos of model in bedroom variations) -->
+    <g transform="translate(235, 34)">
+      <rect width="210" height="345" rx="4" fill="#101827" stroke="#22c55e" stroke-width="1" />
+      <rect width="210" height="16" rx="4" fill="#14532d" />
+      <text x="8" y="12" fill="#86efac" font-family="monospace" font-size="8" font-weight="bold">Preview 2 (Full Resolution Series B)</text>
+
+      <!-- Photo 2.1: Top-Left -->
+      <g transform="translate(4, 20)">
+        <rect width="98" height="155" fill="#f8fafc" rx="2" />
+        <clipPath id="p4Clip">
+          <rect width="98" height="155" rx="2" />
+        </clipPath>
+        <g clip-path="url(#p4Clip)">
+          <rect width="98" height="155" fill="#f1f5f9" />
+          <ellipse cx="49" cy="35" rx="14" ry="17" fill="url(#skinGrad5)" />
+          <path d="M 35 25 Q 49 15 63 25 Q 67 55 61 75 Q 49 35 35 25" fill="url(#hairGrad5)" />
+          <circle cx="45" cy="34" r="1.2" fill="#0369a1" />
+          <circle cx="53" cy="34" r="1.2" fill="#0369a1" />
+          <path d="M 47 42 Q 49 44 51 42" stroke="#e11d48" stroke-width="0.8" fill="none" />
+          <path d="M 41 48 Q 37 68 39 82 Q 49 85 59 82 Q 61 68 57 48 Z" fill="url(#skinGrad5)" />
+          <path d="M 40 56 Q 49 64 58 56 L 57 70 Q 49 74 41 70 Z" fill="url(#lingerieGrad)" />
+          <!-- Phone in hand -->
+          <rect x="65" y="65" width="10" height="18" rx="2" fill="#334155" />
+          <path d="M 39 82 Q 22 95 18 125 Q 32 145 42 135 Q 44 110 46 90" fill="url(#skinGrad5)" />
+          <path d="M 59 82 Q 75 95 79 125 Q 65 145 55 135 Q 53 110 51 90" fill="url(#skinGrad5)" />
+        </g>
+        <text x="4" y="150" fill="#475569" font-family="monospace" font-size="7" font-weight="bold">#4 DETAIL</text>
+      </g>
+
+      <!-- Photo 2.2: Top-Right -->
+      <g transform="translate(107, 20)">
+        <rect width="98" height="155" fill="#f8fafc" rx="2" />
+        <clipPath id="p5Clip">
+          <rect width="98" height="155" rx="2" />
+        </clipPath>
+        <g clip-path="url(#p5Clip)">
+          <rect width="98" height="155" fill="#e2e8f0" />
+          <ellipse cx="49" cy="35" rx="14" ry="17" fill="url(#skinGrad5)" />
+          <path d="M 35 25 Q 49 15 63 25 Q 67 55 61 75 Q 49 35 35 25" fill="url(#hairGrad5)" />
+          <circle cx="45" cy="34" r="1.2" fill="#0369a1" />
+          <circle cx="53" cy="34" r="1.2" fill="#0369a1" />
+          <path d="M 47 42 Q 49 44 51 42" stroke="#e11d48" stroke-width="0.8" fill="none" />
+          <path d="M 41 48 Q 37 68 39 82 Q 49 85 59 82 Q 61 68 57 48 Z" fill="url(#skinGrad5)" />
+          <path d="M 40 56 Q 49 64 58 56 L 57 70 Q 49 74 41 70 Z" fill="url(#lingerieGrad)" />
+          <path d="M 39 82 Q 25 100 25 130 Q 49 145 71 130 Q 71 100 59 82 Z" fill="url(#skinGrad5)" />
+        </g>
+        <text x="4" y="150" fill="#475569" font-family="monospace" font-size="7" font-weight="bold">#5 BEDROOM</text>
+      </g>
+
+      <!-- Photo 2.3: Bottom Wide -->
+      <g transform="translate(4, 180)">
+        <rect width="201" height="155" fill="#f8fafc" rx="2" />
+        <clipPath id="p6Clip">
+          <rect width="201" height="155" rx="2" />
+        </clipPath>
+        <g clip-path="url(#p6Clip)">
+          <rect width="201" height="155" fill="#f1f5f9" />
+          <ellipse cx="65" cy="45" rx="20" ry="24" fill="url(#skinGrad5)" />
+          <path d="M 45 30 Q 65 18 85 30 Q 92 75 80 105 Q 60 50 45 30" fill="url(#hairGrad5)" />
+          <circle cx="59" cy="44" r="1.8" fill="#0369a1" />
+          <circle cx="71" cy="44" r="1.8" fill="#0369a1" />
+          <path d="M 62 55 Q 65 58 68 55" stroke="#e11d48" stroke-width="1.2" fill="none" />
+          <path d="M 52 65 Q 46 95 48 120 Q 65 125 82 120 Q 84 95 78 65 Z" fill="url(#skinGrad5)" />
+          <path d="M 50 78 Q 65 90 80 78 L 78 98 Q 65 106 52 98 Z" fill="url(#lingerieGrad)" />
+          <rect x="110" y="70" width="16" height="28" rx="3" fill="#1e293b" />
+        </g>
+        <text x="6" y="150" fill="#10b981" font-family="monospace" font-size="8" font-weight="bold">#6 HIGH RESOLUTION</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 7. BOTTOM-RIGHT PREVIEW: UPSCALE / FIX PREVIEW (As in Capturar.PNG) -->
+  <g id="bottom-right-upscale" transform="translate(1045, 495)">
+    <!-- Dark/Brown container node -->
+    <rect width="115" height="205" rx="4" fill="#282218" stroke="#854d0e" stroke-width="1" />
+    <rect width="115" height="16" rx="4" fill="#4d320d" />
+    <text x="6" y="12" fill="#fef08a" font-family="monospace" font-size="7" font-weight="bold">SaveImage // 4K Upscale</text>
+
+    <!-- 3 Mini Preview Thumbs of Upscale Result -->
+    <g transform="translate(6, 22)">
+      <!-- Mini Thumb 1 -->
+      <g transform="translate(0, 0)">
+        <rect width="50" height="55" rx="2" fill="#e2e8f0" stroke="#ca8a04" stroke-width="0.5" />
+        <ellipse cx="25" cy="18" rx="8" ry="10" fill="url(#skinGrad5)" />
+        <path d="M 17 12 Q 25 7 33 12 Q 35 25 32 35 Q 25 15 17 12" fill="url(#hairGrad5)" />
+        <path d="M 20 28 Q 17 38 18 48 Q 25 50 32 48 Q 33 38 30 28 Z" fill="url(#skinGrad5)" />
+        <path d="M 19 32 Q 25 37 31 32 L 30 40 Q 25 43 20 40 Z" fill="url(#lingerieGrad)" />
+      </g>
+      <!-- Mini Thumb 2 -->
+      <g transform="translate(54, 0)">
+        <rect width="49" height="55" rx="2" fill="#f1f5f9" stroke="#ca8a04" stroke-width="0.5" />
+        <ellipse cx="24" cy="18" rx="8" ry="10" fill="url(#skinGrad5)" />
+        <path d="M 16 12 Q 24 7 32 12 Q 34 25 31 35 Q 24 15 16 12" fill="url(#hairGrad5)" />
+        <path d="M 19 28 Q 16 38 17 48 Q 24 50 31 48 Q 32 38 29 28 Z" fill="url(#skinGrad5)" />
+        <path d="M 18 32 Q 24 37 30 32 L 29 40 Q 24 43 19 40 Z" fill="url(#lingerieGrad)" />
+      </g>
+      <!-- Mini Thumb 3 (Wide) -->
+      <g transform="translate(0, 60)">
+        <rect width="103" height="115" rx="2" fill="#e2e8f0" stroke="#ca8a04" stroke-width="0.8" />
+        <ellipse cx="45" cy="35" rx="14" ry="17" fill="url(#skinGrad5)" />
+        <path d="M 31 25 Q 45 16 59 25 Q 63 55 57 75 Q 45 35 31 25" fill="url(#hairGrad5)" />
+        <circle cx="41" cy="34" r="1.2" fill="#0369a1" />
+        <circle cx="49" cy="34" r="1.2" fill="#0369a1" />
+        <path d="M 37 48 Q 33 68 35 82 Q 45 85 55 82 Q 57 68 53 48 Z" fill="url(#skinGrad5)" />
+        <path d="M 36 56 Q 45 64 54 56 L 53 70 Q 45 74 37 70 Z" fill="url(#lingerieGrad)" />
+        <rect x="60" y="60" width="12" height="20" rx="2" fill="#334155" />
+      </g>
+    </g>
+  </g>
+
+  <!-- Purple floating output nodes right side -->
+  <g transform="translate(1040, 445)">
+    <rect width="180" height="35" rx="4" fill="#2d1738" stroke="#a855f7" stroke-width="1.2" />
+    <rect width="180" height="14" rx="4" fill="#581c87" />
+    <text x="6" y="11" fill="#f0abfc" font-family="monospace" font-size="7" font-weight="bold">SaveImage // Ultra-HD 4K Upscaled</text>
+    <circle cx="170" cy="9" r="3" fill="#a855f7" />
+  </g>
+
+  <!-- 8. "VISUAL FUTURISTA POR CIMA DELA" (CYBERNETIC SCI-FI HUD OVERLAY) -->
+  <g id="futuristic-hud-overlay-5">
+    <!-- Cyberpunk Scanlines -->
+    <rect width="1376" height="768" fill="url(#scanlines5)" opacity="0.4" pointer-events="none" />
+
+    <!-- Neon Cyber Accents & Framing (Neon Rose & Cyan) -->
+    <g filter="url(#neonRose5)">
+      <!-- Top-Left Corner Bracket -->
+      <path d="M 25 55 L 25 25 L 55 25" fill="none" stroke="#f43f5e" stroke-width="3" />
+      <circle cx="25" cy="25" r="2.5" fill="#f43f5e" />
+      <path d="M 33 33 L 45 33" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+      <path d="M 33 33 L 33 45" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+
+      <!-- Top-Right Corner Bracket -->
+      <path d="M 1321 25 L 1351 25 L 1351 55" fill="none" stroke="#f43f5e" stroke-width="3" />
+      <circle cx="1351" cy="25" r="2.5" fill="#f43f5e" />
+      <path d="M 1343 33 L 1331 33" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+      <path d="M 1343 33 L 1343 45" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+
+      <!-- Bottom-Left Corner Bracket -->
+      <path d="M 25 713 L 25 743 L 55 743" fill="none" stroke="#f43f5e" stroke-width="3" />
+      <circle cx="25" cy="743" r="2.5" fill="#f43f5e" />
+      <path d="M 33 735 L 45 735" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+      <path d="M 33 735 L 33 723" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+
+      <!-- Bottom-Right Corner Bracket -->
+      <path d="M 1321 743 L 1351 743 L 1351 713" fill="none" stroke="#f43f5e" stroke-width="3" />
+      <circle cx="1351" cy="743" r="2.5" fill="#f43f5e" />
+      <path d="M 1343 735 L 1331 735" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+      <path d="M 1343 735 L 1343 723" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+    </g>
+
+    <!-- Top Telemetry HUD Badge -->
+    <g transform="translate(60, 16)">
+      <rect width="360" height="24" rx="4" fill="#0f172a" fill-opacity="0.88" stroke="#f43f5e" stroke-width="1" />
+      <circle cx="14" cy="12" r="3.5" fill="#f43f5e" filter="url(#neonRose5)" />
+      <text x="26" y="16" fill="#fecdd3" font-family="monospace" font-size="10" font-weight="bold">COMFYUI // MODELO +18 NUA + UPSCALE 4K</text>
+    </g>
+
+    <!-- Top-Right Performance Stats -->
+    <g transform="translate(980, 16)">
+      <rect width="340" height="24" rx="4" fill="#0f172a" fill-opacity="0.88" stroke="#22c55e" stroke-width="1" />
+      <circle cx="14" cy="12" r="3.5" fill="#22c55e" filter="url(#neonGreen5)" />
+      <text x="26" y="16" fill="#bbf7d0" font-family="monospace" font-size="9" font-weight="bold">STATUS: UNLIMITED +18 GENERATION // NORDY</text>
+    </g>
+
+    <!-- Targeting Corners around the Generated Preview -->
+    <g transform="translate(760, 45)" filter="url(#neonRose5)">
+      <path d="M -8 15 L -8 -8 L 15 -8" fill="none" stroke="#f43f5e" stroke-width="2.5" />
+      <path d="M 468 15 L 468 -8 L 445 -8" fill="none" stroke="#f43f5e" stroke-width="2.5" />
+      <path d="M -8 380 L -8 403 L 15 403" fill="none" stroke="#f43f5e" stroke-width="2.5" />
+      <path d="M 468 380 L 468 403 L 445 403" fill="none" stroke="#f43f5e" stroke-width="2.5" />
+    </g>
+
+    <!-- Bottom Status Banner -->
+    <g transform="translate(460, 715)">
+      <rect width="456" height="34" rx="6" fill="#0b0f19" fill-opacity="0.94" stroke="#f43f5e" stroke-width="1.2" />
+      <text x="20" y="21" fill="#fecdd3" font-family="monospace" font-size="11" font-weight="bold">FOTO REFERÊNCIA &gt;&gt; FOTOS ILIMITADAS + UPSCALE 4K</text>
+      <circle cx="435" cy="17" r="4" fill="#22c55e" filter="url(#neonGreen5)" />
+    </g>
+
+    <!-- Futuristic Laser Scan Beam -->
+    <line x1="25" y1="384" x2="1351" y2="384" stroke="#f43f5e" stroke-width="1" stroke-opacity="0.35" stroke-dasharray="16 8" />
+  </g>
+</svg>
