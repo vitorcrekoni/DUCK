@@ -20,6 +20,7 @@ import wfSemCensuraImg from '../assets/images/wf_sem_censura_1789523441883.jpg';
 import wfUpscaleImg from '../assets/images/wf_cria_5_imagens.svg';
 import wfModelo18NuaUpscaleImg from '../assets/images/wf_modelo_18_nua_upscale.svg';
 import wfFotorrealista18Img from '../assets/images/wf_fotorrealista_18.svg';
+import wfDasiwaWan11Img from '../assets/images/wf_dasiwa_wan_v11.svg';
 import wfFaceSwapImg from '../assets/images/wf_faceswap_1789583433199.jpg';
 import wfLipSyncImg from '../assets/images/wf_lipsync_voice_1789583443465.jpg';
 
@@ -279,24 +280,36 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
           </div>
         </div>
 
-        {/* Quadro 4: Video +18 */}
-        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#0a0e1a]/90 hover:bg-[#0d1222] border border-cyan-500/30 hover:border-cyan-400/80 shadow-[0_0_25px_rgba(6,182,212,0.15)] hover:shadow-[0_0_35px_rgba(6,182,212,0.3)] transition-all flex flex-col justify-between">
+        {/* Quadro 4: Workflow DaSiWa_Wan v11 Video +18 */}
+        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#0a0e1a]/90 hover:bg-[#0d1222] border border-rose-500/30 hover:border-rose-400/80 shadow-[0_0_25px_rgba(244,63,94,0.15)] hover:shadow-[0_0_35px_rgba(244,63,94,0.3)] transition-all flex flex-col justify-between">
           <div className="space-y-4">
-            <div className="relative aspect-video rounded-xl overflow-hidden border border-cyan-500/40">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-rose-500/50 shadow-[0_0_20px_rgba(244,63,94,0.25)]">
               <img
-                src={ttDecoderImg}
-                alt="Workflow Vídeo +18"
-                className="w-full h-full object-cover"
+                src={wfDasiwaWan11Img}
+                alt="Workflow DaSiWa_Wan v11 Video +18"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
+              {/* Sci-Fi HUD Corner Accents */}
+              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-rose-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-rose-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-rose-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-rose-400 pointer-events-none z-10" />
+
+              {/* Futuristic Cyber Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
+
               {/* Badge de Enumeração 4 */}
-              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-cyan-400/60 text-cyan-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(6,182,212,0.5)]">
-                <span className="text-cyan-400 text-sm font-orbitron font-black">#4</span>
+              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-rose-400/60 text-rose-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(244,63,94,0.5)]">
+                <span className="text-rose-400 text-sm font-orbitron font-black">#4</span>
+              </div>
+              <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-950/90 text-rose-300 border border-rose-500/50 shadow-[0_0_8px_rgba(244,63,94,0.4)]">
+                SEM CENSURA
               </div>
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                 <button
                   type="button"
                   onClick={onOpenVideo18Modal}
-                  className="w-12 h-12 rounded-full bg-cyan-500 text-black flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
+                  className="w-12 h-12 rounded-full bg-rose-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(244,63,94,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
                 >
                   <Play className="w-5 h-5 ml-0.5 fill-current" />
                 </button>
@@ -305,17 +318,17 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
 
             <div>
               <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-950 text-cyan-300 border border-cyan-500/30">
-                  VÍDEO +18
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-rose-950 text-rose-300 border border-rose-500/30">
+                  RunningHub
                 </span>
-                <span className="text-xs font-mono text-emerald-400">Ultra Realismo</span>
+                <span className="text-xs font-mono text-rose-400">Vídeo +18</span>
               </div>
               <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
-                <span className="font-mono text-cyan-400 font-black">4.</span>
-                <span>Workflow EM BREVE</span>
+                <span className="font-mono text-rose-400 font-black">4.</span>
+                <span>Workflow DaSiWa_Wan v11 Video +18</span>
               </h2>
               <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
-                Crie vídeos realistas de alta definição de sua modelo +18 com movimentos fluidos e sem censura.
+                Crie vídeos realistas de alta definição de sua modelo +18 com movimentos fluidos, sem censura e máxima perfeição.
               </p>
             </div>
           </div>
@@ -324,7 +337,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
             <button
               type="button"
               onClick={onOpenVideo18Modal}
-              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-black bg-cyan-400 hover:bg-cyan-300 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.3)]"
+              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-rose-600 hover:bg-rose-500 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(244,63,94,0.3)]"
             >
               <Play className="w-4 h-4 fill-current" />
               <span>VER VÍDEO & ADQUIRIR</span>

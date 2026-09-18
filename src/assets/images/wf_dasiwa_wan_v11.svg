@@ -1,0 +1,361 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient (Deep plum/purple matching Capturar.PNG) -->
+    <radialGradient id="dasiwaBg" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#2d1326" />
+      <stop offset="50%" stop-color="#190a18" />
+      <stop offset="100%" stop-color="#0b040a" />
+    </radialGradient>
+
+    <!-- Glowing Filters -->
+    <filter id="glowPink" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Comfy Grid Pattern -->
+    <pattern id="comfyGridDasiwa" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1" fill="#381b33" />
+    </pattern>
+
+    <!-- Scanline Pattern -->
+    <pattern id="scanlinesDasiwa" width="100" height="4" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="100" y2="0" stroke="#000" stroke-width="1.2" opacity="0.3" />
+    </pattern>
+
+    <!-- Female Model Skin & Hair Gradients (Reference exact model pose in Capturar.PNG) -->
+    <linearGradient id="dasiwaSkin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffeedf" />
+      <stop offset="45%" stop-color="#f8cfb2" />
+      <stop offset="100%" stop-color="#df9a75" />
+    </linearGradient>
+
+    <linearGradient id="dasiwaHair" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#854d0e" />
+    </linearGradient>
+
+    <!-- Node Group Headers -->
+    <linearGradient id="nodeBrown" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4a2e1d" />
+      <stop offset="100%" stop-color="#24170e" />
+    </linearGradient>
+
+    <linearGradient id="nodePurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3d1b38" />
+      <stop offset="100%" stop-color="#1f0d1c" />
+    </linearGradient>
+
+    <linearGradient id="nodeTealDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a3536" />
+      <stop offset="100%" stop-color="#0d1b1c" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. Canvas Background -->
+  <rect width="1200" height="675" fill="url(#dasiwaBg)" />
+  <rect width="1200" height="675" fill="url(#comfyGridDasiwa)" />
+
+  <!-- Top ComfyUI Toolbar Bar -->
+  <rect x="0" y="0" width="1200" height="24" fill="#180a18" opacity="0.9" />
+  <text x="12" y="16" fill="#f43f5e" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold">CREKONI ⚡</text>
+  <text x="85" y="16" fill="#ec4899" font-family="'JetBrains Mono', monospace" font-size="10">COMFYUI • WORKFLOW DASIWA_WAN V11 VIDEO +18</text>
+
+  <!-- 2. Large Background Group Containers (As shown in Capturar.PNG) -->
+  <!-- Group Left: Image Loader & Reference Group -->
+  <rect x="18" y="36" width="180" height="615" rx="8" fill="#2d1723" opacity="0.45" stroke="#f43f5e" stroke-width="1" stroke-dasharray="4,4" />
+  <rect x="22" y="42" width="172" height="22" rx="4" fill="#3b1d2e" />
+  <text x="28" y="57" fill="#fda4af" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold">Group ⚡ [LOAD IMAGE +18]</text>
+
+  <!-- Group Mid-Left: CONFIGURAÇÕES (Brown/Ochre Group in Capturar.PNG) -->
+  <rect x="210" y="36" width="210" height="615" rx="8" fill="#332115" opacity="0.5" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,4" />
+  <rect x="214" y="42" width="202" height="22" rx="4" fill="#4d3220" />
+  <text x="220" y="57" fill="#fde68a" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold">CONFIGURAÇÕES ⚡</text>
+
+  <!-- Group Center: MODELOS (Purple Group in Capturar.PNG) -->
+  <rect x="435" y="160" width="145" height="340" rx="8" fill="#3b1b36" opacity="0.5" stroke="#c084fc" stroke-width="1" stroke-dasharray="4,4" />
+  <rect x="439" y="166" width="137" height="20" rx="4" fill="#582450" />
+  <text x="445" y="180" fill="#f5d0fe" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">MODELOS ⚡ [WAN v11]</text>
+
+  <!-- Group Mid-Right: NODES (Deep Maroon Group in Capturar.PNG) -->
+  <rect x="595" y="160" width="280" height="420" rx="8" fill="#2e172a" opacity="0.55" stroke="#e879f9" stroke-width="1" stroke-dasharray="4,4" />
+  <rect x="599" y="166" width="272" height="20" rx="4" fill="#4d2446" />
+  <text x="605" y="180" fill="#f5d0fe" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">NODES ⚡ [DIFFUSION VIDEO]</text>
+
+  <!-- Group Far-Right: OUTPUT & VIDEO PREVIEW -->
+  <rect x="890" y="160" width="295" height="420" rx="8" fill="#261026" opacity="0.6" stroke="#fb7185" stroke-width="1" stroke-dasharray="4,4" />
+  <rect x="894" y="166" width="287" height="20" rx="4" fill="#4a1936" />
+  <text x="900" y="180" fill="#fecdd3" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">OUTPUT ⚡ [VIDEO RENDER]</text>
+
+  <!-- 3. Dynamic Curved Spline Cables Connecting Nodes (Exact styling from Capturar.PNG) -->
+  <g opacity="0.85">
+    <!-- Blue/Teal cables from Image Loader to Config -->
+    <path d="M 180 160 C 220 160, 200 170, 225 170" fill="none" stroke="#06b6d4" stroke-width="2" />
+    <path d="M 180 180 C 260 180, 250 240, 300 240" fill="none" stroke="#3b82f6" stroke-width="1.8" />
+    
+    <!-- Multi-color bundle from Config to Modelos & Nodes (blue, cyan, pink, yellow, orange) -->
+    <path d="M 390 150 C 440 150, 420 200, 450 200" fill="none" stroke="#22c55e" stroke-width="2" />
+    <path d="M 390 170 C 480 170, 480 230, 610 230" fill="none" stroke="#38bdf8" stroke-width="2.2" />
+    <path d="M 390 270 C 470 270, 520 280, 610 280" fill="none" stroke="#eab308" stroke-width="2" />
+    <path d="M 390 320 C 500 320, 510 390, 610 390" fill="none" stroke="#f97316" stroke-width="2" />
+    <path d="M 390 450 C 510 450, 520 480, 610 480" fill="none" stroke="#06b6d4" stroke-width="2" />
+
+    <!-- Cables between Modelos and Nodes -->
+    <path d="M 570 220 C 600 220, 580 260, 610 260" fill="none" stroke="#a855f7" stroke-width="2" />
+    <path d="M 570 300 C 610 300, 600 340, 610 340" fill="none" stroke="#ec4899" stroke-width="1.8" />
+    <path d="M 570 360 C 600 360, 590 420, 610 420" fill="none" stroke="#f43f5e" stroke-width="2" />
+
+    <!-- Cables connecting Nodes to Output Video block (splines crossing in multiple colors) -->
+    <path d="M 860 210 C 890 210, 880 240, 910 240" fill="none" stroke="#38bdf8" stroke-width="2.2" />
+    <path d="M 860 250 C 900 250, 890 290, 910 290" fill="none" stroke="#c084fc" stroke-width="2" />
+    <path d="M 860 310 C 910 310, 890 360, 910 360" fill="none" stroke="#f43f5e" stroke-width="2" />
+    <path d="M 860 380 C 920 380, 890 440, 910 440" fill="none" stroke="#fbbf24" stroke-width="2" />
+    <path d="M 860 460 C 910 460, 900 500, 910 500" fill="none" stroke="#34d399" stroke-width="2" />
+  </g>
+
+  <!-- 4. ComfyUI Nodes (Dark grey with color titlebars) -->
+  
+  <!-- Node A: [Load Image] on the left - Contains the Uncensored Model Photo as in Capturar.PNG -->
+  <g id="node-load-image">
+    <!-- Outer Node Box -->
+    <rect x="26" y="70" width="164" height="340" rx="5" fill="#14181f" stroke="#0e7490" stroke-width="1.5" />
+    <!-- Node Header bar (Teal in Capturar.PNG) -->
+    <rect x="27" y="71" width="162" height="18" rx="4" fill="#0f444c" />
+    <circle cx="34" cy="80" r="3" fill="#22d3ee" />
+    <text x="42" y="84" fill="#cffafe" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">Load Image (Wan Ref)</text>
+    <circle cx="184" cy="80" r="3" fill="#22c55e" />
+
+    <!-- The Reference Model Image (Recreated faithfully from the user photo Capturar.PNG) -->
+    <rect x="32" y="94" width="152" height="280" rx="3" fill="#e8dfd8" stroke="#083344" stroke-width="1" />
+    
+    <!-- Bedroom interior background in reference photo -->
+    <rect x="32" y="94" width="152" height="280" fill="#ede8e3" />
+    <!-- Wall corner / window edge -->
+    <rect x="135" y="94" width="49" height="180" fill="#ded5cc" />
+    <!-- Small framed photo on wall -->
+    <rect x="42" y="106" width="16" height="22" fill="#292524" />
+    <!-- Bed with black/white patterned pillow & duvet -->
+    <rect x="110" y="170" width="74" height="100" fill="#e2e8f0" />
+    <path d="M 115 175 Q 140 170 170 185" stroke="#1e293b" stroke-width="4" fill="none" />
+    <path d="M 125 190 Q 150 180 180 195" stroke="#1e293b" stroke-width="4" fill="none" />
+
+    <!-- Model Figure in sensual pose (leg raised high, blonde hair, selfie phone) -->
+    <!-- Torso -->
+    <path d="M 75 168 C 65 178, 62 205, 68 235 C 75 255, 95 255, 105 235 C 110 205, 105 178, 95 168 Z" fill="url(#dasiwaSkin)" />
+    
+    <!-- Chest / Breasts (Artistic rendering matching Capturar.PNG) -->
+    <circle cx="76" cy="188" r="13" fill="url(#dasiwaSkin)" />
+    <circle cx="95" cy="189" r="13" fill="url(#dasiwaSkin)" />
+    <circle cx="75" cy="190" r="2.2" fill="#d97768" opacity="0.8" />
+    <circle cx="96" cy="191" r="2.2" fill="#d97768" opacity="0.8" />
+
+    <!-- Left Leg Raised Vertically (Distinctive iconic pose in user photo) -->
+    <path d="M 68 235 C 60 215, 45 170, 44 125 C 44 112, 54 105, 59 115 C 62 135, 68 185, 75 230 Z" fill="url(#dasiwaSkin)" />
+    <!-- Foot in air -->
+    <path d="M 44 125 C 42 115, 38 102, 48 98 C 55 98, 58 108, 58 116 Z" fill="url(#dasiwaSkin)" />
+    <circle cx="43" cy="100" r="1.5" fill="#e08e79" />
+    <circle cx="46" cy="98" r="1.5" fill="#e08e79" />
+    <circle cx="49" cy="98" r="1.5" fill="#e08e79" />
+
+    <!-- Right Leg Outstretched Forward -->
+    <path d="M 100 230 C 108 240, 115 255, 128 275 C 122 282, 105 285, 96 265 C 90 250, 88 240, 88 235 Z" fill="url(#dasiwaSkin)" />
+    <!-- Intimate area & shadows -->
+    <path d="M 75 235 C 78 250, 88 250, 92 235 Z" fill="#b96a56" opacity="0.4" />
+
+    <!-- Blonde Hair -->
+    <path d="M 70 135 C 65 150, 64 175, 68 195 C 72 170, 75 145, 78 135 Z" fill="url(#dasiwaHair)" />
+    <path d="M 98 135 C 104 150, 106 175, 102 195 C 99 170, 96 145, 94 135 Z" fill="url(#dasiwaHair)" />
+
+    <!-- Head & Face -->
+    <ellipse cx="85" cy="142" rx="13" ry="16" fill="url(#dasiwaSkin)" />
+    <!-- Hair Top -->
+    <path d="M 70 140 C 70 120, 100 120, 100 140 C 95 130, 75 130, 70 140 Z" fill="url(#dasiwaHair)" />
+    <!-- Delicate Facial Features -->
+    <circle cx="80" cy="142" r="1.5" fill="#3b2d28" />
+    <circle cx="89" cy="142" r="1.5" fill="#3b2d28" />
+    <path d="M 83 151 Q 85 153 87 151" stroke="#e11d48" stroke-width="1.5" fill="none" />
+
+    <!-- Smartphone held in hand (Pink case in Capturar.PNG) -->
+    <rect x="100" y="150" width="16" height="26" rx="3" fill="#f472b6" stroke="#db2777" stroke-width="1" />
+    <circle cx="108" cy="155" r="2" fill="#1e293b" />
+    <path d="M 96 170 C 98 165, 103 162, 106 168" stroke="url(#dasiwaSkin)" stroke-width="3" fill="none" />
+
+    <!-- Bottom Node text -->
+    <text x="35" y="392" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="7">Image: Model_Wan11_Ref.png</text>
+  </g>
+
+  <!-- Node under Image Loader: VAE Encode -->
+  <g id="node-vae-encode">
+    <rect x="26" y="425" width="80" height="95" rx="5" fill="#14181f" stroke="#0e7490" stroke-width="1" />
+    <rect x="27" y="426" width="78" height="14" rx="3" fill="#0f444c" />
+    <text x="31" y="437" fill="#cffafe" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">VAE Encode</text>
+    <rect x="31" y="446" width="70" height="66" fill="#0b0f14" rx="3" />
+  </g>
+
+  <!-- Node: Small Preview Output under Config -->
+  <g id="node-small-config">
+    <rect x="114" y="455" width="74" height="65" rx="5" fill="#14181f" stroke="#eab308" stroke-width="1" />
+    <rect x="115" y="456" width="72" height="14" rx="3" fill="#4d3220" />
+    <text x="120" y="466" fill="#fde68a" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">Wan Video</text>
+    <rect x="120" y="475" width="62" height="38" fill="#0b0f14" rx="3" />
+  </g>
+
+  <!-- Node B: CONFIGURAÇÕES Main Prompt / Conditioning Node (Teal Block in Capturar.PNG) -->
+  <g id="node-config-main">
+    <rect x="218" y="70" width="194" height="115" rx="5" fill="#14181f" stroke="#0e7490" stroke-width="1.2" />
+    <rect x="219" y="71" width="192" height="18" rx="4" fill="#0f444c" />
+    <text x="226" y="84" fill="#cffafe" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">CLIP Text Encode (Positive Prompt +18)</text>
+    <circle cx="406" cy="80" r="3" fill="#22c55e" />
+    <rect x="224" y="94" width="182" height="84" rx="3" fill="#0a1219" />
+    <!-- Prompt lines -->
+    <text x="230" y="112" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="8">Prompt: beautiful blonde model nude in bedroom,</text>
+    <text x="230" y="126" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="8">natural motion, 4k ultra realistic, flawless skin,</text>
+    <text x="230" y="140" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="8">intimate cinematic lighting, 60fps uncensored</text>
+    <text x="230" y="162" fill="#0284c7" font-family="'JetBrains Mono', monospace" font-size="7.5">Model: DaSiWa_Wan_v11.safetensors</text>
+  </g>
+
+  <!-- Smaller Parameter Nodes in Config Column (Brown / Yellow) -->
+  <g id="node-config-subnodes">
+    <rect x="218" y="196" width="94" height="48" rx="4" fill="#14181f" stroke="#d97706" stroke-width="1" />
+    <rect x="219" y="197" width="92" height="14" rx="3" fill="#451a03" />
+    <text x="224" y="208" fill="#fed7aa" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">CFG &amp; Steps</text>
+    <text x="224" y="232" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="8">Steps: 35 | CFG: 6</text>
+
+    <rect x="318" y="196" width="94" height="48" rx="4" fill="#14181f" stroke="#0284c7" stroke-width="1" />
+    <rect x="319" y="197" width="92" height="14" rx="3" fill="#0c4a6e" />
+    <text x="324" y="208" fill="#bae6fd" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">Video FrameRate</text>
+    <text x="324" y="232" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="8">Frames: 81 (5s)</text>
+
+    <rect x="218" y="254" width="94" height="48" rx="4" fill="#14181f" stroke="#d97706" stroke-width="1" />
+    <rect x="219" y="255" width="92" height="14" rx="3" fill="#451a03" />
+    <text x="224" y="266" fill="#fed7aa" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">Wan HighRes</text>
+    <text x="224" y="290" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="8">Upscale: 1.5x</text>
+
+    <rect x="318" y="254" width="94" height="48" rx="4" fill="#14181f" stroke="#0284c7" stroke-width="1" />
+    <rect x="319" y="255" width="92" height="14" rx="3" fill="#0c4a6e" />
+    <text x="324" y="266" fill="#bae6fd" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">Denoise Mask</text>
+    <text x="324" y="290" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="8">Denoise: 0.85</text>
+  </g>
+
+  <!-- Big Dark Negative Prompt Node in Config column -->
+  <g id="node-config-neg">
+    <rect x="218" y="312" width="194" height="120" rx="5" fill="#14181f" stroke="#d97706" stroke-width="1" />
+    <rect x="219" y="313" width="192" height="18" rx="4" fill="#451a03" />
+    <text x="226" y="326" fill="#fed7aa" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">Negative Conditioning (CLIP Text Encode)</text>
+    <rect x="224" y="336" width="182" height="88" rx="3" fill="#0b0f14" />
+    <text x="230" y="354" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="8">ugly, deformed, censored, mosaic, blur, watermarks</text>
+    <text x="230" y="370" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="8">bad anatomy, low quality, artifacts, bad hands</text>
+  </g>
+
+  <!-- Big Lower Node in Config column -->
+  <g id="node-config-lower">
+    <rect x="218" y="445" width="194" height="175" rx="5" fill="#14181f" stroke="#0284c7" stroke-width="1" />
+    <rect x="219" y="446" width="192" height="18" rx="4" fill="#0c4a6e" />
+    <text x="226" y="459" fill="#bae6fd" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">Wan Video Sampler Advanced</text>
+    <rect x="224" y="470" width="182" height="142" rx="3" fill="#080c10" />
+    <line x1="228" y1="495" x2="402" y2="495" stroke="#1e293b" stroke-width="1" />
+    <line x1="228" y1="520" x2="402" y2="520" stroke="#1e293b" stroke-width="1" />
+    <line x1="228" y1="545" x2="402" y2="545" stroke="#1e293b" stroke-width="1" />
+    <line x1="228" y1="570" x2="402" y2="570" stroke="#1e293b" stroke-width="1" />
+    <line x1="228" y1="595" x2="402" y2="595" stroke="#1e293b" stroke-width="1" />
+  </g>
+
+  <!-- Column: MODELOS (Purple column with 3 stacked nodes) -->
+  <g id="node-modelos-stack">
+    <!-- Node Model 1 -->
+    <rect x="443" y="196" width="128" height="68" rx="4" fill="#14181f" stroke="#a855f7" stroke-width="1" />
+    <rect x="444" y="197" width="126" height="16" rx="3" fill="#581c87" />
+    <text x="449" y="209" fill="#f3e8ff" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">CheckpointLoaderWan</text>
+    <rect x="448" y="218" width="118" height="40" fill="#0b0f14" rx="2" />
+
+    <!-- Node Model 2 -->
+    <rect x="443" y="278" width="128" height="74" rx="4" fill="#14181f" stroke="#a855f7" stroke-width="1" />
+    <rect x="444" y="279" width="126" height="16" rx="3" fill="#581c87" />
+    <text x="449" y="291" fill="#f3e8ff" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">LoraLoader +18 Wan</text>
+    <rect x="448" y="300" width="118" height="46" fill="#0b0f14" rx="2" />
+
+    <!-- Node Model 3 -->
+    <rect x="443" y="366" width="128" height="72" rx="4" fill="#14181f" stroke="#a855f7" stroke-width="1" />
+    <rect x="444" y="367" width="126" height="16" rx="3" fill="#581c87" />
+    <text x="449" y="379" fill="#f3e8ff" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">Wan Video VAE Loader</text>
+    <rect x="448" y="388" width="118" height="44" fill="#0b0f14" rx="2" />
+  </g>
+
+  <!-- Column: NODES (Dense ComfyUI processing nodes in purple/pink) -->
+  <g id="node-nodes-matrix">
+    <rect x="603" y="196" width="125" height="140" rx="4" fill="#14181f" stroke="#e879f9" stroke-width="1.2" />
+    <rect x="604" y="197" width="123" height="16" rx="3" fill="#701a75" />
+    <text x="609" y="209" fill="#fae8ff" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">KSampler (Wan v11)</text>
+    <rect x="608" y="218" width="115" height="110" fill="#0b0f14" rx="2" />
+
+    <rect x="738" y="196" width="125" height="140" rx="4" fill="#14181f" stroke="#e879f9" stroke-width="1.2" />
+    <rect x="739" y="197" width="123" height="16" rx="3" fill="#701a75" />
+    <text x="744" y="209" fill="#fae8ff" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">VAEDecodeTiled</text>
+    <rect x="743" y="218" width="115" height="110" fill="#0b0f14" rx="2" />
+
+    <rect x="603" y="348" width="150" height="74" rx="4" fill="#14181f" stroke="#e879f9" stroke-width="1" />
+    <rect x="604" y="349" width="148" height="16" rx="3" fill="#701a75" />
+    <text x="609" y="361" fill="#fae8ff" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">Video Combine (h264)</text>
+    <rect x="608" y="370" width="140" height="46" fill="#0b0f14" rx="2" />
+
+    <rect x="762" y="348" width="102" height="145" rx="4" fill="#14181f" stroke="#e879f9" stroke-width="1" />
+    <rect x="763" y="349" width="100" height="16" rx="3" fill="#701a75" />
+    <text x="768" y="361" fill="#fae8ff" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">Upscale Model 4K</text>
+    <rect x="767" y="370" width="92" height="115" fill="#0b0f14" rx="2" />
+
+    <rect x="603" y="432" width="150" height="85" rx="4" fill="#14181f" stroke="#e879f9" stroke-width="1" />
+    <rect x="604" y="433" width="148" height="16" rx="3" fill="#701a75" />
+    <text x="609" y="445" fill="#fae8ff" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">DaSiWa Fast Cache</text>
+    <rect x="608" y="454" width="140" height="57" fill="#0b0f14" rx="2" />
+  </g>
+
+  <!-- Output Nodes on right -->
+  <g id="node-output-save">
+    <rect x="898" y="196" width="278" height="280" rx="6" fill="#14181f" stroke="#fb7185" stroke-width="1.5" />
+    <rect x="899" y="197" width="276" height="20" rx="4" fill="#881337" />
+    <text x="908" y="211" fill="#ffe4e6" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">Video Preview Player (DaSiWa_Wan_Render.mp4)</text>
+    <rect x="906" y="224" width="262" height="244" fill="#000000" rx="4" />
+    
+    <!-- Video Player Timeline overlay -->
+    <rect x="914" y="446" width="246" height="14" rx="2" fill="#1e293b" opacity="0.8" />
+    <rect x="914" y="451" width="110" height="4" rx="2" fill="#f43f5e" />
+    <circle cx="1024" cy="453" r="4" fill="#ffffff" />
+    <text x="1120" y="457" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="8">00:05 / 00:05</text>
+  </g>
+
+  <!-- 5. Futuristic HUD Corner Overlays & High-Tech Accents -->
+  <g id="hud-accents">
+    <!-- Top-Left Reticle -->
+    <path d="M 8 28 L 8 8 L 28 8" fill="none" stroke="#f43f5e" stroke-width="2.5" />
+    <!-- Top-Right Reticle -->
+    <path d="M 1192 28 L 1192 8 L 1172 8" fill="none" stroke="#f43f5e" stroke-width="2.5" />
+    <!-- Bottom-Left Reticle -->
+    <path d="M 8 647 L 8 667 L 28 667" fill="none" stroke="#f43f5e" stroke-width="2.5" />
+    <!-- Bottom-Right Reticle -->
+    <path d="M 1192 647 L 1192 667 L 1172 667" fill="none" stroke="#f43f5e" stroke-width="2.5" />
+
+    <!-- Center Badge Watermark -->
+    <rect x="420" y="46" width="360" height="38" rx="8" fill="#000000" opacity="0.75" stroke="#f43f5e" stroke-width="1.2" />
+    <text x="600" y="66" text-anchor="middle" fill="#ffffff" font-family="'Orbitron', sans-serif" font-weight="9" font-size="13" letter-spacing="1.5">
+      WORKFLOW DASIWA_WAN v11 VÍDEO +18
+    </text>
+    <text x="600" y="79" text-anchor="middle" fill="#fda4af" font-family="'JetBrains Mono', monospace" font-size="8.5">
+      COMFYUI • GERAÇÃO DE VÍDEO REALISTA SEM CENSURA
+    </text>
+  </g>
+
+  <!-- Scanlines overlay for cyberpunk monitor texture -->
+  <rect width="1200" height="675" fill="url(#scanlinesDasiwa)" pointer-events="none" />
+</svg>
