@@ -1,7 +1,8 @@
 import React from 'react';
-import { Instagram, ArrowLeft } from 'lucide-react';
+import { Instagram, ArrowLeft, MessageCircle } from 'lucide-react';
 import { ContactConfig } from '../types';
 import { MusicPlayer } from './MusicPlayer';
+import { OnlineUsersCounter } from './OnlineUsersCounter';
 
 interface HeaderProps {
   contactConfig: ContactConfig;
@@ -74,90 +75,29 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             </div>
           ) : (
-            <nav aria-label="Navegação do site" className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-              {/* Tag / Botão: Página Principal */}
-              <button
-                type="button"
-                id="header-tag-home"
-                onClick={() => onNavigate('home')}
-                className={`group relative inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all cursor-pointer ${
-                  currentPage === 'home'
-                    ? 'bg-slate-800 text-white border border-white/30 shadow-[0_0_12px_rgba(255,255,255,0.15)]'
-                    : 'bg-slate-900/60 hover:bg-slate-800/80 text-slate-300 hover:text-white border border-white/10 hover:border-white/25'
-                }`}
+            <nav aria-label="Navegação do site" className="flex items-center gap-1.5 sm:gap-2">
+              {/* Botão Único: GRUPO WHATSAPP */}
+              <a
+                id="header-btn-grupo-whatsapp"
+                href="https://chat.whatsapp.com/L2ABna1xZECAHDJ2Q45inc"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Entrar no Grupo Oficial do WhatsApp"
+                className="group relative inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-mono font-bold text-emerald-200 bg-emerald-950/70 hover:bg-emerald-900/90 border border-emerald-500/50 hover:border-emerald-400 transition-all duration-200 shadow-[0_0_15px_rgba(16,185,129,0.25)] hover:shadow-[0_0_22px_rgba(16,185,129,0.45)] cursor-pointer"
               >
-                <span className="text-sm select-none">🏠</span>
-                <span className="tracking-wide">INÍCIO</span>
-              </button>
-
-              {/* Tag / Botão: Duck Decoder */}
-              <button
-                type="button"
-                id="header-tag-decoder"
-                onClick={() => onNavigate('decoder')}
-                className={`group relative inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all cursor-pointer ${
-                  currentPage === 'decoder'
-                    ? 'bg-cyan-950 text-cyan-200 border border-cyan-400 shadow-[0_0_14px_rgba(6,182,212,0.35)]'
-                    : 'bg-cyan-950/40 hover:bg-cyan-900/60 text-cyan-300 hover:text-cyan-100 border border-cyan-500/30 hover:border-cyan-400/60'
-                }`}
-              >
-                <span className="text-sm select-none">🦆</span>
-                <span className="tracking-wide">DUCK DECODER</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse ml-0.5" title="Online" />
-              </button>
-
-              {/* Tag / Botão: TT-IMG Decoder */}
-              <button
-                type="button"
-                id="header-tag-ttimg"
-                onClick={() => onNavigate('ttimg')}
-                className={`group relative inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all cursor-pointer ${
-                  currentPage === 'ttimg'
-                    ? 'bg-amber-950 text-amber-200 border border-amber-400 shadow-[0_0_14px_rgba(245,158,11,0.35)]'
-                    : 'bg-amber-950/40 hover:bg-amber-900/60 text-amber-300 hover:text-amber-100 border border-amber-500/30 hover:border-amber-400/60'
-                }`}
-              >
-                <span className="text-sm select-none">🖼️</span>
-                <span className="tracking-wide">TT-IMG</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse ml-0.5" title="Online" />
-              </button>
-
-              {/* Tag / Botão: Workflows IA */}
-              <button
-                type="button"
-                id="header-tag-workflows"
-                onClick={() => onNavigate('workflows')}
-                className={`group relative inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all cursor-pointer ${
-                  currentPage === 'workflows'
-                    ? 'bg-purple-950 text-purple-200 border border-purple-400 shadow-[0_0_14px_rgba(168,85,247,0.35)]'
-                    : 'bg-purple-950/40 hover:bg-purple-900/60 text-purple-300 hover:text-purple-100 border border-purple-500/30 hover:border-purple-400/60'
-                }`}
-              >
-                <span className="text-sm select-none">⚡</span>
-                <span className="tracking-wide">WORKFLOWS</span>
-              </button>
-
-              {/* Tag / Botão: Google AI Pro */}
-              <button
-                type="button"
-                id="header-tag-googlepro"
-                onClick={() => onNavigate('googlepro')}
-                className={`group relative inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all cursor-pointer ${
-                  currentPage === 'googlepro'
-                    ? 'bg-blue-950 text-blue-200 border border-blue-400 shadow-[0_0_14px_rgba(59,130,246,0.35)]'
-                    : 'bg-blue-950/40 hover:bg-blue-900/60 text-blue-300 hover:text-blue-100 border border-blue-500/30 hover:border-blue-400/60'
-                }`}
-              >
-                <span className="text-sm select-none">💎</span>
-                <span className="tracking-wide hidden sm:inline">GOOGLE AI PRO</span>
-                <span className="tracking-wide sm:hidden">GOOGLE PRO</span>
-              </button>
+                <MessageCircle className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
+                <span className="tracking-wide">GRUPO WHATSAPP</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse ml-0.5" />
+              </a>
             </nav>
           )}
         </div>
 
         {/* Action Controls */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          {/* Contador de Usuários Online */}
+          <OnlineUsersCounter />
+
           {/* Music Player with Mute Button directly beside it */}
           <MusicPlayer
             videoId="nZOrhNlbFHc"
