@@ -129,15 +129,15 @@ export const PaymentCheckoutModal: React.FC<PaymentCheckoutModalProps> = ({
             </div>
 
             {/* Footer Informativo */}
-            <div className="px-4 py-2.5 bg-[#0a1122] border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400 font-mono shrink-0">
-              <span className="truncate text-[#d9042c]">
-                Após a aprovação na Hotmart, o acesso ao workflow é liberado imediatamente.
+            <div className="px-4 py-2.5 bg-[#0a1122] border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-1.5 text-[11px] text-slate-400 font-mono shrink-0">
+              <span className="text-[#d9042c] text-[15px] font-bold text-center sm:text-left">
+                APÓS PAGAMENTO  ENTRE NO SEU APLICATIVO HOTMART COM O EMAIL UTILIZADO NA COMPRA,  VAI ESTAR LIBERADO O DOWNLOAD
               </span>
               <a
                 href={checkoutUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-rose-400 hover:text-rose-300 font-bold ml-2 underline shrink-0 inline-flex items-center gap-1"
+                className="text-rose-400 hover:text-rose-300 font-bold ml-0 sm:ml-2 underline shrink-0 inline-flex items-center gap-1 text-[10px] sm:text-[11px]"
               >
                 Problemas no carregamento? Clique aqui <ExternalLink className="w-3 h-3" />
               </a>
