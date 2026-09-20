@@ -24,6 +24,7 @@ import { TtImgDecoderPage } from './components/TtImgDecoderPage';
 import { GoogleProPage } from './components/GoogleProPage';
 import { GoogleProCard } from './components/GoogleProCard';
 import { AulasPage } from './components/AulasPage';
+import { CrekoniDecoderPage } from './components/CrekoniDecoderPage';
 import { WorkflowVideo18Modal } from './components/WorkflowVideo18Modal';
 import { WorkflowDancinhasModal } from './components/WorkflowDancinhasModal';
 import { WorkflowSemCensuraModal } from './components/WorkflowSemCensuraModal';
@@ -59,14 +60,15 @@ export default function App() {
   const [items, setItems] = useState<DecodedResult[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Active page: 'home' (Principal), 'decoder' (Decodificador LSB), 'workflows' (Central de Workflows), 'ttimg' (TT-IMG Decoder V1), 'googlepro' (Conta Google AI Pro), or 'aulas' (Vídeo Aulas)
-  const [currentPage, setCurrentPage] = useState<'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas'>(() => {
+  // Active page: 'home' (Principal), 'decoder' (Decodificador LSB), 'workflows' (Central de Workflows), 'ttimg' (TT-IMG Decoder V1), 'googlepro' (Conta Google AI Pro), 'aulas' (Vídeo Aulas), or 'crekonidecoder' (Sistema Unificado)
+  const [currentPage, setCurrentPage] = useState<'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas' | 'crekonidecoder'>(() => {
     if (typeof window !== 'undefined') {
       if (window.location.hash === '#decoder') return 'decoder';
       if (window.location.hash === '#workflows') return 'workflows';
       if (window.location.hash === '#ttimg' || window.location.hash === '#tt-img') return 'ttimg';
       if (window.location.hash === '#googlepro' || window.location.hash === '#google-pro') return 'googlepro';
       if (window.location.hash === '#aulas' || window.location.hash === '#video-aulas') return 'aulas';
+      if (window.location.hash === '#crekonidecoder' || window.location.hash === '#crekoni-decoder') return 'crekonidecoder';
     }
     return 'home';
   });
@@ -84,6 +86,8 @@ export default function App() {
         setCurrentPage('googlepro');
       } else if (window.location.hash === '#aulas' || window.location.hash === '#video-aulas') {
         setCurrentPage('aulas');
+      } else if (window.location.hash === '#crekonidecoder' || window.location.hash === '#crekoni-decoder') {
+        setCurrentPage('crekonidecoder');
       } else {
         setCurrentPage('home');
       }
@@ -92,7 +96,7 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const handleNavigate = (page: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas') => {
+  const handleNavigate = (page: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas' | 'crekonidecoder') => {
     setCurrentPage(page);
     window.location.hash = page === 'home' ? '#home' : `#${page}`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -343,46 +347,11 @@ export default function App() {
                 Acesse nossas ferramentas exclusivas, workflows profissionais de inteligência artificial e Decodificador
               </p>
 
-              {/* Destaques / Atalhos: Duck Decoder e Workflows IA na linha superior, TT-IMG Decoder abaixo */}
+              {/* Destaques / Atalhos */}
               <div className="mt-7 max-w-4xl mx-auto space-y-3.5 sm:space-y-4">
-                {/* Linha 1: Os dois primeiros quadros mantendo o tamanho original */}
+                {/* Linha 1: Primeiro quadro WORKFLOWS IA e à direita VIDEO AULAS */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
-                  {/* 1. Quadro Duck Decoder */}
-                  <button
-                    type="button"
-                    id="hero-btn-enter-decoder"
-                    onClick={() => handleNavigate('decoder')}
-                    title="Clique para entrar na ferramenta Duck Decoder"
-                    className="group relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-cyan-950/60 via-[#0a1428] to-cyan-950/60 hover:from-cyan-900/70 hover:to-cyan-900/70 border border-cyan-500/40 hover:border-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:shadow-[0_0_30px_rgba(6,182,212,0.35)] transition-all duration-300 cursor-pointer text-left"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-105 transition-transform shrink-0">
-                        <span className="text-2xl select-none">🦆</span>
-                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping opacity-75" />
-                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-cyan-400" />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-cyan-200 transition-colors">
-                            DUCK DECODER
-                          </span>
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold text-emerald-300 bg-emerald-950/70 border border-emerald-500/40 shadow-[0_0_10px_rgba(16,185,129,0.2)] group-hover:bg-emerald-900/80 transition-all">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                            <span>ONLINE</span>
-                          </span>
-                        </div>
-                        <p className="text-xs text-slate-300 font-mono mt-0.5">
-                          Extraia arquivos ocultos em imagens PNG com precisão e velocidade
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 group-hover:bg-cyan-400 group-hover:text-black font-mono text-xs font-bold transition-all shrink-0 ml-2">
-                      <span>ENTRAR</span>
-                      <span className="group-hover:translate-x-1 transition-transform">➔</span>
-                    </div>
-                  </button>
-
-                  {/* 2. Quadro Workflows IA */}
+                  {/* 1. Primeiro Quadro: WORKFLOWS IA */}
                   <button
                     type="button"
                     id="hero-btn-enter-workflows"
@@ -402,11 +371,11 @@ export default function App() {
                             WORKFLOWS IA
                           </span>
                           <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-purple-950 text-purple-300 border border-purple-500/30">
-                            WORKFLOWS
+                            FLUXOS
                           </span>
                         </div>
                         <p className="text-xs text-slate-300 font-mono mt-0.5">
-                          Clique aqui para entrar na central de workflows e ferramentas
+                          Adquira Os Melhores Workflows De Imagens e Videos
                         </p>
                       </div>
                     </div>
@@ -415,46 +384,8 @@ export default function App() {
                       <span className="group-hover:translate-x-1 transition-transform">➔</span>
                     </div>
                   </button>
-                </div>
 
-                {/* Linha 2: Quadro TT-IMG DECODER e Quadro VIDEO AULAS lado a lado */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
-                  {/* 3. Quadro TT-IMG DECODER (Interativo e Acessível!) */}
-                  <button
-                    type="button"
-                    id="hero-btn-enter-tt-img-decoder"
-                    onClick={() => handleNavigate('ttimg')}
-                    title="Clique para entrar no TT-IMG Decoder V1"
-                    className="group relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-amber-950/60 via-[#1b1409] to-amber-950/60 hover:from-amber-900/70 hover:to-amber-900/70 border border-amber-500/40 hover:border-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.15)] hover:shadow-[0_0_30px_rgba(245,158,11,0.35)] transition-all duration-300 cursor-pointer text-left"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.2)] group-hover:scale-105 transition-transform shrink-0">
-                        <span className="text-2xl select-none">🖼️</span>
-                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping opacity-75" />
-                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400" />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-amber-200 transition-colors">
-                            TT-IMG DECODER
-                          </span>
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold text-amber-300 bg-amber-950/80 border border-amber-500/40 shadow-[0_0_10px_rgba(245,158,11,0.2)] group-hover:bg-amber-900/80 transition-all">
-                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                            <span>ONLINE</span>
-                          </span>
-                        </div>
-                        <p className="text-xs text-slate-300 font-mono mt-0.5">
-                          Decodificador V1 LSB com remoção de marca-d'água e extração local
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 border border-amber-400/40 text-amber-300 group-hover:bg-amber-400 group-hover:text-black font-mono text-xs font-bold transition-all shrink-0 ml-2">
-                      <span>ENTRAR</span>
-                      <span className="group-hover:translate-x-1 transition-transform">➔</span>
-                    </div>
-                  </button>
-
-                  {/* 4. Quadro VÍDEO AULAS (Clicável, leva para a página Aulas com aviso de EM BREVE) */}
+                  {/* 2. À Direita: VIDEO AULAS */}
                   <button
                     type="button"
                     id="hero-card-video-aulas"
@@ -489,12 +420,130 @@ export default function App() {
                   </button>
                 </div>
 
-                {/* 5. Quadro MAIOR abaixo dos 4: CONTA GOOGLE AI PRO 18 MESES POR R$ 20,00 */}
+                {/* Quadro CREKONI DECODER: ABAIXO DELES, CENTRALIZADO AO MEIO */}
+                <button
+                  type="button"
+                  id="hero-btn-enter-crekonidecoder"
+                  onClick={() => handleNavigate('crekonidecoder')}
+                  title="Entrar no Crekoni Decoder - Sistema Unificado Duck + TT-IMG"
+                  className="group relative w-full flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 sm:p-5 rounded-3xl bg-gradient-to-r from-cyan-950/80 via-[#0a1529] to-amber-950/80 hover:from-cyan-900/90 hover:to-amber-900/90 border-2 border-cyan-500/50 hover:border-cyan-400 shadow-[0_0_25px_rgba(6,182,212,0.25)] hover:shadow-[0_0_40px_rgba(6,182,212,0.45)] transition-all duration-300 cursor-pointer text-left overflow-hidden"
+                >
+                  <div className="flex items-center gap-3.5 sm:gap-4">
+                    <div className="relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-cyan-950 via-slate-900 to-amber-950 border border-cyan-400/60 shadow-[0_0_20px_rgba(6,182,212,0.3)] group-hover:scale-105 transition-transform shrink-0">
+                      <div className="flex items-center -space-x-1.5">
+                        <span className="text-xl sm:text-2xl select-none">🦆</span>
+                        <span className="text-xl sm:text-2xl select-none">🖼️</span>
+                      </div>
+                      <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-cyan-400 animate-ping opacity-75" />
+                      <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-emerald-400" />
+                    </div>
+
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="font-orbitron font-extrabold text-base sm:text-lg text-white group-hover:text-cyan-200 transition-colors tracking-wide">
+                          CREKONI DECODER
+                        </span>
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold text-cyan-200 bg-cyan-950/90 border border-cyan-400/50 shadow-[0_0_10px_rgba(6,182,212,0.3)]">
+                          <Sparkles className="w-3 h-3 text-cyan-400 animate-pulse" />
+                          <span>SISTEMA UNIFICADO</span>
+                        </span>
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold text-emerald-300 bg-emerald-950/70 border border-emerald-500/40">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          <span>DUAL ENGINE ATIVO</span>
+                        </span>
+                      </div>
+
+                      <p className="text-xs sm:text-sm text-slate-300 font-mono mt-1">
+                        Os dois motores juntos: <strong className="text-cyan-300">Duck LSB</strong> + <strong className="text-amber-300">TT-IMG V1</strong> para decodificar todo tipo de arquivo em apenas uma ferramenta
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-3 sm:mt-0 flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-amber-400 text-black font-mono text-xs font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)] group-hover:scale-105 transition-all shrink-0 self-end sm:self-center">
+                    <span>ENTRAR AGORA</span>
+                    <span className="group-hover:translate-x-1 transition-transform">➔</span>
+                  </div>
+                </button>
+
+                {/* Quadro MAIOR: CONTA GOOGLE AI PRO 18 MESES POR R$ 20,00 */}
                 <GoogleProCard
                   onEnter={() => handleNavigate('googlepro')}
                   contactConfig={contactConfig}
                   soundEnabled={soundEnabled}
                 />
+
+                {/* Abaixo do GooglePro: Quadros individuais Duck Decoder e TT-IMG Decoder */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
+                  {/* Quadro Duck Decoder */}
+                  <button
+                    type="button"
+                    id="hero-btn-enter-decoder"
+                    onClick={() => handleNavigate('decoder')}
+                    title="Clique para entrar na ferramenta Duck Decoder"
+                    className="group relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-cyan-950/60 via-[#0a1428] to-cyan-950/60 hover:from-cyan-900/70 hover:to-cyan-900/70 border border-cyan-500/40 hover:border-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:shadow-[0_0_30px_rgba(6,182,212,0.35)] transition-all duration-300 cursor-pointer text-left"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-105 transition-transform shrink-0">
+                        <span className="text-2xl select-none">🦆</span>
+                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping opacity-75" />
+                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-cyan-400" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-cyan-200 transition-colors">
+                            DUCK DECODER
+                          </span>
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold text-emerald-300 bg-emerald-950/70 border border-emerald-500/40 shadow-[0_0_10px_rgba(16,185,129,0.2)] group-hover:bg-emerald-900/80 transition-all">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                            <span>ONLINE</span>
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-300 font-mono mt-0.5">
+                          Extraia arquivos ocultos em imagens PNG com precisão e velocidade
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 group-hover:bg-cyan-400 group-hover:text-black font-mono text-xs font-bold transition-all shrink-0 ml-2">
+                      <span>ENTRAR</span>
+                      <span className="group-hover:translate-x-1 transition-transform">➔</span>
+                    </div>
+                  </button>
+
+                  {/* Quadro TT-IMG DECODER */}
+                  <button
+                    type="button"
+                    id="hero-btn-enter-tt-img-decoder"
+                    onClick={() => handleNavigate('ttimg')}
+                    title="Clique para entrar no TT-IMG Decoder V1"
+                    className="group relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-amber-950/60 via-[#1b1409] to-amber-950/60 hover:from-amber-900/70 hover:to-amber-900/70 border border-amber-500/40 hover:border-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.15)] hover:shadow-[0_0_30px_rgba(245,158,11,0.35)] transition-all duration-300 cursor-pointer text-left"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.2)] group-hover:scale-105 transition-transform shrink-0">
+                        <span className="text-2xl select-none">🖼️</span>
+                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping opacity-75" />
+                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-amber-200 transition-colors">
+                            TT-IMG DECODER
+                          </span>
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold text-amber-300 bg-amber-950/80 border border-amber-500/40 shadow-[0_0_10px_rgba(245,158,11,0.2)] group-hover:bg-amber-900/80 transition-all">
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                            <span>ONLINE</span>
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-300 font-mono mt-0.5">
+                          Decodificador V1 LSB com remoção de marca-d'água e extração local
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 border border-amber-400/40 text-amber-300 group-hover:bg-amber-400 group-hover:text-black font-mono text-xs font-bold transition-all shrink-0 ml-2">
+                      <span>ENTRAR</span>
+                      <span className="group-hover:translate-x-1 transition-transform">➔</span>
+                    </div>
+                  </button>
+                </div>
               </div>
             </section>
           </div>
@@ -523,6 +572,11 @@ export default function App() {
           />
         ) : currentPage === 'aulas' ? (
           <AulasPage onBack={() => handleNavigate('home')} />
+        ) : currentPage === 'crekonidecoder' ? (
+          <CrekoniDecoderPage
+            onBack={() => handleNavigate('home')}
+            soundEnabled={soundEnabled}
+          />
         ) : (
           /* ========================================================================= */
           /* PÁGINA DO DECODIFICADOR ATUAL (DROPZONE E RESULTADOS)                     */

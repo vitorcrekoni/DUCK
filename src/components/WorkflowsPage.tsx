@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ArrowLeft,
   Sparkles,
@@ -7,11 +7,14 @@ import {
   Zap,
   MessageCircle,
   ExternalLink,
-  Cpu,
   CheckCircle2,
   AlertTriangle,
   X,
   Users,
+  LayoutGrid,
+  Image as ImageIcon,
+  Video,
+  Flame,
 } from 'lucide-react';
 import { ContactConfig } from '../types';
 import ttDecoderImg from '../assets/images/decodificador_tt_img_1789523020842.jpg';
@@ -21,6 +24,8 @@ import wfUpscaleImg from '../assets/images/wf_cria_5_imagens.svg';
 import wfModelo18NuaUpscaleImg from '../assets/images/wf_modelo_18_nua_upscale.svg';
 import wfFotorrealista18Img from '../assets/images/wf_fotorrealista_18.svg';
 import wfDasiwaWan11Img from '../assets/images/wf_dasiwa_wan_v11.svg';
+import wfQwenRotacao360Img from '../assets/images/wf_qwen_rotacao_360.svg';
+import wfUpscaleSemCensuraImg from '../assets/images/wf_upscale_sem_censura.svg';
 import wfFaceSwapImg from '../assets/images/wf_faceswap_1789583433199.jpg';
 import wfLipSyncImg from '../assets/images/wf_lipsync_voice_1789583443465.jpg';
 
@@ -36,6 +41,8 @@ interface WorkflowsPageProps {
   contactConfig: ContactConfig;
 }
 
+export type WorkflowCategory = 'todos' | 'imagem' | 'video' | 'sem_censura';
+
 export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
   onBack,
   onOpenVideo18Modal,
@@ -46,7 +53,23 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
   onOpenLipSyncModal,
   contactConfig,
 }) => {
-  const [showWarningModal, setShowWarningModal] = React.useState(true);
+  const [showWarningModal, setShowWarningModal] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState<WorkflowCategory>('todos');
+
+  // Regras de visibilidade dos quadros por categoria
+  // Quadro 1: Imagem +18 Sem Censura
+  const isCard1Visible = selectedCategory === 'todos' || selectedCategory === 'imagem' || selectedCategory === 'sem_censura';
+  // Quadro 2: Imagem +18 Sem Censura
+  const isCard2Visible = selectedCategory === 'todos' || selectedCategory === 'imagem' || selectedCategory === 'sem_censura';
+  // Quadro 3: Imagem +18 Sem Censura
+  const isCard3Visible = selectedCategory === 'todos' || selectedCategory === 'imagem' || selectedCategory === 'sem_censura';
+  // Quadro 4: Vídeo +18 Sem Censura
+  const isCard4Visible = selectedCategory === 'todos' || selectedCategory === 'video' || selectedCategory === 'sem_censura';
+  // Quadro 5: Foto / Rotação de Ângulo 360 +18 Sem Censura
+  const isCard5Visible = selectedCategory === 'todos' || selectedCategory === 'imagem' || selectedCategory === 'sem_censura';
+  // Quadro 6: Imagen Refine 8K Super Detalhes De Pele +18 Sem Censura
+  const isCard6Visible = selectedCategory === 'todos' || selectedCategory === 'imagem' || selectedCategory === 'sem_censura';
+
   const whatsappBaseUrl = `https://wa.me/${contactConfig.whatsappNumber.replace(/\D/g, '')}`;
 
   const getWorkflowWhatsAppUrl = (wfName: string) => {
@@ -77,10 +100,97 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
       </div>
 
       {/* Hero Header */}
-      <header className="text-center max-w-3xl mx-auto space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono text-cyan-300 bg-cyan-950/80 border border-cyan-500/30">
-          <Cpu className="w-3.5 h-3.5 text-cyan-400" />
-          <span>RUNNINGHUB & NORDY COMFYUI READY</span>
+      <header className="text-center max-w-4xl mx-auto space-y-4">
+        {/* Mini Menu com Categorias para Selecionar os Quadros */}
+        <div className="flex justify-center">
+          <div
+            id="mini-menu-workflow-categorias"
+            className="inline-flex items-center flex-wrap justify-center gap-1.5 p-1.5 rounded-2xl bg-[#080d19]/90 border border-cyan-500/30 shadow-[0_0_25px_rgba(6,182,212,0.15)] backdrop-blur-md"
+          >
+            <button
+              type="button"
+              id="btn-cat-todos"
+              onClick={() => setSelectedCategory('todos')}
+              className={`inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer ${
+                selectedCategory === 'todos'
+                  ? 'bg-cyan-500 text-black shadow-[0_0_15px_rgba(6,182,212,0.6)] scale-105'
+                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <LayoutGrid className="w-3.5 h-3.5" />
+              <span>TODOS</span>
+              <span
+                className={`text-[10px] px-1.5 py-0.5 rounded-full font-extrabold ${
+                  selectedCategory === 'todos' ? 'bg-black/20 text-black' : 'bg-white/10 text-slate-400'
+                }`}
+              >
+                6
+              </span>
+            </button>
+
+            <button
+              type="button"
+              id="btn-cat-imagem"
+              onClick={() => setSelectedCategory('imagem')}
+              className={`inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer ${
+                selectedCategory === 'imagem'
+                  ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-[0_0_15px_rgba(168,85,247,0.6)] scale-105'
+                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <ImageIcon className="w-3.5 h-3.5" />
+              <span>WORKFLOW IMAGEM</span>
+              <span
+                className={`text-[10px] px-1.5 py-0.5 rounded-full font-extrabold ${
+                  selectedCategory === 'imagem' ? 'bg-black/30 text-white' : 'bg-white/10 text-slate-400'
+                }`}
+              >
+                5
+              </span>
+            </button>
+
+            <button
+              type="button"
+              id="btn-cat-video"
+              onClick={() => setSelectedCategory('video')}
+              className={`inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer ${
+                selectedCategory === 'video'
+                  ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-[0_0_15px_rgba(6,182,212,0.6)] scale-105'
+                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <Video className="w-3.5 h-3.5" />
+              <span>WORKFLOW VÍDEO</span>
+              <span
+                className={`text-[10px] px-1.5 py-0.5 rounded-full font-extrabold ${
+                  selectedCategory === 'video' ? 'bg-black/30 text-white' : 'bg-white/10 text-slate-400'
+                }`}
+              >
+                1
+              </span>
+            </button>
+
+            <button
+              type="button"
+              id="btn-cat-sem-censura"
+              onClick={() => setSelectedCategory('sem_censura')}
+              className={`inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl font-mono text-xs font-bold transition-all cursor-pointer ${
+                selectedCategory === 'sem_censura'
+                  ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-[0_0_15px_rgba(244,63,94,0.6)] scale-105'
+                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <Flame className="w-3.5 h-3.5 text-amber-300" />
+              <span>WORKFLOW SEM CENSURA</span>
+              <span
+                className={`text-[10px] px-1.5 py-0.5 rounded-full font-extrabold ${
+                  selectedCategory === 'sem_censura' ? 'bg-black/30 text-white' : 'bg-white/10 text-slate-400'
+                }`}
+              >
+                6
+              </span>
+            </button>
+          </div>
         </div>
 
         <h1 className="font-orbitron font-extrabold text-2xl sm:text-4xl text-white tracking-wide">
@@ -92,38 +202,39 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
         </p>
       </header>
 
-      {/* Workflows Grid - 6 Workflows Enumerados */}
+      {/* Workflows Grid - 6 Workflows Enumerados com Cores Visuais Alternadas */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-        {/* Quadro 1: Workflow Cria 5 Imagens +18 */}
-        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#0a0e1a]/90 hover:bg-[#0d1222] border border-rose-500/30 hover:border-rose-400/80 shadow-[0_0_25px_rgba(244,63,94,0.15)] hover:shadow-[0_0_35px_rgba(244,63,94,0.3)] transition-all flex flex-col justify-between">
+        {/* Quadro 1: Ciano Cyber (Workflow Cria 5 Imagens +18) */}
+        {isCard1Visible && (
+        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#07131d]/90 hover:bg-[#0a1c2b] border border-cyan-500/30 hover:border-cyan-400/80 shadow-[0_0_25px_rgba(6,182,212,0.15)] hover:shadow-[0_0_35px_rgba(6,182,212,0.3)] transition-all flex flex-col justify-between">
           <div className="space-y-4">
-            <div className="relative aspect-video rounded-xl overflow-hidden border border-rose-500/50 shadow-[0_0_20px_rgba(244,63,94,0.25)]">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.25)]">
               <img
                 src={wfUpscaleImg}
                 alt="Workflow Cria 5 Imagens +18"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
               {/* Sci-Fi HUD Corner Accents */}
-              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-rose-400 pointer-events-none z-10" />
-              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-rose-400 pointer-events-none z-10" />
-              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-rose-400 pointer-events-none z-10" />
-              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-rose-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-cyan-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-cyan-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-cyan-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-cyan-400 pointer-events-none z-10" />
 
               {/* Futuristic Cyber Vignette */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
 
               {/* Badge de Enumeração 1 */}
-              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-rose-400/60 text-rose-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(244,63,94,0.5)]">
-                <span className="text-rose-400 text-sm font-orbitron font-black">#1</span>
+              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-cyan-400/60 text-cyan-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(6,182,212,0.5)]">
+                <span className="text-cyan-400 text-sm font-orbitron font-black">#1</span>
               </div>
-              <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-950/90 text-rose-300 border border-rose-500/50 shadow-[0_0_8px_rgba(244,63,94,0.4)]">
+              <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-950/90 text-cyan-300 border border-cyan-500/50 shadow-[0_0_8px_rgba(6,182,212,0.4)]">
                 SEM CENSURA
               </div>
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                 <button
                   type="button"
                   onClick={onOpenUpscaleModal}
-                  className="w-12 h-12 rounded-full bg-rose-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(244,63,94,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
+                  className="w-12 h-12 rounded-full bg-cyan-500 text-black flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
                 >
                   <Play className="w-5 h-5 ml-0.5 fill-current" />
                 </button>
@@ -132,14 +243,14 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
 
             <div>
               <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-rose-950/80 text-rose-300 border border-rose-500/30">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-950/80 text-cyan-300 border border-cyan-500/30">
                   Nordy
                 </span>
-                <span className="text-xs font-mono text-rose-400">Imagem +18</span>
+                <span className="text-xs font-mono text-cyan-400">Imagem +18</span>
               </div>
               <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
-                <span className="font-mono text-rose-400 font-black">1.</span>
-                <span>Workflow Cria 5 Imagens +18</span>
+                <span className="font-mono text-cyan-400 font-black">1.</span>
+                <span>Workflow Cria 5 Imagens +18.</span>
               </h2>
               <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
                 Usa Foto de Referencia e Cria 5 Imagens Sem Censura Perfeitas da Sua Modelo
@@ -151,44 +262,46 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
             <button
               type="button"
               onClick={onOpenUpscaleModal}
-              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(244,63,94,0.3)]"
+              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.3)]"
             >
               <Play className="w-4 h-4 fill-current" />
               <span>VER VÍDEO & ADQUIRIR</span>
             </button>
           </div>
         </div>
+        )}
 
-        {/* Quadro 2: Workflow Modelo +18 Nua + Upscale */}
-        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#0a0e1a]/90 hover:bg-[#0d1222] border border-rose-500/30 hover:border-rose-400/80 shadow-[0_0_25px_rgba(244,63,94,0.15)] hover:shadow-[0_0_35px_rgba(244,63,94,0.3)] transition-all flex flex-col justify-between">
+        {/* Quadro 2: Roxo Neon (Workflow Modelo +18 Nua + Upscale) */}
+        {isCard2Visible && (
+        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#120a1f]/90 hover:bg-[#180e2a] border border-purple-500/30 hover:border-purple-400/80 shadow-[0_0_25px_rgba(168,85,247,0.15)] hover:shadow-[0_0_35px_rgba(168,85,247,0.3)] transition-all flex flex-col justify-between">
           <div className="space-y-4">
-            <div className="relative aspect-video rounded-xl overflow-hidden border border-rose-500/50 shadow-[0_0_20px_rgba(244,63,94,0.25)]">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-purple-500/50 shadow-[0_0_20px_rgba(168,85,247,0.25)]">
               <img
                 src={wfModelo18NuaUpscaleImg}
                 alt="Workflow Modelo +18 Nua + Upscale"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
               {/* Sci-Fi HUD Corner Accents */}
-              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-rose-400 pointer-events-none z-10" />
-              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-rose-400 pointer-events-none z-10" />
-              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-rose-400 pointer-events-none z-10" />
-              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-rose-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-purple-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-purple-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-purple-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-purple-400 pointer-events-none z-10" />
 
               {/* Futuristic Cyber Vignette */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
 
               {/* Badge de Enumeração 2 */}
-              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-rose-400/60 text-rose-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(244,63,94,0.5)]">
-                <span className="text-rose-400 text-sm font-orbitron font-black">#2</span>
+              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-purple-400/60 text-purple-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(168,85,247,0.5)]">
+                <span className="text-purple-400 text-sm font-orbitron font-black">#2</span>
               </div>
-              <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-950/80 text-rose-300 border border-rose-500/40">
+              <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-purple-950/80 text-purple-300 border border-purple-500/40 shadow-[0_0_8px_rgba(168,85,247,0.4)]">
                 SEM CENSURA
               </div>
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                 <button
                   type="button"
                   onClick={onOpenFaceSwapModal}
-                  className="w-12 h-12 rounded-full bg-rose-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(244,63,94,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
+                  className="w-12 h-12 rounded-full bg-purple-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(168,85,247,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
                 >
                   <Play className="w-5 h-5 ml-0.5 fill-current" />
                 </button>
@@ -197,13 +310,13 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
 
             <div>
               <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-rose-950 text-rose-300 border border-rose-500/30">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-purple-950 text-purple-300 border border-purple-500/30">
                   Nordy
                 </span>
-                <span className="text-xs font-mono text-rose-400">Imagem +18</span>
+                <span className="text-xs font-mono text-purple-400">Imagem +18</span>
               </div>
               <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
-                <span className="font-mono text-rose-400 font-black">2.</span>
+                <span className="font-mono text-purple-400 font-black">2.</span>
                 <span>Workflow Modelo +18 Nua + Upscale</span>
               </h2>
               <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
@@ -216,35 +329,46 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
             <button
               type="button"
               onClick={onOpenFaceSwapModal}
-              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-rose-600 hover:bg-rose-500 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(244,63,94,0.3)]"
+              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(168,85,247,0.3)]"
             >
               <Play className="w-4 h-4 fill-current" />
               <span>VER VÍDEO & ADQUIRIR</span>
             </button>
           </div>
         </div>
+        )}
 
-        {/* Quadro 3: Workflow Fotorrealista +18 */}
-        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#0a0e1a]/90 hover:bg-[#0d1222] border border-rose-500/30 hover:border-rose-400/80 shadow-[0_0_25px_rgba(244,63,94,0.15)] hover:shadow-[0_0_35px_rgba(244,63,94,0.3)] transition-all flex flex-col justify-between">
+        {/* Quadro 3: Verde Matrix (Workflow Fotorrealista +18) */}
+        {isCard3Visible && (
+        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#071710]/90 hover:bg-[#0c2218] border border-emerald-500/30 hover:border-emerald-400/80 shadow-[0_0_25px_rgba(16,185,129,0.15)] hover:shadow-[0_0_35px_rgba(16,185,129,0.3)] transition-all flex flex-col justify-between">
           <div className="space-y-4">
-            <div className="relative aspect-video rounded-xl overflow-hidden border border-rose-500/40">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.25)]">
               <img
                 src={wfFotorrealista18Img}
                 alt="Workflow Fotorrealista +18"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
+              {/* Sci-Fi HUD Corner Accents */}
+              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-emerald-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-emerald-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-emerald-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-emerald-400 pointer-events-none z-10" />
+
+              {/* Futuristic Cyber Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
+
               {/* Badge de Enumeração 3 */}
-              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-rose-400/60 text-rose-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(244,63,94,0.5)]">
-                <span className="text-rose-400 text-sm font-orbitron font-black">#3</span>
+              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-emerald-400/60 text-emerald-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(16,185,129,0.5)]">
+                <span className="text-emerald-400 text-sm font-orbitron font-black">#3</span>
               </div>
-              <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-950/80 text-rose-300 border border-rose-500/40">
+              <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 shadow-[0_0_8px_rgba(16,185,129,0.4)]">
                 SEM CENSURA
               </div>
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                 <button
                   type="button"
                   onClick={onOpenLipSyncModal}
-                  className="w-12 h-12 rounded-full bg-rose-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(244,63,94,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
+                  className="w-12 h-12 rounded-full bg-emerald-500 text-black flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
                 >
                   <Play className="w-5 h-5 ml-0.5 fill-current" />
                 </button>
@@ -253,13 +377,13 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
 
             <div>
               <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-rose-950 text-rose-300 border border-rose-500/30">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-500/30">
                   Nordy
                 </span>
-                <span className="text-xs font-mono text-rose-400">Imagem +18</span>
+                <span className="text-xs font-mono text-emerald-400">Imagem +18</span>
               </div>
               <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
-                <span className="font-mono text-rose-400 font-black">3.</span>
+                <span className="font-mono text-emerald-400 font-black">3.</span>
                 <span>Workflow Fotorrealista +18</span>
               </h2>
               <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
@@ -272,44 +396,46 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
             <button
               type="button"
               onClick={onOpenLipSyncModal}
-              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-rose-600 hover:bg-rose-500 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(244,63,94,0.3)]"
+              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(16,185,129,0.3)]"
             >
               <Play className="w-4 h-4 fill-current" />
               <span>VER VÍDEO & ADQUIRIR</span>
             </button>
           </div>
         </div>
+        )}
 
-        {/* Quadro 4: Workflow DaSiWa_Wan v11 Video +18 */}
-        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#0a0e1a]/90 hover:bg-[#0d1222] border border-rose-500/30 hover:border-rose-400/80 shadow-[0_0_25px_rgba(244,63,94,0.15)] hover:shadow-[0_0_35px_rgba(244,63,94,0.3)] transition-all flex flex-col justify-between">
+        {/* Quadro 4: Laranja Solar (Workflow DaSiWa_Wan v11 Video +18) */}
+        {isCard4Visible && (
+        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#190f05]/90 hover:bg-[#231508] border border-amber-500/30 hover:border-amber-400/80 shadow-[0_0_25px_rgba(245,158,11,0.15)] hover:shadow-[0_0_35px_rgba(245,158,11,0.3)] transition-all flex flex-col justify-between">
           <div className="space-y-4">
-            <div className="relative aspect-video rounded-xl overflow-hidden border border-rose-500/50 shadow-[0_0_20px_rgba(244,63,94,0.25)]">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-amber-500/50 shadow-[0_0_20px_rgba(245,158,11,0.25)]">
               <img
                 src={wfDasiwaWan11Img}
                 alt="Workflow DaSiWa_Wan v11 Video +18"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
               {/* Sci-Fi HUD Corner Accents */}
-              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-rose-400 pointer-events-none z-10" />
-              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-rose-400 pointer-events-none z-10" />
-              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-rose-400 pointer-events-none z-10" />
-              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-rose-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-amber-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-amber-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-amber-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-amber-400 pointer-events-none z-10" />
 
               {/* Futuristic Cyber Vignette */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
 
               {/* Badge de Enumeração 4 */}
-              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-rose-400/60 text-rose-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(244,63,94,0.5)]">
-                <span className="text-rose-400 text-sm font-orbitron font-black">#4</span>
+              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-amber-400/60 text-amber-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(245,158,11,0.5)]">
+                <span className="text-amber-400 text-sm font-orbitron font-black">#4</span>
               </div>
-              <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-950/90 text-rose-300 border border-rose-500/50 shadow-[0_0_8px_rgba(244,63,94,0.4)]">
+              <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-950/90 text-amber-300 border border-amber-500/50 shadow-[0_0_8px_rgba(245,158,11,0.4)]">
                 SEM CENSURA
               </div>
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                 <button
                   type="button"
                   onClick={onOpenVideo18Modal}
-                  className="w-12 h-12 rounded-full bg-rose-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(244,63,94,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
+                  className="w-12 h-12 rounded-full bg-amber-500 text-black flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
                 >
                   <Play className="w-5 h-5 ml-0.5 fill-current" />
                 </button>
@@ -318,13 +444,13 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
 
             <div>
               <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-rose-950 text-rose-300 border border-rose-500/30">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-950 text-amber-300 border border-amber-500/30">
                   RunningHub
                 </span>
-                <span className="text-xs font-mono text-rose-400">Vídeo +18</span>
+                <span className="text-xs font-mono text-amber-400">Vídeo +18</span>
               </div>
               <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
-                <span className="font-mono text-rose-400 font-black">4.</span>
+                <span className="font-mono text-amber-400 font-black">4.</span>
                 <span>Workflow DaSiWa_Wan v11 Video +18</span>
               </h2>
               <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
@@ -337,32 +463,46 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
             <button
               type="button"
               onClick={onOpenVideo18Modal}
-              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-rose-600 hover:bg-rose-500 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(244,63,94,0.3)]"
+              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(245,158,11,0.3)]"
             >
               <Play className="w-4 h-4 fill-current" />
               <span>VER VÍDEO & ADQUIRIR</span>
             </button>
           </div>
         </div>
+        )}
 
-        {/* Quadro 5: Dancinhas */}
-        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#0a0e1a]/90 hover:bg-[#0d1222] border border-purple-500/30 hover:border-purple-400/80 shadow-[0_0_25px_rgba(168,85,247,0.15)] hover:shadow-[0_0_35px_rgba(168,85,247,0.3)] transition-all flex flex-col justify-between">
+        {/* Quadro 5: Rosa / Crimson (360 Rotacao Angulo Foto Qwen Manual +18 - CREKONI) */}
+        {isCard5Visible && (
+        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#170911]/90 hover:bg-[#200d18] border border-rose-500/30 hover:border-rose-400/80 shadow-[0_0_25px_rgba(244,63,94,0.15)] hover:shadow-[0_0_35px_rgba(244,63,94,0.3)] transition-all flex flex-col justify-between">
           <div className="space-y-4">
-            <div className="relative aspect-video rounded-xl overflow-hidden border border-purple-500/40">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-rose-500/50 shadow-[0_0_20px_rgba(244,63,94,0.25)]">
               <img
-                src={wfDancinhasImg}
-                alt="Workflow Dancinhas"
-                className="w-full h-full object-cover"
+                src={wfQwenRotacao360Img}
+                alt="360 Rotacao Angulo Foto Qwen Manual +18"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
+              {/* Sci-Fi HUD Corner Accents */}
+              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-rose-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-rose-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-rose-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-rose-400 pointer-events-none z-10" />
+
+              {/* Futuristic Cyber Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
+
               {/* Badge de Enumeração 5 */}
-              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-purple-400/60 text-purple-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(168,85,247,0.5)]">
-                <span className="text-purple-400 text-sm font-orbitron font-black">#5</span>
+              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-rose-400/60 text-rose-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(244,63,94,0.5)]">
+                <span className="text-rose-400 text-sm font-orbitron font-black">#5</span>
+              </div>
+              <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-950/90 text-rose-300 border border-rose-500/50 shadow-[0_0_8px_rgba(244,63,94,0.4)]">
+                SEM CENSURA
               </div>
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                 <button
                   type="button"
                   onClick={onOpenDancinhasModal}
-                  className="w-12 h-12 rounded-full bg-purple-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(168,85,247,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
+                  className="w-12 h-12 rounded-full bg-rose-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(244,63,94,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
                 >
                   <Play className="w-5 h-5 ml-0.5 fill-current" />
                 </button>
@@ -371,17 +511,17 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
 
             <div>
               <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-purple-950 text-purple-300 border border-purple-500/30">
-                  DANCINHAS
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-rose-950 text-rose-300 border border-rose-500/30">
+                  RunningHub
                 </span>
-                <span className="text-xs font-mono text-purple-400">Trend & Motion</span>
+                <span className="text-xs font-mono text-rose-400">Foto +18</span>
               </div>
               <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
-                <span className="font-mono text-purple-400 font-black">5.</span>
-                <span>Workflow EM BREVE</span>
+                <span className="font-mono text-rose-400 font-black">5.</span>
+                <span>360 Rotacao Angulo Foto Qwen Manual +18</span>
               </h2>
               <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
-                Workflow ideal para criar danças virais para TikTok, Instagram Reels e plataformas de monetização.
+                Gere novas fotos no mesmo local com nova pose e controle manual de rotação de ângulo 360° da sua modelo +18 sem censura.
               </p>
             </div>
           </div>
@@ -390,32 +530,46 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
             <button
               type="button"
               onClick={onOpenDancinhasModal}
-              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-purple-600 hover:bg-purple-500 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(168,85,247,0.3)]"
+              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(244,63,94,0.3)]"
             >
               <Play className="w-4 h-4 fill-current" />
               <span>VER VÍDEO & ADQUIRIR</span>
             </button>
           </div>
         </div>
+        )}
 
-        {/* Quadro 6: Motion Sem Censura */}
-        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#0a0e1a]/90 hover:bg-[#0d1222] border border-pink-500/30 hover:border-pink-400/80 shadow-[0_0_25px_rgba(244,63,94,0.15)] hover:shadow-[0_0_35px_rgba(244,63,94,0.3)] transition-all flex flex-col justify-between">
+        {/* Quadro 6: Azul Elétrico 8K (Imagen Refine 8K Super Detalhes De Pele) */}
+        {isCard6Visible && (
+        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#061022]/90 hover:bg-[#091833] border border-blue-500/30 hover:border-blue-400/80 shadow-[0_0_25px_rgba(59,130,246,0.15)] hover:shadow-[0_0_35px_rgba(59,130,246,0.3)] transition-all flex flex-col justify-between">
           <div className="space-y-4">
-            <div className="relative aspect-video rounded-xl overflow-hidden border border-pink-500/40">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.25)]">
               <img
-                src={wfSemCensuraImg}
-                alt="Workflow Motion Sem Censura"
-                className="w-full h-full object-cover"
+                src={wfUpscaleSemCensuraImg}
+                alt="Upscale Sem Censura - Imagen Refine 8K Super Detalhes De Pele"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              {/* Badge de Enumeração 6 */}
-              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-pink-400/60 text-pink-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(244,63,94,0.5)]">
-                <span className="text-pink-400 text-sm font-orbitron font-black">#6</span>
+              {/* Sci-Fi HUD Corner Accents (Copiado do Quadro 5) */}
+              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-blue-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-blue-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-blue-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-blue-400 pointer-events-none z-10" />
+
+              {/* Futuristic Cyber Vignette (Copiado do Quadro 5) */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
+
+              {/* Badge de Enumeração 6 (Copiado do Quadro 5) */}
+              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-blue-400/60 text-blue-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(59,130,246,0.5)]">
+                <span className="text-blue-400 text-sm font-orbitron font-black">#6</span>
+              </div>
+              <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-950/90 text-blue-300 border border-blue-500/50 shadow-[0_0_8px_rgba(59,130,246,0.4)]">
+                SEM CENSURA
               </div>
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                 <button
                   type="button"
                   onClick={onOpenSemCensuraModal}
-                  className="w-12 h-12 rounded-full bg-pink-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(244,63,94,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
+                  className="w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(59,130,246,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
                 >
                   <Play className="w-5 h-5 ml-0.5 fill-current" />
                 </button>
@@ -424,17 +578,17 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
 
             <div>
               <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-pink-950 text-pink-300 border border-pink-500/30">
-                  MOTION SEM CENSURA
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-blue-950 text-blue-300 border border-blue-500/30">
+                  RunningHub
                 </span>
-                <span className="text-xs font-mono text-pink-400">Total Freedom</span>
+                <span className="text-xs font-mono text-blue-400 font-semibold">Upscale Sem Censura</span>
               </div>
               <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
-                <span className="font-mono text-pink-400 font-black">6.</span>
-                <span>Workflow EM BREVE</span>
+                <span className="font-mono text-blue-400 font-black">6.</span>
+                <span>Imagen Refine 8K Super Detalhes De Pele</span>
               </h2>
               <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
-                Fluxo completo para gerar animações corporais e expressões sem bloqueios, 100% compativel com decodificador Duck.
+                Refinamento e upscale de imagem em 8K com máxima nitidez, super detalhes de textura de pele, poros anatômicos e iluminação hiper-realista sem censura.
               </p>
             </div>
           </div>
@@ -443,13 +597,14 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
             <button
               type="button"
               onClick={onOpenSemCensuraModal}
-              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-pink-600 hover:bg-pink-500 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(244,63,94,0.3)]"
+              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(59,130,246,0.3)]"
             >
               <Play className="w-4 h-4 fill-current" />
               <span>VER VÍDEO & ADQUIRIR</span>
             </button>
           </div>
         </div>
+        )}
       </section>
 
       {/* WhatsApp Direct Assistance Banner */}
@@ -482,7 +637,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
       {showWarningModal && (
         <div
           id="workflows-warning-modal-backdrop"
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in"
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               setShowWarningModal(false);
@@ -491,56 +646,56 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
         >
           <div
             id="workflows-warning-modal"
-            className="relative w-full max-w-lg rounded-2xl bg-gradient-to-b from-[#2e0505] via-[#1a0404] to-[#0d0101] border-2 border-red-500 shadow-[0_0_50px_rgba(239,68,68,0.5),inset_0_0_25px_rgba(239,68,68,0.2)] p-6 sm:p-8 text-center space-y-6 overflow-hidden animate-scale-up"
+            className="relative w-full max-w-sm sm:max-w-md rounded-2xl bg-gradient-to-b from-[#2e0505] via-[#1a0404] to-[#0d0101] border-2 border-red-500 shadow-[0_0_35px_rgba(239,68,68,0.4),inset_0_0_20px_rgba(239,68,68,0.2)] p-4 sm:p-5 text-center space-y-3.5 sm:space-y-4 overflow-hidden animate-scale-up"
           >
             {/* Linha decorativa de perigo superior */}
-            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-red-600 via-rose-500 to-red-600 shadow-[0_0_12px_rgba(244,63,94,0.8)]" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-600 via-rose-500 to-red-600 shadow-[0_0_10px_rgba(244,63,94,0.8)]" />
 
             {/* Botão de Fechar no topo */}
             <button
               type="button"
               id="btn-close-workflows-warning"
               onClick={() => setShowWarningModal(false)}
-              className="absolute top-4 right-4 p-1.5 rounded-lg text-red-300/80 hover:text-white hover:bg-red-500/20 border border-red-500/30 transition-all cursor-pointer"
+              className="absolute top-2.5 right-2.5 p-1 rounded-lg text-red-300/80 hover:text-white hover:bg-red-500/20 border border-red-500/30 transition-all cursor-pointer"
               title="Fechar aviso"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
 
-            {/* Ícone de Alerta Animado */}
-            <div className="mx-auto w-16 h-16 rounded-full bg-red-950/80 border-2 border-red-500 flex items-center justify-center shadow-[0_0_30px_rgba(239,68,68,0.6)]">
-              <AlertTriangle className="w-8 h-8 text-red-400 animate-pulse" />
+            {/* Ícone de Alerta Animado Compacto */}
+            <div className="mx-auto w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-red-950/80 border border-red-500 flex items-center justify-center shadow-[0_0_20px_rgba(239,68,68,0.5)]">
+              <AlertTriangle className="w-5 h-5 text-red-400 animate-pulse" />
             </div>
 
             {/* Cabeçalho */}
-            <div className="space-y-1">
-              <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest text-red-200 bg-red-900/60 border border-red-500/50 uppercase shadow-[0_0_10px_rgba(239,68,68,0.3)]">
+            <div className="space-y-0.5">
+              <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold tracking-widest text-red-200 bg-red-900/60 border border-red-500/50 uppercase shadow-[0_0_8px_rgba(239,68,68,0.3)]">
                 AVISO IMPORTANTE
               </span>
-              <h2 className="text-xl sm:text-2xl font-orbitron font-black text-red-500 tracking-wide pt-1">
+              <h2 className="text-base sm:text-lg font-orbitron font-black text-red-500 tracking-wide pt-0.5">
                 ATENÇÃO!
               </h2>
             </div>
 
-            {/* Texto de Aviso Solicitado */}
-            <div className="p-4 rounded-xl bg-red-950/40 border border-red-500/40 shadow-inner">
-              <p className="font-mono text-sm sm:text-base font-bold text-red-100 leading-relaxed uppercase tracking-wide">
+            {/* Texto de Aviso Compacto */}
+            <div className="p-2.5 sm:p-3 rounded-xl bg-red-950/40 border border-red-500/40 shadow-inner">
+              <p className="font-mono text-xs sm:text-[13px] font-bold text-red-100 leading-snug uppercase tracking-wide">
                 ATENÇÃO VEJA OS VÍDEOS DE CADA WORKFLOW PARA TER CERTEZA DE QUE VOCÊ JÁ NÃO TENHA ELE, NÃO FAZEMOS ESTORNO PÓS COMPRA. OBRIGADO.
               </p>
             </div>
 
-            {/* Link do Grupo de WhatsApp Solicitado */}
-            <div className="pt-2 space-y-3">
+            {/* Links e Ações */}
+            <div className="pt-0.5 space-y-2">
               <a
                 href="https://chat.whatsapp.com/L2ABna1xZECAHDJ2Q45inc?s=cl&p=a&mlu=0&ilr=4"
                 target="_blank"
                 rel="noopener noreferrer"
                 id="btn-whatsapp-group-link"
-                className="w-full py-3.5 px-5 rounded-xl font-mono font-black text-xs sm:text-sm text-black bg-emerald-400 hover:bg-emerald-300 hover:scale-[1.02] active:scale-[0.98] border border-emerald-300 shadow-[0_0_25px_rgba(16,185,129,0.5)] transition-all flex items-center justify-center gap-2.5 cursor-pointer uppercase"
+                className="w-full py-2.5 px-4 rounded-xl font-mono font-bold text-xs text-black bg-emerald-400 hover:bg-emerald-300 hover:scale-[1.01] active:scale-[0.99] border border-emerald-300 shadow-[0_0_18px_rgba(16,185,129,0.4)] transition-all flex items-center justify-center gap-2 cursor-pointer uppercase"
               >
-                <Users className="w-5 h-5 fill-black" />
+                <Users className="w-4 h-4 fill-black" />
                 <span>PARTICIPE DO NOSSO GRUPO</span>
-                <ExternalLink className="w-4 h-4 ml-1" />
+                <ExternalLink className="w-3.5 h-3.5 ml-0.5" />
               </a>
 
               {/* Botão para Fechar / Continuar */}
@@ -548,7 +703,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
                 type="button"
                 id="btn-understand-workflows-warning"
                 onClick={() => setShowWarningModal(false)}
-                className="w-full py-2.5 px-4 rounded-xl font-mono font-semibold text-xs text-red-200 hover:text-white bg-red-950/50 hover:bg-red-900/60 border border-red-500/30 hover:border-red-400/60 transition-all cursor-pointer"
+                className="w-full py-2 px-3 rounded-xl font-mono font-semibold text-[11px] sm:text-xs text-red-200 hover:text-white bg-red-950/50 hover:bg-red-900/60 border border-red-500/30 hover:border-red-400/60 transition-all cursor-pointer"
               >
                 ENTENDI E QUERO CONTINUAR
               </button>

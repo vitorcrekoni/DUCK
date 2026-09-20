@@ -176,17 +176,17 @@ export const WorkflowLipSyncModal: React.FC<WorkflowLipSyncModalProps> = ({
                   type="button"
                   id="btn-modal-whatsapp-lipsync"
                   onClick={() => setIsCheckoutOpen(true)}
-                  className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-display font-bold text-sm sm:text-base text-white bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-400 hover:via-green-400 hover:to-emerald-500 shadow-[0_0_25px_rgba(16,185,129,0.35)] hover:shadow-[0_0_35px_rgba(16,185,129,0.55)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                  className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-display font-bold text-sm sm:text-base text-black bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-400 hover:via-green-400 hover:to-emerald-500 shadow-[0_0_25px_rgba(16,185,129,0.35)] hover:shadow-[0_0_35px_rgba(16,185,129,0.55)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
                 >
                   <div className="relative">
-                    <CreditCard className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                    <CreditCard className="w-5 h-5 text-black group-hover:scale-110 transition-transform" />
                     <span className="absolute -top-1 -right-1 flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black/40 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-black" />
                     </span>
                   </div>
-                  <span>COMPRAR O WORKFLOW R$ 5,00</span>
-                  <ArrowUpRight className="w-4 h-4 text-emerald-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <span className="text-black font-extrabold">COMPRAR O WORKFLOW R$ 5,50</span>
+                  <ArrowUpRight className="w-4 h-4 text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </button>
               </div>
             </motion.div>

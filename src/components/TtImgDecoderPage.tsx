@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   ArrowLeft,
   UploadCloud,
@@ -43,7 +43,7 @@ export const TtImgDecoderPage: React.FC<TtImgDecoderPageProps> = ({
 }) => {
   const [selectedFiles, setSelectedFiles] = useState<SelectedFileWithPreview[]>([]);
   const [decodedResults, setDecodedResults] = useState<TtDecodedItem[]>([]);
-  const [cropWatermark, setCropWatermark] = useState<boolean>(false);
+  const [cropWatermark, setCropWatermark] = useState<boolean>(true);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [activeZoomItem, setActiveZoomItem] = useState<TtDecodedItem | null>(null);
@@ -61,8 +61,97 @@ export const TtImgDecoderPage: React.FC<TtImgDecoderPageProps> = ({
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
+  // Ouvinte de evento colar (Ctrl+V / Cmd+V) para decodificação automática imediata
+  useEffect(() => {
+    const handlePaste = (e: ClipboardEvent) => {
+      const clipboardItems = e.clipboardData?.items;
+      if (!clipboardItems) return;
+
+      const files: File[] = [];
+      for (let i = 0; i < clipboardItems.length; i++) {
+        const item = clipboardItems[i];
+        if (item.kind === 'file') {
+          const file = item.getAsFile();
+          if (file && file.type.startsWith('image/')) {
+            files.push(file);
+          }
+        }
+      }
+
+      if (files.length > 0) {
+        addFiles(files);
+      }
+    };
+
+    window.addEventListener('paste', handlePaste);
+    return () => window.removeEventListener('paste', handlePaste);
+  }, [selectedFiles, cropWatermark, soundEnabled]);
+
   const handleChooseFilesClick = () => {
     fileInputRef.current?.click();
+  };
+
+  // Motor de Decodificação Automática
+  const decodeFiles = async (filesToProcess: File[], useCrop: boolean = cropWatermark) => {
+    if (!filesToProcess.length) return;
+
+    setIsProcessing(true);
+    setProgressPercent(0);
+    setProgressText('Inicializando decodificação automática...');
+
+    const recoveredItems: TtDecodedItem[] = [];
+    let ok = 0;
+    let failed = 0;
+
+    for (let i = 0; i < filesToProcess.length; i++) {
+      const file = filesToProcess[i];
+      const percent = Math.round((i / filesToProcess.length) * 100);
+      setProgressPercent(percent);
+      setProgressText(`Decodificando ${file.name}...`);
+
+      try {
+        const result = await decodeTtImageFile(file, useCrop);
+        if (result) {
+          recoveredItems.push(result);
+          ok++;
+        } else {
+          failed++;
+        }
+      } catch (err) {
+        console.error('Erro na decodificação:', err);
+        failed++;
+      }
+
+      const nextPercent = Math.round(((i + 1) / filesToProcess.length) * 100);
+      setProgressPercent(nextPercent);
+      setProgressText(`${i + 1} de ${filesToProcess.length} processado(s)`);
+
+      // Breve pausa para UI respirar e atualizar o render
+      await new Promise((resolve) => setTimeout(resolve, 25));
+    }
+
+    setDecodedResults((prev) => [...recoveredItems, ...prev]);
+    setIsProcessing(false);
+
+    if (ok > 0 && failed === 0) {
+      setStatusMessage({
+        text: `${ok} arquivo(s) decodificado(s) automaticamente com sucesso!`,
+        type: 'success',
+      });
+      playCyberTone('success', !soundEnabled);
+    } else if (ok > 0 && failed > 0) {
+      setStatusMessage({
+        text: `${ok} decodificado(s) e ${failed} não encontrado(s).`,
+        type: 'info',
+      });
+      playCyberTone('success', !soundEnabled);
+    } else {
+      setStatusMessage({
+        text: 'Nenhum arquivo oculto reconhecido foi encontrado. Verifique se a imagem foi codificada pelo formato V1 compatível.',
+        type: 'error',
+      });
+      playCyberTone('error', !soundEnabled);
+    }
   };
 
   const addFiles = (incoming: File[]) => {
@@ -101,11 +190,10 @@ export const TtImgDecoderPage: React.FC<TtImgDecoderPageProps> = ({
     }));
 
     setSelectedFiles((prev) => [...prev, ...newWrappers]);
-    setStatusMessage({
-      text: `${uniqueFiles.length} imagem(ns) adicionada(s) à fila.`,
-      type: 'info',
-    });
     playCyberTone('click', !soundEnabled);
+
+    // Decodificação automática imediata sem necessitar clicar em nenhum botão
+    decodeFiles(uniqueFiles);
   };
 
   const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -162,69 +250,6 @@ export const TtImgDecoderPage: React.FC<TtImgDecoderPageProps> = ({
       type: 'info',
     });
     playCyberTone('click', !soundEnabled);
-  };
-
-  const handleDecodeAll = async () => {
-    if (!selectedFiles.length || isProcessing) return;
-
-    setIsProcessing(true);
-    playCyberTone('click', !soundEnabled);
-    setProgressPercent(0);
-    setProgressText('Inicializando motor V1...');
-
-    const recoveredItems: TtDecodedItem[] = [];
-    let ok = 0;
-    let failed = 0;
-
-    for (let i = 0; i < selectedFiles.length; i++) {
-      const item = selectedFiles[i];
-      const percent = Math.round((i / selectedFiles.length) * 100);
-      setProgressPercent(percent);
-      setProgressText(`Decodificando ${item.file.name}...`);
-
-      try {
-        const result = await decodeTtImageFile(item.file, cropWatermark);
-        if (result) {
-          recoveredItems.push(result);
-          ok++;
-        } else {
-          failed++;
-        }
-      } catch (err) {
-        console.error('Erro na decodificação:', err);
-        failed++;
-      }
-
-      const nextPercent = Math.round(((i + 1) / selectedFiles.length) * 100);
-      setProgressPercent(nextPercent);
-      setProgressText(`${i + 1} de ${selectedFiles.length} processado(s)`);
-
-      // Breve pausa para UI respirar e atualizar o render
-      await new Promise((resolve) => setTimeout(resolve, 25));
-    }
-
-    setDecodedResults((prev) => [...recoveredItems, ...prev]);
-    setIsProcessing(false);
-
-    if (ok > 0 && failed === 0) {
-      setStatusMessage({
-        text: `${ok} arquivo(s) decodificado(s) com sucesso!`,
-        type: 'success',
-      });
-      playCyberTone('success', !soundEnabled);
-    } else if (ok > 0 && failed > 0) {
-      setStatusMessage({
-        text: `${ok} decodificado(s) e ${failed} não encontrado(s).`,
-        type: 'info',
-      });
-      playCyberTone('success', !soundEnabled);
-    } else {
-      setStatusMessage({
-        text: 'Nenhum arquivo oculto reconhecido foi encontrado. Verifique se a imagem foi codificada pelo formato V1 compatível.',
-        type: 'error',
-      });
-      playCyberTone('error', !soundEnabled);
-    }
   };
 
   const handleDownloadItem = (item: TtDecodedItem) => {
@@ -331,7 +356,7 @@ export const TtImgDecoderPage: React.FC<TtImgDecoderPageProps> = ({
             Clique ou arraste as imagens aqui
           </h2>
           <p className="text-xs sm:text-sm text-slate-400 font-mono mb-4">
-            Vários arquivos são aceitos (PNG, JPG, WEBP, BMP)
+            Decodificação 100% automática ao enviar (PNG, JPG, WEBP, BMP)
           </p>
 
           <button
@@ -367,8 +392,12 @@ export const TtImgDecoderPage: React.FC<TtImgDecoderPageProps> = ({
                 type="checkbox"
                 checked={cropWatermark}
                 onChange={(e) => {
-                  setCropWatermark(e.target.checked);
+                  const checked = e.target.checked;
+                  setCropWatermark(checked);
                   playCyberTone('click', !soundEnabled);
+                  if (selectedFiles.length > 0 && !isProcessing) {
+                    decodeFiles(selectedFiles.map((s) => s.file), checked);
+                  }
                 }}
                 className="sr-only peer"
               />
@@ -377,33 +406,28 @@ export const TtImgDecoderPage: React.FC<TtImgDecoderPageProps> = ({
           </label>
         </div>
 
-        {/* Toolbar de Ações */}
-        <div className="flex flex-wrap items-center gap-3 mt-5">
-          <button
-            type="button"
-            id="btn-tt-decode"
-            onClick={handleDecodeAll}
-            disabled={selectedFiles.length === 0 || isProcessing}
-            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-xs sm:text-sm font-mono font-bold text-black bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-300 hover:to-yellow-200 disabled:opacity-40 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all cursor-pointer"
-          >
+        {/* Toolbar de Ações: Decodificação Automática e Limpeza */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mt-5">
+          <div className="flex items-center gap-2">
             {isProcessing ? (
-              <>
-                <Cpu className="w-4 h-4 animate-spin text-black" />
-                <span>Processando...</span>
-              </>
+              <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold text-amber-200 bg-amber-950/80 border border-amber-500/40 shadow-[0_0_15px_rgba(245,158,11,0.25)] animate-pulse">
+                <Cpu className="w-4 h-4 animate-spin text-amber-400" />
+                <span>⚡ Decodificando automaticamente...</span>
+              </div>
             ) : (
-              <>
-                <span>🔍 Decodificar imagens</span>
-              </>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-mono text-emerald-300 bg-emerald-950/50 border border-emerald-500/30">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>⚡ Decodificação automática ativa</span>
+              </div>
             )}
-          </button>
+          </div>
 
           <button
             type="button"
             id="btn-tt-clear"
             onClick={handleClearAll}
             disabled={(selectedFiles.length === 0 && decodedResults.length === 0) || isProcessing}
-            className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-xs sm:text-sm font-mono font-medium text-slate-300 hover:text-white bg-transparent hover:bg-white/[0.05] border border-[#303d51] hover:border-slate-400 disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-medium text-slate-300 hover:text-white bg-transparent hover:bg-white/[0.05] border border-[#303d51] hover:border-slate-400 disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer ml-auto"
           >
             <Trash2 className="w-4 h-4" />
             <span>Limpar</span>
@@ -565,7 +589,8 @@ export const TtImgDecoderPage: React.FC<TtImgDecoderPageProps> = ({
                     <video
                       src={item.blobUrl}
                       controls
-                      className="w-full h-full object-cover"
+                      playsInline
+                      className="w-full h-full object-contain bg-black"
                     />
                   ) : (
                     <div className="flex flex-col items-center justify-center p-4 text-center">
@@ -615,14 +640,14 @@ export const TtImgDecoderPage: React.FC<TtImgDecoderPageProps> = ({
                     <span>Baixar</span>
                   </button>
 
-                  {item.isImage && (
+                  {(item.isImage || item.isVideo) && (
                     <button
                       type="button"
                       onClick={() => {
                         setActiveZoomItem(item);
                         playCyberTone('click', !soundEnabled);
                       }}
-                      title="Ampliar visualização"
+                      title={item.isVideo ? "Reproduzir vídeo em tela cheia" : "Ampliar visualização"}
                       className="p-2 rounded-xl text-slate-300 hover:text-amber-200 bg-white/[0.04] hover:bg-amber-950/50 border border-white/10 hover:border-amber-500/40 transition-colors cursor-pointer"
                     >
                       <Eye className="w-3.5 h-3.5" />
@@ -675,13 +700,22 @@ export const TtImgDecoderPage: React.FC<TtImgDecoderPageProps> = ({
               </div>
             </div>
 
-            {/* Imagem Ampliada */}
+            {/* Visualização Ampliada (Imagem ou Vídeo) */}
             <div className="flex-1 overflow-auto flex items-center justify-center rounded-xl bg-black/80 border border-white/10 p-2 max-h-[70vh]">
-              <img
-                src={activeZoomItem.blobUrl}
-                alt={activeZoomItem.name}
-                className="max-w-full max-h-[68vh] object-contain rounded-lg"
-              />
+              {activeZoomItem.isVideo ? (
+                <video
+                  src={activeZoomItem.blobUrl}
+                  controls
+                  autoPlay
+                  className="max-w-full max-h-[68vh] object-contain rounded-lg"
+                />
+              ) : (
+                <img
+                  src={activeZoomItem.blobUrl}
+                  alt={activeZoomItem.name}
+                  className="max-w-full max-h-[68vh] object-contain rounded-lg"
+                />
+              )}
             </div>
           </div>
         </div>

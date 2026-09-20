@@ -1,0 +1,293 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="100%" height="100%">
+  <defs>
+    <!-- Dark ComfyUI canvas background -->
+    <radialGradient id="comfyBg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#262626" />
+      <stop offset="60%" stop-color="#1c1c1c" />
+      <stop offset="100%" stop-color="#121212" />
+    </radialGradient>
+
+    <!-- Comfy Grid Pattern -->
+    <pattern id="comfyGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1.1" fill="#383838" />
+    </pattern>
+
+    <!-- Node header gradients -->
+    <linearGradient id="greenNodeHeader" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#245135" />
+      <stop offset="100%" stop-color="#2e6844" />
+    </linearGradient>
+
+    <linearGradient id="purpleNodeHeader" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3d2645" />
+      <stop offset="100%" stop-color="#4f315a" />
+    </linearGradient>
+
+    <linearGradient id="amberGroupHeader" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#543716" />
+      <stop offset="100%" stop-color="#6e471b" />
+    </linearGradient>
+
+    <!-- Female model skin & robe gradient -->
+    <linearGradient id="doorwayLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="40%" stop-color="#eef3f6" />
+      <stop offset="100%" stop-color="#d6dfe6" />
+    </linearGradient>
+
+    <linearGradient id="modelSkin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe6d5" />
+      <stop offset="50%" stop-color="#f5caa8" />
+      <stop offset="100%" stop-color="#e0a37e" />
+    </linearGradient>
+
+    <!-- Glow filters for cables -->
+    <filter id="wireGlowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="wireGlowOrange" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1200" height="600" fill="url(#comfyBg)" />
+  <rect width="1200" height="600" fill="url(#comfyGrid)" />
+
+  <!-- TOP ORANGE GROUP BARS (from Capturar.PNG) -->
+  <g id="top-group-bars">
+    <!-- Mini top left brown bar -->
+    <rect x="100" y="35" width="55" height="32" rx="3" fill="#2d1c12" stroke="#5a3821" stroke-width="1.5" />
+    <rect x="160" y="35" width="65" height="32" rx="3" fill="#301d2d" stroke="#5c3556" stroke-width="1.5" />
+    <!-- Wide top center brown comment header -->
+    <rect x="240" y="33" width="335" height="36" rx="4" fill="#2d1d12" stroke="#664126" stroke-width="1.8" />
+    <circle cx="248" cy="43" r="2.5" fill="#e2884a" />
+  </g>
+
+  <!-- GROUP: Imagem 1 (Blue framed container) -->
+  <rect x="95" y="85" width="130" height="235" rx="3" fill="#141926" fill-opacity="0.8" stroke="#1d3f66" stroke-width="1.5" />
+  <text x="103" y="99" fill="#e05353" font-family="monospace" font-size="10" font-weight="bold">imagem 1</text>
+  <circle cx="152" cy="96" r="2.5" fill="#ef4444" />
+
+  <!-- Node inside Imagem 1 -->
+  <rect x="105" y="108" width="105" height="195" rx="4" fill="#1e222d" stroke="#2c3445" stroke-width="1" />
+  <rect x="105" y="108" width="105" height="24" rx="4" fill="url(#greenNodeHeader)" />
+  <text x="112" y="124" fill="#86efac" font-family="sans-serif" font-size="10" font-weight="bold">Load Image</text>
+
+  <!-- Mini Preview inside Imagem 1 -->
+  <rect x="135" y="140" width="45" height="70" rx="2" fill="#fff" stroke="#94a3b8" stroke-width="0.5" />
+  <!-- Blonde model silhouette preview -->
+  <ellipse cx="157" cy="150" rx="4.5" ry="6" fill="url(#modelSkin)" />
+  <path d="M152,156 Q157,159 162,156 L164,185 L150,185 Z" fill="#facc15" />
+  <!-- Black censored scribble on miniature preview -->
+  <path d="M154,158 Q160,165 155,172 Q162,176 156,182 Q161,186 155,190" stroke="#000" stroke-width="3.5" fill="none" stroke-linecap="round" />
+  <rect x="110" y="220" width="95" height="15" rx="2" fill="#151821" />
+  <rect x="110" y="240" width="95" height="15" rx="2" fill="#151821" />
+
+  <!-- GROUP: Imagem 2 (Purple container) -->
+  <rect x="230" y="85" width="140" height="235" rx="3" fill="#1a1426" fill-opacity="0.8" stroke="#332454" stroke-width="1.5" />
+  <text x="238" y="99" fill="#e05353" font-family="monospace" font-size="10" font-weight="bold">imagem 2</text>
+  <circle cx="288" cy="96" r="2.5" fill="#ef4444" />
+  <rect x="238" y="108" width="124" height="110" rx="4" fill="#382142" stroke="#4f315a" stroke-width="1" />
+  <rect x="238" y="108" width="124" height="20" rx="4" fill="#4d2c5b" />
+  <rect x="242" y="228" width="55" height="22" rx="3" fill="#2d1b33" stroke="#4a2c54" stroke-width="1" />
+  <rect x="302" y="228" width="55" height="22" rx="3" fill="#2d1b33" stroke="#4a2c54" stroke-width="1" />
+  <rect x="242" y="258" width="55" height="22" rx="3" fill="#2d1b33" stroke="#4a2c54" stroke-width="1" />
+  <rect x="302" y="258" width="55" height="22" rx="3" fill="#2d1b33" stroke="#4a2c54" stroke-width="1" />
+
+  <!-- GROUP: Imagem 3 (Purple container) -->
+  <rect x="375" y="85" width="125" height="235" rx="3" fill="#181524" fill-opacity="0.8" stroke="#2e254d" stroke-width="1.5" />
+  <text x="383" y="99" fill="#4ade80" font-family="monospace" font-size="10" font-weight="bold">imagem 3</text>
+  <rect x="382" y="108" width="110" height="115" rx="4" fill="#292038" stroke="#3c2f52" stroke-width="1" />
+  <rect x="382" y="108" width="110" height="20" rx="4" fill="#3a2a4f" />
+
+  <!-- TWO LARGE CENTRAL PREVIEW NODES (Exact match to Capturar.PNG) -->
+  <!-- Left Large Preview Node -->
+  <g id="central-preview-left">
+    <rect x="505" y="100" width="125" height="225" rx="4" fill="#18201a" stroke="#2e4d36" stroke-width="1.8" />
+    <rect x="505" y="100" width="125" height="22" rx="4" fill="url(#greenNodeHeader)" />
+    <circle cx="515" cy="111" r="3.5" fill="#4ade80" />
+    <text x="524" y="115" fill="#dcfce7" font-family="sans-serif" font-size="9" font-weight="bold">Preview Image 1</text>
+    <text x="618" y="114" fill="#94a3b8" font-family="sans-serif" font-size="10">×</text>
+
+    <!-- Bathroom doorway photo preview -->
+    <rect x="517" y="128" width="101" height="185" fill="url(#doorwayLight)" stroke="#cbd5e1" stroke-width="1" />
+    <!-- Bathroom door frame and wall tiles -->
+    <rect x="522" y="132" width="91" height="175" fill="#f8fafc" />
+    <rect x="526" y="136" width="30" height="168" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+    <rect x="590" y="136" width="22" height="168" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+    <rect x="555" y="280" width="30" height="15" fill="#e11d48" />
+
+    <!-- Blonde model in yellow outfit -->
+    <path d="M560,172 Q568,160 576,172 L582,230 L554,230 Z" fill="#facc15" opacity="0.9" />
+    <ellipse cx="568" cy="162" rx="7" ry="9" fill="url(#modelSkin)" />
+    <path d="M562,156 Q568,150 574,156 Q577,165 575,172 Q561,172 562,156 Z" fill="#fef08a" />
+    
+    <!-- Black Censored Scribble Overlay (Exactly as drawn on Capturar.PNG) -->
+    <path d="M564,166 Q574,172 566,182 Q576,192 563,204 Q575,214 564,228 Q574,242 566,256 Q572,268 565,278" stroke="#000000" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M568,170 Q560,184 572,198 Q562,212 570,226 Q561,240 571,254 Q563,268 569,275" stroke="#000000" stroke-width="9" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Right Large Preview Node -->
+  <g id="central-preview-right">
+    <rect x="635" y="100" width="125" height="225" rx="4" fill="#18201a" stroke="#2e4d36" stroke-width="1.8" />
+    <rect x="635" y="100" width="125" height="22" rx="4" fill="url(#greenNodeHeader)" />
+    <circle cx="645" cy="111" r="3.5" fill="#4ade80" />
+    <text x="654" y="115" fill="#dcfce7" font-family="sans-serif" font-size="9" font-weight="bold">Preview Image 2</text>
+    <text x="748" y="114" fill="#94a3b8" font-family="sans-serif" font-size="10">×</text>
+
+    <!-- Bathroom doorway photo preview -->
+    <rect x="647" y="128" width="101" height="185" fill="url(#doorwayLight)" stroke="#cbd5e1" stroke-width="1" />
+    <!-- Bathroom door frame and wall tiles -->
+    <rect x="652" y="132" width="91" height="175" fill="#f8fafc" />
+    <rect x="656" y="136" width="30" height="168" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+    <rect x="720" y="136" width="22" height="168" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+    <rect x="685" y="280" width="30" height="15" fill="#e11d48" />
+
+    <!-- Blonde model in doorway -->
+    <ellipse cx="698" cy="162" rx="7" ry="9" fill="url(#modelSkin)" />
+    <path d="M692,156 Q698,150 704,156 Q707,165 705,172 Q691,172 692,156 Z" fill="#fef08a" />
+    <path d="M690,172 Q698,162 706,172 L708,225 L688,225 Z" fill="url(#modelSkin)" />
+
+    <!-- Black Censored Scribble Overlay (Exactly as drawn on Capturar.PNG) -->
+    <path d="M693,166 Q704,174 695,185 Q706,196 693,208 Q705,218 694,232 Q704,244 695,258 Q702,268 695,278" stroke="#000000" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M697,172 Q690,186 702,200 Q691,214 701,228 Q692,242 702,256 Q694,270 700,277" stroke="#000000" stroke-width="9" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- TOP-RIGHT NODES -->
+  <g id="top-right-nodes">
+    <rect x="768" y="105" width="60" height="30" rx="3" fill="#301d2d" stroke="#5c3556" stroke-width="1.2" />
+    <rect x="768" y="142" width="68" height="32" rx="3" fill="#2d1d12" stroke="#664126" stroke-width="1.2" />
+    <!-- Dark tall node -->
+    <rect x="768" y="180" width="75" height="105" rx="4" fill="#1e222d" stroke="#374151" stroke-width="1.5" />
+    <rect x="768" y="180" width="75" height="16" rx="4" fill="#252e3d" />
+    <rect x="774" y="202" width="62" height="6" rx="1" fill="#111827" />
+    <rect x="774" y="214" width="62" height="6" rx="1" fill="#111827" />
+    <rect x="774" y="226" width="62" height="6" rx="1" fill="#111827" />
+    <!-- Mini green nodes -->
+    <rect x="855" y="222" width="80" height="32" rx="3" fill="#17221b" stroke="#2e4d36" stroke-width="1" />
+    <rect x="945" y="222" width="80" height="32" rx="3" fill="#17221b" stroke="#2e4d36" stroke-width="1" />
+  </g>
+
+  <!-- BOTTOM LEFT GROUP: PROMPT (From Capturar.PNG) -->
+  <g id="group-prompt">
+    <rect x="95" y="325" width="270" height="245" rx="4" fill="#141926" fill-opacity="0.8" stroke="#1d3f66" stroke-width="1.5" />
+    <text x="103" y="339" fill="#ef4444" font-family="monospace" font-size="10" font-weight="bold">PROMPT</text>
+    <circle cx="152" cy="336" r="2.5" fill="#ef4444" />
+
+    <!-- Positive prompt area -->
+    <rect x="105" y="350" width="248" height="75" rx="3" fill="#151b17" stroke="#254d32" stroke-width="1.5" />
+    <rect x="105" y="350" width="248" height="16" rx="3" fill="#1c3324" />
+    <text x="112" y="362" fill="#86efac" font-family="monospace" font-size="9">CLIP Text Encode (Prompt +18)</text>
+
+    <!-- Negative prompt area (Reddish brown box) -->
+    <rect x="105" y="440" width="248" height="70" rx="3" fill="#211516" stroke="#4f2022" stroke-width="1.5" />
+    <rect x="105" y="440" width="248" height="16" rx="3" fill="#3b1c1e" />
+    <text x="112" y="452" fill="#fca5a5" font-family="monospace" font-size="9">Negative Prompt</text>
+  </g>
+
+  <!-- BOTTOM CENTER GROUP: Sampling (From Capturar.PNG) -->
+  <g id="group-sampling">
+    <rect x="375" y="325" width="250" height="245" rx="4" fill="#141926" fill-opacity="0.8" stroke="#1d3f66" stroke-width="1.5" />
+    <text x="383" y="339" fill="#ef4444" font-family="monospace" font-size="10" font-weight="bold">Sampling</text>
+    <circle cx="438" cy="336" r="2.5" fill="#ef4444" />
+
+    <!-- KSampler node with green header and step bars -->
+    <rect x="385" y="350" width="90" height="175" rx="3" fill="#16221a" stroke="#254d32" stroke-width="1.5" />
+    <rect x="385" y="350" width="90" height="18" rx="3" fill="url(#greenNodeHeader)" />
+    <text x="390" y="363" fill="#bbf7d0" font-family="monospace" font-size="9" font-weight="bold">KSampler</text>
+    <rect x="390" y="380" width="80" height="12" rx="2" fill="#0f1712" />
+    <rect x="390" y="400" width="80" height="12" rx="2" fill="#0f1712" />
+    <rect x="390" y="420" width="80" height="12" rx="2" fill="#0f1712" />
+
+    <!-- Step settings node -->
+    <rect x="480" y="380" width="135" height="145" rx="3" fill="#181c24" stroke="#2b3447" stroke-width="1.5" />
+    <rect x="480" y="380" width="135" height="16" rx="3" fill="#242c3d" />
+    <rect x="485" y="405" width="120" height="8" rx="2" fill="#111827" />
+    <rect x="485" y="420" width="120" height="8" rx="2" fill="#111827" />
+    <rect x="485" y="435" width="120" height="8" rx="2" fill="#111827" />
+    <rect x="485" y="450" width="120" height="8" rx="2" fill="#111827" />
+  </g>
+
+  <!-- TALL VERTICAL NODE (Center-right, green header) -->
+  <g id="tall-node">
+    <rect x="635" y="340" width="125" height="230" rx="4" fill="#16221a" stroke="#254d32" stroke-width="1.8" />
+    <rect x="635" y="340" width="125" height="22" rx="4" fill="url(#greenNodeHeader)" />
+    <text x="642" y="355" fill="#86efac" font-family="sans-serif" font-size="9" font-weight="bold">VAE Decode / Latent</text>
+  </g>
+
+  <!-- RIGHT GROUPS: MODELO, LORA, UPSCALE (Exact match to Capturar.PNG) -->
+  <!-- MODELO Group -->
+  <g id="group-modelo">
+    <rect x="768" y="325" width="130" height="120" rx="3" fill="#1a1426" stroke="#25354e" stroke-width="1.5" />
+    <text x="774" y="337" fill="#ef4444" font-family="monospace" font-size="9" font-weight="bold">MODELO</text>
+    <circle cx="820" cy="334" r="2.5" fill="#ef4444" />
+    <rect x="774" y="345" width="118" height="40" rx="3" fill="#2d1c38" stroke="#482d59" stroke-width="1" />
+    <rect x="774" y="395" width="118" height="40" rx="3" fill="#2d1c38" stroke="#482d59" stroke-width="1" />
+  </g>
+
+  <!-- LORA Group -->
+  <g id="group-lora">
+    <rect x="768" y="455" width="130" height="115" rx="3" fill="#1a1426" stroke="#25354e" stroke-width="1.5" />
+    <text x="774" y="467" fill="#ef4444" font-family="monospace" font-size="9" font-weight="bold">Lora</text>
+    <circle cx="798" cy="464" r="2.5" fill="#ef4444" />
+    <rect x="774" y="475" width="118" height="45" rx="3" fill="#2d1c38" stroke="#482d59" stroke-width="1" />
+    <rect x="774" y="528" width="118" height="35" rx="3" fill="#241b2e" stroke="#3d284f" stroke-width="1" />
+  </g>
+
+  <!-- UPSCALE GROUP (Golden Amber, from Capturar.PNG) -->
+  <g id="group-upscale">
+    <!-- Big blue container covering right side -->
+    <rect x="905" y="325" width="280" height="245" rx="4" fill="#141c2b" fill-opacity="0.85" stroke="#1d3f66" stroke-width="1.5" />
+
+    <!-- Amber Upscale Box -->
+    <rect x="912" y="460" width="135" height="100" rx="3" fill="#2e2114" stroke="#6b4520" stroke-width="1.5" />
+    <text x="918" y="473" fill="#ef4444" font-family="monospace" font-size="9" font-weight="bold">upscale</text>
+    <circle cx="960" cy="470" r="2.5" fill="#ef4444" />
+    <rect x="918" y="482" width="120" height="28" rx="2" fill="#20170f" stroke="#4d3117" stroke-width="1" />
+    <rect x="918" y="520" width="120" height="28" rx="2" fill="#20170f" stroke="#4d3117" stroke-width="1" />
+
+    <!-- Big right side nodes -->
+    <rect x="912" y="340" width="135" height="110" rx="3" fill="#16221a" stroke="#2e4d36" stroke-width="1.2" />
+    <rect x="912" y="340" width="135" height="18" rx="3" fill="url(#greenNodeHeader)" />
+    
+    <!-- Final Save/Upscale Output node -->
+    <rect x="1055" y="340" width="120" height="220" rx="3" fill="#17221b" stroke="#2a4531" stroke-width="1.5" />
+    <rect x="1055" y="340" width="120" height="20" rx="3" fill="url(#greenNodeHeader)" />
+    <text x="1062" y="354" fill="#86efac" font-family="sans-serif" font-size="9" font-weight="bold">Save 8K Upscale</text>
+  </g>
+
+  <!-- DYNAMIC CURVED COMFYUI CABLES / NOODLES (Exact layout from Capturar.PNG) -->
+  <!-- Cyan cables -->
+  <path d="M210,130 C300,110 400,200 505,170" stroke="#06b6d4" stroke-width="2.2" fill="none" opacity="0.85" filter="url(#wireGlowCyan)" />
+  <path d="M210,230 C320,260 420,150 505,210" stroke="#06b6d4" stroke-width="2" fill="none" opacity="0.8" />
+  <path d="M630,210 C700,240 850,180 912,360" stroke="#06b6d4" stroke-width="2" fill="none" opacity="0.8" />
+  <path d="M760,210 C830,230 950,260 1055,420" stroke="#06b6d4" stroke-width="2" fill="none" opacity="0.85" />
+
+  <!-- Purple/Violet cables -->
+  <path d="M290,120 C350,150 450,90 505,120" stroke="#a855f7" stroke-width="2" fill="none" opacity="0.8" />
+  <path d="M350,240 C430,290 550,220 635,180" stroke="#c084fc" stroke-width="1.8" fill="none" opacity="0.8" />
+  <path d="M360,270 C440,320 540,280 635,240" stroke="#a855f7" stroke-width="1.8" fill="none" opacity="0.8" />
+
+  <!-- Orange/Amber cables -->
+  <path d="M350,380 C400,420 380,480 480,440" stroke="#f59e0b" stroke-width="2" fill="none" opacity="0.85" filter="url(#wireGlowOrange)" />
+  <path d="M475,380 C540,340 590,400 635,360" stroke="#fbbf24" stroke-width="2" fill="none" opacity="0.85" />
+  <path d="M615,440 C700,480 820,490 912,500" stroke="#f59e0b" stroke-width="2" fill="none" opacity="0.85" />
+
+  <!-- Magenta/Pink cables -->
+  <path d="M200,170 C240,220 230,280 270,300" stroke="#ec4899" stroke-width="1.8" fill="none" opacity="0.8" />
+  <path d="M280,260 C320,300 350,320 400,340" stroke="#f472b6" stroke-width="1.8" fill="none" opacity="0.8" />
+
+  <!-- Green cables -->
+  <path d="M475,360 C530,320 580,310 635,320" stroke="#10b981" stroke-width="2" fill="none" opacity="0.8" />
+  <path d="M760,390 C840,430 960,380 1055,360" stroke="#34d399" stroke-width="2.2" fill="none" opacity="0.85" />
+</svg>
