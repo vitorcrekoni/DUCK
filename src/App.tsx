@@ -39,12 +39,14 @@ import {
   downloadBlob,
   playCyberTone,
   formatBytes,
+  DuckPasswordRequiredError,
+  DuckInvalidPasswordError,
 } from './utils/duckDecoder';
 
 const DEFAULT_CONTACT_CONFIG: ContactConfig = {
   whatsappNumber: '5544991840305',
   whatsappMessage: 'Olá! Vim pelo Duck Decoder e gostaria de tirar uma dúvida.',
-  instagramHandle: 'vitorcrekonii',
+  instagramHandle: 'crekoni.ia',
 };
 
 // Fixed destination URLs (protected against unauthorized edits)
@@ -147,10 +149,10 @@ export default function App() {
     });
   };
 
-  const processFile = async (file: File): Promise<DecodedResult> => {
+  const processFile = async (file: File, password?: string): Promise<DecodedResult> => {
     const tempId = Math.random().toString(36).substring(2, 9);
     try {
-      const outcome = await decodeDuckFile(file);
+      const outcome = await decodeDuckFile(file, password);
       const mime = getMimeType(outcome.ext);
       const blob = new Blob([outcome.data], { type: mime });
       const blobUrl = URL.createObjectURL(blob);
@@ -173,6 +175,7 @@ export default function App() {
         id: tempId,
         originalFileName: file.name,
         originalFileSize: file.size,
+        originalFile: file,
         extractedExt: outcome.ext,
         mimeType: mime,
         data: outcome.data,
@@ -189,11 +192,57 @@ export default function App() {
         timestamp: Date.now(),
       };
     } catch (err: unknown) {
+      if (err instanceof DuckPasswordRequiredError) {
+        return {
+          id: tempId,
+          originalFileName: file.name,
+          originalFileSize: file.size,
+          originalFile: file,
+          extractedExt: err.ext ? err.ext.replace(/^\./, '') : 'bin',
+          mimeType: 'application/octet-stream',
+          data: new Uint8Array(),
+          blobUrl: '',
+          isImage: false,
+          isVideo: false,
+          isAudio: false,
+          isText: false,
+          processingTimeMs: 0,
+          status: 'requires-password',
+          requiresPassword: true,
+          kBits: err.kBits,
+          errorMessage: 'Este arquivo está protegido por senha. Digite a senha para decodificar.',
+          timestamp: Date.now(),
+        };
+      }
+      if (err instanceof DuckInvalidPasswordError) {
+        return {
+          id: tempId,
+          originalFileName: file.name,
+          originalFileSize: file.size,
+          originalFile: file,
+          extractedExt: err.ext ? err.ext.replace(/^\./, '') : 'bin',
+          mimeType: 'application/octet-stream',
+          data: new Uint8Array(),
+          blobUrl: '',
+          isImage: false,
+          isVideo: false,
+          isAudio: false,
+          isText: false,
+          processingTimeMs: 0,
+          status: 'requires-password',
+          requiresPassword: true,
+          passwordError: 'Senha incorreta. Verifique e tente novamente.',
+          kBits: err.kBits,
+          errorMessage: 'Senha incorreta. Verifique e tente novamente.',
+          timestamp: Date.now(),
+        };
+      }
       const msg = err instanceof Error ? err.message : String(err);
       return {
         id: tempId,
         originalFileName: file.name,
         originalFileSize: file.size,
+        originalFile: file,
         extractedExt: 'bin',
         mimeType: 'application/octet-stream',
         data: new Uint8Array(),
@@ -207,6 +256,22 @@ export default function App() {
         errorMessage: msg,
         timestamp: Date.now(),
       };
+    }
+  };
+
+  const handleUnlockItem = async (id: string, password: string) => {
+    const target = items.find((i) => i.id === id);
+    if (!target || !target.originalFile) return;
+    const res = await processFile(target.originalFile, password);
+    if (res.status === 'success') {
+      playCyberTone('success', !soundEnabled);
+      setItems((prev) => prev.map((it) => (it.id === id ? { ...res, id } : it)));
+    } else if (res.status === 'requires-password') {
+      playCyberTone('error', !soundEnabled);
+      throw new Error(res.passwordError || res.errorMessage || 'Senha incorreta.');
+    } else {
+      playCyberTone('error', !soundEnabled);
+      throw new Error(res.errorMessage || 'Falha ao decodificar.');
     }
   };
 
@@ -733,6 +798,7 @@ export default function App() {
                       key={item.id}
                       item={item}
                       onRemove={handleRemoveItem}
+                      onUnlock={handleUnlockItem}
                     />
                   ))}
                 </div>
@@ -760,7 +826,7 @@ export default function App() {
               WhatsApp
             </a>
             <a
-              href={`https://instagram.com/${contactConfig.instagramHandle.replace(/^@/, '')}`}
+              href="https://www.instagram.com/crekoni.ia/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-pink-400 transition-colors flex items-center gap-1"

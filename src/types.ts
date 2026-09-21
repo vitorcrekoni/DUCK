@@ -2,6 +2,7 @@ export interface DecodedResult {
   id: string;
   originalFileName: string;
   originalFileSize: number;
+  originalFile?: File;
   extractedExt: string;
   mimeType: string;
   data: Uint8Array;
@@ -14,7 +15,9 @@ export interface DecodedResult {
   kBits?: number;
   dimensions?: { width: number; height: number };
   processingTimeMs: number;
-  status: 'processing' | 'success' | 'error';
+  status: 'processing' | 'success' | 'error' | 'requires-password';
+  requiresPassword?: boolean;
+  passwordError?: string;
   errorMessage?: string;
   timestamp: number;
 }

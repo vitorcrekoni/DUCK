@@ -16,6 +16,12 @@ import {
   HardDrive,
   Copy,
   Check,
+  Lock,
+  Unlock,
+  Key,
+  Eye,
+  EyeOff,
+  RefreshCw,
 } from 'lucide-react';
 import { DecodedResult } from '../types';
 import { formatBytes, downloadBlob } from '../utils/duckDecoder';
@@ -23,11 +29,16 @@ import { formatBytes, downloadBlob } from '../utils/duckDecoder';
 interface DecodedItemCardProps {
   item: DecodedResult;
   onRemove: (id: string) => void;
+  onUnlock?: (id: string, password: string) => Promise<void>;
 }
 
-export const DecodedItemCard: React.FC<DecodedItemCardProps> = ({ item, onRemove }) => {
+export const DecodedItemCard: React.FC<DecodedItemCardProps> = ({ item, onRemove, onUnlock }) => {
   const [isZoomOpen, setIsZoomOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [isUnlocking, setIsUnlocking] = useState(false);
+  const [unlockError, setUnlockError] = useState('');
 
   const downloadFileName = `${item.originalFileName.replace(/\.png$/i, '')}_decoded.${item.extractedExt}`;
 
@@ -44,6 +55,25 @@ export const DecodedItemCard: React.FC<DecodedItemCardProps> = ({ item, onRemove
       setTimeout(() => setCopied(false), 2000);
     } catch {
       // Fallback
+    }
+  };
+
+  const handleUnlockSubmit = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    if (!password.trim()) {
+      setUnlockError('Digite a senha do arquivo.');
+      return;
+    }
+    if (!onUnlock) return;
+    setIsUnlocking(true);
+    setUnlockError('');
+    try {
+      await onUnlock(item.id, password.trim());
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Falha ao descriptografar.';
+      setUnlockError(msg);
+    } finally {
+      setIsUnlocking(false);
     }
   };
 
@@ -89,6 +119,67 @@ export const DecodedItemCard: React.FC<DecodedItemCardProps> = ({ item, onRemove
               <span className="text-xs font-mono text-cyan-300 animate-pulse">
                 Varrendo bits LSB (2·6·8)...
               </span>
+            </div>
+          )}
+
+          {item.status === 'requires-password' && (
+            <div className="w-full p-4 flex flex-col items-center text-center">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mb-2 shadow-[0_0_12px_rgba(245,158,11,0.2)]">
+                <Key className="w-5 h-5 text-amber-400" />
+              </div>
+              <span className="text-xs font-mono font-bold text-amber-300 mb-1">
+                Requer Senha
+              </span>
+              <p className="text-[11px] font-mono text-amber-300/80 mb-3 leading-tight max-w-[220px]">
+                {item.errorMessage || 'Arquivo esteganográfico protegido.'}
+              </p>
+
+              <form onSubmit={handleUnlockSubmit} className="w-full space-y-2">
+                <div className="relative">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      if (unlockError) setUnlockError('');
+                    }}
+                    placeholder="Digite a senha..."
+                    disabled={isUnlocking}
+                    className="w-full pl-3 pr-8 py-1.5 rounded-lg bg-black/60 border border-amber-500/40 text-amber-100 placeholder-amber-500/40 font-mono text-xs focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 transition-all"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-amber-400/60 hover:text-amber-300 transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+                  </button>
+                </div>
+
+                {unlockError && (
+                  <div className="text-[10px] font-mono text-rose-400 bg-rose-950/40 border border-rose-500/30 rounded px-2 py-0.5 text-left">
+                    {unlockError}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={isUnlocking}
+                  className="w-full inline-flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg font-mono text-xs font-bold text-black bg-amber-400 hover:bg-amber-300 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50"
+                >
+                  {isUnlocking ? (
+                    <>
+                      <RefreshCw className="w-3 h-3 animate-spin" />
+                      <span>Verificando...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Unlock className="w-3 h-3" />
+                      <span>Desbloquear</span>
+                    </>
+                  )}
+                </button>
+              </form>
             </div>
           )}
 

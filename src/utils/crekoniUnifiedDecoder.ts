@@ -1,18 +1,24 @@
 /**
  * Crekoni Decoder Engine — Sistema Unificado Dual
  * Integração 100% Client-Side dos dois motores esteganográficos:
- * 1. Motor Duck Decoder (LSB 2, 6, 8 bits por canal, SS_tools e contêineres .binpng)
+ * 1. Motor Duck Decoder (LSB 2, 6, 8 bits por canal, SS_tools e contêineres .binpng, com proteção por senha SHA-256 + XOR)
  * 2. Motor TT-IMG Decoder (Protocolo V1 estruturado, ComfyUI TT-Tools, RunningHub,
  *    RGB 3 canais e Grayscale 1 canal, detecção mágica de MP4/WebM/AVI/PNG/JPG/ZIP)
  */
 
-import { decodeDuckFile, getMimeType as getDuckMimeType } from './duckDecoder';
+import {
+  decodeDuckFile,
+  getMimeType as getDuckMimeType,
+  DuckPasswordRequiredError,
+  DuckInvalidPasswordError,
+} from './duckDecoder';
 import { decodeTtImageFile, getMimeType as getTtMimeType } from './ttImgDecoder';
 
 export interface UnifiedDecodedResult {
   id: string;
   originalFileName: string;
   originalFileSize: number;
+  originalFile?: File;
   engine: 'duck' | 'ttimg';
   engineLabel: string;
   engineBadgeColor: 'cyan' | 'amber';
@@ -31,7 +37,9 @@ export interface UnifiedDecodedResult {
   resolution?: string;
   processingTimeMs: number;
   kBits?: number;
-  status: 'success' | 'error';
+  status: 'success' | 'error' | 'requires-password';
+  requiresPassword?: boolean;
+  passwordError?: string;
   errorMessage?: string;
   timestamp: number;
 }
@@ -122,21 +130,26 @@ export async function detectMediaDimensions(
 }
 
 /**
- * Decodifica um arquivo executando os dois motores (Duck e TT-IMG) de forma unificada.
+ * Decodifica um arquivo executando os motores (Duck e TT-IMG) de forma unificada.
+ * Suporta descriptografia caso o arquivo possua senha.
  */
 export async function decodeUnifiedFile(
   file: File,
-  options: { cropWatermark?: boolean } = { cropWatermark: true }
+  options: { cropWatermark?: boolean; password?: string } = { cropWatermark: true }
 ): Promise<UnifiedDecodedResult> {
   const startTime = performance.now();
   const tempId = Math.random().toString(36).substring(2, 9);
   const isPng = /\.png$/i.test(file.name) || file.type === 'image/png';
   const crop = options.cropWatermark ?? true;
+  const password = options.password;
+
+  let duckPasswordRequired: DuckPasswordRequiredError | null = null;
+  let duckInvalidPassword: DuckInvalidPasswordError | null = null;
 
   // 1. Tentar primeiro com o motor Duck Decoder se for PNG
   if (isPng) {
     try {
-      const outcome = await decodeDuckFile(file);
+      const outcome = await decodeDuckFile(file, password);
       const mime = getDuckMimeType(outcome.ext);
       const blob = new Blob([outcome.data], { type: mime });
       const blobUrl = URL.createObjectURL(blob);
@@ -174,6 +187,7 @@ export async function decodeUnifiedFile(
         id: tempId,
         originalFileName: file.name,
         originalFileSize: file.size,
+        originalFile: file,
         engine: 'duck',
         engineLabel: 'Duck Decoder LSB',
         engineBadgeColor: 'cyan',
@@ -195,9 +209,75 @@ export async function decodeUnifiedFile(
         status: 'success',
         timestamp: Date.now(),
       };
-    } catch (_duckErr) {
-      // Duck falhou ou não é payload Duck, continuará para o motor TT-IMG
+    } catch (duckErr) {
+      if (duckErr instanceof DuckPasswordRequiredError) {
+        duckPasswordRequired = duckErr;
+      } else if (duckErr instanceof DuckInvalidPasswordError) {
+        duckInvalidPassword = duckErr;
+      }
+      // Se for outro erro, continua para o motor TT-IMG
     }
+  }
+
+  // Se o Duck identificou explicitamente que o arquivo tem senha ou a senha estava incorreta,
+  // interrompemos aqui retornando o status 'requires-password' para que o usuário informe a senha
+  if (duckPasswordRequired) {
+    const rawExt = duckPasswordRequired.ext ? duckPasswordRequired.ext.replace(/^\./, '') : 'bin';
+    return {
+      id: tempId,
+      originalFileName: file.name,
+      originalFileSize: file.size,
+      originalFile: file,
+      engine: 'duck',
+      engineLabel: 'Duck Decoder LSB',
+      engineBadgeColor: 'cyan',
+      extractedExt: rawExt,
+      mimeType: getDuckMimeType(rawExt),
+      data: new Uint8Array(),
+      blob: new Blob(),
+      blobUrl: '',
+      name: file.name,
+      isImage: false,
+      isVideo: false,
+      isAudio: false,
+      isText: false,
+      processingTimeMs: Math.round(performance.now() - startTime),
+      kBits: duckPasswordRequired.kBits,
+      status: 'requires-password',
+      requiresPassword: true,
+      errorMessage: 'Este arquivo está protegido por senha. Digite a senha para decodificar.',
+      timestamp: Date.now(),
+    };
+  }
+
+  if (duckInvalidPassword) {
+    const rawExt = duckInvalidPassword.ext ? duckInvalidPassword.ext.replace(/^\./, '') : 'bin';
+    return {
+      id: tempId,
+      originalFileName: file.name,
+      originalFileSize: file.size,
+      originalFile: file,
+      engine: 'duck',
+      engineLabel: 'Duck Decoder LSB',
+      engineBadgeColor: 'cyan',
+      extractedExt: rawExt,
+      mimeType: getDuckMimeType(rawExt),
+      data: new Uint8Array(),
+      blob: new Blob(),
+      blobUrl: '',
+      name: file.name,
+      isImage: false,
+      isVideo: false,
+      isAudio: false,
+      isText: false,
+      processingTimeMs: Math.round(performance.now() - startTime),
+      kBits: duckInvalidPassword.kBits,
+      status: 'requires-password',
+      requiresPassword: true,
+      passwordError: 'Senha incorreta. Verifique e tente novamente.',
+      errorMessage: 'Senha incorreta. Verifique e tente novamente.',
+      timestamp: Date.now(),
+    };
   }
 
   // 2. Executar motor TT-IMG Decoder (suporta PNG, JPG, WEBP, etc.)
@@ -235,6 +315,7 @@ export async function decodeUnifiedFile(
         id: tempId,
         originalFileName: file.name,
         originalFileSize: file.size,
+        originalFile: file,
         engine: 'ttimg',
         engineLabel: 'TT-IMG Decoder V1',
         engineBadgeColor: 'amber',
@@ -263,7 +344,7 @@ export async function decodeUnifiedFile(
   // 3. Se não foi PNG na primeira tentativa, ainda tenta Duck caso o arquivo tenha sido renomeado
   if (!isPng) {
     try {
-      const outcome = await decodeDuckFile(file);
+      const outcome = await decodeDuckFile(file, password);
       const mime = getDuckMimeType(outcome.ext);
       const blob = new Blob([outcome.data], { type: mime });
       const blobUrl = URL.createObjectURL(blob);
@@ -289,6 +370,7 @@ export async function decodeUnifiedFile(
         id: tempId,
         originalFileName: file.name,
         originalFileSize: file.size,
+        originalFile: file,
         engine: 'duck',
         engineLabel: 'Duck Decoder LSB',
         engineBadgeColor: 'cyan',
@@ -309,8 +391,64 @@ export async function decodeUnifiedFile(
         status: 'success',
         timestamp: Date.now(),
       };
-    } catch {
-      // Ignorar
+    } catch (duckErr) {
+      if (duckErr instanceof DuckPasswordRequiredError) {
+        const rawExt = duckErr.ext ? duckErr.ext.replace(/^\./, '') : 'bin';
+        return {
+          id: tempId,
+          originalFileName: file.name,
+          originalFileSize: file.size,
+          originalFile: file,
+          engine: 'duck',
+          engineLabel: 'Duck Decoder LSB',
+          engineBadgeColor: 'cyan',
+          extractedExt: rawExt,
+          mimeType: getDuckMimeType(rawExt),
+          data: new Uint8Array(),
+          blob: new Blob(),
+          blobUrl: '',
+          name: file.name,
+          isImage: false,
+          isVideo: false,
+          isAudio: false,
+          isText: false,
+          processingTimeMs: Math.round(performance.now() - startTime),
+          kBits: duckErr.kBits,
+          status: 'requires-password',
+          requiresPassword: true,
+          errorMessage: 'Este arquivo está protegido por senha. Digite a senha para decodificar.',
+          timestamp: Date.now(),
+        };
+      }
+      if (duckErr instanceof DuckInvalidPasswordError) {
+        const rawExt = duckErr.ext ? duckErr.ext.replace(/^\./, '') : 'bin';
+        return {
+          id: tempId,
+          originalFileName: file.name,
+          originalFileSize: file.size,
+          originalFile: file,
+          engine: 'duck',
+          engineLabel: 'Duck Decoder LSB',
+          engineBadgeColor: 'cyan',
+          extractedExt: rawExt,
+          mimeType: getDuckMimeType(rawExt),
+          data: new Uint8Array(),
+          blob: new Blob(),
+          blobUrl: '',
+          name: file.name,
+          isImage: false,
+          isVideo: false,
+          isAudio: false,
+          isText: false,
+          processingTimeMs: Math.round(performance.now() - startTime),
+          kBits: duckErr.kBits,
+          status: 'requires-password',
+          requiresPassword: true,
+          passwordError: 'Senha incorreta. Verifique e tente novamente.',
+          errorMessage: 'Senha incorreta. Verifique e tente novamente.',
+          timestamp: Date.now(),
+        };
+      }
     }
   }
 
@@ -319,6 +457,7 @@ export async function decodeUnifiedFile(
     id: tempId,
     originalFileName: file.name,
     originalFileSize: file.size,
+    originalFile: file,
     engine: 'duck',
     engineLabel: 'Dual Engine (Duck + TT-IMG)',
     engineBadgeColor: 'cyan',
@@ -334,7 +473,8 @@ export async function decodeUnifiedFile(
     isText: false,
     processingTimeMs: Math.round(performance.now() - startTime),
     status: 'error',
-    errorMessage: 'Nenhum payload detectado nem pelo Duck Decoder (LSB 2/6/8-bit) nem pelo TT-IMG V1 (RGB/Grayscale). Certifique-se de que a imagem contém dados esteganográficos válidos.',
+    errorMessage:
+      'Nenhum payload detectado nem pelo Duck Decoder (LSB 2/6/8-bit) nem pelo TT-IMG V1 (RGB/Grayscale). Certifique-se de que a imagem contém dados esteganográficos válidos.',
     timestamp: Date.now(),
   };
 }

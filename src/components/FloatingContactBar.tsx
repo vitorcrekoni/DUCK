@@ -12,7 +12,7 @@ export const FloatingContactBar: React.FC<FloatingContactBarProps> = ({
   const cleanNumber = contactConfig.whatsappNumber.replace(/\D/g, '');
   const encodedMsg = encodeURIComponent(contactConfig.whatsappMessage);
   const whatsappUrl = `https://wa.me/${cleanNumber}?text=${encodedMsg}`;
-  const instagramUrl = `https://instagram.com/${contactConfig.instagramHandle.replace(/^@/, '')}`;
+  const instagramUrl = 'https://www.instagram.com/crekoni.ia/';
 
   return (
     <aside

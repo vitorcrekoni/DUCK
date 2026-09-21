@@ -19,8 +19,7 @@ export const Header: React.FC<HeaderProps> = ({
   onNavigate,
 }) => {
   const getInstagramUrl = () => {
-    const cleanHandle = contactConfig.instagramHandle.replace(/^@/, '').trim();
-    return `https://instagram.com/${cleanHandle}`;
+    return 'https://www.instagram.com/crekoni.ia/';
   };
 
   return (

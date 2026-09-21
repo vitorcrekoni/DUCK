@@ -637,7 +637,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
       {showWarningModal && (
         <div
           id="workflows-warning-modal-backdrop"
-          className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-3 bg-black/85 backdrop-blur-md animate-fade-in"
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               setShowWarningModal(false);
@@ -646,56 +646,56 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
         >
           <div
             id="workflows-warning-modal"
-            className="relative w-full max-w-sm sm:max-w-md rounded-2xl bg-gradient-to-b from-[#2e0505] via-[#1a0404] to-[#0d0101] border-2 border-red-500 shadow-[0_0_35px_rgba(239,68,68,0.4),inset_0_0_20px_rgba(239,68,68,0.2)] p-4 sm:p-5 text-center space-y-3.5 sm:space-y-4 overflow-hidden animate-scale-up"
+            className="relative w-full max-w-[320px] sm:max-w-[340px] rounded-2xl bg-gradient-to-b from-[#250404] via-[#150303] to-[#0a0101] border border-red-500/80 shadow-[0_0_25px_rgba(239,68,68,0.35),inset_0_0_15px_rgba(239,68,68,0.15)] p-3.5 text-center space-y-2.5 overflow-hidden animate-scale-up"
           >
             {/* Linha decorativa de perigo superior */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-600 via-rose-500 to-red-600 shadow-[0_0_10px_rgba(244,63,94,0.8)]" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-600 via-rose-500 to-red-600 shadow-[0_0_8px_rgba(244,63,94,0.8)]" />
 
             {/* Botão de Fechar no topo */}
             <button
               type="button"
               id="btn-close-workflows-warning"
               onClick={() => setShowWarningModal(false)}
-              className="absolute top-2.5 right-2.5 p-1 rounded-lg text-red-300/80 hover:text-white hover:bg-red-500/20 border border-red-500/30 transition-all cursor-pointer"
+              className="absolute top-2 right-2 p-1 rounded-md text-red-300/80 hover:text-white hover:bg-red-500/20 border border-red-500/30 transition-all cursor-pointer"
               title="Fechar aviso"
             >
-              <X className="w-4 h-4" />
+              <X className="w-3.5 h-3.5" />
             </button>
 
             {/* Ícone de Alerta Animado Compacto */}
-            <div className="mx-auto w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-red-950/80 border border-red-500 flex items-center justify-center shadow-[0_0_20px_rgba(239,68,68,0.5)]">
-              <AlertTriangle className="w-5 h-5 text-red-400 animate-pulse" />
+            <div className="mx-auto w-8 h-8 rounded-full bg-red-950/80 border border-red-500/80 flex items-center justify-center shadow-[0_0_15px_rgba(239,68,68,0.4)]">
+              <AlertTriangle className="w-4 h-4 text-red-400 animate-pulse" />
             </div>
 
             {/* Cabeçalho */}
             <div className="space-y-0.5">
-              <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold tracking-widest text-red-200 bg-red-900/60 border border-red-500/50 uppercase shadow-[0_0_8px_rgba(239,68,68,0.3)]">
+              <span className="inline-block px-2 py-0.5 rounded-full text-[9px] font-mono font-bold tracking-widest text-red-200 bg-red-900/60 border border-red-500/50 uppercase shadow-[0_0_6px_rgba(239,68,68,0.2)]">
                 AVISO IMPORTANTE
               </span>
-              <h2 className="text-base sm:text-lg font-orbitron font-black text-red-500 tracking-wide pt-0.5">
+              <h2 className="text-sm sm:text-base font-orbitron font-black text-red-500 tracking-wide">
                 ATENÇÃO!
               </h2>
             </div>
 
             {/* Texto de Aviso Compacto */}
-            <div className="p-2.5 sm:p-3 rounded-xl bg-red-950/40 border border-red-500/40 shadow-inner">
-              <p className="font-mono text-xs sm:text-[13px] font-bold text-red-100 leading-snug uppercase tracking-wide">
+            <div className="p-2 sm:p-2.5 rounded-xl bg-red-950/40 border border-red-500/30 shadow-inner">
+              <p className="font-mono text-[11px] sm:text-xs font-bold text-red-100 leading-snug uppercase tracking-wide">
                 ATENÇÃO VEJA OS VÍDEOS DE CADA WORKFLOW PARA TER CERTEZA DE QUE VOCÊ JÁ NÃO TENHA ELE, NÃO FAZEMOS ESTORNO PÓS COMPRA. OBRIGADO.
               </p>
             </div>
 
             {/* Links e Ações */}
-            <div className="pt-0.5 space-y-2">
+            <div className="pt-0.5 space-y-1.5">
               <a
                 href="https://chat.whatsapp.com/L2ABna1xZECAHDJ2Q45inc?s=cl&p=a&mlu=0&ilr=4"
                 target="_blank"
                 rel="noopener noreferrer"
                 id="btn-whatsapp-group-link"
-                className="w-full py-2.5 px-4 rounded-xl font-mono font-bold text-xs text-black bg-emerald-400 hover:bg-emerald-300 hover:scale-[1.01] active:scale-[0.99] border border-emerald-300 shadow-[0_0_18px_rgba(16,185,129,0.4)] transition-all flex items-center justify-center gap-2 cursor-pointer uppercase"
+                className="w-full py-2 px-3 rounded-xl font-mono font-bold text-xs text-black bg-emerald-400 hover:bg-emerald-300 active:scale-[0.99] border border-emerald-300 shadow-[0_0_14px_rgba(16,185,129,0.35)] transition-all flex items-center justify-center gap-1.5 cursor-pointer uppercase"
               >
-                <Users className="w-4 h-4 fill-black" />
+                <Users className="w-3.5 h-3.5 fill-black shrink-0" />
                 <span>PARTICIPE DO NOSSO GRUPO</span>
-                <ExternalLink className="w-3.5 h-3.5 ml-0.5" />
+                <ExternalLink className="w-3 h-3 ml-0.5 shrink-0" />
               </a>
 
               {/* Botão para Fechar / Continuar */}
@@ -703,7 +703,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
                 type="button"
                 id="btn-understand-workflows-warning"
                 onClick={() => setShowWarningModal(false)}
-                className="w-full py-2 px-3 rounded-xl font-mono font-semibold text-[11px] sm:text-xs text-red-200 hover:text-white bg-red-950/50 hover:bg-red-900/60 border border-red-500/30 hover:border-red-400/60 transition-all cursor-pointer"
+                className="w-full py-1.5 px-2.5 rounded-xl font-mono font-medium text-[10px] sm:text-[11px] text-red-200 hover:text-white bg-red-950/50 hover:bg-red-900/60 border border-red-500/30 hover:border-red-400/60 transition-all cursor-pointer"
               >
                 ENTENDI E QUERO CONTINUAR
               </button>
