@@ -41,6 +41,7 @@ import { WorkflowSuperUndressingV3Modal } from './components/WorkflowSuperUndres
 import { WorkflowFlux2TrocaRostoModal } from './components/WorkflowFlux2TrocaRostoModal';
 import { WorkflowQwenAioModal } from './components/WorkflowQwenAioModal';
 import { WorkflowLtxVideoRefModal } from './components/WorkflowLtxVideoRefModal';
+import { ChangelogWidget } from './components/ChangelogWidget';
 import { CustomCursor } from './components/CustomCursor';
 import { DecodedResult, ContactConfig } from './types';
 import {
@@ -1004,6 +1005,9 @@ export default function App() {
         onClose={() => setIsLtxVideoRefModalOpen(false)}
         whatsappUrl={wfLtxVideoRefUrl}
       />
+
+      {/* Janela Flutuante à Esquerda com Notas de Atualização estilo Launcher */}
+      <ChangelogWidget onNavigate={handleNavigate} />
 
       {/* Cursor Futurista Cyberpunk Azul com Rastro e Anel Interativo */}
       <CustomCursor />
