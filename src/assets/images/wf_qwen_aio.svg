@@ -1,0 +1,457 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1376 768" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="qwenAioBg" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#1f1e1d" />
+      <stop offset="60%" stop-color="#151413" />
+      <stop offset="100%" stop-color="#0a0909" />
+    </radialGradient>
+
+    <!-- Neon Glow Filters -->
+    <filter id="qwenNeonRose" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="qwenNeonCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="qwenNeonGreen" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- ComfyUI Canvas Dots Pattern -->
+    <pattern id="qwenAioGrid" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="11" cy="11" r="1.1" fill="#2d2b29" opacity="0.6" />
+    </pattern>
+
+    <!-- Scanline Pattern -->
+    <pattern id="qwenScanlines" width="100" height="4" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="100" y2="0" stroke="#000" stroke-width="1.3" opacity="0.32" />
+    </pattern>
+
+    <!-- Model Hair & Skin Gradients -->
+    <linearGradient id="qwenSkinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#feede0" />
+      <stop offset="50%" stop-color="#f5ceb0" />
+      <stop offset="100%" stop-color="#df9a75" />
+    </linearGradient>
+
+    <linearGradient id="qwenHairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef9c3" />
+      <stop offset="40%" stop-color="#fde047" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+
+    <linearGradient id="qwenHalterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#262626" />
+      <stop offset="100%" stop-color="#0a0a0a" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. Background ComfyUI Canvas -->
+  <rect width="1376" height="768" fill="url(#qwenAioBg)" />
+  <rect width="1376" height="768" fill="url(#qwenAioGrid)" />
+
+  <!-- Ambient Glows -->
+  <circle cx="280" cy="320" r="260" fill="#22c55e" opacity="0.07" />
+  <circle cx="720" cy="340" r="320" fill="#0284c7" opacity="0.08" />
+  <circle cx="1120" cy="300" r="260" fill="#a855f7" opacity="0.06" />
+
+  <!-- 2. Top Dark Burgundy Header Box (exactly as in dfdfdf.PNG) -->
+  <g transform="translate(360, 24)">
+    <rect width="656" height="74" rx="4" fill="#281518" stroke="#482228" stroke-width="1.5" />
+    <rect width="656" height="18" rx="3" fill="#3a1b20" />
+    <circle cx="12" cy="9" r="3" fill="#6b353e" />
+    <circle cx="22" cy="9" r="3" fill="#6b353e" />
+    <circle cx="32" cy="9" r="3" fill="#6b353e" />
+    <text x="44" y="13" fill="#fca5a5" font-family="monospace" font-size="9" font-weight="bold">QWEN AIO // RUNNINGHUB PIPELINE WORKFLOW</text>
+    <rect x="16" y="28" width="624" height="34" rx="3" fill="#1b0e10" />
+  </g>
+
+  <!-- 3. Colorful Interconnecting Wires (Bezier Noodles from dfdfdf.PNG) -->
+  <!-- Cyan wires from Green container output to Blue container -->
+  <path d="M 456 166 C 490 166, 490 280, 526 290" fill="none" stroke="#38bdf8" stroke-width="2.5" opacity="0.9" />
+  <path d="M 456 178 C 510 178, 500 480, 526 490" fill="none" stroke="#06b6d4" stroke-width="2.2" opacity="0.85" />
+  <path d="M 495 500 C 530 500, 525 615, 580 625" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.85" />
+  <path d="M 495 520 C 540 520, 530 655, 595 660" fill="none" stroke="#0ea5e9" stroke-width="2.2" opacity="0.85" />
+  <path d="M 495 540 C 550 540, 535 670, 610 675" fill="none" stroke="#60a5fa" stroke-width="1.8" opacity="0.8" />
+
+  <!-- Yellow/Orange wire from Brown node to center -->
+  <path d="M 495 480 C 540 480, 540 600, 570 610" fill="none" stroke="#f59e0b" stroke-width="2.2" opacity="0.9" />
+  <path d="M 495 460 C 535 460, 545 560, 570 570" fill="none" stroke="#f97316" stroke-width="2.2" opacity="0.85" />
+
+  <!-- Center wires from AIO QWEN to bottom modules -->
+  <path d="M 765 240 C 805 240, 810 255, 830 255" fill="none" stroke="#a855f7" stroke-width="2.2" opacity="0.85" />
+  <path d="M 765 270 C 815 270, 815 290, 830 290" fill="none" stroke="#eab308" stroke-width="2.2" opacity="0.9" />
+  <path d="M 765 300 C 810 300, 810 345, 830 350" fill="none" stroke="#f87171" stroke-width="2.2" opacity="0.85" />
+
+  <!-- Center Group internal wires (vibrant mesh at bottom) -->
+  <path d="M 740 470 C 740 540, 715 570, 650 595" fill="none" stroke="#06b6d4" stroke-width="2" opacity="0.85" />
+  <path d="M 750 495 C 750 560, 765 590, 810 600" fill="none" stroke="#eab308" stroke-width="2" opacity="0.85" />
+  <path d="M 750 515 C 765 580, 840 590, 890 605" fill="none" stroke="#ec4899" stroke-width="2" opacity="0.8" />
+  <path d="M 640 580 C 670 580, 720 635, 770 645" fill="none" stroke="#38bdf8" stroke-width="2.2" opacity="0.85" />
+  <path d="M 650 630 C 700 630, 750 660, 820 665" fill="none" stroke="#f43f5e" stroke-width="2" opacity="0.8" />
+  <path d="M 870 590 C 930 590, 940 615, 980 625" fill="none" stroke="#38bdf8" stroke-width="2.2" opacity="0.85" />
+
+  <!-- Wires connecting to CONSISTENSE LORA & remove nodes on right -->
+  <path d="M 1010 315 C 1045 315, 1070 300, 1090 280" fill="none" stroke="#c084fc" stroke-width="2" opacity="0.85" />
+  <path d="M 940 460 C 990 460, 1030 435, 1060 415" fill="none" stroke="#a855f7" stroke-width="2" opacity="0.85" />
+  <path d="M 920 630 C 950 630, 960 620, 985 620" fill="none" stroke="#06b6d4" stroke-width="2" opacity="0.85" />
+
+  <!-- 4. LEFT GROUP: "IMAGEM E PROMPT 📌" (Green Container from dfdfdf.PNG) -->
+  <g transform="translate(200, 135)">
+    <!-- Main green container box -->
+    <rect width="280" height="545" rx="5" fill="#1b281f" fill-opacity="0.85" stroke="#345c3b" stroke-width="1.5" />
+    <rect width="280" height="24" rx="4" fill="#273f2d" />
+    <circle cx="265" cy="12" r="5" fill="#ef4444" />
+    <text x="12" y="16" fill="#bbf7d0" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold">IMAGEM E PROMPT 📌</text>
+
+    <!-- Node 1: Photo Preview Node (Blonde model mirror selfie) -->
+    <g transform="translate(14, 34)">
+      <rect width="252" height="268" rx="4" fill="#203324" stroke="#22542e" stroke-width="1.2" />
+      <rect width="252" height="16" rx="3" fill="#2d4a33" />
+      <circle cx="8" cy="8" r="2.5" fill="#4ade80" />
+      <rect x="238" y="5" width="6" height="6" fill="#38bdf8" />
+
+      <!-- Photo Display Area -->
+      <g transform="translate(26, 26)">
+        <rect width="200" height="225" rx="3" fill="#18181b" stroke="#3f3f46" stroke-width="1" />
+
+        <!-- Interior Room Background -->
+        <rect x="2" y="2" width="196" height="221" fill="#f4f4f5" />
+        <!-- Door frame / room perspective line -->
+        <line x1="140" y1="2" x2="140" y2="223" stroke="#d4d4d8" stroke-width="1.5" />
+        <rect x="2" y="150" width="196" height="73" fill="#e4e4e7" />
+
+        <!-- Blonde Woman Illustration (matching selfie in mirror from dfdfdf.PNG) -->
+        <g id="model-blonde-selfie">
+          <!-- Head / Hair -->
+          <ellipse cx="100" cy="50" rx="14" ry="18" fill="url(#qwenSkinGrad)" />
+          <!-- Flowing Blonde Hair -->
+          <path d="M 85 45 C 80 25, 120 25, 115 45 C 122 70, 125 110, 118 135 C 114 110, 110 70, 108 55 C 92 55, 88 110, 82 135 C 75 110, 78 70, 85 45 Z" fill="url(#qwenHairGrad)" />
+
+          <!-- Face Features -->
+          <circle cx="95" cy="48" r="1.5" fill="#0284c7" />
+          <circle cx="105" cy="48" r="1.5" fill="#0284c7" />
+          <path d="M 97 56 Q 100 59 103 56" fill="none" stroke="#f43f5e" stroke-width="1.2" stroke-linecap="round" />
+
+          <!-- Neck & Shoulders -->
+          <path d="M 94 65 L 106 65 L 110 80 L 90 80 Z" fill="url(#qwenSkinGrad)" />
+
+          <!-- Torso (Skin) -->
+          <path d="M 88 80 Q 75 105 84 138 Q 100 142 116 138 Q 125 105 112 80 Z" fill="url(#qwenSkinGrad)" />
+
+          <!-- Black Halter-Neck Top with circle cutout (as seen in uploaded dfdfdf.PNG) -->
+          <path d="M 95 72 L 105 72 L 112 95 Q 100 88 88 95 Z" fill="url(#qwenHalterGrad)" />
+          <path d="M 86 95 Q 100 98 114 95 L 113 120 Q 100 128 87 120 Z" fill="url(#qwenHalterGrad)" />
+          <!-- Ring cutout at center of halter top -->
+          <circle cx="100" cy="107" r="4.5" fill="url(#qwenSkinGrad)" stroke="#e4e4e7" stroke-width="1.2" />
+
+          <!-- Left arm holding smartphone taking mirror selfie -->
+          <path d="M 88 82 Q 74 98 70 120 L 78 120 Q 82 102 92 86 Z" fill="url(#qwenSkinGrad)" />
+          <!-- Phone in hand -->
+          <rect x="66" y="100" width="14" height="24" rx="2" fill="#fda4af" stroke="#be123c" stroke-width="1" />
+          <circle cx="70" cy="105" r="2" fill="#18181b" />
+
+          <!-- Right arm resting at side -->
+          <path d="M 112 82 Q 126 100 130 145 L 122 145 Q 118 102 108 86 Z" fill="url(#qwenSkinGrad)" />
+
+          <!-- Black Fitted Pants (Hips & Legs) -->
+          <path d="M 84 138 Q 100 142 116 138 L 122 220 L 101 220 L 100 165 L 99 220 L 78 220 Z" fill="url(#qwenHalterGrad)" />
+        </g>
+
+        <!-- Image Dimensions Label at bottom -->
+        <rect x="74" y="208" width="52" height="12" rx="2" fill="#09090b" opacity="0.85" />
+        <text x="78" y="217" fill="#a1a1aa" font-family="monospace" font-size="7">752 × 1360</text>
+      </g>
+    </g>
+
+    <!-- Node 2: Green Prompt Parameter Box -->
+    <g transform="translate(14, 312)">
+      <rect width="252" height="66" rx="4" fill="#203324" stroke="#22542e" stroke-width="1.2" />
+      <rect width="252" height="14" rx="3" fill="#2d4a33" />
+      <circle cx="8" cy="7" r="2.5" fill="#4ade80" />
+      <circle cx="242" cy="7" r="3" fill="#a3e635" />
+      <rect x="12" y="22" width="228" height="10" rx="2" fill="#121813" />
+      <rect x="12" y="36" width="228" height="10" rx="2" fill="#121813" />
+      <rect x="12" y="50" width="180" height="10" rx="2" fill="#121813" />
+    </g>
+
+    <!-- Node 3: Brown / Amber Model Condition Box -->
+    <g transform="translate(14, 388)">
+      <rect width="252" height="96" rx="4" fill="#38221b" stroke="#543024" stroke-width="1.2" />
+      <rect width="252" height="14" rx="3" fill="#4c2c21" />
+      <circle cx="8" cy="7" r="2.5" fill="#f97316" />
+      <circle cx="242" cy="7" r="3" fill="#fb923c" />
+      <!-- Left Colored Connector Pins -->
+      <circle cx="8" cy="28" r="3" fill="#38bdf8" />
+      <circle cx="8" cy="42" r="3" fill="#f43f5e" />
+      <circle cx="8" cy="56" r="3" fill="#fbbf24" />
+      <circle cx="8" cy="70" r="3" fill="#38bdf8" />
+      <!-- Parameter Rows inside -->
+      <rect x="20" y="24" width="215" height="12" rx="2" fill="#1d110d" />
+      <rect x="20" y="42" width="215" height="34" rx="2" fill="#1d110d" />
+    </g>
+  </g>
+
+  <!-- Left Sticky Notes (Purple) -->
+  <g transform="translate(115, 390)">
+    <rect width="84" height="60" rx="2" fill="#4a154b" fill-opacity="0.6" stroke="#86198f" stroke-width="1" />
+  </g>
+  <g transform="translate(115, 530)">
+    <rect width="84" height="60" rx="2" fill="#4a154b" fill-opacity="0.6" stroke="#86198f" stroke-width="1" />
+  </g>
+
+  <!-- 5. CENTER GROUP: "MODELOS E NODES 📌" (Teal/Blue Container from dfdfdf.PNG) -->
+  <g transform="translate(500, 135)">
+    <!-- Container background -->
+    <rect width="680" height="545" rx="5" fill="#152631" fill-opacity="0.88" stroke="#224254" stroke-width="1.5" />
+    <rect width="680" height="24" rx="4" fill="#1f3b4c" />
+    <circle cx="160" cy="12" r="5" fill="#ef4444" />
+    <text x="12" y="16" fill="#7dd3fc" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold">MODELOS E NODES 📌</text>
+
+    <!-- Sub-Group: "AIO QWEN 📌" -->
+    <g transform="translate(15, 34)">
+      <rect width="415" height="142" rx="4" fill="#1d3442" fill-opacity="0.9" stroke="#2d5268" stroke-width="1.2" />
+      <rect width="415" height="18" rx="3" fill="#28485c" />
+      <circle cx="100" cy="9" r="4.5" fill="#ef4444" />
+      <text x="10" y="13" fill="#bae6fd" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold">AIO QWEN 📌</text>
+
+      <!-- Internal node box with pins -->
+      <g transform="translate(15, 30)">
+        <rect width="220" height="96" rx="4" fill="#1a2d38" stroke="#2a4759" stroke-width="1" />
+        <rect width="220" height="14" rx="3" fill="#243f4e" />
+        <circle cx="6" cy="7" r="2.5" fill="#38bdf8" />
+        <rect x="10" y="24" width="200" height="12" rx="2" fill="#0f191f" />
+        <rect x="10" y="44" width="200" height="12" rx="2" fill="#0f191f" />
+        <rect x="10" y="64" width="200" height="18" rx="2" fill="#0f191f" />
+        <!-- Output Pins on right with connected wires -->
+        <circle cx="220" cy="30" r="3" fill="#c084fc" />
+        <circle cx="220" cy="50" r="3" fill="#fde047" />
+        <circle cx="220" cy="75" r="3" fill="#f87171" />
+      </g>
+
+      <!-- Target output slots -->
+      <g transform="translate(250, 30)">
+        <rect width="150" height="26" rx="3" fill="#1e3440" stroke="#2c4d5f" stroke-width="1" />
+        <rect width="150" height="26" rx="3" y="34" fill="#1e3440" stroke="#2c4d5f" stroke-width="1" />
+        <rect width="150" height="26" rx="3" y="68" fill="#1e3440" stroke="#2c4d5f" stroke-width="1" />
+      </g>
+    </g>
+
+    <!-- Sub-Group: "Group 📌" -->
+    <g transform="translate(15, 185)">
+      <rect width="415" height="342" rx="4" fill="#1a2e3b" fill-opacity="0.9" stroke="#264457" stroke-width="1.2" />
+      <rect width="415" height="18" rx="3" fill="#243f4f" />
+      <circle cx="50" cy="9" r="4.5" fill="#ef4444" />
+      <text x="10" y="13" fill="#93c5fd" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold">Group 📌</text>
+
+      <!-- Stacked Node Left -->
+      <g transform="translate(14, 28)">
+        <rect width="205" height="68" rx="3" fill="#1d3442" stroke="#294657" stroke-width="1" />
+        <rect width="205" height="12" rx="2" fill="#28485a" />
+        <rect x="8" y="20" width="190" height="10" rx="2" fill="#0d181e" />
+        <rect x="8" y="36" width="190" height="10" rx="2" fill="#0d181e" />
+        <rect x="8" y="52" width="140" height="10" rx="2" fill="#0d181e" />
+      </g>
+
+      <!-- Middle stacked node -->
+      <g transform="translate(50, 105)">
+        <rect width="145" height="60" rx="3" fill="#1d3442" stroke="#294657" stroke-width="1" />
+        <rect width="145" height="12" rx="2" fill="#28485a" />
+        <rect x="8" y="20" width="130" height="10" rx="2" fill="#0d181e" />
+        <rect x="8" y="36" width="130" height="10" rx="2" fill="#0d181e" />
+      </g>
+
+      <!-- Large Tall Node Right -->
+      <g transform="translate(230, 28)">
+        <rect width="170" height="195" rx="3" fill="#1e3847" stroke="#2f546b" stroke-width="1.2" />
+        <rect width="170" height="14" rx="2" fill="#294d62" />
+        <circle cx="6" cy="7" r="2.5" fill="#38bdf8" />
+        <!-- Pins on left side -->
+        <circle cx="0" cy="24" r="3" fill="#f97316" />
+        <circle cx="0" cy="38" r="3" fill="#fde047" />
+        <circle cx="0" cy="52" r="3" fill="#a855f7" />
+        <!-- Parameter bars -->
+        <rect x="10" y="22" width="150" height="8" rx="2" fill="#0b161b" />
+        <rect x="10" y="36" width="150" height="8" rx="2" fill="#0b161b" />
+        <rect x="10" y="50" width="150" height="8" rx="2" fill="#0b161b" />
+        <rect x="10" y="64" width="150" height="8" rx="2" fill="#0b161b" />
+        <rect x="10" y="78" width="150" height="8" rx="2" fill="#0b161b" />
+        <rect x="10" y="92" width="150" height="8" rx="2" fill="#0b161b" />
+        <rect x="10" y="106" width="150" height="8" rx="2" fill="#0b161b" />
+        <rect x="10" y="120" width="150" height="8" rx="2" fill="#0b161b" />
+        <rect x="10" y="134" width="150" height="8" rx="2" fill="#0b161b" />
+        <rect x="10" y="148" width="150" height="8" rx="2" fill="#0b161b" />
+        <rect x="10" y="162" width="150" height="8" rx="2" fill="#0b161b" />
+      </g>
+
+      <!-- Dense mini nodes array at bottom of Group -->
+      <g transform="translate(10, 235)">
+        <rect x="0" y="0" width="60" height="22" rx="2" fill="#172733" stroke="#253e50" stroke-width="1" />
+        <rect x="70" y="0" width="70" height="22" rx="2" fill="#172733" stroke="#253e50" stroke-width="1" />
+        <rect x="150" y="0" width="80" height="22" rx="2" fill="#172733" stroke="#253e50" stroke-width="1" />
+        <rect x="240" y="0" width="85" height="22" rx="2" fill="#172733" stroke="#253e50" stroke-width="1" />
+        <rect x="335" y="0" width="65" height="22" rx="2" fill="#172733" stroke="#253e50" stroke-width="1" />
+
+        <rect x="20" y="32" width="75" height="22" rx="2" fill="#172733" stroke="#253e50" stroke-width="1" />
+        <rect x="110" y="32" width="80" height="22" rx="2" fill="#172733" stroke="#253e50" stroke-width="1" />
+        <rect x="205" y="32" width="90" height="22" rx="2" fill="#172733" stroke="#253e50" stroke-width="1" />
+        <rect x="310" y="32" width="85" height="22" rx="2" fill="#172733" stroke="#253e50" stroke-width="1" />
+
+        <rect x="50" y="64" width="80" height="22" rx="2" fill="#172733" stroke="#253e50" stroke-width="1" />
+        <rect x="145" y="64" width="85" height="22" rx="2" fill="#172733" stroke="#253e50" stroke-width="1" />
+        <rect x="245" y="64" width="80" height="22" rx="2" fill="#172733" stroke="#253e50" stroke-width="1" />
+      </g>
+    </g>
+
+    <!-- RIGHT SECTION WITHIN MODELOS E NODES (from dfdfdf.PNG) -->
+    <!-- "CONSISTENSE LORA 📌" -->
+    <g transform="translate(445, 34)">
+      <rect width="215" height="142" rx="4" fill="#1a2d38" stroke="#254252" stroke-width="1.2" />
+      <rect width="215" height="18" rx="3" fill="#233d4e" />
+      <circle cx="152" cy="9" r="4.5" fill="#ef4444" />
+      <text x="10" y="13" fill="#7dd3fc" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">CONSISTENSE LORA 📌</text>
+
+      <!-- Stacked subnodes -->
+      <g transform="translate(10, 28)">
+        <rect width="195" height="32" rx="2" fill="#15242d" stroke="#233b49" stroke-width="1" />
+        <rect x="6" y="8" width="180" height="6" rx="2" fill="#0b1318" />
+        <rect x="6" y="18" width="180" height="6" rx="2" fill="#0b1318" />
+      </g>
+      <g transform="translate(10, 68)">
+        <rect width="195" height="32" rx="2" fill="#15242d" stroke="#233b49" stroke-width="1" />
+        <rect x="6" y="8" width="180" height="6" rx="2" fill="#0b1318" />
+        <rect x="6" y="18" width="180" height="6" rx="2" fill="#0b1318" />
+      </g>
+      <g transform="translate(10, 106)">
+        <rect width="195" height="28" rx="2" fill="#15242d" stroke="#233b49" stroke-width="1" />
+        <rect x="6" y="8" width="180" height="6" rx="2" fill="#0b1318" />
+      </g>
+    </g>
+
+    <!-- "remove 📌" -->
+    <g transform="translate(445, 185)">
+      <rect width="215" height="110" rx="4" fill="#1a2d38" stroke="#254252" stroke-width="1.2" />
+      <rect width="215" height="18" rx="3" fill="#233d4e" />
+      <circle cx="60" cy="9" r="4.5" fill="#ef4444" />
+      <text x="10" y="13" fill="#7dd3fc" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">remove 📌</text>
+
+      <!-- Subnodes -->
+      <g transform="translate(10, 26)">
+        <rect width="195" height="24" rx="2" fill="#15242d" stroke="#233b49" stroke-width="1" />
+        <rect x="6" y="7" width="180" height="8" rx="2" fill="#0b1318" />
+      </g>
+      <g transform="translate(10, 56)">
+        <rect width="195" height="24" rx="2" fill="#15242d" stroke="#233b49" stroke-width="1" />
+        <rect x="6" y="7" width="180" height="8" rx="2" fill="#0b1318" />
+      </g>
+      <g transform="translate(10, 84)">
+        <rect width="195" height="20" rx="2" fill="#15242d" stroke="#233b49" stroke-width="1" />
+        <rect x="6" y="6" width="180" height="6" rx="2" fill="#0b1318" />
+      </g>
+    </g>
+
+    <!-- Bottom output nodes right -->
+    <g transform="translate(445, 305)">
+      <rect width="215" height="36" rx="2" fill="#15242d" stroke="#233b49" stroke-width="1" />
+      <rect x="8" y="10" width="195" height="14" rx="2" fill="#0b1318" />
+    </g>
+
+    <g transform="translate(470, 395)">
+      <rect width="190" height="70" rx="3" fill="#172e38" stroke="#295163" stroke-width="1.2" />
+      <rect width="190" height="14" rx="2" fill="#224252" />
+      <circle cx="6" cy="7" r="2.5" fill="#4ade80" />
+      <circle cx="184" cy="7" r="2.5" fill="#4ade80" />
+      <rect x="10" y="24" width="170" height="8" rx="2" fill="#0c171d" />
+      <rect x="10" y="38" width="170" height="8" rx="2" fill="#0c171d" />
+      <rect x="10" y="52" width="170" height="8" rx="2" fill="#0c171d" />
+    </g>
+  </g>
+
+  <!-- Far Right Purple Sticky Notes (as in dfdfdf.PNG) -->
+  <g transform="translate(1190, 480)">
+    <rect width="120" height="75" rx="3" fill="#4a154b" fill-opacity="0.55" stroke="#86198f" stroke-width="1" />
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 6. "VISUAL FUTURISTA POR CIMA" (CYBERNETIC SCI-FI HUD OVERLAY)            -->
+  <!-- ========================================================================= -->
+  <g id="futuristic-cyber-hud-overlay">
+    <!-- Cyberpunk Scanlines -->
+    <rect width="1376" height="768" fill="url(#qwenScanlines)" opacity="0.38" pointer-events="none" />
+
+    <!-- Neon Cyber Accents & Brackets (Neon Rose & Cyan) -->
+    <g filter="url(#qwenNeonRose)">
+      <!-- Top-Left Corner Bracket -->
+      <path d="M 25 55 L 25 25 L 55 25" fill="none" stroke="#f43f5e" stroke-width="3" />
+      <circle cx="25" cy="25" r="2.5" fill="#f43f5e" />
+      <path d="M 33 33 L 45 33" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+      <path d="M 33 33 L 33 45" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+
+      <!-- Top-Right Corner Bracket -->
+      <path d="M 1321 25 L 1351 25 L 1351 55" fill="none" stroke="#f43f5e" stroke-width="3" />
+      <circle cx="1351" cy="25" r="2.5" fill="#f43f5e" />
+      <path d="M 1343 33 L 1331 33" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+      <path d="M 1343 33 L 1343 45" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+
+      <!-- Bottom-Left Corner Bracket -->
+      <path d="M 25 713 L 25 743 L 55 743" fill="none" stroke="#f43f5e" stroke-width="3" />
+      <circle cx="25" cy="743" r="2.5" fill="#f43f5e" />
+      <path d="M 33 735 L 45 735" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+      <path d="M 33 735 L 33 723" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+
+      <!-- Bottom-Right Corner Bracket -->
+      <path d="M 1321 743 L 1351 743 L 1351 713" fill="none" stroke="#f43f5e" stroke-width="3" />
+      <circle cx="1351" cy="743" r="2.5" fill="#f43f5e" />
+      <path d="M 1343 735 L 1331 735" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+      <path d="M 1343 735 L 1343 723" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+    </g>
+
+    <!-- Top Telemetry HUD Badge -->
+    <g transform="translate(48, 16)">
+      <rect width="280" height="24" rx="4" fill="#0f172a" fill-opacity="0.9" stroke="#06b6d4" stroke-width="1" />
+      <circle cx="14" cy="12" r="3.5" fill="#06b6d4" filter="url(#qwenNeonCyan)" />
+      <text x="26" y="16" fill="#a5f3fc" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold">COMFYUI // RUNNINGHUB // QWEN AIO</text>
+    </g>
+
+    <!-- Top-Right Performance Stats -->
+    <g transform="translate(1040, 16)">
+      <rect width="280" height="24" rx="4" fill="#0f172a" fill-opacity="0.9" stroke="#22c55e" stroke-width="1" />
+      <circle cx="14" cy="12" r="3.5" fill="#22c55e" filter="url(#qwenNeonGreen)" />
+      <text x="26" y="16" fill="#bbf7d0" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">STATUS: RUNNINGHUB // 100% ONLINE</text>
+    </g>
+
+    <!-- Targeting Corners around the Reference Image Preview -->
+    <g transform="translate(230, 185)" filter="url(#qwenNeonCyan)">
+      <path d="M -6 12 L -6 -6 L 12 -6" fill="none" stroke="#06b6d4" stroke-width="2.5" />
+      <path d="M 218 12 L 218 -6 L 200 -6" fill="none" stroke="#06b6d4" stroke-width="2.5" />
+      <path d="M -6 238 L -6 256 L 12 256" fill="none" stroke="#06b6d4" stroke-width="2.5" />
+      <path d="M 218 238 L 218 256 L 200 256" fill="none" stroke="#06b6d4" stroke-width="2.5" />
+    </g>
+
+    <!-- Bottom Status Banner -->
+    <g transform="translate(420, 715)">
+      <rect width="536" height="34" rx="6" fill="#0b0f19" fill-opacity="0.95" stroke="#f43f5e" stroke-width="1.2" />
+      <circle cx="20" cy="17" r="4" fill="#f43f5e" filter="url(#qwenNeonRose)" />
+      <text x="36" y="21" fill="#fecdd3" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold">RUNNINGHUB >> QWEN AIO // ALL-IN-ONE // CONSISTÊNCIA LORA</text>
+      <circle cx="516" cy="17" r="4" fill="#22c55e" filter="url(#qwenNeonGreen)" />
+    </g>
+
+    <!-- Futuristic Laser Scan Beam -->
+    <line x1="25" y1="384" x2="1351" y2="384" stroke="#f43f5e" stroke-width="1" stroke-opacity="0.35" stroke-dasharray="16 8" />
+  </g>
+</svg>

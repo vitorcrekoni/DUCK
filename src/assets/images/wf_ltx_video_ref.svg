@@ -1,0 +1,340 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="100%" height="100%">
+  <defs>
+    <!-- Background Canvas Palette (Dark Olive / Gold / Charcoal ComfyUI Canvas) -->
+    <radialGradient id="ltxBg" cx="50%" cy="40%" r="80%">
+      <stop offset="0%" stop-color="#38301c" />
+      <stop offset="50%" stop-color="#2a2415" />
+      <stop offset="100%" stop-color="#18140c" />
+    </radialGradient>
+
+    <!-- Comfy Dots Grid -->
+    <pattern id="ltxGrid" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="11" cy="11" r="1.1" fill="#4a4025" opacity="0.65" />
+    </pattern>
+
+    <!-- Glowing Cyber Filters -->
+    <filter id="ltxGlowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="ltxGlowGold" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="ltxGlowPurple" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Model Hair & Skin Gradients -->
+    <linearGradient id="ltxSkin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff1e6" />
+      <stop offset="45%" stop-color="#f8cfb5" />
+      <stop offset="100%" stop-color="#e09776" />
+    </linearGradient>
+
+    <linearGradient id="ltxHair" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+
+    <!-- Car Interior Gradient -->
+    <linearGradient id="ltxCarInterior" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="50%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <linearGradient id="ltxYellowTop" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="60%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. Background ComfyUI Workspace Canvas -->
+  <rect width="1280" height="720" fill="url(#ltxBg)" />
+  <rect width="1280" height="720" fill="url(#ltxGrid)" />
+
+  <!-- Subtle Ambient Glows -->
+  <circle cx="200" cy="200" r="180" fill="#06b6d4" opacity="0.08" filter="url(#ltxGlowCyan)" />
+  <circle cx="650" cy="350" r="220" fill="#eab308" opacity="0.08" filter="url(#ltxGlowGold)" />
+  <circle cx="1060" cy="400" r="200" fill="#9333ea" opacity="0.1" filter="url(#ltxGlowPurple)" />
+
+  <!-- Top Global Header Banner (CREDITOS Nordy / Crekoni) -->
+  <g transform="translate(190, 16)">
+    <rect width="900" height="120" rx="10" fill="#45271a" stroke="#8c472d" stroke-width="1.8" />
+    <g transform="translate(20, 24)">
+      <circle cx="4" cy="4" r="3.5" fill="#f87171" />
+      <text x="14" y="8" fill="#fecaca" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="900">CREDITOS 📌</text>
+    </g>
+    <text x="24" y="58" fill="#fed7aa" font-family="'JetBrains Mono', monospace" font-size="11.5" font-weight="bold">
+      WORKFLOW DISPONIBILIZADO POR Nordy
+    </text>
+    <text x="24" y="82" fill="#ffedd5" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600">
+      EDITADO ORGANIZADO E TRADUZIDO POR CREKONI <tspan fill="#38bdf8">https://www.instagram.com/vitorcrekoni/</tspan>
+    </text>
+    <text x="24" y="104" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="10.5">
+      WHATSAPP 44991840305 ou <tspan fill="#34d399">https://crekoni.online</tspan> OU https://crekoni.netlify.app
+    </text>
+  </g>
+
+  <!-- Golden Sub-banner: Title of Workflow -->
+  <g transform="translate(20, 155)">
+    <text x="0" y="20" fill="#eab308" font-family="'Orbitron', 'Space Grotesk', monospace" font-size="15" font-weight="900" letter-spacing="0.5">
+      WORKFLOW DE CRIAÇÃO DE VIDEO USANDO FOTO E AUDIO DE REFERENCIA (LTX 2.3)
+    </text>
+    <!-- ComfyUI Top Controls -->
+    <g transform="translate(1200, 12)">
+      <polygon points="0,0 8,5 0,10" fill="#eab308" />
+      <polygon points="12,0 20,5 12,10" fill="#eab308" />
+    </g>
+  </g>
+
+  <!-- Connecting Curved Spline Cables -->
+  <g opacity="0.85">
+    <!-- Image Cable from Load Image to Prompt Node -->
+    <path d="M 195 380 C 350 380, 420 380, 490 380" fill="none" stroke="#06b6d4" stroke-width="2.5" />
+    <!-- Audio Cable from Load Audio to Prompt Node -->
+    <path d="M 440 440 C 470 440, 470 400, 490 400" fill="none" stroke="#f59e0b" stroke-width="2.5" />
+    <!-- Video Cable from Prompt Node to Result Node -->
+    <path d="M 740 380 C 820 380, 870 260, 920 260" fill="none" stroke="#a855f7" stroke-width="3" />
+  </g>
+
+  <!-- ================= NODE 1: CARREGAR IMAGEM (ESQUERDA) ================= -->
+  <g transform="translate(20, 310)">
+    <!-- Container -->
+    <rect width="180" height="385" rx="6" fill="#132326" stroke="#0e7490" stroke-width="1.5" />
+    <!-- Header -->
+    <rect width="180" height="24" rx="5" fill="#164e63" />
+    <circle cx="10" cy="12" r="3" fill="#22d3ee" />
+    <text x="18" y="16" fill="#cffafe" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">CARREGAR IMAGEM 📌</text>
+    <text x="135" y="15" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="7.5">#268 nodes</text>
+
+    <!-- Image URL Button & Choose File -->
+    <rect x="8" y="32" width="164" height="18" rx="3" fill="#082f49" stroke="#0284c7" stroke-width="0.8" />
+    <text x="14" y="44" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="8">◄ https://s3.prod.nordy.ai/... ►</text>
+
+    <rect x="22" y="56" width="136" height="18" rx="3" fill="#1e293b" stroke="#334155" />
+    <text x="55" y="68" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="8.5">choose file</text>
+
+    <rect x="22" y="78" width="136" height="18" rx="3" fill="#0f172a" stroke="#334155" />
+    <text x="38" y="90" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="8">choose file to upload</text>
+
+    <!-- Model Image Box (Car setting with blonde girl) -->
+    <g transform="translate(14, 104)">
+      <rect width="152" height="265" rx="4" fill="url(#ltxCarInterior)" stroke="#0e7490" stroke-width="1" />
+      
+      <!-- Car interior & window background -->
+      <path d="M 0 0 L 152 40 L 152 265 L 0 265 Z" fill="#1e293b" opacity="0.6" />
+      <!-- Steering wheel outline -->
+      <circle cx="28" cy="170" r="32" fill="none" stroke="#0f172a" stroke-width="8" opacity="0.8" />
+      <!-- Car window light -->
+      <rect x="100" y="10" width="48" height="100" fill="#94a3b8" opacity="0.25" />
+
+      <!-- Girl Illustration -->
+      <!-- Blonde Hair -->
+      <path d="M 52 30 C 52 15, 100 15, 100 30 C 108 50, 114 90, 112 140 C 100 135, 96 110, 94 90 C 88 115, 64 115, 58 90 C 56 110, 52 135, 40 140 C 38 90, 44 50, 52 30 Z" fill="url(#ltxHair)" />
+      <!-- Face -->
+      <path d="M 62 42 C 62 30, 90 30, 90 42 C 90 60, 85 75, 76 78 C 67 75, 62 60, 62 42 Z" fill="url(#ltxSkin)" />
+      <!-- Eyes & Lips -->
+      <circle cx="70" cy="50" r="2" fill="#1e293b" />
+      <circle cx="82" cy="50" r="2" fill="#1e293b" />
+      <path d="M 72 65 Q 76 68 80 65" stroke="#e11d48" stroke-width="1.5" fill="none" />
+      <!-- Neck & Shoulders -->
+      <path d="M 70 78 L 82 78 L 86 95 L 66 95 Z" fill="url(#ltxSkin)" />
+      <path d="M 44 95 C 44 95, 76 90, 108 95 C 120 120, 122 170, 122 200 L 30 200 C 30 170, 32 120, 44 95 Z" fill="url(#ltxSkin)" />
+      <!-- Yellow Crop Top -->
+      <rect x="46" y="110" width="60" height="35" rx="4" fill="url(#ltxYellowTop)" />
+      <!-- Denim shorts -->
+      <rect x="42" y="170" width="68" height="35" rx="3" fill="#2563eb" opacity="0.85" />
+    </g>
+  </g>
+
+  <!-- ================= INFORMAÇÕES (ACIMA DO AUDIO) ================= -->
+  <g transform="translate(215, 205)">
+    <rect width="210" height="95" rx="6" fill="#3f1d24" stroke="#9f1239" stroke-width="1.2" />
+    <circle cx="12" cy="14" r="3" fill="#f43f5e" />
+    <text x="20" y="18" fill="#fecdd3" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">INFORMAÇÕES 📌</text>
+    <text x="12" y="38" fill="#fda4af" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold">Dica de Áudio: CRIE SEU AUDIO NO SITE</text>
+    <text x="12" y="54" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="7.5">https://fish.audio/pt/app/text-to-speech/</text>
+    <text x="12" y="72" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="8">TEM MILHARES DE VOZES PRONTAS</text>
+  </g>
+
+  <!-- ================= NODE 2: CARREGAR AUDIO ================= -->
+  <g transform="translate(215, 330)">
+    <rect width="230" height="150" rx="6" fill="#2d161d" stroke="#be123c" stroke-width="1.5" />
+    <rect width="230" height="24" rx="5" fill="#4c0519" />
+    <circle cx="10" cy="12" r="3" fill="#f43f5e" />
+    <text x="18" y="16" fill="#fecdd3" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">CARREGAR AUDIO 📌</text>
+    <text x="180" y="15" fill="#fda4af" font-family="'JetBrains Mono', monospace" font-size="7.5">#270 nodes</text>
+
+    <!-- Audio Player Widget -->
+    <rect x="10" y="32" width="210" height="58" rx="4" fill="#1a0a10" stroke="#881337" />
+    <text x="18" y="46" fill="#f43f5e" font-family="'JetBrains Mono', monospace" font-size="7.5">◄ https://s3.prod.nordy.ai/... ►</text>
+    
+    <!-- Waveform & Play button -->
+    <polygon points="22,60 32,66 22,72" fill="#fb7185" />
+    <line x1="38" y1="66" x2="160" y2="66" stroke="#fb7185" stroke-width="3" stroke-linecap="round" />
+    <circle cx="55" cy="66" r="4.5" fill="#f43f5e" />
+    <text x="168" y="70" fill="#fecdd3" font-family="'JetBrains Mono', monospace" font-size="8">0:02 / 0:08</text>
+
+    <rect x="35" y="100" width="160" height="18" rx="3" fill="#1e293b" stroke="#334155" />
+    <text x="90" y="112" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="8.5">choose file</text>
+
+    <rect x="35" y="122" width="160" height="18" rx="3" fill="#0f172a" stroke="#334155" />
+    <text x="68" y="134" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="8">choose file to upload</text>
+  </g>
+
+  <!-- ================= INFORMAÇÕES (ACIMA DO PROMPT LTX) ================= -->
+  <g transform="translate(460, 205)">
+    <rect width="250" height="105" rx="6" fill="#132e22" stroke="#15803d" stroke-width="1.2" />
+    <circle cx="12" cy="14" r="3" fill="#22c55e" />
+    <text x="20" y="18" fill="#bbf7d0" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">INFORMAÇÕES 📌</text>
+    <text x="12" y="38" fill="#86efac" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold">COPIE O PROMPT ABAIXO E PEÇA PARA</text>
+    <text x="12" y="52" fill="#86efac" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold">O GROK AJUSTAR O PROMPT DE ACORDO</text>
+    <text x="12" y="66" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="7.5">COM AS CARACTERISTICAS DO PERSONAGEM</text>
+    <text x="12" y="80" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="7.5">E LOCAL DA FOTO ANEXADA</text>
+  </g>
+
+  <!-- ================= NODE 3: PROMPT (LTX-2.3) ================= -->
+  <g transform="translate(460, 325)">
+    <rect width="260" height="370" rx="6" fill="#0f172a" stroke="#1d4ed8" stroke-width="1.8" />
+    <rect width="260" height="24" rx="5" fill="#1e3a8a" />
+    <circle cx="10" cy="12" r="3" fill="#60a5fa" />
+    <text x="18" y="16" fill="#dbeafe" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">PROMPT (LTX-2.3) 📌</text>
+    <text x="220" y="15" fill="#93c5fd" font-family="'JetBrains Mono', monospace" font-size="7.5">#340</text>
+
+    <!-- Prompt TextArea Box -->
+    <rect x="8" y="32" width="244" height="150" rx="4" fill="#020617" stroke="#1e293b" />
+    <text x="14" y="46" fill="#4ade80" font-family="'JetBrains Mono', monospace" font-size="7" font-weight="bold">A highly realistic 4k close-up video of</text>
+    <text x="14" y="58" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="6.5">the exact same young woman from reference</text>
+    <text x="14" y="70" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="6.5">photo with 100% facial consistency, natural</text>
+    <text x="14" y="82" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="6.5">expression, speaking synced with audio...</text>
+    <text x="14" y="96" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="6.5">wearing identical yellow crop top &amp; denim</text>
+    <text x="14" y="108" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="6.5">inside modern car interior, soft day lighting.</text>
+    <text x="14" y="122" fill="#facc15" font-family="'JetBrains Mono', monospace" font-size="6.5">Camera locked on face, lifelike micro-movements.</text>
+
+    <!-- Sliders and parameters -->
+    <g transform="translate(10, 192)">
+      <!-- width -->
+      <rect x="0" y="0" width="240" height="16" rx="2" fill="#1e293b" />
+      <text x="8" y="12" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="7.5">width</text>
+      <text x="210" y="12" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">720</text>
+
+      <!-- height -->
+      <rect x="0" y="20" width="240" height="16" rx="2" fill="#1e293b" />
+      <text x="8" y="32" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="7.5">height</text>
+      <text x="205" y="32" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">1080</text>
+
+      <!-- fps -->
+      <rect x="0" y="40" width="240" height="16" rx="2" fill="#1e293b" />
+      <text x="8" y="52" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="7.5">fps</text>
+      <text x="215" y="52" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">24</text>
+
+      <!-- duration -->
+      <rect x="0" y="60" width="240" height="16" rx="2" fill="#1e293b" />
+      <text x="8" y="72" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="7.5">duration</text>
+      <text x="210" y="72" fill="#34d399" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">8.0</text>
+
+      <!-- ckpt_name -->
+      <rect x="0" y="80" width="240" height="16" rx="2" fill="#0f172a" stroke="#334155" />
+      <text x="8" y="92" fill="#e2e8f0" font-family="'JetBrains Mono', monospace" font-size="7">ltx-2.3-22b-dev-fp8.safetensors</text>
+
+      <!-- distilled_lora -->
+      <rect x="0" y="100" width="240" height="16" rx="2" fill="#0f172a" stroke="#334155" />
+      <text x="8" y="112" fill="#e2e8f0" font-family="'JetBrains Mono', monospace" font-size="7">ltx-2.3-22b-distilled-lora-384</text>
+
+      <!-- text_encoder -->
+      <rect x="0" y="120" width="240" height="16" rx="2" fill="#0f172a" stroke="#334155" />
+      <text x="8" y="132" fill="#e2e8f0" font-family="'JetBrains Mono', monospace" font-size="7">gemma_3_12b_it_fp4_mixed</text>
+
+      <!-- upscale_m -->
+      <rect x="0" y="140" width="240" height="16" rx="2" fill="#0f172a" stroke="#334155" />
+      <text x="8" y="152" fill="#e2e8f0" font-family="'JetBrains Mono', monospace" font-size="7">ltx-2.3-spatial-upscaler-x2-11</text>
+    </g>
+  </g>
+
+  <!-- ================= INFORMAÇÕES: ALTERAÇÕES ================= -->
+  <g transform="translate(735, 480)">
+    <rect width="180" height="135" rx="6" fill="#132b20" stroke="#16a34a" stroke-width="1.2" />
+    <circle cx="12" cy="14" r="3" fill="#22c55e" />
+    <text x="20" y="18" fill="#86efac" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">ALTERAÇÕES 📌</text>
+    <text x="12" y="38" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">SE QUISER MELHORAR MAIS</text>
+    <text x="12" y="50" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">A QUALIDADE DO VÍDEO MUDE:</text>
+    <text x="12" y="66" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="7.5">width: PARA 1080</text>
+    <text x="12" y="78" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="7.5">height: PARA 1920</text>
+    <text x="12" y="96" fill="#facc15" font-family="'JetBrains Mono', monospace" font-size="7">fps: É BOM MANTER 24</text>
+    <text x="12" y="112" fill="#a7f3d0" font-family="'JetBrains Mono', monospace" font-size="6.5">duration: DURAÇÃO DO ÁUDIO</text>
+  </g>
+
+  <!-- ================= NODE 5: RESULTADO (VÍDEO PREVIEW GERADO) ================= -->
+  <g transform="translate(930, 205)">
+    <!-- Container -->
+    <rect width="330" height="490" rx="8" fill="#1f112e" stroke="#7e22ce" stroke-width="2" />
+    <!-- Header -->
+    <rect width="330" height="26" rx="6" fill="#581c87" />
+    <circle cx="12" cy="13" r="3.5" fill="#c084fc" />
+    <text x="22" y="17" fill="#f3e8ff" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold">RESULTADO 📌</text>
+    <text x="250" y="17" fill="#e9d5ff" font-family="'JetBrains Mono', monospace" font-size="8">341 nodes_video</text>
+
+    <!-- Meta parameters -->
+    <g transform="translate(10, 36)">
+      <text x="0" y="10" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="7.5">filename_prefix: crekoni_online</text>
+      <text x="140" y="10" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="7.5">format: mp4</text>
+      <text x="230" y="10" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="7.5">codec: h264</text>
+    </g>
+
+    <!-- Video Display Box -->
+    <g transform="translate(12, 60)">
+      <rect width="306" height="415" rx="6" fill="url(#ltxCarInterior)" stroke="#a855f7" stroke-width="1.2" />
+
+      <!-- Video Scene: Model speaking inside car synced with audio -->
+      <path d="M 0 0 L 306 70 L 306 415 L 0 415 Z" fill="#1e293b" opacity="0.65" />
+      <circle cx="48" cy="270" r="50" fill="none" stroke="#0f172a" stroke-width="12" opacity="0.8" />
+      <rect x="210" y="20" width="85" height="180" fill="#94a3b8" opacity="0.25" />
+
+      <!-- Girl in video (talking pose) -->
+      <!-- Hair -->
+      <path d="M 115 50 C 115 20, 195 20, 195 50 C 210 85, 225 155, 220 235 C 195 225, 188 185, 185 150 C 175 190, 135 190, 125 150 C 122 185, 115 225, 90 235 C 85 155, 100 85, 115 50 Z" fill="url(#ltxHair)" />
+      <!-- Face -->
+      <path d="M 130 70 C 130 50, 180 50, 180 70 C 180 100, 172 125, 155 130 C 138 125, 130 100, 130 70 Z" fill="url(#ltxSkin)" />
+      <!-- Eyes & smiling mouth speaking -->
+      <circle cx="145" cy="85" r="3" fill="#1e293b" />
+      <circle cx="165" cy="85" r="3" fill="#1e293b" />
+      <!-- Mouth talking -->
+      <ellipse cx="155" cy="110" rx="6" ry="3" fill="#881337" />
+      <!-- Neck & Body -->
+      <path d="M 145 130 L 165 130 L 172 160 L 138 160 Z" fill="url(#ltxSkin)" />
+      <path d="M 98 160 C 98 160, 155 150, 212 160 C 235 200, 238 290, 238 340 L 72 340 C 72 290, 75 200, 98 160 Z" fill="url(#ltxSkin)" />
+      <!-- Yellow Top -->
+      <rect x="105" y="185" width="100" height="55" rx="6" fill="url(#ltxYellowTop)" />
+      <!-- Denim shorts -->
+      <rect x="96" y="290" width="118" height="50" rx="4" fill="#2563eb" opacity="0.85" />
+
+      <!-- Video Player Control Bar -->
+      <rect x="0" y="380" width="306" height="35" rx="4" fill="#000000" opacity="0.85" />
+      <!-- Play Button -->
+      <polygon points="14,392 24,398 14,404" fill="#ffffff" />
+      <text x="32" y="401" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">0:06 / 0:08</text>
+      <!-- Timeline line -->
+      <line x1="90" y1="398" x2="250" y2="398" stroke="#475569" stroke-width="3" stroke-linecap="round" />
+      <line x1="90" y1="398" x2="210" y2="398" stroke="#eab308" stroke-width="3" stroke-linecap="round" />
+      <!-- Volume icon & Fullscreen icon -->
+      <path d="M 262 393 L 267 393 L 272 390 L 272 405 L 267 402 L 262 402 Z" fill="#ffffff" />
+      <rect x="284" y="393" width="9" height="9" fill="none" stroke="#ffffff" stroke-width="1.5" />
+    </g>
+  </g>
+</svg>

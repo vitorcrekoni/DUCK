@@ -1,0 +1,549 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1376 768" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGlow10" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#18151f" />
+      <stop offset="60%" stop-color="#0f0d14" />
+      <stop offset="100%" stop-color="#07060a" />
+    </radialGradient>
+
+    <!-- Neon Glow Filters -->
+    <filter id="neonPink10" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="neonCyan10" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="neonGreen10" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- ComfyUI Canvas Dots -->
+    <pattern id="comfyGrid10" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="12" r="1.1" fill="#2a2538" opacity="0.6" />
+    </pattern>
+
+    <!-- Scanline Pattern -->
+    <pattern id="scanlines10" width="100" height="4" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="100" y2="0" stroke="#000" stroke-width="1.3" opacity="0.3" />
+    </pattern>
+
+    <!-- Model Hair & Skin Gradients -->
+    <linearGradient id="skinGrad10" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fee5d4" />
+      <stop offset="50%" stop-color="#f5caa8" />
+      <stop offset="100%" stop-color="#df9a75" />
+    </linearGradient>
+
+    <linearGradient id="hairGrad10" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef9c3" />
+      <stop offset="40%" stop-color="#fde047" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. Background ComfyUI Canvas -->
+  <rect width="1376" height="768" fill="url(#bgGlow10)" />
+  <rect width="1376" height="768" fill="url(#comfyGrid10)" />
+
+  <!-- Ambient Glows -->
+  <circle cx="240" cy="300" r="260" fill="#a855f7" opacity="0.08" />
+  <circle cx="650" cy="240" r="300" fill="#22c55e" opacity="0.06" />
+  <circle cx="1180" cy="280" r="280" fill="#06b6d4" opacity="0.07" />
+  <circle cx="688" cy="620" r="350" fill="#3b82f6" opacity="0.06" />
+
+  <!-- 2. Wires / Noodles (replicating dgsdgsdg.PNG) -->
+  <!-- Cyan wires from UPLOAD group to NODES and PROMPT -->
+  <path d="M 395 180 C 460 180, 440 220, 580 230" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.85" />
+  <path d="M 395 240 C 450 240, 480 340, 580 340" fill="none" stroke="#06b6d4" stroke-width="2.2" opacity="0.9" />
+  <path d="M 395 300 C 450 300, 360 480, 180 520" fill="none" stroke="#0ea5e9" stroke-width="2" opacity="0.8" />
+  <path d="M 395 360 C 450 360, 480 500, 460 520" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.8" />
+
+  <!-- Orange/Yellow wires from PROMPT to Sampler Nodes -->
+  <path d="M 810 180 C 860 180, 870 190, 910 190" fill="none" stroke="#f59e0b" stroke-width="2.2" opacity="0.85" />
+  <path d="M 810 240 C 870 240, 850 490, 780 520" fill="none" stroke="#f97316" stroke-width="2" opacity="0.8" />
+  <path d="M 680 430 C 720 430, 740 490, 760 520" fill="none" stroke="#eab308" stroke-width="2" opacity="0.8" />
+
+  <!-- Magenta/Pink wires between pipeline nodes -->
+  <path d="M 1040 230 C 1090 230, 1070 480, 870 520" fill="none" stroke="#ec4899" stroke-width="2" opacity="0.85" />
+  <path d="M 1040 370 C 1100 370, 1070 500, 900 520" fill="none" stroke="#d946ef" stroke-width="2" opacity="0.8" />
+
+  <!-- Blue/Purple wires to FINAL IMAGEM -->
+  <path d="M 1040 200 C 1090 200, 1080 180, 1120 180" fill="none" stroke="#818cf8" stroke-width="2.5" opacity="0.9" />
+  <path d="M 1040 400 C 1110 400, 1080 260, 1120 250" fill="none" stroke="#a855f7" stroke-width="2.2" opacity="0.85" />
+  <path d="M 1080 520 C 1140 520, 1130 380, 1135 320" fill="none" stroke="#60a5fa" stroke-width="2.2" opacity="0.85" />
+
+  <!-- 3. Top Banner Box (Dark Burgundy) -->
+  <g transform="translate(390, 50)">
+    <rect width="520" height="60" rx="4" fill="#321b22" stroke="#54232c" stroke-width="1.5" />
+    <rect width="520" height="18" rx="3" fill="#4a1d26" />
+    <text x="12" y="13" fill="#fecdd3" font-family="monospace" font-size="9" font-weight="bold">SUPER UNDRESSING V3 // UPSCALE WORKFLOW</text>
+  </g>
+
+  <!-- 4. UPLOAD GROUP (Purple/Magenta) -->
+  <g transform="translate(70, 135)">
+    <!-- Container -->
+    <rect width="330" height="340" rx="6" fill="#3a1b47" fill-opacity="0.5" stroke="#7e22ce" stroke-width="1.5" />
+    <text x="12" y="18" fill="#f5d0fe" font-family="monospace" font-size="11" font-weight="bold">UPLOAD 📌</text>
+
+    <!-- Node 1: Green Header Box with Image of Model (as in dgsdgsdg.PNG) -->
+    <g transform="translate(10, 26)">
+      <rect width="155" height="300" rx="3" fill="#1b2e23" stroke="#22c55e" stroke-width="1" />
+      <rect width="155" height="16" rx="2" fill="#15803d" />
+      <circle cx="10" cy="8" r="3" fill="#86efac" />
+      <text x="18" y="12" fill="#dcfce7" font-family="monospace" font-size="7.5" font-weight="bold">Load Image (Input)</text>
+
+      <!-- Main Input Photo: Blonde girl mirror selfie (faithful replication of dgsdgsdg.PNG) -->
+      <g transform="translate(10, 26)">
+        <rect width="135" height="260" rx="2" fill="#e2e8f0" />
+        <clipPath id="uploadModelClip">
+          <rect width="135" height="260" rx="2" />
+        </clipPath>
+        <g clip-path="url(#uploadModelClip)">
+          <!-- White room background & door/table -->
+          <rect width="135" height="260" fill="#f1f5f9" />
+          <rect x="0" y="30" width="35" height="150" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1" />
+          <rect x="0" y="170" width="135" height="90" fill="#e2e8f0" />
+          <line x1="0" y1="170" x2="135" y2="170" stroke="#94a3b8" stroke-width="1.5" />
+
+          <!-- Hair behind shoulders -->
+          <path d="M 40 50 C 40 30, 85 30, 90 50 C 98 70, 98 120, 88 150 L 42 150 C 35 120, 35 70, 40 50 Z" fill="url(#hairGrad10)" />
+
+          <!-- Face -->
+          <ellipse cx="65" cy="62" rx="16" ry="20" fill="url(#skinGrad10)" />
+
+          <!-- Blonde Hair Strands in front -->
+          <path d="M 46 45 Q 65 35 84 45 Q 88 80 82 130 Q 76 130 76 90 Q 74 60 65 52 Q 56 60 54 90 Q 54 130 48 130 Q 42 80 46 45" fill="url(#hairGrad10)" />
+
+          <!-- Eyes & Eyebrows -->
+          <path d="M 54 58 Q 58 55 62 58" stroke="#a16207" stroke-width="1.2" fill="none" />
+          <path d="M 68 58 Q 72 55 76 58" stroke="#a16207" stroke-width="1.2" fill="none" />
+          <circle cx="58" cy="62" r="1.8" fill="#0284c7" />
+          <circle cx="72" cy="62" r="1.8" fill="#0284c7" />
+          <circle cx="59" cy="61" r="0.6" fill="#fff" />
+          <circle cx="73" cy="61" r="0.6" fill="#fff" />
+
+          <!-- Pink lips & smile -->
+          <path d="M 61 74 Q 65 77 69 74" stroke="#f43f5e" stroke-width="1.4" fill="none" />
+
+          <!-- Neck -->
+          <path d="M 59 80 L 59 92 L 71 92 L 71 80 Z" fill="url(#skinGrad10)" />
+
+          <!-- Shoulders & Bare Chest / Cleavage -->
+          <path d="M 38 96 Q 65 102 92 96 L 90 125 Q 65 130 40 125 Z" fill="url(#skinGrad10)" />
+
+          <!-- Black Halter Crop Top with center metal ring (from uploaded image) -->
+          <path d="M 44 96 L 55 120 L 40 148 L 30 115 Z" fill="#09090b" />
+          <path d="M 86 96 L 75 120 L 90 148 L 100 115 Z" fill="#09090b" />
+          <circle cx="65" cy="120" r="4.5" fill="none" stroke="#e2e8f0" stroke-width="1.8" />
+          <path d="M 50 140 Q 65 146 80 140 L 78 152 Q 65 156 52 152 Z" fill="#09090b" />
+
+          <!-- Bare Midriff / Waist -->
+          <path d="M 50 150 Q 65 154 80 150 L 82 170 Q 65 174 48 170 Z" fill="url(#skinGrad10)" />
+
+          <!-- Left Arm holding phone taking mirror selfie -->
+          <path d="M 38 98 L 22 120 L 28 140 L 36 120 Z" fill="url(#skinGrad10)" />
+          <rect x="18" y="100" width="14" height="24" rx="3" fill="#e0a6aa" stroke="#9f1239" stroke-width="0.8" />
+          <circle cx="23" cy="106" r="2" fill="#09090b" />
+          <circle cx="23" cy="112" r="2" fill="#09090b" />
+
+          <!-- Right Arm resting down -->
+          <path d="M 92 98 L 102 135 L 94 175 L 88 175 L 90 135 Z" fill="url(#skinGrad10)" />
+
+          <!-- Black Tight Pants / Leggings with decorative belt rivets -->
+          <path d="M 48 170 Q 65 174 82 170 L 86 260 L 44 260 Z" fill="#09090b" />
+          <line x1="48" y1="172" x2="82" y2="172" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="2 2" />
+        </g>
+      </g>
+    </g>
+
+    <!-- Node 2: Top Right Sub-Node in UPLOAD group -->
+    <g transform="translate(175, 26)">
+      <rect width="140" height="150" rx="3" fill="#1b2e23" stroke="#22c55e" stroke-width="0.8" />
+      <rect width="140" height="14" rx="2" fill="#15803d" />
+      <text x="8" y="10" fill="#dcfce7" font-family="monospace" font-size="7" font-weight="bold">Mask / Segment</text>
+      <rect x="8" y="20" width="124" height="12" rx="2" fill="#0f1912" />
+      <rect x="8" y="36" width="124" height="12" rx="2" fill="#0f1912" />
+      <rect x="8" y="52" width="124" height="12" rx="2" fill="#0f1912" />
+      <rect x="8" y="68" width="124" height="12" rx="2" fill="#0f1912" />
+      <rect x="8" y="84" width="124" height="12" rx="2" fill="#0f1912" />
+      <rect x="8" y="100" width="124" height="12" rx="2" fill="#0f1912" />
+      <rect x="8" y="116" width="124" height="12" rx="2" fill="#0f1912" />
+    </g>
+
+    <!-- Node 3: Bottom Right Mini Preview Sub-Node in UPLOAD group -->
+    <g transform="translate(185, 185)">
+      <rect width="95" height="135" rx="3" fill="#1b2e23" stroke="#22c55e" stroke-width="0.8" />
+      <rect width="95" height="12" rx="2" fill="#15803d" />
+      <text x="6" y="9" fill="#dcfce7" font-family="monospace" font-size="6.5" font-weight="bold">Cropped / Zoom</text>
+      <rect x="8" y="18" width="79" height="110" rx="2" fill="#f1f5f9" />
+      <ellipse cx="47" cy="40" rx="10" ry="12" fill="url(#skinGrad10)" />
+      <path d="M 37 32 Q 47 25 57 32 Q 60 55 56 80 Q 52 50 37 32" fill="url(#hairGrad10)" />
+      <path d="M 40 54 L 46 68 L 36 78 Z" fill="#09090b" />
+      <path d="M 54 54 L 48 68 L 58 78 Z" fill="#09090b" />
+      <path d="M 40 76 Q 47 80 54 76 L 56 120 L 38 120 Z" fill="#09090b" />
+    </g>
+  </g>
+
+  <!-- 5. PROMPT GROUP (Dark Green) -->
+  <g transform="translate(470, 135)">
+    <rect width="340" height="340" rx="6" fill="#1c3022" fill-opacity="0.5" stroke="#15803d" stroke-width="1.5" />
+    <text x="12" y="18" fill="#bbf7d0" font-family="monospace" font-size="11" font-weight="bold">PROMPT 📌</text>
+
+    <!-- Large Green Node with Sliders / Inputs (from dgsdgsdg.PNG) -->
+    <g transform="translate(110, 26)">
+      <rect width="215" height="230" rx="3" fill="#15261c" stroke="#22c55e" stroke-width="1" />
+      <rect width="215" height="16" rx="2" fill="#166534" />
+      <text x="8" y="11" fill="#dcfce7" font-family="monospace" font-size="7.5" font-weight="bold">CLIP Text Encode (Undress / Detail)</text>
+
+      <!-- Colored Input Dots on Left -->
+      <circle cx="6" cy="34" r="3" fill="#eab308" />
+      <circle cx="6" cy="48" r="3" fill="#38bdf8" />
+      <circle cx="6" cy="62" r="3" fill="#22c55e" />
+      <circle cx="6" cy="76" r="3" fill="#f43f5e" />
+      <circle cx="6" cy="90" r="3" fill="#a855f7" />
+
+      <!-- Prompt text area -->
+      <rect x="18" y="28" width="185" height="85" rx="3" fill="#0d1812" stroke="#1b3824" stroke-width="1" />
+      <text x="24" y="44" fill="#86efac" font-family="monospace" font-size="7">undressed, natural feminine anatomy,</text>
+      <text x="24" y="58" fill="#86efac" font-family="monospace" font-size="7">flawless skin texture, 8k uhd, dslr,</text>
+      <text x="24" y="72" fill="#86efac" font-family="monospace" font-size="7">perfect body proportions, realism</text>
+
+      <!-- Sliders / Params -->
+      <rect x="18" y="122" width="185" height="10" rx="2" fill="#0d1812" />
+      <rect x="18" y="138" width="185" height="10" rx="2" fill="#0d1812" />
+      <rect x="18" y="154" width="185" height="10" rx="2" fill="#0d1812" />
+      <rect x="18" y="170" width="185" height="10" rx="2" fill="#0d1812" />
+      <rect x="18" y="186" width="185" height="10" rx="2" fill="#0d1812" />
+      <rect x="18" y="202" width="185" height="10" rx="2" fill="#0d1812" />
+    </g>
+
+    <!-- Two smaller stacked nodes on bottom left of PROMPT group -->
+    <g transform="translate(10, 110)">
+      <rect width="90" height="75" rx="3" fill="#15261c" stroke="#22c55e" stroke-width="0.8" />
+      <rect width="90" height="12" rx="2" fill="#166534" />
+      <text x="6" y="9" fill="#dcfce7" font-family="monospace" font-size="6.5" font-weight="bold">Negative Prompt</text>
+      <rect x="6" y="18" width="78" height="50" rx="2" fill="#0d1812" />
+    </g>
+
+    <g transform="translate(10, 200)">
+      <rect width="90" height="60" rx="3" fill="#15261c" stroke="#22c55e" stroke-width="0.8" />
+      <rect width="90" height="12" rx="2" fill="#166534" />
+      <text x="6" y="9" fill="#dcfce7" font-family="monospace" font-size="6.5" font-weight="bold">LoRA Control</text>
+      <rect x="6" y="18" width="78" height="36" rx="2" fill="#0d1812" />
+    </g>
+  </g>
+
+  <!-- 6. SLATE/BLUE GROUP (Processing Nodes) -->
+  <g transform="translate(845, 135)">
+    <!-- Node Top -->
+    <rect width="145" height="180" rx="3" fill="#1b2a38" stroke="#38bdf8" stroke-width="1" />
+    <rect width="145" height="16" rx="2" fill="#0369a1" />
+    <circle cx="10" cy="8" r="3" fill="#38bdf8" />
+    <text x="18" y="11" fill="#e0f2fe" font-family="monospace" font-size="7.5" font-weight="bold">KSampler (Undress)</text>
+    <rect x="8" y="24" width="129" height="10" rx="2" fill="#0f1922" />
+    <rect x="8" y="38" width="129" height="10" rx="2" fill="#0f1922" />
+    <rect x="8" y="52" width="129" height="10" rx="2" fill="#0f1922" />
+    <rect x="8" y="66" width="129" height="10" rx="2" fill="#0f1922" />
+    <rect x="8" y="80" width="129" height="10" rx="2" fill="#0f1922" />
+    <rect x="8" y="94" width="129" height="10" rx="2" fill="#0f1922" />
+    <rect x="8" y="108" width="129" height="10" rx="2" fill="#0f1922" />
+    <rect x="8" y="122" width="129" height="10" rx="2" fill="#0f1922" />
+    <rect x="8" y="136" width="129" height="10" rx="2" fill="#0f1922" />
+    <rect x="8" y="150" width="129" height="10" rx="2" fill="#0f1922" />
+
+    <!-- Node Bottom -->
+    <g transform="translate(0, 195)">
+      <rect width="145" height="100" rx="3" fill="#1b2a38" stroke="#38bdf8" stroke-width="1" />
+      <rect width="145" height="14" rx="2" fill="#0369a1" />
+      <text x="8" y="10" fill="#e0f2fe" font-family="monospace" font-size="7" font-weight="bold">VAE Decode</text>
+      <rect x="8" y="22" width="129" height="12" rx="2" fill="#0f1922" />
+      <rect x="8" y="40" width="129" height="12" rx="2" fill="#0f1922" />
+      <rect x="8" y="58" width="129" height="12" rx="2" fill="#0f1922" />
+      <rect x="8" y="76" width="129" height="12" rx="2" fill="#0f1922" />
+    </g>
+  </g>
+
+  <!-- 7. FINAL IMAGEM GROUP (Green, on Far Right) -->
+  <g transform="translate(1030, 135)">
+    <rect width="275" height="340" rx="6" fill="#1c3022" fill-opacity="0.5" stroke="#15803d" stroke-width="1.5" />
+    <text x="12" y="18" fill="#bbf7d0" font-family="monospace" font-size="11" font-weight="bold">FINAL IMAGEM 📌</text>
+
+    <!-- Preview Node -->
+    <g transform="translate(15, 26)">
+      <rect width="245" height="295" rx="3" fill="#15261c" stroke="#22c55e" stroke-width="1" />
+      <rect width="245" height="16" rx="2" fill="#166534" />
+      <circle cx="10" cy="8" r="3" fill="#86efac" />
+      <text x="18" y="12" fill="#dcfce7" font-family="monospace" font-size="8" font-weight="bold">Save / Preview Image (Output)</text>
+
+      <!-- Final Image Result Preview Screen (Upscaled Undressed Result) -->
+      <g transform="translate(15, 26)">
+        <rect width="215" height="190" rx="2" fill="#64748b" />
+        <clipPath id="finalPreviewClip">
+          <rect width="215" height="190" rx="2" />
+        </clipPath>
+        <g clip-path="url(#finalPreviewClip)">
+          <rect width="215" height="190" fill="#f8fafc" />
+          <!-- Room background -->
+          <rect width="215" height="190" fill="#e2e8f0" />
+          <!-- Model hair -->
+          <ellipse cx="107" cy="45" rx="24" ry="28" fill="url(#skinGrad10)" />
+          <path d="M 75 30 C 75 5, 140 5, 140 30 C 150 60, 148 130, 135 170 L 80 170 C 65 130, 65 60, 75 30 Z" fill="url(#hairGrad10)" />
+          <!-- Blonde strands -->
+          <path d="M 82 25 Q 107 15 132 25 Q 138 70 128 140 Q 120 140 120 95 Q 107 70 95 95 Q 95 140 86 140 Q 78 70 82 25" fill="url(#hairGrad10)" />
+          <!-- Eyes & Lips -->
+          <circle cx="98" cy="45" r="2.2" fill="#0284c7" />
+          <circle cx="116" cy="45" r="2.2" fill="#0284c7" />
+          <path d="M 102 58 Q 107 62 112 58" stroke="#f43f5e" stroke-width="1.8" fill="none" />
+          <!-- Undressed Form (Bare Skin with Artistic Studio Glow) -->
+          <path d="M 98 68 L 98 84 L 116 84 L 116 68 Z" fill="url(#skinGrad10)" />
+          <!-- Bare shoulders & curves -->
+          <path d="M 68 88 Q 107 96 146 88 L 142 190 L 72 190 Z" fill="url(#skinGrad10)" />
+          <!-- Hand selfie -->
+          <rect x="44" y="90" width="18" height="30" rx="3" fill="#e0a6aa" stroke="#9f1239" stroke-width="0.8" />
+        </g>
+        <!-- Overlay text -->
+        <rect x="6" y="6" width="90" height="16" rx="2" fill="#000" fill-opacity="0.6" />
+        <text x="12" y="17" fill="#4ade80" font-family="monospace" font-size="7.5" font-weight="bold">1920 x 1080 UHD</text>
+      </g>
+
+      <!-- Lower detail box inside Preview -->
+      <rect x="15" y="225" width="215" height="60" rx="2" fill="#0d1812" stroke="#1b3824" stroke-width="1" />
+      <text x="24" y="245" fill="#86efac" font-family="monospace" font-size="8">SUPER UNDRESSING V3 // UPSCALE 4K</text>
+      <text x="24" y="262" fill="#cbd5e1" font-family="monospace" font-size="7.5">Removedor De Roupas // RunningHub AI</text>
+    </g>
+  </g>
+
+  <!-- 8. NODES GROUP (Spanning the bottom canvas, as in dgsdgsdg.PNG) -->
+  <g transform="translate(70, 495)">
+    <rect width="1235" height="215" rx="6" fill="#1b2a38" fill-opacity="0.55" stroke="#0284c7" stroke-width="1.5" />
+    <text x="14" y="18" fill="#7dd3fc" font-family="monospace" font-size="11" font-weight="bold">NODES 📌</text>
+
+    <!-- Pipeline Row of ComfyUI Nodes (Replicating the bottom array) -->
+    <!-- Node Block 1 -->
+    <g transform="translate(15, 28)">
+      <rect width="120" height="65" rx="3" fill="#13212c" stroke="#38bdf8" stroke-width="0.8" />
+      <rect width="120" height="12" rx="2" fill="#0369a1" />
+      <text x="6" y="9" fill="#e0f2fe" font-family="monospace" font-size="6.5" font-weight="bold">Checkpoint Loader</text>
+      <rect x="6" y="18" width="108" height="9" rx="1.5" fill="#081017" />
+      <rect x="6" y="31" width="108" height="9" rx="1.5" fill="#081017" />
+      <rect x="6" y="44" width="108" height="9" rx="1.5" fill="#081017" />
+    </g>
+
+    <!-- Node Block 2 -->
+    <g transform="translate(145, 28)">
+      <rect width="125" height="65" rx="3" fill="#13212c" stroke="#38bdf8" stroke-width="0.8" />
+      <rect width="125" height="12" rx="2" fill="#0369a1" />
+      <text x="6" y="9" fill="#e0f2fe" font-family="monospace" font-size="6.5" font-weight="bold">LoRA Undress V3</text>
+      <rect x="6" y="18" width="113" height="9" rx="1.5" fill="#081017" />
+      <rect x="6" y="31" width="113" height="9" rx="1.5" fill="#081017" />
+      <rect x="6" y="44" width="113" height="9" rx="1.5" fill="#081017" />
+    </g>
+
+    <!-- Node Block 3 -->
+    <g transform="translate(280, 28)">
+      <rect width="125" height="65" rx="3" fill="#13212c" stroke="#38bdf8" stroke-width="0.8" />
+      <rect width="125" height="12" rx="2" fill="#0369a1" />
+      <text x="6" y="9" fill="#e0f2fe" font-family="monospace" font-size="6.5" font-weight="bold">IPAdapter FaceLock</text>
+      <rect x="6" y="18" width="113" height="9" rx="1.5" fill="#081017" />
+      <rect x="6" y="31" width="113" height="9" rx="1.5" fill="#081017" />
+      <rect x="6" y="44" width="113" height="9" rx="1.5" fill="#081017" />
+    </g>
+
+    <!-- Node Block 4 -->
+    <g transform="translate(415, 28)">
+      <rect width="140" height="65" rx="3" fill="#13212c" stroke="#38bdf8" stroke-width="0.8" />
+      <rect width="140" height="12" rx="2" fill="#0369a1" />
+      <text x="6" y="9" fill="#e0f2fe" font-family="monospace" font-size="6.5" font-weight="bold">Inpaint Model Conditioning</text>
+      <rect x="6" y="18" width="128" height="9" rx="1.5" fill="#081017" />
+      <rect x="6" y="31" width="128" height="9" rx="1.5" fill="#081017" />
+      <rect x="6" y="44" width="128" height="9" rx="1.5" fill="#081017" />
+    </g>
+
+    <!-- Node Block 5 -->
+    <g transform="translate(565, 28)">
+      <rect width="135" height="65" rx="3" fill="#13212c" stroke="#38bdf8" stroke-width="0.8" />
+      <rect width="135" height="12" rx="2" fill="#0369a1" />
+      <text x="6" y="9" fill="#e0f2fe" font-family="monospace" font-size="6.5" font-weight="bold">KSampler (Base Gen)</text>
+      <rect x="6" y="18" width="123" height="9" rx="1.5" fill="#081017" />
+      <rect x="6" y="31" width="123" height="9" rx="1.5" fill="#081017" />
+      <rect x="6" y="44" width="123" height="9" rx="1.5" fill="#081017" />
+    </g>
+
+    <!-- Node Block 6 -->
+    <g transform="translate(710, 28)">
+      <rect width="135" height="65" rx="3" fill="#13212c" stroke="#38bdf8" stroke-width="0.8" />
+      <rect width="135" height="12" rx="2" fill="#0369a1" />
+      <text x="6" y="9" fill="#e0f2fe" font-family="monospace" font-size="6.5" font-weight="bold">FaceDetailer (Skin Restore)</text>
+      <rect x="6" y="18" width="123" height="9" rx="1.5" fill="#081017" />
+      <rect x="6" y="31" width="123" height="9" rx="1.5" fill="#081017" />
+      <rect x="6" y="44" width="123" height="9" rx="1.5" fill="#081017" />
+    </g>
+
+    <!-- Node Block 7 -->
+    <g transform="translate(855, 28)">
+      <rect width="145" height="65" rx="3" fill="#13212c" stroke="#38bdf8" stroke-width="0.8" />
+      <rect width="145" height="12" rx="2" fill="#0369a1" />
+      <text x="6" y="9" fill="#e0f2fe" font-family="monospace" font-size="6.5" font-weight="bold">Upscale Image (By Model)</text>
+      <rect x="6" y="18" width="133" height="9" rx="1.5" fill="#081017" />
+      <rect x="6" y="31" width="133" height="9" rx="1.5" fill="#081017" />
+      <rect x="6" y="44" width="133" height="9" rx="1.5" fill="#081017" />
+    </g>
+
+    <!-- Node Block 8 (Far Right of Bottom Row) -->
+    <g transform="translate(1010, 28)">
+      <rect width="180" height="65" rx="3" fill="#13212c" stroke="#38bdf8" stroke-width="0.8" />
+      <rect width="180" height="12" rx="2" fill="#0369a1" />
+      <text x="6" y="9" fill="#e0f2fe" font-family="monospace" font-size="6.5" font-weight="bold">Ultimate SD Upscale 4K</text>
+      <rect x="6" y="18" width="168" height="9" rx="1.5" fill="#081017" />
+      <rect x="6" y="31" width="168" height="9" rx="1.5" fill="#081017" />
+      <rect x="6" y="44" width="168" height="9" rx="1.5" fill="#081017" />
+    </g>
+
+    <!-- Bottom Second Row Nodes -->
+    <g transform="translate(15, 108)">
+      <rect width="150" height="85" rx="3" fill="#13212c" stroke="#38bdf8" stroke-width="0.8" />
+      <rect width="150" height="12" rx="2" fill="#0369a1" />
+      <text x="6" y="9" fill="#e0f2fe" font-family="monospace" font-size="6.5" font-weight="bold">ControlNet Body Pose</text>
+      <rect x="6" y="18" width="138" height="12" rx="1.5" fill="#081017" />
+      <rect x="6" y="34" width="138" height="12" rx="1.5" fill="#081017" />
+      <rect x="6" y="50" width="138" height="12" rx="1.5" fill="#081017" />
+      <rect x="6" y="66" width="138" height="12" rx="1.5" fill="#081017" />
+    </g>
+
+    <g transform="translate(175, 108)">
+      <rect width="150" height="85" rx="3" fill="#13212c" stroke="#38bdf8" stroke-width="0.8" />
+      <rect width="150" height="12" rx="2" fill="#0369a1" />
+      <text x="6" y="9" fill="#e0f2fe" font-family="monospace" font-size="6.5" font-weight="bold">ControlNet Depth</text>
+      <rect x="6" y="18" width="138" height="12" rx="1.5" fill="#081017" />
+      <rect x="6" y="34" width="138" height="12" rx="1.5" fill="#081017" />
+      <rect x="6" y="50" width="138" height="12" rx="1.5" fill="#081017" />
+      <rect x="6" y="66" width="138" height="12" rx="1.5" fill="#081017" />
+    </g>
+
+    <g transform="translate(335, 108)">
+      <rect width="170" height="85" rx="3" fill="#13212c" stroke="#38bdf8" stroke-width="0.8" />
+      <rect width="170" height="12" rx="2" fill="#0369a1" />
+      <text x="6" y="9" fill="#e0f2fe" font-family="monospace" font-size="6.5" font-weight="bold">Skin Texture Refiner</text>
+      <rect x="6" y="18" width="158" height="12" rx="1.5" fill="#081017" />
+      <rect x="6" y="34" width="158" height="12" rx="1.5" fill="#081017" />
+      <rect x="6" y="50" width="158" height="12" rx="1.5" fill="#081017" />
+      <rect x="6" y="66" width="158" height="12" rx="1.5" fill="#081017" />
+    </g>
+
+    <g transform="translate(515, 108)">
+      <rect width="180" height="85" rx="3" fill="#13212c" stroke="#38bdf8" stroke-width="0.8" />
+      <rect width="180" height="12" rx="2" fill="#0369a1" />
+      <text x="6" y="9" fill="#e0f2fe" font-family="monospace" font-size="6.5" font-weight="bold">Color Match &amp; Blend</text>
+      <rect x="6" y="18" width="168" height="12" rx="1.5" fill="#081017" />
+      <rect x="6" y="34" width="168" height="12" rx="1.5" fill="#081017" />
+      <rect x="6" y="50" width="168" height="12" rx="1.5" fill="#081017" />
+      <rect x="6" y="66" width="168" height="12" rx="1.5" fill="#081017" />
+    </g>
+
+    <g transform="translate(705, 108)">
+      <rect width="220" height="85" rx="3" fill="#13212c" stroke="#38bdf8" stroke-width="0.8" />
+      <rect width="220" height="12" rx="2" fill="#0369a1" />
+      <text x="6" y="9" fill="#e0f2fe" font-family="monospace" font-size="6.5" font-weight="bold">4x-UltraSharp Upscale Pipeline</text>
+      <rect x="6" y="18" width="208" height="12" rx="1.5" fill="#081017" />
+      <rect x="6" y="34" width="208" height="12" rx="1.5" fill="#081017" />
+      <rect x="6" y="50" width="208" height="12" rx="1.5" fill="#081017" />
+      <rect x="6" y="66" width="208" height="12" rx="1.5" fill="#081017" />
+    </g>
+
+    <g transform="translate(935, 108)">
+      <rect width="255" height="85" rx="3" fill="#13212c" stroke="#38bdf8" stroke-width="0.8" />
+      <rect width="255" height="12" rx="2" fill="#0369a1" />
+      <text x="6" y="9" fill="#e0f2fe" font-family="monospace" font-size="6.5" font-weight="bold">Save &amp; Export High-Res Image</text>
+      <rect x="6" y="18" width="243" height="24" rx="2" fill="#081017" />
+      <rect x="6" y="48" width="243" height="24" rx="2" fill="#081017" />
+    </g>
+  </g>
+
+  <!-- 9. "VISUAL FUTURISTA POR CIMA DELA" (CYBERNETIC SCI-FI HUD OVERLAY) -->
+  <g id="futuristic-hud-overlay-10">
+    <!-- Cyberpunk Scanlines -->
+    <rect width="1376" height="768" fill="url(#scanlines10)" opacity="0.35" pointer-events="none" />
+
+    <!-- Neon Cyber Accents & Framing (Magenta & Cyan) -->
+    <g filter="url(#neonPink10)">
+      <!-- Top-Left Corner Bracket -->
+      <path d="M 25 55 L 25 25 L 55 25" fill="none" stroke="#d946ef" stroke-width="3" />
+      <circle cx="25" cy="25" r="2.5" fill="#d946ef" />
+      <path d="M 33 33 L 45 33" fill="none" stroke="#d946ef" stroke-width="1.5" />
+      <path d="M 33 33 L 33 45" fill="none" stroke="#d946ef" stroke-width="1.5" />
+
+      <!-- Top-Right Corner Bracket -->
+      <path d="M 1321 25 L 1351 25 L 1351 55" fill="none" stroke="#d946ef" stroke-width="3" />
+      <circle cx="1351" cy="25" r="2.5" fill="#d946ef" />
+      <path d="M 1343 33 L 1331 33" fill="none" stroke="#d946ef" stroke-width="1.5" />
+      <path d="M 1343 33 L 1343 45" fill="none" stroke="#d946ef" stroke-width="1.5" />
+
+      <!-- Bottom-Left Corner Bracket -->
+      <path d="M 25 713 L 25 743 L 55 743" fill="none" stroke="#d946ef" stroke-width="3" />
+      <circle cx="25" cy="743" r="2.5" fill="#d946ef" />
+      <path d="M 33 735 L 45 735" fill="none" stroke="#d946ef" stroke-width="1.5" />
+      <path d="M 33 735 L 33 723" fill="none" stroke="#d946ef" stroke-width="1.5" />
+
+      <!-- Bottom-Right Corner Bracket -->
+      <path d="M 1321 743 L 1351 743 L 1351 713" fill="none" stroke="#d946ef" stroke-width="3" />
+      <circle cx="1351" cy="743" r="2.5" fill="#d946ef" />
+      <path d="M 1343 735 L 1331 735" fill="none" stroke="#d946ef" stroke-width="1.5" />
+      <path d="M 1343 735 L 1343 723" fill="none" stroke="#d946ef" stroke-width="1.5" />
+    </g>
+
+    <!-- Top Telemetry HUD Badge -->
+    <g transform="translate(60, 16)">
+      <rect width="430" height="24" rx="4" fill="#0f172a" fill-opacity="0.9" stroke="#d946ef" stroke-width="1.2" />
+      <circle cx="14" cy="12" r="3.5" fill="#d946ef" filter="url(#neonPink10)" />
+      <text x="26" y="16" fill="#fdf4ff" font-family="monospace" font-size="10" font-weight="bold">COMFYUI // SUPER UNDRESSING V3 // UPSCALE 4K</text>
+    </g>
+
+    <!-- Top-Right Performance Stats -->
+    <g transform="translate(920, 16)">
+      <rect width="400" height="24" rx="4" fill="#0f172a" fill-opacity="0.9" stroke="#06b6d4" stroke-width="1.2" />
+      <circle cx="14" cy="12" r="3.5" fill="#06b6d4" filter="url(#neonCyan10)" />
+      <text x="26" y="16" fill="#cffafe" font-family="monospace" font-size="9" font-weight="bold">STATUS: RUNNINGHUB // UNDRESSING V3 ACTIVE</text>
+    </g>
+
+    <!-- Targeting Corners around UPLOAD group -->
+    <g transform="translate(70, 135)" filter="url(#neonPink10)">
+      <path d="M -6 16 L -6 -6 L 16 -6" fill="none" stroke="#ec4899" stroke-width="2" />
+      <path d="M 336 16 L 336 -6 L 314 -6" fill="none" stroke="#ec4899" stroke-width="2" />
+      <path d="M -6 324 L -6 346 L 16 346" fill="none" stroke="#ec4899" stroke-width="2" />
+      <path d="M 336 324 L 336 346 L 314 346" fill="none" stroke="#ec4899" stroke-width="2" />
+    </g>
+
+    <!-- Targeting Corners around FINAL IMAGEM group -->
+    <g transform="translate(1030, 135)" filter="url(#neonCyan10)">
+      <path d="M -6 16 L -6 -6 L 16 -6" fill="none" stroke="#06b6d4" stroke-width="2" />
+      <path d="M 281 16 L 281 -6 L 259 -6" fill="none" stroke="#06b6d4" stroke-width="2" />
+      <path d="M -6 324 L -6 346 L 16 346" fill="none" stroke="#06b6d4" stroke-width="2" />
+      <path d="M 281 324 L 281 346 L 259 346" fill="none" stroke="#06b6d4" stroke-width="2" />
+    </g>
+
+    <!-- Bottom Status Banner -->
+    <g transform="translate(420, 725)">
+      <rect width="536" height="32" rx="6" fill="#0b0f19" fill-opacity="0.95" stroke="#d946ef" stroke-width="1.2" />
+      <text x="20" y="20" fill="#fdf4ff" font-family="monospace" font-size="10.5" font-weight="bold">SUPER UNDRESSING V3 // REMOVEDOR DE ROUPAS COM UPSCALE</text>
+      <circle cx="515" cy="16" r="3.5" fill="#22c55e" filter="url(#neonGreen10)" />
+    </g>
+
+    <!-- Futuristic Laser Scan Beam -->
+    <line x1="25" y1="384" x2="1351" y2="384" stroke="#d946ef" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="16 8" />
+  </g>
+</svg>

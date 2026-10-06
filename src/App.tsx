@@ -25,6 +25,8 @@ import { GoogleProPage } from './components/GoogleProPage';
 import { GoogleProCard } from './components/GoogleProCard';
 import { AulasPage } from './components/AulasPage';
 import { CrekoniDecoderPage } from './components/CrekoniDecoderPage';
+import { PromptsPage } from './components/PromptsPage';
+import { MarcaDaguaPage } from './components/MarcaDaguaPage';
 import { WorkflowVideo18Modal } from './components/WorkflowVideo18Modal';
 import { WorkflowDancinhasModal } from './components/WorkflowDancinhasModal';
 import { WorkflowSemCensuraModal } from './components/WorkflowSemCensuraModal';
@@ -32,6 +34,14 @@ import { WorkflowUpscaleModal } from './components/WorkflowUpscaleModal';
 import { WorkflowFaceSwapModal } from './components/WorkflowFaceSwapModal';
 import { WorkflowLipSyncModal } from './components/WorkflowLipSyncModal';
 import { WorkflowPrompt2VideoModal } from './components/WorkflowPrompt2VideoModal';
+import { WorkflowDynoRemixModal } from './components/WorkflowDynoRemixModal';
+import { WorkflowLegacyKrea2Modal } from './components/WorkflowLegacyKrea2Modal';
+import { WorkflowMinimaxH3Modal } from './components/WorkflowMinimaxH3Modal';
+import { WorkflowSuperUndressingV3Modal } from './components/WorkflowSuperUndressingV3Modal';
+import { WorkflowFlux2TrocaRostoModal } from './components/WorkflowFlux2TrocaRostoModal';
+import { WorkflowQwenAioModal } from './components/WorkflowQwenAioModal';
+import { WorkflowLtxVideoRefModal } from './components/WorkflowLtxVideoRefModal';
+import { CustomCursor } from './components/CustomCursor';
 import { DecodedResult, ContactConfig } from './types';
 import {
   decodeDuckFile,
@@ -50,20 +60,27 @@ const DEFAULT_CONTACT_CONFIG: ContactConfig = {
 };
 
 // Fixed destination URLs (protected against unauthorized edits)
-const WF_VIDEO_18_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Video+%2B18';
-const WF_DANCINHAS_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Dancinhas';
-const WF_SEM_CENSURA_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Motion+Sem+Censura+%2B18';
-const WF_UPSCALE_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Cria+5+Imagens+%2B18';
-const WF_FACESWAP_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Modelo+%2B18+Nua+%2B+Upscale';
-const WF_LIPSYNC_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Fotorrealista+%2B18';
-const WF_PROMPT2VIDEO_URL = 'https://wa.me/5544991840305?text=Ol%C3%A1%2C+tenho+interesse+no+Workflow+Prompt2Video+%26+Anima%C3%A7%C3%A3o';
+const WF_UPSCALE_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 1 - Workflow Cria 5 Imagens +18')}`;
+const WF_FACESWAP_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 2 - Workflow Modelo +18 Nua + Upscale')}`;
+const WF_LIPSYNC_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 3 - Workflow Fotorrealista +18')}`;
+const WF_VIDEO_18_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 4 - Workflow DaSiWa_Wan v11 Video +18')}`;
+const WF_DANCINHAS_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 5 - 360 Rotacao Angulo Foto Qwen Manual +18')}`;
+const WF_SEM_CENSURA_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 6 - Imagen Refine 8K Super Detalhes De Pele')}`;
+const WF_DYNO_REMIX_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 7 - Wan2.2 Dyno Remix Vídeo +18')}`;
+const WF_LEGACY_KREA2_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 8 - Legacy v2 KREA2 NSFW Imagem Qualidade UHD')}`;
+const WF_MINIMAX_H3_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 9 - MinimaxH3 Vídeo +18 Com Áudio e Referencia')}`;
+const WF_SUPER_UNDRESSING_V3_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 10 - Super Undressing V3 Upscale Removedor De Roupas')}`;
+const WF_QWEN_AIO_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 11 - Workflow QWEN Aio Removedor De Roupas')}`;
+const WF_FLUX2_TROCA_ROSTO_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 12 - Workflow Flux2 + Qwen Trocas de Rosto +18')}`;
+const WF_LTX_VIDEO_REF_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 13 - Workflow LTX 2.3 Video Com Referencia Foto e Áudio')}`;
+const WF_PROMPT2VIDEO_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Workflow Prompt2Video & Animação')}`;
 
 export default function App() {
   const [items, setItems] = useState<DecodedResult[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Active page: 'home' (Principal), 'decoder' (Decodificador LSB), 'workflows' (Central de Workflows), 'ttimg' (TT-IMG Decoder V1), 'googlepro' (Conta Google AI Pro), 'aulas' (Vídeo Aulas), or 'crekonidecoder' (Sistema Unificado)
-  const [currentPage, setCurrentPage] = useState<'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas' | 'crekonidecoder'>(() => {
+  // Active page: 'home' (Principal), 'decoder' (Decodificador LSB), 'workflows' (Central de Workflows), 'ttimg' (TT-IMG Decoder V1), 'googlepro' (Conta Google AI Pro), 'aulas' (Vídeo Aulas), 'crekonidecoder' (Sistema Unificado), or 'prompts' (Galeria de Prompts)
+  const [currentPage, setCurrentPage] = useState<'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas' | 'crekonidecoder' | 'prompts'>(() => {
     if (typeof window !== 'undefined') {
       if (window.location.hash === '#decoder') return 'decoder';
       if (window.location.hash === '#workflows') return 'workflows';
@@ -71,6 +88,7 @@ export default function App() {
       if (window.location.hash === '#googlepro' || window.location.hash === '#google-pro') return 'googlepro';
       if (window.location.hash === '#aulas' || window.location.hash === '#video-aulas') return 'aulas';
       if (window.location.hash === '#crekonidecoder' || window.location.hash === '#crekoni-decoder') return 'crekonidecoder';
+      if (window.location.hash === '#prompts' || window.location.hash === '#prompt') return 'prompts';
     }
     return 'home';
   });
@@ -88,8 +106,12 @@ export default function App() {
         setCurrentPage('googlepro');
       } else if (window.location.hash === '#aulas' || window.location.hash === '#video-aulas') {
         setCurrentPage('aulas');
+      } else if (window.location.hash === '#marcadagua' || window.location.hash === '#marca-dagua') {
+        setCurrentPage('marcadagua');
       } else if (window.location.hash === '#crekonidecoder' || window.location.hash === '#crekoni-decoder') {
         setCurrentPage('crekonidecoder');
+      } else if (window.location.hash === '#prompts' || window.location.hash === '#prompt') {
+        setCurrentPage('prompts');
       } else {
         setCurrentPage('home');
       }
@@ -98,7 +120,7 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const handleNavigate = (page: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas' | 'crekonidecoder') => {
+  const handleNavigate = (page: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas' | 'crekonidecoder' | 'prompts' | 'marcadagua') => {
     setCurrentPage(page);
     window.location.hash = page === 'home' ? '#home' : `#${page}`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -127,6 +149,13 @@ export default function App() {
   const [isFaceSwapModalOpen, setIsFaceSwapModalOpen] = useState(false);
   const [isLipSyncModalOpen, setIsLipSyncModalOpen] = useState(false);
   const [isPrompt2VideoModalOpen, setIsPrompt2VideoModalOpen] = useState(false);
+  const [isDynoRemixModalOpen, setIsDynoRemixModalOpen] = useState(false);
+  const [isLegacyKrea2ModalOpen, setIsLegacyKrea2ModalOpen] = useState(false);
+  const [isMinimaxH3ModalOpen, setIsMinimaxH3ModalOpen] = useState(false);
+  const [isSuperUndressingV3ModalOpen, setIsSuperUndressingV3ModalOpen] = useState(false);
+  const [isFlux2ModalOpen, setIsFlux2ModalOpen] = useState(false);
+  const [isQwenAioModalOpen, setIsQwenAioModalOpen] = useState(false);
+  const [isLtxVideoRefModalOpen, setIsLtxVideoRefModalOpen] = useState(false);
 
   const wfVideo18Url = WF_VIDEO_18_URL;
   const wfDancinhasUrl = WF_DANCINHAS_URL;
@@ -135,6 +164,13 @@ export default function App() {
   const wfFaceSwapUrl = WF_FACESWAP_URL;
   const wfLipSyncUrl = WF_LIPSYNC_URL;
   const wfPrompt2VideoUrl = WF_PROMPT2VIDEO_URL;
+  const wfDynoRemixUrl = WF_DYNO_REMIX_URL;
+  const wfLegacyKrea2Url = WF_LEGACY_KREA2_URL;
+  const wfMinimaxH3Url = WF_MINIMAX_H3_URL;
+  const wfSuperUndressingV3Url = WF_SUPER_UNDRESSING_V3_URL;
+  const wfFlux2Url = WF_FLUX2_TROCA_ROSTO_URL;
+  const wfQwenAioUrl = WF_QWEN_AIO_URL;
+  const wfLtxVideoRefUrl = WF_LTX_VIDEO_REF_URL;
 
   const handleToggleSound = () => {
     setSoundEnabled((prev) => {
@@ -450,36 +486,35 @@ export default function App() {
                     </div>
                   </button>
 
-                  {/* 2. À Direita: VIDEO AULAS */}
+                  {/* 2. À Direita: PROMPTS IA (Cor Esverdeada) */}
                   <button
                     type="button"
-                    id="hero-card-video-aulas"
-                    onClick={() => handleNavigate('aulas')}
-                    title="Clique para acessar a página de Vídeo Aulas"
-                    className="group relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-pink-950/50 via-[#1c0d18] to-pink-950/50 hover:from-pink-900/60 hover:to-pink-900/60 border border-pink-500/40 hover:border-pink-400 shadow-[0_0_20px_rgba(244,63,94,0.15)] hover:shadow-[0_0_30px_rgba(244,63,94,0.35)] transition-all duration-300 text-left cursor-pointer"
+                    id="hero-card-prompts"
+                    onClick={() => handleNavigate('prompts')}
+                    title="Clique para acessar a Galeria de Prompts IA"
+                    className="group relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-emerald-950/60 via-[#061e13] to-emerald-950/60 hover:from-emerald-900/70 hover:to-emerald-900/70 border border-emerald-500/40 hover:border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.15)] hover:shadow-[0_0_30px_rgba(16,185,129,0.35)] transition-all duration-300 text-left cursor-pointer"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-pink-500/20 border border-pink-400/40 text-pink-300 shadow-[0_0_15px_rgba(244,63,94,0.2)] group-hover:scale-105 transition-transform shrink-0">
-                        <span className="text-2xl select-none">🎬</span>
-                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-pink-400 animate-pulse" />
+                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-105 transition-transform shrink-0">
+                        <span className="text-2xl select-none">✨</span>
+                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-pink-200 transition-colors">
-                            VIDEO AULAS
+                          <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-emerald-200 transition-colors">
+                            PROMPTS IA
                           </span>
-                          <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-pink-950 text-pink-300 border border-pink-500/30">
-                            TUTORIAIS
+                          <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-emerald-950 text-emerald-300 border border-emerald-500/30">
+                            GALERIA
                           </span>
                         </div>
-                        <p className="text-xs text-pink-200/80 font-mono mt-0.5">
-                          Treinamentos e aulas práticas passo a passo
+                        <p className="text-xs text-emerald-200/80 font-mono mt-0.5">
+                          Galeria com fotos e vídeos reais, copie prompts com 1 clique
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-pink-500/20 border border-pink-400/40 text-pink-300 group-hover:bg-pink-400 group-hover:text-black font-mono text-xs font-bold transition-all shrink-0 ml-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-pink-400 group-hover:bg-black animate-ping" />
-                      <span>EM BREVE</span>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 group-hover:bg-emerald-400 group-hover:text-black font-mono text-xs font-bold transition-all shrink-0 ml-2">
+                      <span>ENTRAR</span>
                       <span className="group-hover:translate-x-1 transition-transform">➔</span>
                     </div>
                   </button>
@@ -519,7 +554,7 @@ export default function App() {
                       </div>
 
                       <p className="text-xs sm:text-sm text-slate-300 font-mono mt-1">
-                        Os dois motores juntos: <strong className="text-cyan-300">Duck LSB</strong> + <strong className="text-amber-300">TT-IMG V1</strong> para decodificar todo tipo de arquivo em apenas uma ferramenta
+                        Os dois juntos: <strong className="text-cyan-300">Duck LSB</strong> + <strong className="text-amber-300">TT-IMG V1</strong> para decodificar todo tipo de arquivo e Imagens Feitos Com IA
                       </p>
                     </div>
                   </div>
@@ -537,78 +572,89 @@ export default function App() {
                   soundEnabled={soundEnabled}
                 />
 
-                {/* Abaixo do GooglePro: Quadros individuais Duck Decoder e TT-IMG Decoder */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
-                  {/* Quadro Duck Decoder */}
-                  <button
-                    type="button"
-                    id="hero-btn-enter-decoder"
-                    onClick={() => handleNavigate('decoder')}
-                    title="Clique para entrar na ferramenta Duck Decoder"
-                    className="group relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-cyan-950/60 via-[#0a1428] to-cyan-950/60 hover:from-cyan-900/70 hover:to-cyan-900/70 border border-cyan-500/40 hover:border-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:shadow-[0_0_30px_rgba(6,182,212,0.35)] transition-all duration-300 cursor-pointer text-left"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] group-hover:scale-105 transition-transform shrink-0">
-                        <span className="text-2xl select-none">🦆</span>
-                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping opacity-75" />
-                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-cyan-400" />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-cyan-200 transition-colors">
-                            DUCK DECODER
-                          </span>
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold text-emerald-300 bg-emerald-950/70 border border-emerald-500/40 shadow-[0_0_10px_rgba(16,185,129,0.2)] group-hover:bg-emerald-900/80 transition-all">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                            <span>ONLINE</span>
-                          </span>
-                        </div>
-                        <p className="text-xs text-slate-300 font-mono mt-0.5">
-                          Extraia arquivos ocultos em imagens PNG com precisão e velocidade
-                        </p>
-                      </div>
+                {/* Quadro VIDEO AULAS: Posicionado abaixo de GooglePro */}
+                <button
+                  type="button"
+                  id="hero-card-video-aulas"
+                  onClick={() => handleNavigate('aulas')}
+                  title="Clique para acessar a página de Vídeo Aulas"
+                  className="group relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-pink-950/50 via-[#1c0d18] to-pink-950/50 hover:from-pink-900/60 hover:to-pink-900/60 border border-pink-500/40 hover:border-pink-400 shadow-[0_0_20px_rgba(244,63,94,0.15)] hover:shadow-[0_0_30px_rgba(244,63,94,0.35)] transition-all duration-300 text-left cursor-pointer"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-pink-500/20 border border-pink-400/40 text-pink-300 shadow-[0_0_15px_rgba(244,63,94,0.2)] group-hover:scale-105 transition-transform shrink-0">
+                      <span className="text-2xl select-none">🎬</span>
+                      <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-pink-400 animate-pulse" />
                     </div>
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 group-hover:bg-cyan-400 group-hover:text-black font-mono text-xs font-bold transition-all shrink-0 ml-2">
-                      <span>ENTRAR</span>
-                      <span className="group-hover:translate-x-1 transition-transform">➔</span>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-pink-200 transition-colors">
+                          VIDEO AULAS
+                        </span>
+                        <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-pink-950 text-pink-300 border border-pink-500/30">
+                          TUTORIAIS
+                        </span>
+                      </div>
+                      <p className="text-xs text-pink-200/80 font-mono mt-0.5">
+                        Treinamentos e aulas práticas passo a passo Nordy e RunningHub
+                      </p>
                     </div>
-                  </button>
+                  </div>
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-pink-500/20 border border-pink-400/40 text-pink-300 group-hover:bg-pink-400 group-hover:text-black font-mono text-xs font-bold transition-all shrink-0 ml-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-pink-400 group-hover:bg-black animate-pulse" />
+                    <span>ASSISTIR</span>
+                    <span className="group-hover:translate-x-1 transition-transform">➔</span>
+                  </div>
+                </button>
 
-                  {/* Quadro TT-IMG DECODER */}
-                  <button
-                    type="button"
-                    id="hero-btn-enter-tt-img-decoder"
-                    onClick={() => handleNavigate('ttimg')}
-                    title="Clique para entrar no TT-IMG Decoder V1"
-                    className="group relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-amber-950/60 via-[#1b1409] to-amber-950/60 hover:from-amber-900/70 hover:to-amber-900/70 border border-amber-500/40 hover:border-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.15)] hover:shadow-[0_0_30px_rgba(245,158,11,0.35)] transition-all duration-300 cursor-pointer text-left"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.2)] group-hover:scale-105 transition-transform shrink-0">
-                        <span className="text-2xl select-none">🖼️</span>
-                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping opacity-75" />
-                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400" />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-amber-200 transition-colors">
-                            TT-IMG DECODER
-                          </span>
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold text-amber-300 bg-amber-950/80 border border-amber-500/40 shadow-[0_0_10px_rgba(245,158,11,0.2)] group-hover:bg-amber-900/80 transition-all">
-                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                            <span>ONLINE</span>
-                          </span>
-                        </div>
-                        <p className="text-xs text-slate-300 font-mono mt-0.5">
-                          Decodificador V1 LSB com remoção de marca-d'água e extração local
-                        </p>
-                      </div>
+                {/* Quadro MARCA D'ÁGUA: Estilo Futurista Cyberpunk CREKONI */}
+                <button
+                  type="button"
+                  id="hero-card-marca-dagua"
+                  onClick={() => handleNavigate('marcadagua')}
+                  title="Clique para acessar o removedor de marca d'água de vídeos e imagens"
+                  className="group relative w-full flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-cyan-950/60 via-[#071626] to-pink-950/50 hover:from-cyan-900/70 hover:to-pink-900/60 border border-cyan-500/40 hover:border-cyan-300 shadow-[0_0_20px_rgba(6,182,212,0.18)] hover:shadow-[0_0_35px_rgba(6,182,212,0.38)] transition-all duration-300 text-left cursor-pointer overflow-hidden"
+                >
+                  {/* HUD Corner Accents */}
+                  <div className="absolute top-1.5 left-1.5 w-2.5 h-2.5 border-t-2 border-l-2 border-cyan-400/60 pointer-events-none group-hover:border-cyan-300 transition-colors" />
+                  <div className="absolute top-1.5 right-1.5 w-2.5 h-2.5 border-t-2 border-r-2 border-cyan-400/60 pointer-events-none group-hover:border-cyan-300 transition-colors" />
+                  <div className="absolute bottom-1.5 left-1.5 w-2.5 h-2.5 border-b-2 border-l-2 border-cyan-400/60 pointer-events-none group-hover:border-cyan-300 transition-colors" />
+                  <div className="absolute bottom-1.5 right-1.5 w-2.5 h-2.5 border-b-2 border-r-2 border-cyan-400/60 pointer-events-none group-hover:border-cyan-300 transition-colors" />
+
+                  <div className="flex items-start sm:items-center gap-3.5">
+                    <div className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/25 to-pink-500/25 border border-cyan-400/50 text-cyan-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] group-hover:scale-105 transition-transform shrink-0 mt-0.5 sm:mt-0">
+                      <span className="text-2xl select-none">✨</span>
+                      <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
                     </div>
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 border border-amber-400/40 text-amber-300 group-hover:bg-amber-400 group-hover:text-black font-mono text-xs font-bold transition-all shrink-0 ml-2">
-                      <span>ENTRAR</span>
-                      <span className="group-hover:translate-x-1 transition-transform">➔</span>
+
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="font-orbitron font-bold text-sm sm:text-base text-white group-hover:text-cyan-200 transition-colors tracking-wide">
+                          REMOVEDOR DE MARCA D'ÁGUA
+                        </span>
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold tracking-wider bg-cyan-950 text-cyan-300 border border-cyan-400/50 shadow-[0_0_10px_rgba(6,182,212,0.25)]">
+                          IA NEURAL
+                        </span>
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold tracking-wider bg-pink-950 text-pink-300 border border-pink-500/40 shadow-[0_0_10px_rgba(244,63,94,0.25)]">
+                          VÍDEOS & FOTOS
+                        </span>
+                        <span className="hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold text-emerald-300 bg-emerald-950/70 border border-emerald-500/40">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          <span>100% LOCAL</span>
+                        </span>
+                      </div>
+
+                      <p className="text-xs sm:text-sm text-slate-300 font-mono mt-1">
+                        Apague logos e marcas com reconstituição inteligente mantendo <strong className="text-cyan-300">resolução nativa</strong>, <strong className="text-pink-300">FPS</strong> e <strong className="text-emerald-300">áudio original</strong>
+                      </p>
                     </div>
-                  </button>
-                </div>
+                  </div>
+
+                  <div className="mt-3 sm:mt-0 flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400 via-indigo-400 to-pink-400 hover:from-cyan-300 hover:to-pink-300 text-black font-mono text-xs font-bold shadow-[0_0_18px_rgba(6,182,212,0.35)] group-hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] group-hover:scale-105 transition-all shrink-0 self-end sm:self-center">
+                    <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
+                    <span>ACESSAR</span>
+                    <span className="group-hover:translate-x-1 transition-transform">➔</span>
+                  </div>
+                </button>
               </div>
             </section>
           </div>
@@ -622,6 +668,13 @@ export default function App() {
             onOpenFaceSwapModal={() => setIsFaceSwapModalOpen(true)}
             onOpenLipSyncModal={() => setIsLipSyncModalOpen(true)}
             onOpenPrompt2VideoModal={() => setIsPrompt2VideoModalOpen(true)}
+            onOpenDynoRemixModal={() => setIsDynoRemixModalOpen(true)}
+            onOpenLegacyKrea2Modal={() => setIsLegacyKrea2ModalOpen(true)}
+            onOpenMinimaxH3Modal={() => setIsMinimaxH3ModalOpen(true)}
+            onOpenSuperUndressingV3Modal={() => setIsSuperUndressingV3ModalOpen(true)}
+            onOpenFlux2Modal={() => setIsFlux2ModalOpen(true)}
+            onOpenQwenAioModal={() => setIsQwenAioModalOpen(true)}
+            onOpenLtxVideoRefModal={() => setIsLtxVideoRefModalOpen(true)}
             contactConfig={contactConfig}
           />
         ) : currentPage === 'ttimg' ? (
@@ -637,8 +690,18 @@ export default function App() {
           />
         ) : currentPage === 'aulas' ? (
           <AulasPage onBack={() => handleNavigate('home')} />
+        ) : currentPage === 'marcadagua' ? (
+          <MarcaDaguaPage
+            onBack={() => handleNavigate('home')}
+            soundEnabled={soundEnabled}
+          />
         ) : currentPage === 'crekonidecoder' ? (
           <CrekoniDecoderPage
+            onBack={() => handleNavigate('home')}
+            soundEnabled={soundEnabled}
+          />
+        ) : currentPage === 'prompts' ? (
+          <PromptsPage
             onBack={() => handleNavigate('home')}
             soundEnabled={soundEnabled}
           />
@@ -892,6 +955,58 @@ export default function App() {
         onClose={() => setIsPrompt2VideoModalOpen(false)}
         whatsappUrl={wfPrompt2VideoUrl}
       />
+
+      {/* Pop-up Modal Workflow Wan2.2 Dyno Remix Vídeo +18 (Quadro 7) */}
+      <WorkflowDynoRemixModal
+        isOpen={isDynoRemixModalOpen}
+        onClose={() => setIsDynoRemixModalOpen(false)}
+        whatsappUrl={wfDynoRemixUrl}
+      />
+
+      {/* Pop-up Modal Workflow Legacy v2 KREA2 NSFW Imagem Qualidade UHD (Quadro 8) */}
+      <WorkflowLegacyKrea2Modal
+        isOpen={isLegacyKrea2ModalOpen}
+        onClose={() => setIsLegacyKrea2ModalOpen(false)}
+        whatsappUrl={wfLegacyKrea2Url}
+      />
+
+      {/* Pop-up Modal Workflow MinimaxH3 Vídeo +18 Com Áudio e Referencia (Quadro 9) */}
+      <WorkflowMinimaxH3Modal
+        isOpen={isMinimaxH3ModalOpen}
+        onClose={() => setIsMinimaxH3ModalOpen(false)}
+        whatsappUrl={wfMinimaxH3Url}
+      />
+
+      {/* Pop-up Modal Workflow Super Undressing V3 Upscale Removedor De Roupas (Quadro 10) */}
+      <WorkflowSuperUndressingV3Modal
+        isOpen={isSuperUndressingV3ModalOpen}
+        onClose={() => setIsSuperUndressingV3ModalOpen(false)}
+        whatsappUrl={wfSuperUndressingV3Url}
+      />
+
+      {/* Pop-up Modal Workflow Flux2 Troca de Rosto +18 (Quadro 11) */}
+      <WorkflowFlux2TrocaRostoModal
+        isOpen={isFlux2ModalOpen}
+        onClose={() => setIsFlux2ModalOpen(false)}
+        whatsappUrl={wfFlux2Url}
+      />
+
+      {/* Pop-up Modal Workflow QWEN Aio (Quadro 12) */}
+      <WorkflowQwenAioModal
+        isOpen={isQwenAioModalOpen}
+        onClose={() => setIsQwenAioModalOpen(false)}
+        whatsappUrl={wfQwenAioUrl}
+      />
+
+      {/* Pop-up Modal Workflow LTX 2.3 Video Com Referencia Foto e Áudio (Quadro 13) */}
+      <WorkflowLtxVideoRefModal
+        isOpen={isLtxVideoRefModalOpen}
+        onClose={() => setIsLtxVideoRefModalOpen(false)}
+        whatsappUrl={wfLtxVideoRefUrl}
+      />
+
+      {/* Cursor Futurista Cyberpunk Azul com Rastro e Anel Interativo */}
+      <CustomCursor />
     </div>
   );
 }

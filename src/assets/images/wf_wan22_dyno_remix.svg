@@ -1,0 +1,390 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient (Deep dark cybernetic space) -->
+    <radialGradient id="dynoBg" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#1f142b" />
+      <stop offset="45%" stop-color="#130b1c" />
+      <stop offset="100%" stop-color="#08040d" />
+    </radialGradient>
+
+    <!-- Glowing Filters -->
+    <filter id="dynoGlowAmber" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="dynoGlowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="dynoGlowRose" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Comfy Grid Pattern -->
+    <pattern id="dynoGrid" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="11" cy="11" r="1.1" fill="#341b3d" opacity="0.6" />
+    </pattern>
+
+    <!-- Scanline Pattern -->
+    <pattern id="dynoScanlines" width="100" height="4" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="100" y2="0" stroke="#000" stroke-width="1.2" opacity="0.3" />
+    </pattern>
+
+    <!-- Model Skin Gradient -->
+    <linearGradient id="dynoSkin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffeedf" />
+      <stop offset="40%" stop-color="#f8cbb0" />
+      <stop offset="100%" stop-color="#dd9471" />
+    </linearGradient>
+
+    <!-- Hair Gradient -->
+    <linearGradient id="dynoHair" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3d2012" />
+      <stop offset="50%" stop-color="#78350f" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+
+    <!-- Futuristic Amber/Rose Cyber Bar Gradient -->
+    <linearGradient id="dynoHeaderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="50%" stop-color="#f43f5e" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+
+    <!-- Node Headers Gradients -->
+    <linearGradient id="dynoNodeAmber" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5a300d" />
+      <stop offset="100%" stop-color="#783c10" />
+    </linearGradient>
+
+    <linearGradient id="dynoNodePurple" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4a1a45" />
+      <stop offset="100%" stop-color="#6b2563" />
+    </linearGradient>
+
+    <linearGradient id="dynoNodeCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0e4e59" />
+      <stop offset="100%" stop-color="#146675" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. Background Canvas -->
+  <rect width="1200" height="675" fill="url(#dynoBg)" />
+  <rect width="1200" height="675" fill="url(#dynoGrid)" />
+
+  <!-- Subtle Cyber Ambience Glows -->
+  <circle cx="200" cy="180" r="160" fill="#f59e0b" opacity="0.08" filter="url(#dynoGlowAmber)" />
+  <circle cx="650" cy="300" r="220" fill="#a855f7" opacity="0.09" filter="url(#dynoGlowRose)" />
+  <circle cx="1020" cy="400" r="180" fill="#f43f5e" opacity="0.1" filter="url(#dynoGlowRose)" />
+
+  <!-- Top RunningHub ComfyUI Toolbar Bar -->
+  <rect x="0" y="0" width="1200" height="28" fill="#110917" opacity="0.95" />
+  <line x1="0" y1="28" x2="1200" y2="28" stroke="#3b1d40" stroke-width="1" />
+  
+  <g transform="translate(14, 18)">
+    <rect x="-4" y="-12" width="102" height="18" rx="4" fill="#2d131f" stroke="#f43f5e" stroke-width="1" />
+    <text x="0" y="0" fill="#fb7185" font-family="'JetBrains Mono', 'Orbitron', monospace" font-size="10.5" font-weight="900" letter-spacing="0.5">CREKONI ⚡</text>
+  </g>
+  <text x="130" y="18" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="bold">
+    RUNNINGHUB • COMFYUI <tspan fill="#f59e0b">WAN 2.2 DYNO REMIX</tspan> VÍDEO +18
+  </text>
+  
+  <g transform="translate(1040, 18)">
+    <circle cx="-10" cy="-3" r="3.5" fill="#10b981" />
+    <text x="0" y="0" fill="#34d399" font-family="'JetBrains Mono', monospace" font-size="9.5" font-weight="bold">GPU ONLINE [24GB VRAM]</text>
+  </g>
+
+  <!-- 2. Workflow Group Containers -->
+  <!-- Group Left: Input Model / Reference Video -->
+  <rect x="22" y="44" width="220" height="605" rx="8" fill="#25121b" opacity="0.55" stroke="#f43f5e" stroke-width="1.2" stroke-dasharray="5,4" />
+  <rect x="26" y="50" width="212" height="24" rx="4" fill="#3f1627" />
+  <text x="36" y="66" fill="#fecdd3" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold">Group ⚡ [INPUT / REF VIDEO]</text>
+
+  <!-- Group Center-Left: WAN 2.2 DYNO CORE -->
+  <rect x="260" y="44" width="240" height="605" rx="8" fill="#2a1610" opacity="0.55" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="5,4" />
+  <rect x="264" y="50" width="232" height="24" rx="4" fill="#4d2410" />
+  <text x="274" y="66" fill="#fef3c7" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold">Group ⚡ [WAN 2.2 DYNO ENGINE]</text>
+
+  <!-- Group Center-Right: REMIX & MOTION LORAS -->
+  <rect x="520" y="44" width="250" height="605" rx="8" fill="#241029" opacity="0.55" stroke="#c084fc" stroke-width="1.2" stroke-dasharray="5,4" />
+  <rect x="524" y="50" width="242" height="24" rx="4" fill="#43174d" />
+  <text x="534" y="66" fill="#f3e8ff" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold">Group ⚡ [REMIX &amp; MOTION SAMPLER]</text>
+
+  <!-- Group Right: OUTPUT VIDEO PREVIEW -->
+  <rect x="790" y="44" width="388" height="605" rx="8" fill="#1d0e1c" opacity="0.65" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="5,4" />
+  <rect x="794" y="50" width="380" height="24" rx="4" fill="#4a152d" />
+  <text x="806" y="66" fill="#ffe4e6" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold">OUTPUT ⚡ [WAN 2.2 REMIX 1080p +18]</text>
+
+  <!-- 3. Dynamic Curved Spline Cables (Cyberpunk High-Tech Bus) -->
+  <g opacity="0.9">
+    <!-- Cyan cables from Input to Engine -->
+    <path d="M 215 150 C 245 150, 240 170, 275 170" fill="none" stroke="#06b6d4" stroke-width="2.5" />
+    <path d="M 215 230 C 255 230, 245 280, 275 280" fill="none" stroke="#3b82f6" stroke-width="2" />
+    <path d="M 215 390 C 250 390, 245 420, 275 420" fill="none" stroke="#22d3ee" stroke-width="1.8" />
+
+    <!-- Amber & Gold cables from Engine to Sampler -->
+    <path d="M 470 170 C 500 170, 495 190, 535 190" fill="none" stroke="#f59e0b" stroke-width="2.5" />
+    <path d="M 470 240 C 510 240, 500 290, 535 290" fill="none" stroke="#fbbf24" stroke-width="2" />
+    <path d="M 470 330 C 515 330, 505 380, 535 380" fill="none" stroke="#ea580c" stroke-width="2" />
+    <path d="M 470 480 C 510 480, 500 520, 535 520" fill="none" stroke="#f97316" stroke-width="2.2" />
+
+    <!-- Purple & Rose cables to Video Preview Display -->
+    <path d="M 740 210 C 770 210, 765 240, 805 240" fill="none" stroke="#a855f7" stroke-width="2.8" />
+    <path d="M 740 280 C 780 280, 770 320, 805 320" fill="none" stroke="#ec4899" stroke-width="2.4" />
+    <path d="M 740 370 C 785 370, 775 430, 805 430" fill="none" stroke="#f43f5e" stroke-width="2.5" />
+    <path d="M 740 490 C 775 490, 775 530, 805 530" fill="none" stroke="#fb7185" stroke-width="2" />
+  </g>
+
+  <!-- 4. ComfyUI Nodes (Left Column) -->
+  <!-- Node: Load Video / Image -->
+  <g transform="translate(32, 85)">
+    <rect width="200" height="230" rx="5" fill="#140c17" stroke="#0e7490" stroke-width="1.4" />
+    <rect width="200" height="20" rx="4" fill="url(#dynoNodeCyan)" />
+    <circle cx="10" cy="10" r="3" fill="#22d3ee" />
+    <text x="18" y="14" fill="#cffafe" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">Load Video / Image Ref</text>
+    <circle cx="190" cy="10" r="3" fill="#22c55e" />
+
+    <!-- Thumbnail inside node -->
+    <rect x="10" y="28" width="180" height="150" rx="3" fill="#0f172a" stroke="#1e293b" />
+    <!-- Mini silhouette model inside input node -->
+    <path d="M 90 60 C 80 75, 75 105, 80 135 C 88 150, 108 150, 116 135 C 120 105, 116 75, 106 60 Z" fill="url(#dynoSkin)" opacity="0.9" />
+    <circle cx="98" cy="48" r="12" fill="url(#dynoSkin)" />
+    <path d="M 90 42 C 84 55, 84 75, 88 90 C 92 75, 94 55, 96 46 Z" fill="url(#dynoHair)" />
+    <circle cx="94" cy="85" r="7" fill="url(#dynoSkin)" />
+    <circle cx="106" cy="85" r="7" fill="url(#dynoSkin)" />
+    <!-- Cyber Badge inside node -->
+    <rect x="16" y="150" width="80" height="16" rx="2" fill="#000" opacity="0.75" />
+    <text x="20" y="162" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold">SOURCE: 1080p</text>
+
+    <!-- Sliders -->
+    <rect x="10" y="190" width="180" height="8" rx="2" fill="#1e293b" />
+    <rect x="10" y="190" width="130" height="8" rx="2" fill="#06b6d4" />
+    <text x="12" y="214" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="8">FPS: 24 • Frames: 81</text>
+  </g>
+
+  <!-- Node: Prompt Sem Censura -->
+  <g transform="translate(32, 335)">
+    <rect width="200" height="175" rx="5" fill="#140c17" stroke="#e11d48" stroke-width="1.4" />
+    <rect width="200" height="20" rx="4" fill="#581628" />
+    <circle cx="10" cy="10" r="3" fill="#fb7185" />
+    <text x="18" y="14" fill="#ffe4e6" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">Prompt +18 [Wan Dyno]</text>
+    
+    <rect x="10" y="28" width="180" height="100" rx="3" fill="#090509" stroke="#371724" />
+    <text x="16" y="44" fill="#f43f5e" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">masterpiece, 8k, uncensored,</text>
+    <text x="16" y="58" fill="#fda4af" font-family="'JetBrains Mono', monospace" font-size="7.5">gorgeous model, dynamic</text>
+    <text x="16" y="72" fill="#fda4af" font-family="'JetBrains Mono', monospace" font-size="7.5">movement, wan 2.2 dyno</text>
+    <text x="16" y="86" fill="#fda4af" font-family="'JetBrains Mono', monospace" font-size="7.5">remix, detailed skin pores,</text>
+    <text x="16" y="100" fill="#fb7185" font-family="'JetBrains Mono', monospace" font-size="7.5">photorealistic, 60fps motion</text>
+
+    <rect x="10" y="140" width="180" height="18" rx="3" fill="#2d121f" />
+    <text x="16" y="153" fill="#f43f5e" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold">WEIGHT: 1.25 • CLIP L/G</text>
+  </g>
+
+  <!-- 5. ComfyUI Nodes (Center-Left: Wan 2.2 Dyno Engine) -->
+  <g transform="translate(272, 85)">
+    <rect width="216" height="320" rx="5" fill="#170d10" stroke="#f59e0b" stroke-width="1.5" />
+    <rect width="216" height="20" rx="4" fill="url(#dynoNodeAmber)" />
+    <circle cx="10" cy="10" r="3" fill="#fbbf24" />
+    <text x="18" y="14" fill="#fef3c7" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">Wan 2.2 Dyno Model Loader</text>
+    <circle cx="206" cy="10" r="3" fill="#22c55e" />
+
+    <!-- Parameters list -->
+    <rect x="10" y="30" width="196" height="24" rx="3" fill="#26140b" />
+    <text x="16" y="46" fill="#fcd34d" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold">MODEL: wan2.2_dyno_remix.safetensors</text>
+
+    <rect x="10" y="62" width="196" height="24" rx="3" fill="#26140b" />
+    <text x="16" y="78" fill="#fbbf24" font-family="'JetBrains Mono', monospace" font-size="8">PRECISION: bfloat16 (FlashAttn)</text>
+
+    <!-- Dyno Remix Graph / Curve representation -->
+    <rect x="10" y="96" width="196" height="120" rx="3" fill="#0d070b" stroke="#3d2110" />
+    <path d="M 20 190 Q 60 110, 110 140 T 195 110" fill="none" stroke="#f59e0b" stroke-width="2.5" filter="url(#dynoGlowAmber)" />
+    <path d="M 20 190 Q 60 110, 110 140 T 195 110 L 195 205 L 20 205 Z" fill="#f59e0b" opacity="0.12" />
+    <line x1="20" y1="156" x2="195" y2="156" stroke="#45230c" stroke-width="1" stroke-dasharray="2,2" />
+    <text x="25" y="112" fill="#f59e0b" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold">DYNO REMIX LATENT CURVE</text>
+
+    <rect x="10" y="226" width="196" height="18" rx="3" fill="#26140b" />
+    <text x="16" y="239" fill="#fde68a" font-family="'JetBrains Mono', monospace" font-size="8">STEPS: 35 • CFG: 6.0</text>
+
+    <rect x="10" y="250" width="196" height="18" rx="3" fill="#26140b" />
+    <text x="16" y="263" fill="#fde68a" font-family="'JetBrains Mono', monospace" font-size="8">SAMPLER: UniPC Dyno v2</text>
+
+    <rect x="10" y="276" width="196" height="30" rx="3" fill="#3b1d0a" stroke="#d97706" />
+    <text x="16" y="295" fill="#fef08a" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">STATUS: RUNNINGHUB READY ✓</text>
+  </g>
+
+  <!-- 6. ComfyUI Nodes (Center-Right: Sampler & Remix Nodes) -->
+  <g transform="translate(532, 85)">
+    <rect width="226" height="360" rx="5" fill="#150a1c" stroke="#c084fc" stroke-width="1.5" />
+    <rect width="226" height="20" rx="4" fill="url(#dynoNodePurple)" />
+    <circle cx="10" cy="10" r="3" fill="#d8b4fe" />
+    <text x="18" y="14" fill="#f3e8ff" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">KSampler [Wan Video Remix]</text>
+    <circle cx="216" cy="10" r="3" fill="#22c55e" />
+
+    <!-- Progress bar in node -->
+    <rect x="12" y="32" width="202" height="14" rx="3" fill="#271133" />
+    <rect x="12" y="32" width="168" height="14" rx="3" fill="url(#dynoHeaderGrad)" />
+    <text x="18" y="43" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold">PROGRESS: 85% [ITER 29/35]</text>
+
+    <!-- Node internal details -->
+    <rect x="12" y="56" width="202" height="170" rx="3" fill="#09040d" stroke="#361742" />
+    <!-- Visual wave / temporal coherence -->
+    <g transform="translate(18, 70)">
+      <text x="0" y="0" fill="#c084fc" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold">TEMPORAL MOTION COHERENCE:</text>
+      <rect x="0" y="8" width="190" height="48" rx="2" fill="#1b0b24" />
+      <path d="M 5 32 Q 25 12, 50 32 T 95 32 T 140 32 T 185 32" fill="none" stroke="#ec4899" stroke-width="2" />
+      <path d="M 5 32 Q 25 22, 50 32 T 95 32 T 140 32 T 185 32" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3,2" />
+      
+      <text x="0" y="72" fill="#e879f9" font-family="'JetBrains Mono', monospace" font-size="7.5">Remix Blend Factor: 0.72</text>
+      <text x="0" y="86" fill="#e879f9" font-family="'JetBrains Mono', monospace" font-size="7.5">Motion Bucket ID: 127</text>
+      <text x="0" y="100" fill="#e879f9" font-family="'JetBrains Mono', monospace" font-size="7.5">Augmentation Level: 0.04</text>
+    </g>
+
+    <!-- Output sockets -->
+    <rect x="12" y="240" width="202" height="24" rx="3" fill="#2d1238" stroke="#a855f7" />
+    <text x="18" y="256" fill="#f5d0fe" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold">OUTPUT: LATENT_VIDEO</text>
+    
+    <rect x="12" y="272" width="202" height="24" rx="3" fill="#2d1238" />
+    <text x="18" y="288" fill="#e9d5ff" font-family="'JetBrains Mono', monospace" font-size="8">VAE Decode (Wan High-Res)</text>
+  </g>
+
+  <!-- 7. OUTPUT VIDEO PREVIEW MONITOR (Right Side - Central Visual Magnet) -->
+  <g transform="translate(802, 85)">
+    <!-- Video Player Outer Shell -->
+    <rect width="364" height="480" rx="8" fill="#0d0612" stroke="#f43f5e" stroke-width="2" filter="url(#dynoGlowRose)" />
+    
+    <!-- Video Title Bar -->
+    <rect width="364" height="28" rx="6" fill="#2d0d1e" />
+    <circle cx="14" cy="14" r="4" fill="#f43f5e" />
+    <text x="24" y="18" fill="#ffe4e6" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">WAN 2.2 DYNO REMIX • PREVIEW PLAYER</text>
+    <rect x="290" y="6" width="62" height="16" rx="3" fill="#f43f5e" />
+    <text x="297" y="18" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold">+18 LIVE</text>
+
+    <!-- Main Video Frame (The Uncensored Sensual Model Showcase) -->
+    <rect x="10" y="36" width="344" height="380" rx="4" fill="#180e22" stroke="#481832" stroke-width="1.5" />
+    
+    <!-- Warm Ambient Luxury Studio / Bedroom Lighting in Video -->
+    <radialGradient id="videoAmbient" cx="45%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#4d2235" />
+      <stop offset="50%" stop-color="#241221" />
+      <stop offset="100%" stop-color="#0e0612" />
+    </radialGradient>
+    <rect x="10" y="36" width="344" height="380" fill="url(#videoAmbient)" />
+
+    <!-- Neon Rim Lights on Scene -->
+    <line x1="10" y1="36" x2="354" y2="36" stroke="#f43f5e" stroke-width="1.5" opacity="0.6" />
+    <line x1="354" y1="36" x2="354" y2="416" stroke="#f59e0b" stroke-width="1.5" opacity="0.4" />
+
+    <!-- Sensual Female Model Figure (Wan 2.2 Dyno Remix Render) -->
+    <!-- Soft Backlight Aura -->
+    <ellipse cx="178" cy="180" rx="90" ry="140" fill="#f43f5e" opacity="0.18" filter="url(#dynoGlowRose)" />
+    <ellipse cx="178" cy="180" rx="70" ry="110" fill="#f59e0b" opacity="0.14" filter="url(#dynoGlowAmber)" />
+
+    <!-- Head & Flowing Brunette Hair with Golden Highlights -->
+    <ellipse cx="178" cy="115" rx="32" ry="40" fill="url(#dynoSkin)" />
+    <!-- Voluminous Flowing Hair -->
+    <path d="M 146 110 C 138 135, 134 185, 142 240 C 150 200, 155 145, 160 115 Z" fill="url(#dynoHair)" />
+    <path d="M 210 110 C 218 135, 222 185, 214 240 C 206 200, 201 145, 196 115 Z" fill="url(#dynoHair)" />
+    <path d="M 148 100 C 158 75, 198 75, 208 100 C 215 125, 208 140, 205 150 C 200 120, 195 95, 178 95 C 160 95, 156 120, 151 150 Z" fill="url(#dynoHair)" />
+
+    <!-- Facial Contours & Features -->
+    <ellipse cx="178" cy="120" rx="20" ry="24" fill="url(#dynoSkin)" />
+    <!-- Eyes / Makeup -->
+    <path d="M 166 116 Q 171 113 175 116" stroke="#3b1d11" stroke-width="1.5" fill="none" />
+    <path d="M 181 116 Q 185 113 190 116" stroke="#3b1d11" stroke-width="1.5" fill="none" />
+    <!-- Lips (Sensual Rose) -->
+    <path d="M 174 132 Q 178 135 182 132" stroke="#be123c" stroke-width="2" fill="#e11d48" />
+
+    <!-- Elegant Neck & Shoulders -->
+    <path d="M 168 140 L 168 158 L 188 158 L 188 140 Z" fill="url(#dynoSkin)" />
+    
+    <!-- Torso / Silhouette in Dynamic Sensual Pose -->
+    <path d="M 140 162 C 150 160, 165 158, 178 158 C 191 158, 206 160, 216 162 C 226 172, 230 195, 225 230 C 220 260, 212 285, 215 330 C 205 345, 151 345, 141 330 C 144 285, 136 260, 131 230 C 126 195, 130 172, 140 162 Z" fill="url(#dynoSkin)" />
+
+    <!-- Breasts & Contours (Uncensored Aesthetic Fidelity) -->
+    <circle cx="160" cy="198" r="22" fill="url(#dynoSkin)" />
+    <circle cx="196" cy="198" r="22" fill="url(#dynoSkin)" />
+    <circle cx="158" cy="200" r="3.5" fill="#e11d48" opacity="0.85" />
+    <circle cx="198" cy="200" r="3.5" fill="#e11d48" opacity="0.85" />
+    <circle cx="158" cy="200" r="1.5" fill="#881337" />
+    <circle cx="198" cy="200" r="1.5" fill="#881337" />
+
+    <!-- Slender Waist & Hips -->
+    <path d="M 152 230 C 150 255, 142 275, 138 310 C 148 322, 168 325, 178 325 C 188 325, 208 322, 218 310 C 214 275, 206 255, 204 230 Z" fill="url(#dynoSkin)" />
+    <!-- Navel -->
+    <ellipse cx="178" cy="268" rx="1.5" ry="3" fill="#9f4d36" />
+
+    <!-- Sensual Thighs / Legs in Motion -->
+    <path d="M 140 315 C 135 345, 130 380, 148 416 L 174 416 C 172 380, 168 345, 172 315 Z" fill="url(#dynoSkin)" />
+    <path d="M 216 315 C 221 345, 226 380, 208 416 L 182 416 C 184 380, 188 345, 184 315 Z" fill="url(#dynoSkin)" />
+    
+    <!-- Watermark on Video Frame: CREKONI WAN 2.2 DYNO -->
+    <g transform="translate(18, 48)">
+      <rect width="138" height="20" rx="3" fill="#000000" opacity="0.7" />
+      <text x="6" y="14" fill="#fb7185" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">WAN 2.2 DYNO REMIX</text>
+    </g>
+
+    <!-- Scanline Overlay on Video -->
+    <rect x="10" y="36" width="344" height="380" fill="url(#dynoScanlines)" opacity="0.4" pointer-events="none" />
+
+    <!-- Video Player Playhead / Control Bar -->
+    <rect x="10" y="422" width="344" height="48" rx="4" fill="#1b0a1a" stroke="#481832" />
+    <!-- Progress Track -->
+    <rect x="20" y="432" width="324" height="5" rx="2.5" fill="#3b162f" />
+    <rect x="20" y="432" width="230" height="5" rx="2.5" fill="url(#dynoHeaderGrad)" />
+    <circle cx="250" cy="434.5" r="5" fill="#ffffff" stroke="#f43f5e" stroke-width="2" />
+
+    <!-- Transport Controls -->
+    <g transform="translate(24, 456)">
+      <!-- Play button small -->
+      <polygon points="0,-7 10,0 0,7" fill="#fb7185" />
+      <!-- Timecode -->
+      <text x="22" y="3" fill="#fecdd3" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">00:03.45 / 00:05.00</text>
+    </g>
+
+    <g transform="translate(240, 456)">
+      <text x="0" y="3" fill="#fbbf24" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">1080×1920 • 60 FPS</text>
+    </g>
+  </g>
+
+  <!-- Big Futuristic Cyber Badge / Decal Overlay in Center Bottom -->
+  <g transform="translate(28, 595)">
+    <rect width="730" height="45" rx="6" fill="#150a1b" stroke="#f59e0b" stroke-width="1.2" opacity="0.95" />
+    <rect x="0" y="0" width="6" height="45" rx="3" fill="#f59e0b" />
+    
+    <text x="18" y="20" fill="#f59e0b" font-family="'Orbitron', sans-serif" font-size="12" font-weight="900" letter-spacing="1">
+      WAN 2.2 DYNO REMIX VÍDEO +18
+    </text>
+    <text x="18" y="36" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="9.5">
+      FLUXO EXCLUSIVO RUNNINGHUB • REMIX DE MOVIMENTOS • MÁXIMA QUALIDADE CINEMATOGRÁFICA
+    </text>
+
+    <!-- Mini badges -->
+    <g transform="translate(560, 11)">
+      <rect width="70" height="22" rx="4" fill="#3b1528" stroke="#f43f5e" stroke-width="1" />
+      <text x="7" y="15" fill="#fecdd3" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">+18 VIP</text>
+    </g>
+
+    <g transform="translate(640, 11)">
+      <rect width="80" height="22" rx="4" fill="#2d1c0b" stroke="#f59e0b" stroke-width="1" />
+      <text x="8" y="15" fill="#fef08a" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">RUNNINGHUB</text>
+    </g>
+  </g>
+
+  <!-- High-Tech Corner HUD Reticles on Entire Image -->
+  <path d="M 6 22 L 6 6 L 22 6" fill="none" stroke="#f59e0b" stroke-width="2.5" />
+  <path d="M 1194 22 L 1194 6 L 1178 6" fill="none" stroke="#f59e0b" stroke-width="2.5" />
+  <path d="M 6 653 L 6 669 L 22 669" fill="none" stroke="#f43f5e" stroke-width="2.5" />
+  <path d="M 1194 653 L 1194 669 L 1178 669" fill="none" stroke="#f43f5e" stroke-width="2.5" />
+</svg>

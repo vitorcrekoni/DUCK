@@ -28,6 +28,13 @@ import wfQwenRotacao360Img from '../assets/images/wf_qwen_rotacao_360.svg';
 import wfUpscaleSemCensuraImg from '../assets/images/wf_upscale_sem_censura.svg';
 import wfFaceSwapImg from '../assets/images/wf_faceswap_1789583433199.jpg';
 import wfLipSyncImg from '../assets/images/wf_lipsync_voice_1789583443465.jpg';
+import wfWan22DynoRemixImg from '../assets/images/wf_wan22_dyno_remix.svg';
+import wfLegacyV2Krea2Img from '../assets/images/wf_legacy_v2_krea2.svg';
+import wfMinimaxH3Img from '../assets/images/wf_minimax_h3.svg';
+import wfSuperUndressingV3Img from '../assets/images/wf_super_undressing_v3.svg';
+import wfFlux2TrocaRostoImg from '../assets/images/wf_flux2_troca_rosto.svg';
+import wfQwenAioImg from '../assets/images/wf_qwen_aio.svg';
+import wfLtxVideoRefImg from '../assets/images/wf_ltx_video_ref.svg';
 
 interface WorkflowsPageProps {
   onBack: () => void;
@@ -38,6 +45,13 @@ interface WorkflowsPageProps {
   onOpenFaceSwapModal: () => void;
   onOpenLipSyncModal: () => void;
   onOpenPrompt2VideoModal?: () => void;
+  onOpenDynoRemixModal: () => void;
+  onOpenLegacyKrea2Modal: () => void;
+  onOpenMinimaxH3Modal: () => void;
+  onOpenSuperUndressingV3Modal: () => void;
+  onOpenFlux2Modal: () => void;
+  onOpenQwenAioModal: () => void;
+  onOpenLtxVideoRefModal: () => void;
   contactConfig: ContactConfig;
 }
 
@@ -51,6 +65,13 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
   onOpenUpscaleModal,
   onOpenFaceSwapModal,
   onOpenLipSyncModal,
+  onOpenDynoRemixModal,
+  onOpenLegacyKrea2Modal,
+  onOpenMinimaxH3Modal,
+  onOpenSuperUndressingV3Modal,
+  onOpenFlux2Modal,
+  onOpenQwenAioModal,
+  onOpenLtxVideoRefModal,
   contactConfig,
 }) => {
   const [showWarningModal, setShowWarningModal] = useState(true);
@@ -69,6 +90,20 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
   const isCard5Visible = selectedCategory === 'todos' || selectedCategory === 'imagem' || selectedCategory === 'sem_censura';
   // Quadro 6: Imagen Refine 8K Super Detalhes De Pele +18 Sem Censura
   const isCard6Visible = selectedCategory === 'todos' || selectedCategory === 'imagem' || selectedCategory === 'sem_censura';
+  // Quadro 7: Wan2.2 Dyno Remix Vídeo +18
+  const isCard7Visible = selectedCategory === 'todos' || selectedCategory === 'video' || selectedCategory === 'sem_censura';
+  // Quadro 8: Legacy v2 KREA2 NSFW Imagem Qualidade UHD
+  const isCard8Visible = selectedCategory === 'todos' || selectedCategory === 'imagem' || selectedCategory === 'sem_censura';
+  // Quadro 9: MinimaxH3 Vídeo +18 Com Áudio e Referencia
+  const isCard9Visible = selectedCategory === 'todos' || selectedCategory === 'video' || selectedCategory === 'sem_censura';
+  // Quadro 10: Super Undressing V3 Upscale Removedor De Roupas
+  const isCard10Visible = selectedCategory === 'todos' || selectedCategory === 'imagem' || selectedCategory === 'sem_censura';
+  // Quadro 11: Flux2 Troca de Rosto +18 (RunningHub)
+  const isCard11Visible = selectedCategory === 'todos' || selectedCategory === 'imagem' || selectedCategory === 'sem_censura';
+  // Quadro 12: QWEN Aio (RunningHub)
+  const isCard12Visible = selectedCategory === 'todos' || selectedCategory === 'imagem' || selectedCategory === 'sem_censura';
+  // Quadro 13: LTX 2.3 Video Com Referencia Foto e Áudio (Nordy / Sem Censura / Vídeo)
+  const isCard13Visible = selectedCategory === 'todos' || selectedCategory === 'video' || selectedCategory === 'sem_censura';
 
   const whatsappBaseUrl = `https://wa.me/${contactConfig.whatsappNumber.replace(/\D/g, '')}`;
 
@@ -124,7 +159,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
                   selectedCategory === 'todos' ? 'bg-black/20 text-black' : 'bg-white/10 text-slate-400'
                 }`}
               >
-                6
+                12
               </span>
             </button>
 
@@ -145,7 +180,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
                   selectedCategory === 'imagem' ? 'bg-black/30 text-white' : 'bg-white/10 text-slate-400'
                 }`}
               >
-                5
+                9
               </span>
             </button>
 
@@ -166,7 +201,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
                   selectedCategory === 'video' ? 'bg-black/30 text-white' : 'bg-white/10 text-slate-400'
                 }`}
               >
-                1
+                3
               </span>
             </button>
 
@@ -187,7 +222,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
                   selectedCategory === 'sem_censura' ? 'bg-black/30 text-white' : 'bg-white/10 text-slate-400'
                 }`}
               >
-                6
+                12
               </span>
             </button>
           </div>
@@ -598,6 +633,481 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
               type="button"
               onClick={onOpenSemCensuraModal}
               className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(59,130,246,0.3)]"
+            >
+              <Play className="w-4 h-4 fill-current" />
+              <span>VER VÍDEO & ADQUIRIR</span>
+            </button>
+          </div>
+        </div>
+        )}
+
+        {/* Quadro 7: Laranja / Âmbar Cyber (Wan2.2 Dyno Remix Vídeo +18 - Copiado do Quadro 4) */}
+        {isCard7Visible && (
+        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#190f05]/90 hover:bg-[#231508] border border-amber-500/30 hover:border-amber-400/80 shadow-[0_0_25px_rgba(245,158,11,0.15)] hover:shadow-[0_0_35px_rgba(245,158,11,0.3)] transition-all flex flex-col justify-between">
+          <div className="space-y-4">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-amber-500/50 shadow-[0_0_20px_rgba(245,158,11,0.25)]">
+              <img
+                src={wfWan22DynoRemixImg}
+                alt="Wan2.2 Dyno Remix Vídeo +18"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              {/* Sci-Fi HUD Corner Accents */}
+              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-amber-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-amber-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-amber-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-amber-400 pointer-events-none z-10" />
+
+              {/* Futuristic Cyber Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
+
+              {/* Badge de Enumeração 7 */}
+              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-amber-400/60 text-amber-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(245,158,11,0.5)]">
+                <span className="text-amber-400 text-sm font-orbitron font-black">#7</span>
+              </div>
+              <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-950/90 text-amber-300 border border-amber-500/50 shadow-[0_0_8px_rgba(245,158,11,0.4)]">
+                SEM CENSURA
+              </div>
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={onOpenDynoRemixModal}
+                  className="w-12 h-12 rounded-full bg-amber-500 text-black flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
+                >
+                  <Play className="w-5 h-5 ml-0.5 fill-current" />
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-950 text-amber-300 border border-amber-500/30">
+                  RunningHub
+                </span>
+                <span className="text-xs font-mono text-amber-400">Vídeo +18</span>
+              </div>
+              <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
+                <span className="font-mono text-amber-400 font-black">7.</span>
+                <span>Wan2.2 Dyno Remix Vídeo +18</span>
+              </h2>
+              <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
+                Transforme e remixe vídeos com o poderoso Wan 2.2 Dyno no RunningHub. Geração de vídeo ultrarrealista sem censura com consistência impressionante e qualidade cinematográfica.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-2">
+            <button
+              type="button"
+              onClick={onOpenDynoRemixModal}
+              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-gradient-to-r from-amber-600 via-orange-600 to-rose-600 hover:from-amber-500 hover:via-orange-500 hover:to-rose-500 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(245,158,11,0.3)]"
+            >
+              <Play className="w-4 h-4 fill-current" />
+              <span>VER VÍDEO & ADQUIRIR</span>
+            </button>
+          </div>
+        </div>
+        )}
+
+        {/* Quadro 8: Roxo Neon / KREA2 UHD (Legacy v2 KREA2 NSFW Imagem Qualidade UHD - Copiado do Quadro 2) */}
+        {isCard8Visible && (
+        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#120a1f]/90 hover:bg-[#180e2a] border border-purple-500/30 hover:border-purple-400/80 shadow-[0_0_25px_rgba(168,85,247,0.15)] hover:shadow-[0_0_35px_rgba(168,85,247,0.3)] transition-all flex flex-col justify-between">
+          <div className="space-y-4">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-purple-500/50 shadow-[0_0_20px_rgba(168,85,247,0.25)]">
+              <img
+                src={wfLegacyV2Krea2Img}
+                alt="Legacy v2 KREA2 NSFW Imagem Qualidade UHD"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              {/* Sci-Fi HUD Corner Accents */}
+              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-purple-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-purple-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-purple-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-purple-400 pointer-events-none z-10" />
+
+              {/* Futuristic Cyber Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
+
+              {/* Badge de Enumeração 8 */}
+              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-purple-400/60 text-purple-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(168,85,247,0.5)]">
+                <span className="text-purple-400 text-sm font-orbitron font-black">#8</span>
+              </div>
+              <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-purple-950/80 text-purple-300 border border-purple-500/40 shadow-[0_0_8px_rgba(168,85,247,0.4)]">
+                SEM CENSURA
+              </div>
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={onOpenLegacyKrea2Modal}
+                  className="w-12 h-12 rounded-full bg-purple-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(168,85,247,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
+                >
+                  <Play className="w-5 h-5 ml-0.5 fill-current" />
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-purple-950 text-purple-300 border border-purple-500/30">
+                  RunningHub
+                </span>
+                <span className="text-xs font-mono text-purple-400">Imagem +18 UHD</span>
+              </div>
+              <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
+                <span className="font-mono text-purple-400 font-black">8.</span>
+                <span>Legacy v2 KREA2 NSFW Imagem Qualidade UHD</span>
+              </h2>
+              <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
+                Crie e aperfeiçoe imagens sem censura com fotorrealismo extremo, textura de pele anatômica e super resolução UHD no poderoso padrão KREA2.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-2">
+            <button
+              type="button"
+              onClick={onOpenLegacyKrea2Modal}
+              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(168,85,247,0.3)]"
+            >
+              <Play className="w-4 h-4 fill-current" />
+              <span>VER VÍDEO & ADQUIRIR</span>
+            </button>
+          </div>
+        </div>
+        )}
+
+        {/* Quadro 9: MinimaxH3 Vídeo +18 Com Áudio e Referencia (Copiado do Quadro 7) */}
+        {isCard9Visible && (
+        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#0f0c1d]/90 hover:bg-[#16122a] border border-cyan-500/30 hover:border-cyan-400/80 shadow-[0_0_25px_rgba(6,182,212,0.15)] hover:shadow-[0_0_35px_rgba(6,182,212,0.35)] transition-all flex flex-col justify-between">
+          <div className="space-y-4">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.25)]">
+              <img
+                src={wfMinimaxH3Img}
+                alt="MinimaxH3 Vídeo +18 Com Áudio e Referencia"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              {/* Sci-Fi HUD Corner Accents */}
+              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-cyan-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-cyan-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-cyan-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-cyan-400 pointer-events-none z-10" />
+
+              {/* Futuristic Cyber Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
+
+              {/* Badge de Enumeração 9 */}
+              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-cyan-400/60 text-cyan-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(6,182,212,0.5)]">
+                <span className="text-cyan-400 text-sm font-orbitron font-black">#9</span>
+              </div>
+              <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-950/90 text-rose-300 border border-rose-500/50 shadow-[0_0_8px_rgba(244,63,94,0.4)]">
+                SEM CENSURA
+              </div>
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={onOpenMinimaxH3Modal}
+                  className="w-12 h-12 rounded-full bg-cyan-500 text-black flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
+                >
+                  <Play className="w-5 h-5 ml-0.5 fill-current" />
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-950 text-cyan-300 border border-cyan-500/30">
+                  Nordy
+                </span>
+                <span className="text-xs font-mono text-cyan-400">Vídeo +18 Com Áudio</span>
+              </div>
+              <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
+                <span className="font-mono text-cyan-400 font-black">9.</span>
+                <span>MinimaxH3 Vídeo +18 Com Áudio e Referencia</span>
+              </h2>
+              <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
+                Gere vídeos cinematográficos ultrarrealistas sem censura com áudio imersivo integrado e controle avançado de referência facial e corporal simultânea no MinimaxH3.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-2">
+            <button
+              type="button"
+              onClick={onOpenMinimaxH3Modal}
+              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-black bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 hover:from-cyan-300 hover:via-teal-300 hover:to-emerald-300 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.35)]"
+            >
+              <Play className="w-4 h-4 fill-current" />
+              <span>VER VÍDEO & ADQUIRIR</span>
+            </button>
+          </div>
+        </div>
+        )}
+
+        {/* Quadro 10: Roxo/Rosa Neon (Super Undressing V3 Upscale Removedor De Roupas - Copiado do Quadro 2) */}
+        {isCard10Visible && (
+        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#120a1f]/90 hover:bg-[#180e2a] border border-pink-500/30 hover:border-pink-400/80 shadow-[0_0_25px_rgba(236,72,153,0.15)] hover:shadow-[0_0_35px_rgba(236,72,153,0.3)] transition-all flex flex-col justify-between">
+          <div className="space-y-4">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-pink-500/50 shadow-[0_0_20px_rgba(236,72,153,0.25)]">
+              <img
+                src={wfSuperUndressingV3Img}
+                alt="Super Undressing V3 Upscale Removedor De Roupas"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              {/* Sci-Fi HUD Corner Accents */}
+              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-pink-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-pink-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-pink-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-pink-400 pointer-events-none z-10" />
+
+              {/* Futuristic Cyber Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
+
+              {/* Badge de Enumeração 10 */}
+              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-pink-400/60 text-pink-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(236,72,153,0.5)]">
+                <span className="text-pink-400 text-sm font-orbitron font-black">#10</span>
+              </div>
+              <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-950/90 text-rose-300 border border-rose-500/50 shadow-[0_0_8px_rgba(244,63,94,0.4)]">
+                SEM CENSURA
+              </div>
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={onOpenSuperUndressingV3Modal}
+                  className="w-12 h-12 rounded-full bg-pink-500 text-white flex items-center justify-center shadow-[0_0_20px_rgba(236,72,153,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
+                >
+                  <Play className="w-5 h-5 ml-0.5 fill-current" />
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-950 text-cyan-300 border border-cyan-500/30">
+                  RunningHub
+                </span>
+                <span className="text-xs font-mono text-pink-400">Imagem +18</span>
+              </div>
+              <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
+                <span className="font-mono text-pink-400 font-black">10.</span>
+                <span>Super Undressing V3 Upscale Removedor De Roupas</span>
+              </h2>
+              <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
+                Remova roupas mantendo pose, iluminação e identidade original com reconstituição anatômica perfeita e upscale ultra-nítido 4K no RunningHub.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-2">
+            <button
+              type="button"
+              onClick={onOpenSuperUndressingV3Modal}
+              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-gradient-to-r from-pink-600 via-rose-600 to-purple-600 hover:from-pink-500 hover:via-rose-500 hover:to-purple-500 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(236,72,153,0.3)]"
+            >
+              <Play className="w-4 h-4 fill-current" />
+              <span>VER VÍDEO & ADQUIRIR</span>
+            </button>
+          </div>
+        </div>
+        )}
+
+        {/* Quadro 11: QWEN Aio Remove Roupas (RunningHub - Copiado do Modelo do Quadro 2) */}
+        {isCard12Visible && (
+        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#0a1520]/90 hover:bg-[#0f1d2c] border border-cyan-500/30 hover:border-cyan-400/80 shadow-[0_0_25px_rgba(6,182,212,0.15)] hover:shadow-[0_0_35px_rgba(6,182,212,0.35)] transition-all flex flex-col justify-between">
+          <div className="space-y-4">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.25)]">
+              <img
+                src={wfQwenAioImg}
+                alt="Workflow QWEN Aio Removedor De Roupas"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              {/* Sci-Fi HUD Corner Accents */}
+              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-cyan-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-cyan-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-cyan-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-cyan-400 pointer-events-none z-10" />
+
+              {/* Futuristic Cyber Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
+
+              {/* Badge de Enumeração 11 */}
+              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-cyan-400/60 text-cyan-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(6,182,212,0.5)]">
+                <span className="text-cyan-400 text-sm font-orbitron font-black">#11</span>
+              </div>
+              <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-950/90 text-cyan-300 border border-cyan-500/50 shadow-[0_0_8px_rgba(6,182,212,0.4)]">
+                SEM CENSURA
+              </div>
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={onOpenQwenAioModal}
+                  className="w-12 h-12 rounded-full bg-cyan-500 text-black flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
+                >
+                  <Play className="w-5 h-5 ml-0.5 fill-current" />
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-950 text-cyan-300 border border-cyan-500/30">
+                  RunningHub
+                </span>
+                <span className="text-xs font-mono text-cyan-400">Imagem +18</span>
+              </div>
+              <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
+                <span className="font-mono text-cyan-400 font-black">11.</span>
+                <span>QWEN Aio Removedor De Roupas</span>
+              </h2>
+              <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
+                Workflow All-in-One no RunningHub com modelos e nodes integrados, consistência LoRA e remoção de roupas sem censura com altíssima qualidade.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-2">
+            <button
+              type="button"
+              onClick={onOpenQwenAioModal}
+              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-gradient-to-r from-cyan-600 via-teal-600 to-indigo-600 hover:from-cyan-500 hover:via-teal-500 hover:to-indigo-500 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.3)]"
+            >
+              <Play className="w-4 h-4 fill-current" />
+              <span>VER VÍDEO & ADQUIRIR</span>
+            </button>
+          </div>
+        </div>
+        )}
+
+        {/* Quadro 12: Flux2 + Qwen Trocas de Rosto +18 (RunningHub - Copiado do Modelo do Quadro 2) */}
+        {isCard11Visible && (
+        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#120a1f]/90 hover:bg-[#180e2a] border border-cyan-500/30 hover:border-cyan-400/80 shadow-[0_0_25px_rgba(6,182,212,0.15)] hover:shadow-[0_0_35px_rgba(6,182,212,0.35)] transition-all flex flex-col justify-between">
+          <div className="space-y-4">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.25)]">
+              <img
+                src={wfFlux2TrocaRostoImg}
+                alt="Workflow Flux2 + Qwen Trocas de Rosto +18"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              {/* Sci-Fi HUD Corner Accents */}
+              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-cyan-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-cyan-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-cyan-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-cyan-400 pointer-events-none z-10" />
+
+              {/* Futuristic Cyber Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
+
+              {/* Badge de Enumeração 12 */}
+              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-cyan-400/60 text-cyan-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(6,182,212,0.5)]">
+                <span className="text-cyan-400 text-sm font-orbitron font-black">#12</span>
+              </div>
+              <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-950/90 text-cyan-300 border border-cyan-500/50 shadow-[0_0_8px_rgba(6,182,212,0.4)]">
+                SEM CENSURA
+              </div>
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={onOpenFlux2Modal}
+                  className="w-12 h-12 rounded-full bg-cyan-500 text-black flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
+                >
+                  <Play className="w-5 h-5 ml-0.5 fill-current" />
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-950 text-cyan-300 border border-cyan-500/30">
+                  RunningHub
+                </span>
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-indigo-950 text-indigo-300 border border-indigo-500/30">
+                  2 Workflows Inclusos
+                </span>
+                <span className="text-xs font-mono text-cyan-400">Imagem +18</span>
+              </div>
+              <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
+                <span className="font-mono text-cyan-400 font-black">12.</span>
+                <span>Flux2 + Qwen Trocas de Rosto +18</span>
+              </h2>
+              <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
+                São 2 workflows completos para troca de rostos (Flux 2 e Qwen) no RunningHub, com máxima fidelidade, iluminação realista e perfeição sem censura.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-2">
+            <button
+              type="button"
+              onClick={onOpenFlux2Modal}
+              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-gradient-to-r from-cyan-600 via-teal-600 to-indigo-600 hover:from-cyan-500 hover:via-teal-500 hover:to-indigo-500 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.3)]"
+            >
+              <Play className="w-4 h-4 fill-current" />
+              <span>VER VÍDEO & ADQUIRIR</span>
+            </button>
+          </div>
+        </div>
+        )}
+
+        {/* Quadro 13: LTX 2.3 Video Com Referencia Foto e Áudio (Nordy / Sem Censura - Copiado do Modelo do Quadro 7) */}
+        {isCard13Visible && (
+        <div className="relative group p-5 sm:p-6 rounded-2xl bg-[#190f05]/90 hover:bg-[#231508] border border-amber-500/30 hover:border-amber-400/80 shadow-[0_0_25px_rgba(245,158,11,0.15)] hover:shadow-[0_0_35px_rgba(245,158,11,0.3)] transition-all flex flex-col justify-between">
+          <div className="space-y-4">
+            <div className="relative aspect-video rounded-xl overflow-hidden border border-amber-500/50 shadow-[0_0_20px_rgba(245,158,11,0.25)]">
+              <img
+                src={wfLtxVideoRefImg}
+                alt="Workflow LTX 2.3 Video Com Referencia Foto e Áudio"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              {/* Sci-Fi HUD Corner Accents */}
+              <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-amber-400 pointer-events-none z-10" />
+              <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-amber-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-amber-400 pointer-events-none z-10" />
+              <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-amber-400 pointer-events-none z-10" />
+
+              {/* Futuristic Cyber Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
+
+              {/* Badge de Enumeração 13 */}
+              <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-amber-400/60 text-amber-300 font-mono font-bold text-xs shadow-[0_0_12px_rgba(245,158,11,0.5)]">
+                <span className="text-amber-400 text-sm font-orbitron font-black">#13</span>
+              </div>
+              <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-950/90 text-amber-300 border border-amber-500/50 shadow-[0_0_8px_rgba(245,158,11,0.4)]">
+                SEM CENSURA
+              </div>
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={onOpenLtxVideoRefModal}
+                  className="w-12 h-12 rounded-full bg-amber-500 text-black flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.8)] group-hover:scale-110 transition-transform cursor-pointer"
+                >
+                  <Play className="w-5 h-5 ml-0.5 fill-current" />
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-950 text-amber-300 border border-amber-500/40">
+                  Nordy
+                </span>
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-950 text-rose-300 border border-rose-500/30">
+                  SEM CENSURA
+                </span>
+                <span className="text-xs font-mono text-amber-400">Vídeo +18</span>
+              </div>
+              <h2 className="mt-2 font-display font-bold text-lg text-white flex items-center gap-2">
+                <span className="font-mono text-amber-400 font-black">13.</span>
+                <span>LTX 2.3 Video Com Referencia Foto e Áudio</span>
+              </h2>
+              <p className="text-xs text-slate-300 font-mono mt-1 leading-relaxed">
+                Workflow completo no Nordy usando o modelo LTX 2.3 com foto e áudio de referência. Crie vídeos ultra-realistas com sincronia perfeita, movimentos naturais e sem nenhuma censura.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-2">
+            <button
+              type="button"
+              onClick={onOpenLtxVideoRefModal}
+              className="w-full py-2.5 rounded-xl font-mono text-xs font-bold text-white bg-gradient-to-r from-amber-600 via-orange-600 to-rose-600 hover:from-amber-500 hover:via-orange-500 hover:to-rose-500 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(245,158,11,0.3)]"
             >
               <Play className="w-4 h-4 fill-current" />
               <span>VER VÍDEO & ADQUIRIR</span>

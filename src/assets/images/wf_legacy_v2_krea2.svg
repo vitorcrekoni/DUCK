@@ -1,0 +1,446 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1376 768" width="100%" height="100%">
+  <defs>
+    <!-- Dark Sci-Fi Background Gradient (Deep Purple / Indigo Cyber Space) -->
+    <radialGradient id="bgGlowKrea8" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#180f2b" />
+      <stop offset="60%" stop-color="#0c0717" />
+      <stop offset="100%" stop-color="#05030a" />
+    </radialGradient>
+
+    <!-- Glowing Filters -->
+    <filter id="neonPurple8" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="neonCyan8" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="neonRose8" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="neonAmber8" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Comfy Grid Pattern -->
+    <pattern id="comfyGrid8" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="12" r="1.1" fill="#2d1c42" opacity="0.75" />
+    </pattern>
+
+    <!-- Scanline Pattern -->
+    <pattern id="scanlines8" width="100" height="4" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="100" y2="0" stroke="#000" stroke-width="1.3" opacity="0.32" />
+    </pattern>
+
+    <!-- Model Skin Gradient -->
+    <linearGradient id="skinGrad8" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffeedf" />
+      <stop offset="40%" stop-color="#f8cbb0" />
+      <stop offset="100%" stop-color="#dd9471" />
+    </linearGradient>
+
+    <!-- Hair Gradient -->
+    <linearGradient id="hairGrad8" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef3c7" />
+      <stop offset="40%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#9a3412" />
+    </linearGradient>
+
+    <!-- Lingerie / Silk Gradient -->
+    <linearGradient id="silkGrad8" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e879f9" />
+      <stop offset="50%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#6b21a8" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. Background ComfyUI Canvas -->
+  <rect width="1376" height="768" fill="url(#bgGlowKrea8)" />
+  <rect width="1376" height="768" fill="url(#comfyGrid8)" />
+
+  <!-- Ambient Glow Blobs -->
+  <circle cx="280" cy="220" r="260" fill="#a855f7" opacity="0.08" filter="url(#neonPurple8)" />
+  <circle cx="1060" cy="300" r="300" fill="#ec4899" opacity="0.09" filter="url(#neonRose8)" />
+  <circle cx="680" cy="560" r="250" fill="#06b6d4" opacity="0.06" filter="url(#neonCyan8)" />
+
+  <!-- Top RunningHub ComfyUI Toolbar Bar -->
+  <rect x="0" y="0" width="1376" height="30" fill="#0d0817" opacity="0.96" />
+  <line x1="0" y1="30" x2="1376" y2="30" stroke="#3b1d54" stroke-width="1.2" />
+  
+  <g transform="translate(18, 20)">
+    <rect x="-4" y="-13" width="125" height="20" rx="4" fill="#3b144a" stroke="#d946ef" stroke-width="1.2" />
+    <text x="0" y="0" fill="#f5d0fe" font-family="'JetBrains Mono', 'Orbitron', monospace" font-size="11" font-weight="900" letter-spacing="0.5">CREKONI ⚡</text>
+  </g>
+  <text x="160" y="20" fill="#e2e8f0" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold">
+    COMFYUI // <tspan fill="#c084fc">LEGACY V2 KREA2</tspan> NSFW • IMAGEM QUALIDADE <tspan fill="#f43f5e">UHD 4K/8K</tspan>
+  </text>
+  
+  <g transform="translate(1180, 20)">
+    <circle cx="-10" cy="-3.5" r="4" fill="#10b981" />
+    <text x="0" y="0" fill="#34d399" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold">KREA2 ENGINE ONLINE [UHD]</text>
+  </g>
+
+  <!-- 2. Connecting Wires (ComfyUI Noodles) -->
+  <g opacity="0.85">
+    <!-- Amber/Purple wires from Stack to Prompt & Engine -->
+    <path d="M 240 150 C 310 150, 330 130, 400 130" fill="none" stroke="#f59e0b" stroke-width="2.2" />
+    <path d="M 240 190 C 300 190, 320 210, 400 210" fill="none" stroke="#d97706" stroke-width="2" />
+    <path d="M 240 260 C 350 260, 480 150, 600 150" fill="none" stroke="#a855f7" stroke-width="2.4" />
+
+    <!-- Magenta/Rose wires from Prompt to KREA2 Sampler -->
+    <path d="M 580 190 C 690 190, 720 230, 800 250" fill="none" stroke="#ec4899" stroke-width="2.2" />
+    <path d="M 580 290 C 680 290, 710 330, 790 350" fill="none" stroke="#f43f5e" stroke-width="2.4" />
+
+    <!-- Cyan wires from IP-Adapter to UHD Refiner -->
+    <path d="M 330 550 C 430 550, 490 510, 560 510" fill="none" stroke="#06b6d4" stroke-width="2.5" />
+    <path d="M 330 590 C 450 590, 530 630, 610 630" fill="none" stroke="#38bdf8" stroke-width="2.2" />
+    <path d="M 560 510 C 690 510, 730 390, 820 290" fill="none" stroke="#06b6d4" stroke-width="2.2" />
+
+    <!-- Purple/Emerald wires from KREA2 to UHD Upscale & Preview -->
+    <path d="M 940 530 C 1000 530, 1030 570, 1070 590" fill="none" stroke="#a855f7" stroke-width="2.8" />
+    <path d="M 940 630 C 1010 630, 1040 610, 1070 630" fill="none" stroke="#10b981" stroke-width="2.5" />
+    <path d="M 1140 490 C 1190 490, 1180 550, 1140 570" fill="none" stroke="#38bdf8" stroke-width="2" />
+  </g>
+
+  <!-- 3. TOP-LEFT GROUP: PROMPT E LORAS KREA2 -->
+  <g id="group-prompt-loras-krea" transform="translate(110, 52)">
+    <rect width="630" height="340" rx="8" fill="#241333" fill-opacity="0.65" stroke="#7e22ce" stroke-width="1.5" />
+    <text x="16" y="22" fill="#f0abfc" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold">PROMPT E LORAS // LEGACY V2 KREA2 NSFW</text>
+
+    <!-- Node 1: LoRA Stack KREA2 -->
+    <g transform="translate(16, 32)">
+      <rect width="130" height="260" rx="5" fill="#150d24" stroke="#6b21a8" stroke-width="1.2" />
+      <rect width="130" height="20" rx="4" fill="#3b0764" />
+      <text x="8" y="14" fill="#e9d5ff" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">LoRA Stack NSFW UHD</text>
+      <!-- Sliders / entries -->
+      <circle cx="16" cy="38" r="4" fill="#c084fc" />
+      <rect x="28" y="35" width="88" height="6" rx="2" fill="#2e1065" />
+      <circle cx="16" cy="62" r="4" fill="#c084fc" />
+      <rect x="28" y="59" width="88" height="6" rx="2" fill="#2e1065" />
+      <circle cx="16" cy="86" r="4" fill="#c084fc" />
+      <rect x="28" y="83" width="88" height="6" rx="2" fill="#2e1065" />
+      <circle cx="16" cy="110" r="4" fill="#c084fc" />
+      <rect x="28" y="107" width="88" height="6" rx="2" fill="#2e1065" />
+      <circle cx="16" cy="134" r="4" fill="#c084fc" />
+      <rect x="28" y="131" width="88" height="6" rx="2" fill="#2e1065" />
+      <circle cx="16" cy="158" r="4" fill="#c084fc" />
+      <rect x="28" y="155" width="88" height="6" rx="2" fill="#2e1065" />
+      <circle cx="16" cy="182" r="4" fill="#c084fc" />
+      <rect x="28" y="179" width="88" height="6" rx="2" fill="#2e1065" />
+      <circle cx="16" cy="206" r="4" fill="#c084fc" />
+      <rect x="28" y="203" width="88" height="6" rx="2" fill="#2e1065" />
+      <circle cx="16" cy="230" r="4" fill="#c084fc" />
+      <rect x="28" y="227" width="88" height="6" rx="2" fill="#2e1065" />
+    </g>
+
+    <!-- Node 2: Positive Prompt Box -->
+    <g transform="translate(160, 32)">
+      <rect width="220" height="150" rx="5" fill="#230d36" stroke="#c084fc" stroke-width="1.3" />
+      <rect width="220" height="20" rx="4" fill="#581c87" />
+      <text x="8" y="14" fill="#f5d0fe" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">CLIP Text Encode (Positive Prompt)</text>
+      <!-- Prompt Lines -->
+      <rect x="12" y="32" width="195" height="8" rx="2" fill="#150821" />
+      <rect x="12" y="48" width="175" height="8" rx="2" fill="#150821" />
+      <rect x="12" y="64" width="190" height="8" rx="2" fill="#150821" />
+      <text x="14" y="94" fill="#fdf4ff" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">legacy v2, krea2 quality uhd, 8k</text>
+      <text x="14" y="110" fill="#f0abfc" font-family="'JetBrains Mono', monospace" font-size="8">photorealistic skin texture, nsfw</text>
+      <text x="14" y="126" fill="#e9d5ff" font-family="'JetBrains Mono', monospace" font-size="8">masterpiece, studio lighting, nude</text>
+    </g>
+
+    <!-- Node 3: Negative Prompt Box -->
+    <g transform="translate(160, 196)">
+      <rect width="220" height="96" rx="5" fill="#150e21" stroke="#4a1d6d" stroke-width="1.2" />
+      <rect width="220" height="18" rx="4" fill="#2e1065" />
+      <text x="8" y="13" fill="#a78bfa" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">CLIP Text Encode (Negative Prompt)</text>
+      <rect x="12" y="28" width="195" height="7" rx="2" fill="#0d0717" />
+      <rect x="12" y="42" width="180" height="7" rx="2" fill="#0d0717" />
+      <rect x="12" y="56" width="150" height="7" rx="2" fill="#0d0717" />
+      <text x="14" y="80" fill="#c4b5fd" font-family="'JetBrains Mono', monospace" font-size="7.5">blur, low quality, artifacts, watermark</text>
+    </g>
+
+    <!-- Node 4: KREA2 Sampler (Base Engine) -->
+    <g transform="translate(395, 40)">
+      <rect width="165" height="180" rx="5" fill="#1b122c" stroke="#9333ea" stroke-width="1.2" />
+      <rect width="165" height="18" rx="4" fill="#581c87" />
+      <text x="8" y="13" fill="#e9d5ff" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold">KSampler // KREA2 Engine UHD</text>
+      <rect x="10" y="28" width="145" height="7" rx="2" fill="#11091d" />
+      <rect x="10" y="42" width="145" height="7" rx="2" fill="#11091d" />
+      <rect x="10" y="56" width="145" height="7" rx="2" fill="#11091d" />
+      <rect x="10" y="70" width="145" height="7" rx="2" fill="#11091d" />
+      <rect x="10" y="84" width="145" height="7" rx="2" fill="#11091d" />
+      <rect x="10" y="98" width="145" height="7" rx="2" fill="#11091d" />
+      <rect x="10" y="112" width="145" height="7" rx="2" fill="#11091d" />
+      <rect x="10" y="126" width="145" height="7" rx="2" fill="#11091d" />
+      <rect x="10" y="140" width="145" height="7" rx="2" fill="#11091d" />
+      <rect x="10" y="154" width="145" height="7" rx="2" fill="#11091d" />
+    </g>
+
+    <!-- Node 5: Empty Latent UHD Batch -->
+    <g transform="translate(395, 235)">
+      <rect width="135" height="70" rx="5" fill="#1b122c" stroke="#7e22ce" stroke-width="1" />
+      <rect width="135" height="16" rx="4" fill="#3b0764" />
+      <text x="6" y="12" fill="#c084fc" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">Empty Latent // UHD 4K Batch</text>
+      <rect x="8" y="24" width="118" height="7" rx="2" fill="#11091d" />
+      <rect x="8" y="37" width="118" height="7" rx="2" fill="#11091d" />
+      <rect x="8" y="50" width="118" height="7" rx="2" fill="#11091d" />
+    </g>
+  </g>
+
+  <!-- 4. BOTTOM-LEFT GROUP: IP-ADAPTER IMAGEM DE REFERÊNCIA -->
+  <g id="group-ip-adapter-krea" transform="translate(110, 408)">
+    <rect width="400" height="335" rx="8" fill="#241333" fill-opacity="0.65" stroke="#7e22ce" stroke-width="1.5" />
+    <text x="16" y="22" fill="#f0abfc" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold">IP-ADAPTER — REF FOTO // KREA2 ANATOMIC</text>
+
+    <!-- Purple Load Image Node with Reference Face -->
+    <g transform="translate(16, 32)">
+      <rect width="150" height="235" rx="5" fill="#220e36" stroke="#c084fc" stroke-width="1.3" />
+      <rect width="150" height="20" rx="4" fill="#581c87" />
+      <text x="8" y="14" fill="#f5d0fe" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">Load Image // Face &amp; Body Ref</text>
+
+      <!-- Face Reference Frame -->
+      <g transform="translate(18, 32)">
+        <rect width="114" height="140" rx="4" fill="#140a22" stroke="#a855f7" stroke-width="1.3" />
+        <clipPath id="kreaRefClip8">
+          <rect width="114" height="140" rx="4" />
+        </clipPath>
+        <g clip-path="url(#kreaRefClip8)">
+          <!-- Ambient portrait backdrop -->
+          <radialGradient id="portraitBg8" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#3b1d54" />
+            <stop offset="100%" stop-color="#12091f" />
+          </radialGradient>
+          <rect width="114" height="140" fill="url(#portraitBg8)" />
+
+          <!-- Rendered Model Silhouette in ref node -->
+          <g transform="translate(12, 10)">
+            <!-- Long Blonde Hair Back -->
+            <path d="M 28 30 Q 15 50 16 85 Q 45 92 74 85 Q 75 50 62 30 Z" fill="url(#hairGrad8)" />
+            <!-- Shoulders & Torso -->
+            <path d="M 20 65 Q 45 58 70 65 Q 82 105 78 125 Q 45 128 12 125 Z" fill="url(#skinGrad8)" />
+            <!-- Face -->
+            <ellipse cx="45" cy="42" rx="17" ry="21" fill="url(#skinGrad8)" />
+            <!-- Front Hair waves -->
+            <path d="M 28 26 Q 45 18 62 26 Q 66 55 60 76 Q 45 36 28 26" fill="url(#hairGrad8)" />
+            <!-- Eyes -->
+            <circle cx="39" cy="42" r="1.6" fill="#38bdf8" />
+            <circle cx="51" cy="42" r="1.6" fill="#38bdf8" />
+            <!-- Lips -->
+            <path d="M 41 53 Q 45 56 49 53" fill="none" stroke="#f43f5e" stroke-width="1.4" />
+            <!-- Lingerie lace -->
+            <path d="M 28 78 Q 45 88 62 78 L 60 102 Q 45 108 30 102 Z" fill="url(#silkGrad8)" opacity="0.9" />
+          </g>
+        </g>
+        <rect width="114" height="140" rx="4" fill="none" stroke="#c084fc" stroke-width="1" />
+      </g>
+    </g>
+
+    <!-- Node 7: Prep Image for CLIP Vision -->
+    <g transform="translate(180, 40)">
+      <rect width="200" height="95" rx="5" fill="#1b122c" stroke="#9333ea" stroke-width="1.2" />
+      <rect width="200" height="18" rx="4" fill="#3b0764" />
+      <text x="8" y="13" fill="#e9d5ff" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold">Prep Image // Anatomic CLIP Vision</text>
+      <circle cx="16" cy="36" r="3.5" fill="#a855f7" />
+      <text x="26" y="39" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="7.5">Crop: Face &amp; Full Body Mesh</text>
+      <circle cx="16" cy="54" r="3.5" fill="#ec4899" />
+      <text x="26" y="57" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="7.5">Sharpen: UHD High Frequency</text>
+      <circle cx="16" cy="72" r="3.5" fill="#06b6d4" />
+      <text x="26" y="75" fill="#cbd5e1" font-family="'JetBrains Mono', monospace" font-size="7.5">Interpolation: Lanczos4K</text>
+    </g>
+
+    <!-- Node 8: Apply IP-Adapter KREA2 -->
+    <g transform="translate(180, 150)">
+      <rect width="200" height="115" rx="5" fill="#1b122c" stroke="#9333ea" stroke-width="1.2" />
+      <rect width="200" height="18" rx="4" fill="#581c87" />
+      <text x="8" y="13" fill="#f5d0fe" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold">Apply IP-Adapter // KREA2 Weights</text>
+      <rect x="10" y="28" width="180" height="7" rx="2" fill="#11091d" />
+      <rect x="10" y="42" width="180" height="7" rx="2" fill="#11091d" />
+      <rect x="10" y="56" width="180" height="7" rx="2" fill="#11091d" />
+      <rect x="10" y="70" width="180" height="7" rx="2" fill="#11091d" />
+      <rect x="10" y="84" width="180" height="7" rx="2" fill="#11091d" />
+      <rect x="10" y="98" width="180" height="7" rx="2" fill="#11091d" />
+    </g>
+  </g>
+
+  <!-- 5. RIGHT SECTION: KREA2 UHD GENERATION & PREVIEW DISPLAY -->
+  <g id="group-output-krea" transform="translate(760, 52)">
+    <rect width="580" height="690" rx="8" fill="#1c0f2a" fill-opacity="0.75" stroke="#ec4899" stroke-width="1.8" />
+    <text x="18" y="24" fill="#fbcfe8" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold">OUTPUT // LEGACY V2 KREA2 QUALIDADE UHD 8K</text>
+
+    <!-- Main Output Preview Window -->
+    <g transform="translate(20, 40)">
+      <rect width="540" height="420" rx="6" fill="#080310" stroke="#f43f5e" stroke-width="1.5" />
+      <clipPath id="kreaOutputClip8">
+        <rect width="540" height="420" rx="6" />
+      </clipPath>
+      <g clip-path="url(#kreaOutputClip8)">
+        <!-- Rich Cyberpunk Photo Backdrop -->
+        <radialGradient id="outBgGrad8" cx="50%" cy="40%" r="70%">
+          <stop offset="0%" stop-color="#4a154b" />
+          <stop offset="50%" stop-color="#240c31" />
+          <stop offset="100%" stop-color="#0a0312" />
+        </radialGradient>
+        <rect width="540" height="420" fill="url(#outBgGrad8)" />
+
+        <!-- Neon Studio Lights in background -->
+        <circle cx="120" cy="100" r="140" fill="#a855f7" opacity="0.25" filter="url(#neonPurple8)" />
+        <circle cx="440" cy="140" r="160" fill="#f43f5e" opacity="0.25" filter="url(#neonRose8)" />
+        <circle cx="270" cy="340" r="130" fill="#06b6d4" opacity="0.15" filter="url(#neonCyan8)" />
+
+        <!-- Rendered High Fidelity Model Figure (Legacy v2 KREA2 NSFW UHD) -->
+        <g transform="translate(180, 30)">
+          <!-- Hair Flow Back -->
+          <path d="M 45 40 Q 10 90 20 220 Q 90 240 160 220 Q 170 90 135 40 Z" fill="url(#hairGrad8)" />
+          
+          <!-- Realistic Torso & Anatomical Curves -->
+          <path d="M 50 110 Q 90 95 130 110 Q 155 170 145 270 Q 90 280 35 270 Q 25 170 50 110 Z" fill="url(#skinGrad8)" />
+          <!-- Cleavage & Body Contour Shadowing -->
+          <path d="M 80 145 Q 90 185 90 215" fill="none" stroke="#c27756" stroke-width="2.2" opacity="0.6" />
+          <ellipse cx="68" cy="165" rx="18" ry="16" fill="#e89e7e" opacity="0.35" />
+          <ellipse cx="112" cy="165" rx="18" ry="16" fill="#e89e7e" opacity="0.35" />
+
+          <!-- Face -->
+          <ellipse cx="90" cy="70" rx="30" ry="38" fill="url(#skinGrad8)" />
+          <!-- Flowing Blonde Front Bangs -->
+          <path d="M 60 40 Q 90 25 120 40 Q 128 95 118 135 Q 90 60 60 40" fill="url(#hairGrad8)" />
+          <!-- Blue Eyes -->
+          <circle cx="78" cy="68" r="2.8" fill="#38bdf8" />
+          <circle cx="102" cy="68" r="2.8" fill="#38bdf8" />
+          <circle cx="78" cy="68" r="1.2" fill="#0c4a6e" />
+          <circle cx="102" cy="68" r="1.2" fill="#0c4a6e" />
+          <!-- Glossy Lips -->
+          <path d="M 82 88 Q 90 94 98 88 Q 90 92 82 88" fill="#f43f5e" />
+
+          <!-- Delicate Luxury Silk Lingerie -->
+          <path d="M 52 145 Q 70 175 90 170 Q 110 175 128 145 L 122 185 Q 90 195 58 185 Z" fill="url(#silkGrad8)" opacity="0.88" />
+          <path d="M 55 240 Q 90 265 125 240 L 120 270 Q 90 282 60 270 Z" fill="url(#silkGrad8)" opacity="0.88" />
+        </g>
+
+        <!-- KREA2 UHD Telemetry HUD on preview -->
+        <rect x="15" y="15" width="220" height="24" rx="4" fill="#0c0517" opacity="0.85" stroke="#a855f7" stroke-width="1" />
+        <circle cx="27" cy="27" r="3" fill="#10b981" />
+        <text x="38" y="31" fill="#f5d0fe" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">KREA2 UHD 8K RENDER COMPLETE</text>
+
+        <!-- Dynamic Laser Scan line on preview -->
+        <line x1="0" y1="210" x2="540" y2="210" stroke="#f43f5e" stroke-width="1.2" stroke-opacity="0.45" stroke-dasharray="14 6" />
+      </g>
+    </g>
+
+    <!-- Node 9: KREA2 UHD Upscaler & Face Detailer Bottom -->
+    <g transform="translate(20, 480)">
+      <rect width="260" height="180" rx="5" fill="#170c24" stroke="#c084fc" stroke-width="1.3" />
+      <rect width="260" height="20" rx="4" fill="#581c87" />
+      <text x="10" y="14" fill="#f5d0fe" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">KREA2 UHD Upscale // Super Resolution</text>
+      <circle cx="16" cy="38" r="3.5" fill="#10b981" />
+      <text x="26" y="41" fill="#e2e8f0" font-family="'JetBrains Mono', monospace" font-size="8">Model: UltraSharp 8K / KREA2 Anatomic</text>
+      <circle cx="16" cy="58" r="3.5" fill="#f43f5e" />
+      <text x="26" y="61" fill="#e2e8f0" font-family="'JetBrains Mono', monospace" font-size="8">Denoise: 0.28 (Skin Texture Preservation)</text>
+      <circle cx="16" cy="78" r="3.5" fill="#38bdf8" />
+      <text x="26" y="81" fill="#e2e8f0" font-family="'JetBrains Mono', monospace" font-size="8">Scale: 4.0x Native UHD Output</text>
+      <rect x="12" y="96" width="236" height="65" rx="3" fill="#0d0615" stroke="#3b1d54" />
+      <text x="20" y="115" fill="#a855f7" font-family="'JetBrains Mono', monospace" font-size="8">Pixel Resolution: 3840 x 2160 UHD</text>
+      <text x="20" y="132" fill="#22c55e" font-family="'JetBrains Mono', monospace" font-size="8">Status: Maximum Sharpness &amp; Pores</text>
+      <text x="20" y="149" fill="#f43f5e" font-family="'JetBrains Mono', monospace" font-size="8">NSFW Filter: BYPASSED // SEM CENSURA</text>
+    </g>
+
+    <!-- Node 10: Save UHD Image Node -->
+    <g transform="translate(300, 480)">
+      <rect width="260" height="180" rx="5" fill="#170c24" stroke="#ec4899" stroke-width="1.3" />
+      <rect width="260" height="20" rx="4" fill="#831843" />
+      <text x="10" y="14" fill="#fce7f3" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">SaveImage // Ultra-HD 4K/8K NSFW</text>
+      <rect x="12" y="32" width="236" height="135" rx="3" fill="#0d0615" stroke="#3b1d54" />
+      <circle cx="24" cy="50" r="3" fill="#ec4899" />
+      <text x="34" y="53" fill="#f472b6" font-family="'JetBrains Mono', monospace" font-size="8">Filename: Legacy_v2_KREA2_UHD_%date%</text>
+      <circle cx="24" cy="70" r="3" fill="#10b981" />
+      <text x="34" y="73" fill="#a7f3d0" font-family="'JetBrains Mono', monospace" font-size="8">Lossless PNG // 32-Bit Depth Color</text>
+      <circle cx="24" cy="90" r="3" fill="#38bdf8" />
+      <text x="34" y="93" fill="#bae6fd" font-family="'JetBrains Mono', monospace" font-size="8">Embed Workflow: Yes (Editable in ComfyUI)</text>
+      <circle cx="24" cy="110" r="3" fill="#f59e0b" />
+      <text x="34" y="113" fill="#fde68a" font-family="'JetBrains Mono', monospace" font-size="8">RunningHub / Nordy Cloud Ready</text>
+      <circle cx="24" cy="130" r="3" fill="#c084fc" />
+      <text x="34" y="133" fill="#e9d5ff" font-family="'JetBrains Mono', monospace" font-size="8">VIP Instant License Unlocked</text>
+    </g>
+  </g>
+
+  <!-- 6. "VISUAL FUTURISTA POR CIMA DELA" (CYBERNETIC SCI-FI HUD OVERLAY) -->
+  <g id="futuristic-hud-overlay-8">
+    <!-- Cyberpunk Scanlines across whole canvas -->
+    <rect width="1376" height="768" fill="url(#scanlines8)" opacity="0.38" pointer-events="none" />
+
+    <!-- Neon Cyber Accents & Brackets (Purple Neon & Magenta) -->
+    <g filter="url(#neonPurple8)">
+      <!-- Top-Left Corner Bracket -->
+      <path d="M 25 55 L 25 25 L 55 25" fill="none" stroke="#c084fc" stroke-width="3" />
+      <circle cx="25" cy="25" r="3" fill="#c084fc" />
+      <path d="M 33 33 L 45 33" fill="none" stroke="#c084fc" stroke-width="1.5" />
+      <path d="M 33 33 L 33 45" fill="none" stroke="#c084fc" stroke-width="1.5" />
+
+      <!-- Top-Right Corner Bracket -->
+      <path d="M 1321 25 L 1351 25 L 1351 55" fill="none" stroke="#c084fc" stroke-width="3" />
+      <circle cx="1351" cy="25" r="3" fill="#c084fc" />
+      <path d="M 1343 33 L 1331 33" fill="none" stroke="#c084fc" stroke-width="1.5" />
+      <path d="M 1343 33 L 1343 45" fill="none" stroke="#c084fc" stroke-width="1.5" />
+
+      <!-- Bottom-Left Corner Bracket -->
+      <path d="M 25 713 L 25 743 L 55 743" fill="none" stroke="#c084fc" stroke-width="3" />
+      <circle cx="25" cy="743" r="3" fill="#c084fc" />
+      <path d="M 33 735 L 45 735" fill="none" stroke="#c084fc" stroke-width="1.5" />
+      <path d="M 33 735 L 33 723" fill="none" stroke="#c084fc" stroke-width="1.5" />
+
+      <!-- Bottom-Right Corner Bracket -->
+      <path d="M 1321 743 L 1351 743 L 1351 713" fill="none" stroke="#c084fc" stroke-width="3" />
+      <circle cx="1351" cy="743" r="3" fill="#c084fc" />
+      <path d="M 1343 735 L 1331 735" fill="none" stroke="#c084fc" stroke-width="1.5" />
+      <path d="M 1343 735 L 1343 723" fill="none" stroke="#c084fc" stroke-width="1.5" />
+    </g>
+
+    <!-- Top Telemetry HUD Badge -->
+    <g transform="translate(60, 16)">
+      <rect width="400" height="24" rx="4" fill="#0f091c" fill-opacity="0.9" stroke="#c084fc" stroke-width="1.2" />
+      <circle cx="14" cy="12" r="3.5" fill="#f43f5e" filter="url(#neonRose8)" />
+      <text x="26" y="16" fill="#f5d0fe" font-family="'JetBrains Mono', monospace" font-size="9.5" font-weight="bold">COMFYUI // LEGACY V2 KREA2 NSFW UHD</text>
+    </g>
+
+    <!-- Top-Right Performance Stats -->
+    <g transform="translate(930, 16)">
+      <rect width="390" height="24" rx="4" fill="#0f091c" fill-opacity="0.9" stroke="#10b981" stroke-width="1.2" />
+      <circle cx="14" cy="12" r="3.5" fill="#10b981" filter="url(#neonCyan8)" />
+      <text x="26" y="16" fill="#a7f3d0" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">STATUS: MAXIMUM RESOLUTION // QUALIDADE UHD</text>
+    </g>
+
+    <!-- Targeting Corners around the Generated Preview -->
+    <g transform="translate(780, 92)" filter="url(#neonPurple8)">
+      <path d="M -8 15 L -8 -8 L 15 -8" fill="none" stroke="#c084fc" stroke-width="2.5" />
+      <path d="M 548 15 L 548 -8 L 525 -8" fill="none" stroke="#c084fc" stroke-width="2.5" />
+      <path d="M -8 405 L -8 428 L 15 428" fill="none" stroke="#c084fc" stroke-width="2.5" />
+      <path d="M 548 405 L 548 428 L 525 428" fill="none" stroke="#c084fc" stroke-width="2.5" />
+    </g>
+
+    <!-- Bottom Status Banner -->
+    <g transform="translate(420, 715)">
+      <rect width="536" height="34" rx="6" fill="#0d0617" fill-opacity="0.95" stroke="#c084fc" stroke-width="1.4" />
+      <text x="20" y="21" fill="#f5d0fe" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold">LEGACY V2 KREA2 &gt;&gt; IMAGEM QUALIDADE UHD SEM CENSURA</text>
+      <circle cx="510" cy="17" r="4" fill="#10b981" filter="url(#neonCyan8)" />
+    </g>
+
+    <!-- Futuristic Laser Scan Beam -->
+    <line x1="25" y1="384" x2="1351" y2="384" stroke="#a855f7" stroke-width="1" stroke-opacity="0.4" stroke-dasharray="16 8" />
+  </g>
+</svg>

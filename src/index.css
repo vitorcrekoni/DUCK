@@ -210,3 +210,11 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #334155;
 }
+
+/* Custom Cursor styles matching antesdoleilao.store */
+@media (hover: hover) and (pointer: fine) {
+  html.cursor-custom,
+  html.cursor-custom * {
+    cursor: none !important;
+  }
+}

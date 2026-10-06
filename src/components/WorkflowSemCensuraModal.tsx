@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ArrowUpRight, CheckCircle2, Flame, Sparkles, Compass, CreditCard } from 'lucide-react';
+import { X, ArrowUpRight, CheckCircle2, Flame, Sparkles, Compass, CreditCard, MessageCircle } from 'lucide-react';
 import { PaymentCheckoutModal } from './PaymentCheckoutModal';
 
 interface WorkflowSemCensuraModalProps {
@@ -14,8 +14,10 @@ export const HOTMART_CHECKOUT_QUADRO_6 = 'https://pay.hotmart.com/I107686620S';
 export const WorkflowSemCensuraModal: React.FC<WorkflowSemCensuraModalProps> = ({
   isOpen,
   onClose,
+  whatsappUrl,
 }) => {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const finalWhatsappUrl = whatsappUrl || `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 6 - Imagen Refine 8K Super Detalhes De Pele')}`;
 
   // Close on Escape key press
   useEffect(() => {
@@ -160,35 +162,57 @@ export const WorkflowSemCensuraModal: React.FC<WorkflowSemCensuraModalProps> = (
               </div>
             </div>
 
-            {/* Bottom Action Area with Payment Popup Button (igual Quadro 5) */}
-            <div className="mt-6 pt-4 border-t border-blue-500/20 flex flex-col sm:flex-row items-center justify-between gap-3">
+            {/* Bottom Action Area with Payment Popup Button & WhatsApp Button */}
+            <div className="mt-6 pt-4 border-t border-blue-500/20 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-center sm:text-left">
                 <span className="text-xs font-mono text-blue-300 flex items-center justify-center sm:justify-start gap-1.5">
                   <CreditCard className="w-3.5 h-3.5 text-emerald-400" />
                   Adquira o Workflow VIP
                 </span>
                 <p className="text-xs text-slate-400 mt-0.5">
-                  Pagamento seguro com liberação imediata via Hotmart.
+                  Pagamento seguro com liberação imediata via Hotmart ou atendimento direto no WhatsApp.
                 </p>
               </div>
 
-              {/* Botão de pagamento Hotmart popup (igual Quadro 5) */}
-              <button
-                type="button"
-                id="btn-modal-sem-censura-comprar"
-                onClick={() => setIsCheckoutOpen(true)}
-                className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-display font-bold text-sm sm:text-base text-black bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-400 hover:via-green-400 hover:to-emerald-500 shadow-[0_0_25px_rgba(16,185,129,0.35)] hover:shadow-[0_0_35px_rgba(16,185,129,0.55)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
-              >
-                <div className="relative">
-                  <CreditCard className="w-5 h-5 text-black group-hover:scale-110 transition-transform" />
-                  <span className="absolute -top-1 -right-1 flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black/40 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-black" />
-                  </span>
-                </div>
-                <span className="text-black font-extrabold">COMPRAR O WORKFLOW R$ 5,50</span>
-                <ArrowUpRight className="w-4 h-4 text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </button>
+              {/* Botões de Compra: Hotmart e WhatsApp */}
+              <div className="flex flex-col gap-2.5 w-full sm:w-auto shrink-0">
+                {/* Botão de pagamento Hotmart popup */}
+                <button
+                  type="button"
+                  id="btn-modal-hotmart-sem-censura"
+                  onClick={() => setIsCheckoutOpen(true)}
+                  className="group relative w-full inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-xl font-display font-bold text-xs sm:text-sm text-black bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-400 hover:via-green-400 hover:to-emerald-500 shadow-[0_0_25px_rgba(16,185,129,0.35)] hover:shadow-[0_0_35px_rgba(16,185,129,0.55)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                >
+                  <div className="relative">
+                    <CreditCard className="w-4 h-4 text-black group-hover:scale-110 transition-transform" />
+                    <span className="absolute -top-1 -right-1 flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black/40 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-black" />
+                    </span>
+                  </div>
+                  <span className="text-black font-extrabold tracking-wide">COMPRAR PELA HOTMART</span>
+                  <ArrowUpRight className="w-4 h-4 text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </button>
+
+                {/* Botão de compra pelo WhatsApp */}
+                <a
+                  href={finalWhatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="btn-modal-whatsapp-sem-censura"
+                  className="group relative w-full inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-xl font-display font-bold text-xs sm:text-sm text-black bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-400 hover:via-green-400 hover:to-emerald-500 shadow-[0_0_25px_rgba(16,185,129,0.35)] hover:shadow-[0_0_35px_rgba(16,185,129,0.55)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                >
+                  <div className="relative">
+                    <MessageCircle className="w-4 h-4 text-black group-hover:scale-110 transition-transform" />
+                    <span className="absolute -top-1 -right-1 flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black/40 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-black" />
+                    </span>
+                  </div>
+                  <span className="text-black font-extrabold tracking-wide">COMPRAR PELO WHATSAPP</span>
+                  <ArrowUpRight className="w-4 h-4 text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>
