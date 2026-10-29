@@ -9,7 +9,7 @@ interface WorkflowDynoRemixModalProps {
   whatsappUrl?: string;
 }
 
-export const HOTMART_CHECKOUT_QUADRO_7 = 'https://pay.hotmart.com/U107789441N';
+export const HOTMART_CHECKOUT_QUADRO_7 = 'https://pay.hotmart.com/P108243891J';
 
 export const WorkflowDynoRemixModal: React.FC<WorkflowDynoRemixModalProps> = ({
   isOpen,
@@ -17,7 +17,7 @@ export const WorkflowDynoRemixModal: React.FC<WorkflowDynoRemixModalProps> = ({
   whatsappUrl,
 }) => {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const finalWhatsappUrl = whatsappUrl || `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 7 - Wan2.2 Dyno Remix Vídeo +18')}`;
+  const finalWhatsappUrl = whatsappUrl || `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 7 - Wan2.2 Dyno Remix Vídeo +18')}`;
 
   // Close on Escape key press
   useEffect(() => {

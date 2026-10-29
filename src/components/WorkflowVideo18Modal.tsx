@@ -9,7 +9,7 @@ interface WorkflowVideo18ModalProps {
   whatsappUrl: string;
 }
 
-export const HOTMART_CHECKOUT_QUADRO_4 = 'https://pay.hotmart.com/D107668469T?bid=1789747619342';
+export const HOTMART_CHECKOUT_QUADRO_4 = 'https://pay.hotmart.com/P108243742I';
 
 export const WorkflowVideo18Modal: React.FC<WorkflowVideo18ModalProps> = ({
   isOpen,
@@ -17,7 +17,7 @@ export const WorkflowVideo18Modal: React.FC<WorkflowVideo18ModalProps> = ({
   whatsappUrl,
 }) => {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const finalWhatsappUrl = whatsappUrl || `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 4 - Workflow DaSiWa_Wan v11 Video +18')}`;
+  const finalWhatsappUrl = whatsappUrl || `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 4 - Workflow DaSiWa_Wan v11 Video +18')}`;
 
   // Close on Escape key press
   useEffect(() => {

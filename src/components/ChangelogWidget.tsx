@@ -7,23 +7,31 @@ interface ChangelogItem {
   badgeBg: string;
   titulo: string;
   data: string;
-  paginaDestino?: 'workflows' | 'aulas' | 'prompts' | 'crekonidecoder' | 'home' | 'marcadagua';
+  paginaDestino?: 'workflows' | 'aulas' | 'prompts' | 'crekonidecoder' | 'home' | 'marcadagua' | 'contaspro';
 }
 
 interface ChangelogWidgetProps {
-  onNavigate?: (page: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas' | 'crekonidecoder' | 'prompts' | 'marcadagua') => void;
+  onNavigate?: (page: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas' | 'crekonidecoder' | 'prompts' | 'marcadagua' | 'contaspro') => void;
 }
 
 export const ChangelogWidget: React.FC<ChangelogWidgetProps> = ({ onNavigate }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const updates: ChangelogItem[] = [
+    {
+      id: '0',
+      badge: 'PÁGINA NOVA',
+      badgeBg: 'bg-[#00e676]', // Verde neon vibrante
+      titulo: 'Catálogo de Contas Pro...',
+      data: '28. Out. 2026',
+      paginaDestino: 'contaspro',
+    },
     {
       id: '1',
       badge: 'WORKFLOW',
       badgeBg: 'bg-[#2979ff]', // Azul do print
       titulo: 'LTX 2.3 Ref Foto & Áudio...',
-      data: '06. Out. 2026',
+      data: '28. Out. 2026',
       paginaDestino: 'workflows',
     },
     {
@@ -31,7 +39,7 @@ export const ChangelogWidget: React.FC<ChangelogWidgetProps> = ({ onNavigate }) 
       badge: 'AULA',
       badgeBg: 'bg-[#aa00ff]', // Roxo / Magenta do print
       titulo: 'Aula Fish Audio Vozes...',
-      data: '06. Out. 2026',
+      data: '28. Out. 2026',
       paginaDestino: 'aulas',
     },
     {
@@ -39,7 +47,7 @@ export const ChangelogWidget: React.FC<ChangelogWidgetProps> = ({ onNavigate }) 
       badge: 'WORKFLOW',
       badgeBg: 'bg-[#2979ff]', // Azul do print
       titulo: 'Flux2 + Qwen 2 Workflows...',
-      data: '05. Out. 2026',
+      data: '27. Out. 2026',
       paginaDestino: 'workflows',
     },
     {
@@ -47,7 +55,7 @@ export const ChangelogWidget: React.FC<ChangelogWidgetProps> = ({ onNavigate }) 
       badge: 'WORKFLOW',
       badgeBg: 'bg-[#2979ff]',
       titulo: 'QWEN Removedor Roupas...',
-      data: '02. Out. 2026',
+      data: '25. Out. 2026',
       paginaDestino: 'workflows',
     },
     {
@@ -55,7 +63,7 @@ export const ChangelogWidget: React.FC<ChangelogWidgetProps> = ({ onNavigate }) 
       badge: 'PROMPT',
       badgeBg: 'bg-[#ff6d00]', // Laranja cyber
       titulo: 'Galeria Prompts Novos...',
-      data: '01. Out. 2026',
+      data: '24. Out. 2026',
       paginaDestino: 'prompts',
     },
     {
@@ -63,7 +71,7 @@ export const ChangelogWidget: React.FC<ChangelogWidgetProps> = ({ onNavigate }) 
       badge: 'NOVA PÁGINA',
       badgeBg: 'bg-[#00c853]', // Verde clássico do print
       titulo: 'Removedor de Marca D\'água...',
-      data: '28. Set. 2026',
+      data: '22. Out. 2026',
       paginaDestino: 'marcadagua',
     },
     {
@@ -71,7 +79,7 @@ export const ChangelogWidget: React.FC<ChangelogWidgetProps> = ({ onNavigate }) 
       badge: 'NOVA PÁGINA',
       badgeBg: 'bg-[#00b4d8]', // Ciano
       titulo: 'Crekoni Decoder Unificado...',
-      data: '26. Set. 2026',
+      data: '20. Out. 2026',
       paginaDestino: 'crekonidecoder',
     },
   ];

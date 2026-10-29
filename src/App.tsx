@@ -27,6 +27,7 @@ import { AulasPage } from './components/AulasPage';
 import { CrekoniDecoderPage } from './components/CrekoniDecoderPage';
 import { PromptsPage } from './components/PromptsPage';
 import { MarcaDaguaPage } from './components/MarcaDaguaPage';
+import { ContasProPage } from './components/ContasProPage';
 import { WorkflowVideo18Modal } from './components/WorkflowVideo18Modal';
 import { WorkflowDancinhasModal } from './components/WorkflowDancinhasModal';
 import { WorkflowSemCensuraModal } from './components/WorkflowSemCensuraModal';
@@ -43,6 +44,12 @@ import { WorkflowQwenAioModal } from './components/WorkflowQwenAioModal';
 import { WorkflowLtxVideoRefModal } from './components/WorkflowLtxVideoRefModal';
 import { ChangelogWidget } from './components/ChangelogWidget';
 import { CustomCursor } from './components/CustomCursor';
+import cardArtWorkflows from './assets/images/card_art_workflows.svg';
+import cardArtPrompts from './assets/images/card_art_prompts.svg';
+import cardArtCrekoniDecoder from './assets/images/card_art_crekoni_decoder.svg';
+import cardArtVideoAulas from './assets/images/card_art_video_aulas.svg';
+import cardArtMarcaDagua from './assets/images/card_art_marca_dagua.svg';
+import cardArtContasPro from './assets/images/card_art_contas_pro.svg';
 import { DecodedResult, ContactConfig } from './types';
 import {
   decodeDuckFile,
@@ -55,39 +62,41 @@ import {
 } from './utils/duckDecoder';
 
 const DEFAULT_CONTACT_CONFIG: ContactConfig = {
-  whatsappNumber: '5544991840305',
+  whatsappNumber: '5544988552886',
   whatsappMessage: 'Olá! Vim pelo Duck Decoder e gostaria de tirar uma dúvida.',
   instagramHandle: 'crekoni.ia',
 };
 
 // Fixed destination URLs (protected against unauthorized edits)
-const WF_UPSCALE_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 1 - Workflow Cria 5 Imagens +18')}`;
-const WF_FACESWAP_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 2 - Workflow Modelo +18 Nua + Upscale')}`;
-const WF_LIPSYNC_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 3 - Workflow Fotorrealista +18')}`;
-const WF_VIDEO_18_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 4 - Workflow DaSiWa_Wan v11 Video +18')}`;
-const WF_DANCINHAS_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 5 - 360 Rotacao Angulo Foto Qwen Manual +18')}`;
-const WF_SEM_CENSURA_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 6 - Imagen Refine 8K Super Detalhes De Pele')}`;
-const WF_DYNO_REMIX_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 7 - Wan2.2 Dyno Remix Vídeo +18')}`;
-const WF_LEGACY_KREA2_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 8 - Legacy v2 KREA2 NSFW Imagem Qualidade UHD')}`;
-const WF_MINIMAX_H3_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 9 - MinimaxH3 Vídeo +18 Com Áudio e Referencia')}`;
-const WF_SUPER_UNDRESSING_V3_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 10 - Super Undressing V3 Upscale Removedor De Roupas')}`;
-const WF_QWEN_AIO_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 11 - Workflow QWEN Aio Removedor De Roupas')}`;
-const WF_FLUX2_TROCA_ROSTO_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 12 - Workflow Flux2 + Qwen Trocas de Rosto +18')}`;
-const WF_LTX_VIDEO_REF_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 13 - Workflow LTX 2.3 Video Com Referencia Foto e Áudio')}`;
-const WF_PROMPT2VIDEO_URL = `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Workflow Prompt2Video & Animação')}`;
+const WF_UPSCALE_URL = `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 1 - Workflow Cria 5 Imagens +18')}`;
+const WF_FACESWAP_URL = `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 2 - Workflow Modelo +18 Nua + Upscale')}`;
+const WF_LIPSYNC_URL = `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 3 - Workflow Fotorrealista +18')}`;
+const WF_VIDEO_18_URL = `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 4 - Workflow DaSiWa_Wan v11 Video +18')}`;
+const WF_DANCINHAS_URL = `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 5 - 360 Rotacao Angulo Foto Qwen Manual +18')}`;
+const WF_SEM_CENSURA_URL = `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 6 - Imagen Refine 8K Super Detalhes De Pele')}`;
+const WF_DYNO_REMIX_URL = `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 7 - Wan2.2 Dyno Remix Vídeo +18')}`;
+const WF_LEGACY_KREA2_URL = `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 8 - Legacy v2 KREA2 NSFW Imagem Qualidade UHD')}`;
+const WF_MINIMAX_H3_URL = `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 9 - MinimaxH3 Vídeo +18 Com Áudio e Referencia')}`;
+const WF_SUPER_UNDRESSING_V3_URL = `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 10 - Super Undressing V3 Upscale Removedor De Roupas')}`;
+const WF_QWEN_AIO_URL = `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 11 - Workflow QWEN Aio Removedor De Roupas')}`;
+const WF_FLUX2_TROCA_ROSTO_URL = `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 12 - Workflow Flux2 + Qwen Trocas de Rosto +18')}`;
+const WF_LTX_VIDEO_REF_URL = `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 13 - Workflow LTX 2.3 Video Com Referencia Foto e Áudio')}`;
+const WF_PROMPT2VIDEO_URL = `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Workflow Prompt2Video & Animação')}`;
 
 export default function App() {
   const [items, setItems] = useState<DecodedResult[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Active page: 'home' (Principal), 'decoder' (Decodificador LSB), 'workflows' (Central de Workflows), 'ttimg' (TT-IMG Decoder V1), 'googlepro' (Conta Google AI Pro), 'aulas' (Vídeo Aulas), 'crekonidecoder' (Sistema Unificado), or 'prompts' (Galeria de Prompts)
-  const [currentPage, setCurrentPage] = useState<'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas' | 'crekonidecoder' | 'prompts'>(() => {
+  // Active page: 'home', 'decoder', 'workflows', 'ttimg', 'googlepro', 'aulas', 'crekonidecoder', 'prompts', 'marcadagua', or 'contaspro'
+  const [currentPage, setCurrentPage] = useState<'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas' | 'crekonidecoder' | 'prompts' | 'marcadagua' | 'contaspro'>(() => {
     if (typeof window !== 'undefined') {
       if (window.location.hash === '#decoder') return 'decoder';
       if (window.location.hash === '#workflows') return 'workflows';
       if (window.location.hash === '#ttimg' || window.location.hash === '#tt-img') return 'ttimg';
       if (window.location.hash === '#googlepro' || window.location.hash === '#google-pro') return 'googlepro';
       if (window.location.hash === '#aulas' || window.location.hash === '#video-aulas') return 'aulas';
+      if (window.location.hash === '#marcadagua' || window.location.hash === '#marca-dagua') return 'marcadagua';
+      if (window.location.hash === '#contaspro' || window.location.hash === '#contas-pro') return 'contaspro';
       if (window.location.hash === '#crekonidecoder' || window.location.hash === '#crekoni-decoder') return 'crekonidecoder';
       if (window.location.hash === '#prompts' || window.location.hash === '#prompt') return 'prompts';
     }
@@ -109,6 +118,8 @@ export default function App() {
         setCurrentPage('aulas');
       } else if (window.location.hash === '#marcadagua' || window.location.hash === '#marca-dagua') {
         setCurrentPage('marcadagua');
+      } else if (window.location.hash === '#contaspro' || window.location.hash === '#contas-pro') {
+        setCurrentPage('contaspro');
       } else if (window.location.hash === '#crekonidecoder' || window.location.hash === '#crekoni-decoder') {
         setCurrentPage('crekonidecoder');
       } else if (window.location.hash === '#prompts' || window.location.hash === '#prompt') {
@@ -121,7 +132,7 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const handleNavigate = (page: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas' | 'crekonidecoder' | 'prompts' | 'marcadagua') => {
+  const handleNavigate = (page: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas' | 'crekonidecoder' | 'prompts' | 'marcadagua' | 'contaspro') => {
     setCurrentPage(page);
     window.location.hash = page === 'home' ? '#home' : `#${page}`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -392,11 +403,6 @@ export default function App() {
           <div>
             {/* Hero Section da Página Principal */}
             <section className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/20 text-cyan-300 text-xs font-mono mb-4 shadow-[0_0_15px_rgba(6,182,212,0.15)]">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
-                <span>DECODIFICADORES & WORKFLOWS • CREKONI</span>
-              </div>
-
               {/* 3D Cinematic Stage for CREKONI */}
               <div className="relative inline-block w-full max-w-3xl mx-auto pt-1 pb-4 sm:pb-6">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-12 bg-sky-500/10 blur-3xl rounded-full pointer-events-none" />
@@ -434,11 +440,11 @@ export default function App() {
                     <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-2/4 h-1.5 bg-gradient-to-r from-transparent via-cyan-400/25 to-transparent blur-sm pointer-events-none" />
                   </div>
 
-                  {/* Linha de Baixo: Central de Ferramentas & Workflows */}
+                  {/* Linha de Baixo: WORKFLOWS E FERRAMENTAS IA */}
                   <div className="relative mt-4 sm:mt-5 md:mt-6 flex items-center justify-center gap-2.5">
                     <span className="hidden sm:block w-6 sm:w-10 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
                     <span className="font-display font-semibold text-xs sm:text-sm text-transparent bg-clip-text bg-gradient-to-r from-slate-300 via-cyan-200 to-slate-300 tracking-[0.18em] sm:tracking-[0.24em] uppercase drop-shadow-[0_0_8px_rgba(6,182,212,0.25)]">
-                      Central de Ferramentas & Workflows
+                      WORKFLOWS E FERRAMENTAS IA
                     </span>
                     <span className="hidden sm:block w-6 sm:w-10 h-[1px] bg-gradient-to-l from-transparent via-cyan-400/40 to-transparent" />
                   </div>
@@ -446,216 +452,120 @@ export default function App() {
               </div>
 
               <p className="mt-3 text-sm sm:text-base text-slate-300 max-w-xl mx-auto font-normal">
-                Acesse nossas ferramentas exclusivas, workflows profissionais de inteligência artificial e Decodificador
+                Site Exclusivo Sobre IA, Geração de Conteúdo Sem Censura e Ferramentas PRO Você só Encontra Aqui.
               </p>
 
               {/* Destaques / Atalhos */}
               <div className="mt-7 max-w-4xl mx-auto space-y-3.5 sm:space-y-4">
                 {/* Linha 1: Primeiro quadro WORKFLOWS IA e à direita VIDEO AULAS */}
+                {/* Linha 1: 2 Quadros em Grade Lado a Lado: WORKFLOWS IA e PROMPTS IA */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
-                  {/* 1. Primeiro Quadro: WORKFLOWS IA */}
+                  {/* 1. Primeiro Quadro: WORKFLOWS IA (Arte Gráfica Visual) */}
                   <button
                     type="button"
                     id="hero-btn-enter-workflows"
                     onClick={() => handleNavigate('workflows')}
                     title="Clique para entrar na página de Workflows IA"
-                    className="group relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-purple-950/60 via-[#0e0c1f] to-purple-950/60 hover:from-purple-900/70 hover:to-purple-900/70 border border-purple-500/40 hover:border-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.15)] hover:shadow-[0_0_30px_rgba(168,85,247,0.35)] transition-all duration-300 cursor-pointer text-left"
+                    className="group relative w-full rounded-2xl overflow-hidden hover:scale-[1.015] active:scale-[0.99] transition-all duration-300 cursor-pointer shadow-[0_0_20px_rgba(168,85,247,0.25)] hover:shadow-[0_0_35px_rgba(168,85,247,0.5)] border border-purple-500/50 hover:border-purple-400 p-0 block text-left"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-purple-500/20 border border-purple-400/40 text-purple-300 shadow-[0_0_15px_rgba(168,85,247,0.2)] group-hover:scale-105 transition-transform shrink-0">
-                        <span className="text-2xl select-none">⚡</span>
-                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-purple-400 animate-ping opacity-75" />
-                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-purple-400" />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-purple-200 transition-colors">
-                            WORKFLOWS IA
-                          </span>
-                          <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-purple-950 text-purple-300 border border-purple-500/30">
-                            FLUXOS
-                          </span>
-                        </div>
-                        <p className="text-xs text-slate-300 font-mono mt-0.5">
-                          Adquira Os Melhores Workflows De Imagens e Videos
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-500/20 border border-purple-400/40 text-purple-300 group-hover:bg-purple-400 group-hover:text-black font-mono text-xs font-bold transition-all shrink-0 ml-2">
-                      <span>ENTRAR</span>
-                      <span className="group-hover:translate-x-1 transition-transform">➔</span>
-                    </div>
+                    <img
+                      src={cardArtWorkflows}
+                      alt="Workflows IA - Adquira os Melhores Workflows de Imagens e Vídeos"
+                      className="w-full h-auto block select-none pointer-events-none transition-transform duration-300 group-hover:scale-[1.01]"
+                      loading="eager"
+                    />
                   </button>
 
-                  {/* 2. À Direita: PROMPTS IA (Cor Esverdeada) */}
+                  {/* 2. À Direita: PROMPTS IA (Arte Gráfica Visual) */}
                   <button
                     type="button"
                     id="hero-card-prompts"
                     onClick={() => handleNavigate('prompts')}
                     title="Clique para acessar a Galeria de Prompts IA"
-                    className="group relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-emerald-950/60 via-[#061e13] to-emerald-950/60 hover:from-emerald-900/70 hover:to-emerald-900/70 border border-emerald-500/40 hover:border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.15)] hover:shadow-[0_0_30px_rgba(16,185,129,0.35)] transition-all duration-300 text-left cursor-pointer"
+                    className="group relative w-full rounded-2xl overflow-hidden hover:scale-[1.015] active:scale-[0.99] transition-all duration-300 cursor-pointer shadow-[0_0_20px_rgba(16,185,129,0.25)] hover:shadow-[0_0_35px_rgba(16,185,129,0.5)] border border-emerald-500/50 hover:border-emerald-400 p-0 block text-left"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)] group-hover:scale-105 transition-transform shrink-0">
-                        <span className="text-2xl select-none">✨</span>
-                        <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-emerald-200 transition-colors">
-                            PROMPTS IA
-                          </span>
-                          <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-emerald-950 text-emerald-300 border border-emerald-500/30">
-                            GALERIA
-                          </span>
-                        </div>
-                        <p className="text-xs text-emerald-200/80 font-mono mt-0.5">
-                          Galeria com fotos e vídeos reais, copie prompts com 1 clique
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 group-hover:bg-emerald-400 group-hover:text-black font-mono text-xs font-bold transition-all shrink-0 ml-2">
-                      <span>ENTRAR</span>
-                      <span className="group-hover:translate-x-1 transition-transform">➔</span>
-                    </div>
+                    <img
+                      src={cardArtPrompts}
+                      alt="Prompts IA - Galeria com fotos e vídeos reais, copie prompts com 1 clique"
+                      className="w-full h-auto block select-none pointer-events-none transition-transform duration-300 group-hover:scale-[1.01]"
+                      loading="eager"
+                    />
                   </button>
                 </div>
 
-                {/* Quadro CREKONI DECODER: ABAIXO DELES, CENTRALIZADO AO MEIO */}
+                {/* Quadro CREKONI DECODER: ABAIXO DELES, CENTRALIZADO AO MEIO (Arte Gráfica Visual) */}
                 <button
                   type="button"
                   id="hero-btn-enter-crekonidecoder"
                   onClick={() => handleNavigate('crekonidecoder')}
                   title="Entrar no Crekoni Decoder - Sistema Unificado Duck + TT-IMG"
-                  className="group relative w-full flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 sm:p-5 rounded-3xl bg-gradient-to-r from-cyan-950/80 via-[#0a1529] to-amber-950/80 hover:from-cyan-900/90 hover:to-amber-900/90 border-2 border-cyan-500/50 hover:border-cyan-400 shadow-[0_0_25px_rgba(6,182,212,0.25)] hover:shadow-[0_0_40px_rgba(6,182,212,0.45)] transition-all duration-300 cursor-pointer text-left overflow-hidden"
+                  className="group relative w-full rounded-2xl sm:rounded-3xl overflow-hidden hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 cursor-pointer shadow-[0_0_25px_rgba(6,182,212,0.3)] hover:shadow-[0_0_45px_rgba(6,182,212,0.55)] border-2 border-cyan-500/50 hover:border-cyan-400 p-0 block text-left"
                 >
-                  <div className="flex items-center gap-3.5 sm:gap-4">
-                    <div className="relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-cyan-950 via-slate-900 to-amber-950 border border-cyan-400/60 shadow-[0_0_20px_rgba(6,182,212,0.3)] group-hover:scale-105 transition-transform shrink-0">
-                      <div className="flex items-center -space-x-1.5">
-                        <span className="text-xl sm:text-2xl select-none">🦆</span>
-                        <span className="text-xl sm:text-2xl select-none">🖼️</span>
-                      </div>
-                      <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-cyan-400 animate-ping opacity-75" />
-                      <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-emerald-400" />
-                    </div>
-
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="font-orbitron font-extrabold text-base sm:text-lg text-white group-hover:text-cyan-200 transition-colors tracking-wide">
-                          CREKONI DECODER
-                        </span>
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-bold text-cyan-200 bg-cyan-950/90 border border-cyan-400/50 shadow-[0_0_10px_rgba(6,182,212,0.3)]">
-                          <Sparkles className="w-3 h-3 text-cyan-400 animate-pulse" />
-                          <span>SISTEMA UNIFICADO</span>
-                        </span>
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold text-emerald-300 bg-emerald-950/70 border border-emerald-500/40">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                          <span>DUAL ENGINE ATIVO</span>
-                        </span>
-                      </div>
-
-                      <p className="text-xs sm:text-sm text-slate-300 font-mono mt-1">
-                        Os dois juntos: <strong className="text-cyan-300">Duck LSB</strong> + <strong className="text-amber-300">TT-IMG V1</strong> para decodificar todo tipo de arquivo e Imagens Feitos Com IA
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mt-3 sm:mt-0 flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-amber-400 text-black font-mono text-xs font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)] group-hover:scale-105 transition-all shrink-0 self-end sm:self-center">
-                    <span>ENTRAR AGORA</span>
-                    <span className="group-hover:translate-x-1 transition-transform">➔</span>
-                  </div>
+                  <img
+                    src={cardArtCrekoniDecoder}
+                    alt="Crekoni Decoder - Sistema Unificado Duck LSB + TT-IMG V1"
+                    className="w-full h-auto block select-none pointer-events-none transition-transform duration-300 group-hover:scale-[1.008]"
+                    loading="eager"
+                  />
                 </button>
 
-                {/* Quadro MAIOR: CONTA GOOGLE AI PRO 18 MESES POR R$ 20,00 */}
+                {/* 2 Quadros em Grade Lado a Lado: VIDEO AULAS e REMOVEDOR DE MARCA D'ÁGUA */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {/* À Esquerda: VIDEO AULAS (Arte Gráfica Visual) */}
+                  <button
+                    type="button"
+                    id="hero-card-video-aulas"
+                    onClick={() => handleNavigate('aulas')}
+                    title="Clique para acessar a página de Vídeo Aulas"
+                    className="group relative w-full rounded-2xl overflow-hidden hover:scale-[1.015] active:scale-[0.99] transition-all duration-300 cursor-pointer shadow-[0_0_20px_rgba(244,63,94,0.25)] hover:shadow-[0_0_35px_rgba(244,63,94,0.5)] border border-pink-500/50 hover:border-pink-400 p-0 block text-left"
+                  >
+                    <img
+                      src={cardArtVideoAulas}
+                      alt="Vídeo Aulas - Treinamentos e aulas práticas passo a passo"
+                      className="w-full h-auto block select-none pointer-events-none transition-transform duration-300 group-hover:scale-[1.01]"
+                      loading="eager"
+                    />
+                  </button>
+
+                  {/* À Direita: REMOVEDOR DE MARCA D'ÁGUA (Arte Gráfica Visual) */}
+                  <button
+                    type="button"
+                    id="hero-card-marca-dagua"
+                    onClick={() => handleNavigate('marcadagua')}
+                    title="Clique para acessar o removedor de marca d'água de vídeos e imagens"
+                    className="group relative w-full rounded-2xl overflow-hidden hover:scale-[1.015] active:scale-[0.99] transition-all duration-300 cursor-pointer shadow-[0_0_20px_rgba(6,182,212,0.25)] hover:shadow-[0_0_35px_rgba(6,182,212,0.5)] border border-cyan-500/50 hover:border-cyan-300 p-0 block text-left"
+                  >
+                    <img
+                      src={cardArtMarcaDagua}
+                      alt="Removedor de Marca D'Água - Reconstituição inteligente em vídeos e fotos"
+                      className="w-full h-auto block select-none pointer-events-none transition-transform duration-300 group-hover:scale-[1.01]"
+                      loading="eager"
+                    />
+                  </button>
+                </div>
+
+                {/* Quadro CONTAS PRO & APIS: Abaixo deles (Arte Gráfica Visual) */}
+                <button
+                  type="button"
+                  id="hero-card-contas-pro"
+                  onClick={() => handleNavigate('contaspro')}
+                  title="Clique para acessar o catálogo de contas pro, ferramentas e APIs"
+                  className="group relative w-full rounded-2xl sm:rounded-3xl overflow-hidden hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 cursor-pointer shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:shadow-[0_0_45px_rgba(16,185,129,0.55)] border-2 border-emerald-500/50 hover:border-emerald-300 p-0 block text-left"
+                >
+                  <img
+                    src={cardArtContasPro}
+                    alt="Contas Pro & APIs - Catálogo de Ferramentas, APIs de IA e Licenças"
+                    className="w-full h-auto block select-none pointer-events-none transition-transform duration-300 group-hover:scale-[1.008]"
+                    loading="eager"
+                  />
+                </button>
+
+                {/* Quadro no final: CONTA GOOGLE AI PRO 18 MESES POR R$ 20,00 */}
                 <GoogleProCard
                   onEnter={() => handleNavigate('googlepro')}
                   contactConfig={contactConfig}
                   soundEnabled={soundEnabled}
                 />
-
-                {/* Quadro VIDEO AULAS: Posicionado abaixo de GooglePro */}
-                <button
-                  type="button"
-                  id="hero-card-video-aulas"
-                  onClick={() => handleNavigate('aulas')}
-                  title="Clique para acessar a página de Vídeo Aulas"
-                  className="group relative w-full flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-pink-950/50 via-[#1c0d18] to-pink-950/50 hover:from-pink-900/60 hover:to-pink-900/60 border border-pink-500/40 hover:border-pink-400 shadow-[0_0_20px_rgba(244,63,94,0.15)] hover:shadow-[0_0_30px_rgba(244,63,94,0.35)] transition-all duration-300 text-left cursor-pointer"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-pink-500/20 border border-pink-400/40 text-pink-300 shadow-[0_0_15px_rgba(244,63,94,0.2)] group-hover:scale-105 transition-transform shrink-0">
-                      <span className="text-2xl select-none">🎬</span>
-                      <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-pink-400 animate-pulse" />
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-display font-bold text-sm sm:text-base text-white group-hover:text-pink-200 transition-colors">
-                          VIDEO AULAS
-                        </span>
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-mono tracking-wider bg-pink-950 text-pink-300 border border-pink-500/30">
-                          TUTORIAIS
-                        </span>
-                      </div>
-                      <p className="text-xs text-pink-200/80 font-mono mt-0.5">
-                        Treinamentos e aulas práticas passo a passo Nordy e RunningHub
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-pink-500/20 border border-pink-400/40 text-pink-300 group-hover:bg-pink-400 group-hover:text-black font-mono text-xs font-bold transition-all shrink-0 ml-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-pink-400 group-hover:bg-black animate-pulse" />
-                    <span>ASSISTIR</span>
-                    <span className="group-hover:translate-x-1 transition-transform">➔</span>
-                  </div>
-                </button>
-
-                {/* Quadro MARCA D'ÁGUA: Estilo Futurista Cyberpunk CREKONI */}
-                <button
-                  type="button"
-                  id="hero-card-marca-dagua"
-                  onClick={() => handleNavigate('marcadagua')}
-                  title="Clique para acessar o removedor de marca d'água de vídeos e imagens"
-                  className="group relative w-full flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-cyan-950/60 via-[#071626] to-pink-950/50 hover:from-cyan-900/70 hover:to-pink-900/60 border border-cyan-500/40 hover:border-cyan-300 shadow-[0_0_20px_rgba(6,182,212,0.18)] hover:shadow-[0_0_35px_rgba(6,182,212,0.38)] transition-all duration-300 text-left cursor-pointer overflow-hidden"
-                >
-                  {/* HUD Corner Accents */}
-                  <div className="absolute top-1.5 left-1.5 w-2.5 h-2.5 border-t-2 border-l-2 border-cyan-400/60 pointer-events-none group-hover:border-cyan-300 transition-colors" />
-                  <div className="absolute top-1.5 right-1.5 w-2.5 h-2.5 border-t-2 border-r-2 border-cyan-400/60 pointer-events-none group-hover:border-cyan-300 transition-colors" />
-                  <div className="absolute bottom-1.5 left-1.5 w-2.5 h-2.5 border-b-2 border-l-2 border-cyan-400/60 pointer-events-none group-hover:border-cyan-300 transition-colors" />
-                  <div className="absolute bottom-1.5 right-1.5 w-2.5 h-2.5 border-b-2 border-r-2 border-cyan-400/60 pointer-events-none group-hover:border-cyan-300 transition-colors" />
-
-                  <div className="flex items-start sm:items-center gap-3.5">
-                    <div className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/25 to-pink-500/25 border border-cyan-400/50 text-cyan-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] group-hover:scale-105 transition-transform shrink-0 mt-0.5 sm:mt-0">
-                      <span className="text-2xl select-none">✨</span>
-                      <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
-                    </div>
-
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="font-orbitron font-bold text-sm sm:text-base text-white group-hover:text-cyan-200 transition-colors tracking-wide">
-                          REMOVEDOR DE MARCA D'ÁGUA
-                        </span>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold tracking-wider bg-cyan-950 text-cyan-300 border border-cyan-400/50 shadow-[0_0_10px_rgba(6,182,212,0.25)]">
-                          IA NEURAL
-                        </span>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold tracking-wider bg-pink-950 text-pink-300 border border-pink-500/40 shadow-[0_0_10px_rgba(244,63,94,0.25)]">
-                          VÍDEOS & FOTOS
-                        </span>
-                        <span className="hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold text-emerald-300 bg-emerald-950/70 border border-emerald-500/40">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                          <span>100% LOCAL</span>
-                        </span>
-                      </div>
-
-                      <p className="text-xs sm:text-sm text-slate-300 font-mono mt-1">
-                        Apague logos e marcas com reconstituição inteligente mantendo <strong className="text-cyan-300">resolução nativa</strong>, <strong className="text-pink-300">FPS</strong> e <strong className="text-emerald-300">áudio original</strong>
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mt-3 sm:mt-0 flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400 via-indigo-400 to-pink-400 hover:from-cyan-300 hover:to-pink-300 text-black font-mono text-xs font-bold shadow-[0_0_18px_rgba(6,182,212,0.35)] group-hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] group-hover:scale-105 transition-all shrink-0 self-end sm:self-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
-                    <span>ACESSAR</span>
-                    <span className="group-hover:translate-x-1 transition-transform">➔</span>
-                  </div>
-                </button>
               </div>
             </section>
           </div>
@@ -704,6 +614,12 @@ export default function App() {
         ) : currentPage === 'prompts' ? (
           <PromptsPage
             onBack={() => handleNavigate('home')}
+            soundEnabled={soundEnabled}
+          />
+        ) : currentPage === 'contaspro' ? (
+          <ContasProPage
+            onBack={() => handleNavigate('home')}
+            contactConfig={contactConfig}
             soundEnabled={soundEnabled}
           />
         ) : (
@@ -1009,8 +925,8 @@ export default function App() {
       {/* Janela Flutuante à Esquerda com Notas de Atualização estilo Launcher */}
       <ChangelogWidget onNavigate={handleNavigate} />
 
-      {/* Cursor Futurista Cyberpunk Azul com Rastro e Anel Interativo */}
-      <CustomCursor />
+      {/* Cursor Futurista Cyberpunk Azul com Rastro e Anel Interativo (desativado nas páginas Workflows e Vídeo Aulas) */}
+      <CustomCursor disabled={currentPage === 'workflows' || currentPage === 'aulas'} />
     </div>
   );
 }

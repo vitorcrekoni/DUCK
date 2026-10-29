@@ -9,7 +9,7 @@ interface WorkflowFaceSwapModalProps {
   whatsappUrl: string;
 }
 
-export const HOTMART_CHECKOUT_QUADRO_2 = 'https://pay.hotmart.com/V107668208I?bid=1789746172828';
+export const HOTMART_CHECKOUT_QUADRO_2 = 'https://pay.hotmart.com/U108243941O';
 
 export const WorkflowFaceSwapModal: React.FC<WorkflowFaceSwapModalProps> = ({
   isOpen,
@@ -17,7 +17,7 @@ export const WorkflowFaceSwapModal: React.FC<WorkflowFaceSwapModalProps> = ({
   whatsappUrl,
 }) => {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const finalWhatsappUrl = whatsappUrl || `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 2 - Workflow Modelo +18 Nua + Upscale')}`;
+  const finalWhatsappUrl = whatsappUrl || `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 2 - Workflow Modelo +18 Nua + Upscale')}`;
 
   // Close on Escape key press
   useEffect(() => {

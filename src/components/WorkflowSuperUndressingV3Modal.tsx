@@ -10,7 +10,7 @@ interface WorkflowSuperUndressingV3ModalProps {
   videoEmbedUrl?: string;
 }
 
-export const HOTMART_CHECKOUT_QUADRO_10 = 'https://pay.hotmart.com/E107859591X';
+export const HOTMART_CHECKOUT_QUADRO_10 = 'https://pay.hotmart.com/I108243949T';
 
 export const WorkflowSuperUndressingV3Modal: React.FC<WorkflowSuperUndressingV3ModalProps> = ({
   isOpen,
@@ -21,8 +21,8 @@ export const WorkflowSuperUndressingV3Modal: React.FC<WorkflowSuperUndressingV3M
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const finalWhatsappUrl =
     whatsappUrl ||
-    `https://wa.me/5544991840305?text=${encodeURIComponent(
-      'Olá Vitor, quero comprar pelo WhatsApp: Quadro 10 - Super Undressing V3 Upscale Removedor De Roupas'
+    `https://wa.me/5544988552886?text=${encodeURIComponent(
+      'Olá Crekoni, quero comprar pelo WhatsApp: Quadro 10 - Super Undressing V3 Upscale Removedor De Roupas'
     )}`;
 
   // Close on Escape key press

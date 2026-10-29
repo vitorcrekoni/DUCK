@@ -9,7 +9,7 @@ interface WorkflowLegacyKrea2ModalProps {
   whatsappUrl?: string;
 }
 
-export const HOTMART_CHECKOUT_QUADRO_8 = 'https://pay.hotmart.com/W107789803F';
+export const HOTMART_CHECKOUT_QUADRO_8 = 'https://pay.hotmart.com/O108244134E';
 
 export const WorkflowLegacyKrea2Modal: React.FC<WorkflowLegacyKrea2ModalProps> = ({
   isOpen,
@@ -19,8 +19,8 @@ export const WorkflowLegacyKrea2Modal: React.FC<WorkflowLegacyKrea2ModalProps> =
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const finalWhatsappUrl =
     whatsappUrl ||
-    `https://wa.me/5544991840305?text=${encodeURIComponent(
-      'Olá Vitor, quero comprar pelo WhatsApp: Quadro 8 - Legacy v2 KREA2 NSFW Imagem Qualidade UHD'
+    `https://wa.me/5544988552886?text=${encodeURIComponent(
+      'Olá Crekoni, quero comprar pelo WhatsApp: Quadro 8 - Legacy v2 KREA2 NSFW Imagem Qualidade UHD'
     )}`;
 
   // Close on Escape key press

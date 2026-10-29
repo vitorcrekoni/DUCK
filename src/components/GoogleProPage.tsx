@@ -43,7 +43,7 @@ export const GoogleProPage: React.FC<GoogleProPageProps> = ({
 }) => {
   const [copiedLink, setCopiedLink] = useState(false);
 
-  const cleanNumber = contactConfig.whatsappNumber.replace(/\D/g, '') || '5544991840305';
+  const cleanNumber = contactConfig.whatsappNumber.replace(/\D/g, '') || '5544988552886';
   const whatsappUrl = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(
     'Olá! Tenho interesse na Conta Google AI Pro 18 Meses por R$ 20,00. Como faço para ativar?'
   )}`;
@@ -259,7 +259,7 @@ export const GoogleProPage: React.FC<GoogleProPageProps> = ({
               </a>
 
               <p className="text-center text-[11px] font-mono text-slate-400">
-                Ativação rápida e suporte direto com Vitor Crekoni via WhatsApp
+                Ativação rápida e suporte direto com Crekoni via WhatsApp
               </p>
             </div>
           </div>

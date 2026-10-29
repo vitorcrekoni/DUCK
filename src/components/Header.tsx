@@ -7,8 +7,8 @@ interface HeaderProps {
   contactConfig: ContactConfig;
   soundEnabled: boolean;
   onToggleSound: () => void;
-  currentPage: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas' | 'crekonidecoder';
-  onNavigate: (page: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas' | 'crekonidecoder') => void;
+  currentPage: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas' | 'crekonidecoder' | 'prompts' | 'marcadagua' | 'contaspro';
+  onNavigate: (page: 'home' | 'decoder' | 'workflows' | 'ttimg' | 'googlepro' | 'aulas' | 'crekonidecoder' | 'prompts' | 'marcadagua' | 'contaspro') => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({

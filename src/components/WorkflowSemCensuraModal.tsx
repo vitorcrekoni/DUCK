@@ -9,7 +9,7 @@ interface WorkflowSemCensuraModalProps {
   whatsappUrl?: string;
 }
 
-export const HOTMART_CHECKOUT_QUADRO_6 = 'https://pay.hotmart.com/I107686620S';
+export const HOTMART_CHECKOUT_QUADRO_6 = 'https://pay.hotmart.com/N108244019S';
 
 export const WorkflowSemCensuraModal: React.FC<WorkflowSemCensuraModalProps> = ({
   isOpen,
@@ -17,7 +17,7 @@ export const WorkflowSemCensuraModal: React.FC<WorkflowSemCensuraModalProps> = (
   whatsappUrl,
 }) => {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const finalWhatsappUrl = whatsappUrl || `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 6 - Imagen Refine 8K Super Detalhes De Pele')}`;
+  const finalWhatsappUrl = whatsappUrl || `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 6 - Imagen Refine 8K Super Detalhes De Pele')}`;
 
   // Close on Escape key press
   useEffect(() => {

@@ -9,7 +9,7 @@ interface WorkflowUpscaleModalProps {
   whatsappUrl: string;
 }
 
-export const HOTMART_CHECKOUT_QUADRO_1 = 'https://pay.hotmart.com/F107668242S?bid=1789746465666';
+export const HOTMART_CHECKOUT_QUADRO_1 = 'https://pay.hotmart.com/C108243924B';
 
 export const WorkflowUpscaleModal: React.FC<WorkflowUpscaleModalProps> = ({
   isOpen,
@@ -17,7 +17,7 @@ export const WorkflowUpscaleModal: React.FC<WorkflowUpscaleModalProps> = ({
   whatsappUrl,
 }) => {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const finalWhatsappUrl = whatsappUrl || `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 1 - Workflow Cria 5 Imagens +18')}`;
+  const finalWhatsappUrl = whatsappUrl || `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 1 - Workflow Cria 5 Imagens +18')}`;
 
   // Close on Escape key press
   useEffect(() => {

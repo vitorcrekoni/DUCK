@@ -9,7 +9,7 @@ interface WorkflowDancinhasModalProps {
   whatsappUrl?: string;
 }
 
-export const HOTMART_CHECKOUT_QUADRO_5 = 'https://pay.hotmart.com/P107686240H';
+export const HOTMART_CHECKOUT_QUADRO_5 = 'https://pay.hotmart.com/N108243967I';
 
 export const WorkflowDancinhasModal: React.FC<WorkflowDancinhasModalProps> = ({
   isOpen,
@@ -17,7 +17,7 @@ export const WorkflowDancinhasModal: React.FC<WorkflowDancinhasModalProps> = ({
   whatsappUrl,
 }) => {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const finalWhatsappUrl = whatsappUrl || `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 5 - 360 Rotacao Angulo Foto Qwen Manual +18')}`;
+  const finalWhatsappUrl = whatsappUrl || `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 5 - 360 Rotacao Angulo Foto Qwen Manual +18')}`;
 
   // Close on Escape key press
   useEffect(() => {

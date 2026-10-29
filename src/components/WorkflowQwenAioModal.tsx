@@ -9,7 +9,7 @@ interface WorkflowQwenAioModalProps {
   whatsappUrl: string;
 }
 
-export const HOTMART_CHECKOUT_QWEN_AIO = 'https://pay.hotmart.com/G107860098H';
+export const HOTMART_CHECKOUT_QWEN_AIO = 'https://pay.hotmart.com/K108244032O';
 
 export const WorkflowQwenAioModal: React.FC<WorkflowQwenAioModalProps> = ({
   isOpen,
@@ -19,8 +19,8 @@ export const WorkflowQwenAioModal: React.FC<WorkflowQwenAioModalProps> = ({
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const finalWhatsappUrl =
     whatsappUrl ||
-    `https://wa.me/5544991840305?text=${encodeURIComponent(
-      'Olá Vitor, quero comprar pelo WhatsApp: Quadro 11 - Workflow QWEN Aio Removedor De Roupas'
+    `https://wa.me/5544988552886?text=${encodeURIComponent(
+      'Olá Crekoni, quero comprar pelo WhatsApp: Quadro 11 - Workflow QWEN Aio Removedor De Roupas'
     )}`;
 
   // Close on Escape key press

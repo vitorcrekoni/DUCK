@@ -9,7 +9,7 @@ interface WorkflowLipSyncModalProps {
   whatsappUrl: string;
 }
 
-export const HOTMART_CHECKOUT_QUADRO_3 = 'https://pay.hotmart.com/I107666084W?bid=1789745526642';
+export const HOTMART_CHECKOUT_QUADRO_3 = 'https://pay.hotmart.com/Y108244003O';
 
 export const WorkflowLipSyncModal: React.FC<WorkflowLipSyncModalProps> = ({
   isOpen,
@@ -17,7 +17,7 @@ export const WorkflowLipSyncModal: React.FC<WorkflowLipSyncModalProps> = ({
   whatsappUrl,
 }) => {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const finalWhatsappUrl = whatsappUrl || `https://wa.me/5544991840305?text=${encodeURIComponent('Olá Vitor, quero comprar pelo WhatsApp: Quadro 3 - Workflow Fotorrealista +18')}`;
+  const finalWhatsappUrl = whatsappUrl || `https://wa.me/5544988552886?text=${encodeURIComponent('Olá Crekoni, quero comprar pelo WhatsApp: Quadro 3 - Workflow Fotorrealista +18')}`;
 
   // Close on Escape key press
   useEffect(() => {

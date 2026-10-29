@@ -9,7 +9,7 @@ interface WorkflowMinimaxH3ModalProps {
   whatsappUrl?: string;
 }
 
-export const HOTMART_CHECKOUT_QUADRO_9 = 'https://pay.hotmart.com/A107829668J';
+export const HOTMART_CHECKOUT_QUADRO_9 = 'https://pay.hotmart.com/D108243669S';
 
 export const WorkflowMinimaxH3Modal: React.FC<WorkflowMinimaxH3ModalProps> = ({
   isOpen,
@@ -19,8 +19,8 @@ export const WorkflowMinimaxH3Modal: React.FC<WorkflowMinimaxH3ModalProps> = ({
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const finalWhatsappUrl =
     whatsappUrl ||
-    `https://wa.me/5544991840305?text=${encodeURIComponent(
-      'Olá Vitor, quero comprar pelo WhatsApp: Quadro 9 - MinimaxH3 Vídeo +18 Com Áudio e Referencia'
+    `https://wa.me/5544988552886?text=${encodeURIComponent(
+      'Olá Crekoni, quero comprar pelo WhatsApp: Quadro 9 - MinimaxH3 Vídeo +18 Com Áudio e Referencia'
     )}`;
 
   // Close on Escape key press

@@ -11,7 +11,11 @@ import { createPortal } from 'react-dom';
  * - Animação via requestAnimationFrame sem re-renders de estado no React durante o movimento.
  * - Círculo envolta e sombra acompanham de perto e em tempo real.
  */
-export const CustomCursor: React.FC = () => {
+interface CustomCursorProps {
+  disabled?: boolean;
+}
+
+export const CustomCursor: React.FC<CustomCursorProps> = ({ disabled = false }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
@@ -20,6 +24,11 @@ export const CustomCursor: React.FC = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    if (disabled) {
+      document.documentElement.classList.remove('cursor-custom');
+      return;
+    }
+
     // Apenas ativa em navegadores com suporte a ponteiro fino (mouse desktop)
     if (typeof window === 'undefined' || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
       return;
@@ -145,9 +154,9 @@ export const CustomCursor: React.FC = () => {
       cancelAnimationFrame(rafId);
       document.documentElement.classList.remove('cursor-custom');
     };
-  }, []);
+  }, [disabled]);
 
-  if (!mounted || typeof document === 'undefined') return null;
+  if (disabled || !mounted || typeof document === 'undefined') return null;
 
   return createPortal(
     <div

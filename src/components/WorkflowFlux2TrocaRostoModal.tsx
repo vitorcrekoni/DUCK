@@ -9,7 +9,7 @@ interface WorkflowFlux2TrocaRostoModalProps {
   whatsappUrl: string;
 }
 
-export const HOTMART_CHECKOUT_FLUX2_TROCA_ROSTO = 'https://pay.hotmart.com/M107860126U';
+export const HOTMART_CHECKOUT_FLUX2_TROCA_ROSTO = 'https://pay.hotmart.com/O108243990Y';
 
 export const WorkflowFlux2TrocaRostoModal: React.FC<WorkflowFlux2TrocaRostoModalProps> = ({
   isOpen,
@@ -19,8 +19,8 @@ export const WorkflowFlux2TrocaRostoModal: React.FC<WorkflowFlux2TrocaRostoModal
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const finalWhatsappUrl =
     whatsappUrl ||
-    `https://wa.me/5544991840305?text=${encodeURIComponent(
-      'Olá Vitor, quero comprar pelo WhatsApp: Quadro 12 - Workflow Flux2 + Qwen Trocas de Rosto +18'
+    `https://wa.me/5544988552886?text=${encodeURIComponent(
+      'Olá Crekoni, quero comprar pelo WhatsApp: Quadro 12 - Workflow Flux2 + Qwen Trocas de Rosto +18'
     )}`;
 
   // Close on Escape key press

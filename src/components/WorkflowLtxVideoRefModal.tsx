@@ -9,7 +9,7 @@ interface WorkflowLtxVideoRefModalProps {
   whatsappUrl?: string;
 }
 
-export const HOTMART_CHECKOUT_LTX_VIDEO_REF = 'https://pay.hotmart.com/S107915113M';
+export const HOTMART_CHECKOUT_LTX_VIDEO_REF = 'https://pay.hotmart.com/P108243764Q';
 
 export const WorkflowLtxVideoRefModal: React.FC<WorkflowLtxVideoRefModalProps> = ({
   isOpen,
@@ -19,8 +19,8 @@ export const WorkflowLtxVideoRefModal: React.FC<WorkflowLtxVideoRefModalProps> =
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const finalWhatsappUrl =
     whatsappUrl ||
-    `https://wa.me/5544991840305?text=${encodeURIComponent(
-      'Olá Vitor, quero comprar pelo WhatsApp: Quadro 13 - Workflow LTX 2.3 Video Com Referencia Foto e Áudio'
+    `https://wa.me/5544988552886?text=${encodeURIComponent(
+      'Olá Crekoni, quero comprar pelo WhatsApp: Quadro 13 - Workflow LTX 2.3 Video Com Referencia Foto e Áudio'
     )}`;
 
   // Close on Escape key press

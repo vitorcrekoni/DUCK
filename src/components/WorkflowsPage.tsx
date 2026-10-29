@@ -108,7 +108,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
   const whatsappBaseUrl = `https://wa.me/${contactConfig.whatsappNumber.replace(/\D/g, '')}`;
 
   const getWorkflowWhatsAppUrl = (wfName: string) => {
-    const text = `Olá Vitor, estou na página de Workflows IA e gostaria de adquirir o ${wfName}! Como faço para obter?`;
+    const text = `Olá Crekoni, estou na página de Workflows IA e gostaria de adquirir o ${wfName}! Como faço para obter?`;
     return `${whatsappBaseUrl}?text=${encodeURIComponent(text)}`;
   };
 
@@ -159,7 +159,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
                   selectedCategory === 'todos' ? 'bg-black/20 text-black' : 'bg-white/10 text-slate-400'
                 }`}
               >
-                12
+                13
               </span>
             </button>
 
@@ -201,7 +201,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
                   selectedCategory === 'video' ? 'bg-black/30 text-white' : 'bg-white/10 text-slate-400'
                 }`}
               >
-                3
+                4
               </span>
             </button>
 
@@ -222,7 +222,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
                   selectedCategory === 'sem_censura' ? 'bg-black/30 text-white' : 'bg-white/10 text-slate-400'
                 }`}
               >
-                12
+                13
               </span>
             </button>
           </div>
@@ -1122,7 +1122,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
         <div className="space-y-2 text-center sm:text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono text-emerald-300 bg-emerald-950/80 border border-emerald-500/40">
             <MessageCircle className="w-3.5 h-3.5" />
-            <span>SUPORTE DIRETO COM VITOR CREKONI</span>
+            <span>SUPORTE DIRETO COM CREKONI</span>
           </div>
           <h3 className="text-lg sm:text-xl font-bold font-orbitron text-white">
             Dúvidas sobre os Workflows ou Instalação?
@@ -1133,7 +1133,7 @@ export const WorkflowsPage: React.FC<WorkflowsPageProps> = ({
         </div>
 
         <a
-          href={`${whatsappBaseUrl}?text=${encodeURIComponent('Olá Vitor, vim pela página de workflows e gostaria de mais informações!')}`}
+          href={`${whatsappBaseUrl}?text=${encodeURIComponent('Olá Crekoni, vim pela página de workflows e gostaria de mais informações!')}`}
           target="_blank"
           rel="noopener noreferrer"
           className="px-6 py-3 rounded-xl font-mono font-bold text-xs sm:text-sm text-black bg-emerald-400 hover:bg-emerald-300 border border-emerald-300 shadow-[0_0_20px_rgba(16,185,129,0.4)] transition-all flex items-center gap-2 shrink-0 cursor-pointer"
